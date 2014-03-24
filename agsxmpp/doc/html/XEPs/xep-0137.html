@@ -1,0 +1,303 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>XEP-0137: Publishing Stream Initiation Requests</title><link rel="stylesheet" type="text/css" href="/xmpp.css" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" /><meta name="DC.Title" content="Publishing Stream Initiation Requests" /><meta name="DC.Creator" content="Matthew Miller" /><meta name="DC.Creator" content="Thomas Muldowney" /><meta name="DC.Description" content="This specification defines an XMPP protocol extension that enables an XMPP entity to advertise the fact that it is willing accept a particular Stream Initiation request. The protocol is used mainly to inform other entities that a particular file is available for transfer via the File Transfer protocol defined in XEP-0096." /><meta name="DC.Publisher" content="XMPP Standards Foundation" /><meta name="DC.Contributor" content="XMPP Extensions Editor" /><meta name="DC.Date" content="2005-08-26" /><meta name="DC.Type" content="XMPP Extension Protocol" /><meta name="DC.Format" content="XHTML" /><meta name="DC.Identifier" content="XEP-0137" /><meta name="DC.Language" content="en" /><meta name="DC.Rights" content="This XMPP Extension Protocol is copyright (c) 1999 - 2008 by the XMPP Standards Foundation (XSF)." /></head><body><h1>XEP-0137: Publishing Stream Initiation Requests</h1><p>This specification defines an XMPP protocol extension that enables an XMPP entity to advertise the fact that it is willing accept a particular Stream Initiation request. The protocol is used mainly to inform other entities that a particular file is available for transfer via the File Transfer protocol defined in XEP-0096.</p><hr /><p style="color:green">NOTICE: The protocol defined herein is a Draft Standard of the XMPP Standards Foundation. Implementations are encouraged and the protocol is appropriate for deployment in production systems, but some changes to the protocol are possible before it becomes a Final Standard.</p><hr /><h2>Document Information</h2><p class="indent">
+            Series: <a href="http://www.xmpp.org/extensions/">XEP</a><br />
+            Number: 0137<br />
+            Publisher: <a href="/xsf/">XMPP Standards Foundation</a><br />
+            Status: 
+            <a href="http://www.xmpp.org/extensions/xep-0001.html#states-Draft">Draft</a><br />
+            Type:
+            <a href="http://www.xmpp.org/extensions/xep-0001.html#types-Standards Track">Standards Track</a><br />
+            Version: 1.0<br />
+            Last Updated: 2005-08-26<br />
+                Approving Body: <a href="http://www.xmpp.org/council/">XMPP Council</a><br />Dependencies: XMPP Core, XEP-0030, XEP-0095<br />
+                Supersedes: None<br />
+                Superseded By: None<br />
+            Short Name: sipub<br />
+        Schema: &lt;<a href="http://www.xmpp.org/schemas/sipub.xsd">http://www.xmpp.org/schemas/sipub.xsd</a>&gt;<br />
+              Wiki Page: &lt;<a href="http://wiki.jabber.org/index.php/Publishing Stream Initiation Requests (XEP-0137)">http://wiki.jabber.org/index.php/Publishing Stream Initiation Requests (XEP-0137)</a>&gt;
+            </p><hr /><h2>Author Information</h2><div class="indent"><h3>Matthew Miller</h3><p class="indent">
+        Email:
+        <a href="mailto:linuxwolf@outer-planes.net">linuxwolf@outer-planes.net</a><br />
+        JabberID: 
+        <a href="xmpp:linuxwolf@outer-planes.net">linuxwolf@outer-planes.net</a><br /></p><h3>Thomas Muldowney</h3><p class="indent">
+        Email:
+        <a href="mailto:temas@jabber.org">temas@jabber.org</a><br />
+        JabberID: 
+        <a href="xmpp:temas@jabber.org">temas@jabber.org</a><br /></p></div><hr /><h2>Legal Notices</h2><div class="indent"><h3>Copyright</h3>This XMPP Extension Protocol is copyright (c) 1999 - 2008 by the XMPP Standards Foundation (XSF).<h3>Permissions</h3>Permission is hereby granted, free of charge, to any person obtaining a copy of this specification (the "Specification"), to make use of the Specification without restriction, including without limitation the rights to implement the Specification in a software program, deploy the Specification in a network service, and copy, modify, merge, publish, translate, distribute, sublicense, or sell copies of the Specification, and to permit persons to whom the Specification is furnished to do so, subject to the condition that the foregoing copyright notice and this permission notice shall be included in all copies or substantial portions of the Specification. Unless separate permission is granted, modified works that are redistributed shall not contain misleading information regarding the authors, title, number, or publisher of the Specification, and shall not claim endorsement of the modified works by the authors, any organization or project to which the authors belong, or the XMPP Standards Foundation.<h3>Disclaimer of Warranty</h3><span style="font-weight: bold">## NOTE WELL: This Specification is provided on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, express or implied, including, without limitation, any warranties or conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE. In no event shall the XMPP Standards Foundation or the authors of this Specification be liable for any claim, damages, or other liability, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the Specification or the implementation, deployment, or other use of the Specification. ##</span><h3>Limitation of Liability</h3>In no event and under no legal theory, whether in tort (including negligence), contract, or otherwise, unless required by applicable law (such as deliberate and grossly negligent acts) or agreed to in writing, shall the XMPP Standards Foundation or any author of this Specification be liable for damages, including any direct, indirect, special, incidental, or consequential damages of any character arising out of the use or inability to use the Specification (including but not limited to damages for loss of goodwill, work stoppage, computer failure or malfunction, or any and all other commercial damages or losses), even if the XMPP Standards Foundation or such author has been advised of the possibility of such damages.<h3>IPR Conformance</h3>This XMPP Extension Protocol has been contributed in full conformance with the XSF's Intellectual Property Rights Policy (a copy of which may be found at &lt;<a href="http://www.xmpp.org/extensions/ipr-policy.shtml">http://www.xmpp.org/extensions/ipr-policy.shtml</a>&gt; or obtained by writing to XSF, P.O. Box 1641, Denver, CO 80201 USA).</div><hr /><h2>Discussion Venue</h2><p class="indent">The preferred venue for discussion of this document is the Standards discussion list: &lt;<a href="http://mail.jabber.org/mailman/listinfo/standards">http://mail.jabber.org/mailman/listinfo/standards</a>&gt;.</p><p class="indent">Errata may be sent to &lt;<a href="mailto:editor@xmpp.org">editor@xmpp.org</a>&gt;.</p><h2>Relation to XMPP</h2><p class="indent">The Extensible Messaging and Presence Protocol (XMPP) is defined in the XMPP Core (RFC 3920) and XMPP IM (RFC 3921) specifications contributed by the XMPP Standards Foundation to the Internet Standards Process, which is managed by the Internet Engineering Task Force in accordance with RFC 2026. Any protocol defined in this document has been developed outside the Internet Standards Process and is to be understood as an extension to XMPP rather than as an evolution, development, or modification of XMPP itself.</p><h2>Conformance Terms</h2><p class="indent">The following keywords as used in this document are to be interpreted as described in <a href="http://www.ietf.org/rfc/rfc2119.txt">RFC 2119</a>: "MUST", "SHALL", "REQUIRED"; "MUST NOT", "SHALL NOT"; "SHOULD", "RECOMMENDED"; "SHOULD NOT", "NOT RECOMMENDED"; "MAY", "OPTIONAL".</p><hr /><h2>Table of Contents</h2><div class="indent"><p><br />1.  <a href="#intro">Introduction</a><br />2.  <a href="#requirements">Requirements</a><br />3.  <a href="#usecase">Use Cases</a><br />   
+      3.1.  <a href="#usecase.publish">Publishing an SI Request</a><br />   
+      3.2.  <a href="#usecase.xdata">Integration with Data Forms</a><br />   
+      3.3.  <a href="#usecase.trigger">Triggering the Stream Initiation Request</a><br />4.  <a href="#sect-id2261250">Implementation Notes</a><br />   
+      4.1.  <a href="#sect-id2261263">Publish ID versus SI ID</a><br />5.  <a href="#security">Security Considerations</a><br />6.  <a href="#iana">IANA Considerations</a><br />7.  <a href="#registrar">XMPP Registrar Considerations</a><br />   
+      7.1.  <a href="#registrar.namespaces">Protocol Namespaces</a><br />   
+      7.2.  <a href="#registrar.xdata-validate">Data Form Validation Datatypes</a><br />8.  <a href="#schema">XML Schema</a><br /><a href="#notes">Notes</a><br /><a href="#revs">Revision History</a></p></div><hr /><h2>1.
+       <a name="intro" id="intro">Introduction</a></h2>
+  <p class="" style=""><span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0095.html">Stream Initiation</a></span>  [<a href="#nt-id2252641">1</a>] defines a protocol to initiate a data stream between two Jabber/XMPP entities (e.g., for the purpose of <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0096.html">File Transfer</a></span>  [<a href="#nt-id2252668">2</a>]). However, the sender is still responsible for informing potential receivers about the existence of a given stream. This document provides an automated way for a sender to announce the availability of a stream without initiating the data transfer. The purpose is to provide a "pull" protocol that enables a receiver to then request initiation of the stream from the sender.</p>
+<h2>2.
+       <a name="requirements" id="requirements">Requirements</a></h2>
+  <p class="" style="">This proposal addresses the following requirements:</p>
+  <ul class="" style="">
+    <li class="" style="">Allow a potential receiver (rather than the sender) to initiate a data stream.</li>
+    <li class="" style="">Integrate Stream Initiation (SI) with <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0060.html">Publish-Subscribe</a></span>  [<a href="#nt-id2252730">3</a>].</li>
+    <li class="" style="">Integrate Stream Initiation with <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0004.html">Data Forms</a></span>  [<a href="#nt-id2251307">4</a>].</li>
+  </ul>
+<h2>3.
+       <a name="usecase" id="usecase">Use Cases</a></h2>
+  <div class="indent"><h3>3.1 <a name="usecase.publish" id="usecase.publish">Publishing an SI Request</a></h3>
+    <p class="" style="">A stream owner uses the &lt;sipub/&gt; element to announce that it can perform a specific SI request. This element can be sent to a publish-subscribe (XEP-0060) node, or sent directly to potential recipients within a &lt;message/&gt; stanza.</p>
+    <p class="" style="">The format of the &lt;sipub/&gt; element is as follows:</p>
+    <p class="caption"><a name="example-1" id="example-1"></a>Example 1. Sample &lt;sipub/&gt;</p><div class="indent"><pre>
+  &lt;sipub xmlns='http://jabber.org/protocol/sipub'
+         from='sender-jid'
+         id='publish-0123'
+         profile='si-profile'
+         mime-type='mime/type'&gt;
+    &lt;profile xmlns='si-profile' ...&gt;...&lt;/profile&gt;
+  &lt;/sipub&gt;
+    </pre></div>
+    <p class="" style="">This format is nearly identical to that for the stream initiation &lt;si/&gt; element (see <span class="ref">XEP-0095</span>). The major difference is the lack of the feature negotiation for the stream methods, and the addition of a 'from' attribute.</p>
+    <p class="" style="">The 'from' attribute SHOULD be present, and MUST be present if the stanza containing the &lt;sipub/&gt; is not from the stream owner (e.g., if the stream is advertised at a publish-subscribe node). If present, this attribute MUST be the valid JID for the stream owner.</p>
+    <p class="" style="">The 'id' attribute is an opaque identifier. This attribute MUST be present, and MUST be a valid non-empty string. It uniquely identifies the published request at the potential sender.</p>
+    <p class="" style="">As with stream initiation, the 'profile' attribute MUST be present, and MUST be the namespace URI governing the profile information. It identifies the format for the SI profile.</p>
+    <p class="" style="">As with stream initiation, the 'mime-type' attribute SHOULD be present, and MUST be an IANA-registered content type.  [<a href="#nt-id2251412">5</a>] It provides the receiver with additional information about what the data stream will be.</p>
+    <p class="" style="">The &lt;sipub/&gt; element MUST contain an element qualified by the namespace specified by the 'profile' attribute (e.g., &lt;file xmlns='http://jabber.org/protocol/si/profile/file-transfer'/&gt; for file transfer). This is the additional information about the data stream.</p>
+    <p class="" style="">The &lt;sipub/&gt; information is typically provided via pubsub:</p>
+    <p class="caption"><a name="example-2" id="example-2"></a>Example 2. Sender advertises stream via publish-subscribe</p><div class="indent"><pre>
+&lt;iq from='bard@shakespeare.lit/globe'
+    to='pubsub.shakespeare.lit'
+    id='ps1'&gt;
+  &lt;pubsub xmlns='http://jabber.org/protocol/pubsub'&gt;
+    &lt;publish node='characters'&gt;
+      &lt;sipub xmlns='http://jabber.org/protocol/si-pub'
+          from='bard@shakespeare.lit'
+          id='publish-0123'
+          mime-type='application/pdf'
+          profile='http://jabber.org/protocol/si/profile/file-transfer'&gt;
+        &lt;file xmlns='http://jabber.org/protocol/si/profile/file-transfer'
+              name='NDA.pdf'
+              size='138819'
+              date='2004-01-28T10:07Z'&gt;
+          &lt;desc&gt;All Shakespearean characters must sign and return this NDA ASAP&lt;/desc&gt;
+        &lt;/file&gt;
+      &lt;/sipub&gt;
+    &lt;/publish&gt;
+  &lt;/pubsub&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="caption"><a name="example-3" id="example-3"></a>Example 3. Pubsub service pushes announcement to all subscribers</p><div class="indent"><pre>
+&lt;message from='pubsub.shakespeare.lit' to='juliet@capulet.com/balcony'&gt;
+  &lt;event xmlns='http://jabber.org/protocol/pubsub#event'&gt;
+    &lt;items node='characters'&gt;
+      &lt;item id='current'&gt;
+        &lt;sipub xmlns='http://jabber.org/protocol/si-pub'
+            from='bard@shakespeare.lit'
+            id='publish-0123'
+            mime-type='application/pdf'
+            profile='http://jabber.org/protocol/si/profile/file-transfer'&gt;
+          &lt;file xmlns='http://jabber.org/protocol/si/profile/file-transfer'
+                name='NDA.pdf'
+                size='138819'
+                date='2004-01-28T10:07Z'&gt;
+            &lt;desc&gt;All Shakespearean characters must sign and return this NDA ASAP&lt;/desc&gt;
+          &lt;/file&gt;
+        &lt;/sipub&gt;
+      &lt;/item&gt;
+    &lt;/items&gt;
+  &lt;/event&gt;
+&lt;/message&gt;
+    </pre></div>
+    <p class="" style="">The &lt;sipub/&gt; element MAY also be included directly within a &lt;message/&gt; stanza sent to another entity (or multiple entities, e.g., in <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0045.html">Multi-User Chat</a></span>  [<a href="#nt-id2251528">6</a>] or via <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0033.html">Extended Stanza Addressing</a></span>  [<a href="#nt-id2251555">7</a>]). This can be especially useful for informing an offline entity about an available stream.</p>
+    <p class="caption"><a name="example-4" id="example-4"></a>Example 4. Advertising a stream in a message stanza</p><div class="indent"><pre>
+&lt;message from='romeo@montague.net/pda' to='juliet@capulet.com'&gt;
+  &lt;sipub xmlns='http://jabber.org/protocol/si-pub'
+      id='publish-0123'
+      mime-type='application/pdf'
+      profile='http://jabber.org/protocol/si/profile/file-transfer'&gt;
+    &lt;file xmlns='http://jabber.org/protocol/si/profile/file-transfer'
+          name='NDA.pdf'
+          size='138819'
+          date='2004-01-28T10:07Z'&gt;
+      &lt;desc&gt;All Shakespearean characters must sign and return this NDA ASAP&lt;/desc&gt;
+    &lt;/file&gt;
+  &lt;/sipub&gt;
+&lt;/message&gt;
+    </pre></div>
+  </div>
+  <div class="indent"><h3>3.2 <a name="usecase.xdata" id="usecase.xdata">Integration with Data Forms</a></h3>
+    <p class="" style="">One of the goals of sipub is to integrate <span class="ref">Stream Initiation</span> with <span class="ref">Data Forms</span> to provide a "file upload" capability. This is accomplished via the datatypes specified in <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0122.html">Data Forms Validation</a></span>  [<a href="#nt-id2261076">8</a>]. Each datatype is specific to the profile desired.</p>
+    <p class="" style="">For example the datatype "sipub:file-transfer" is used to identify the file upload field(s) corresponding to <span class="ref">XEP-0096</span>:</p>
+    <p class="caption"><a name="example-5" id="example-5"></a>Example 5. "Upload File" Data Forms Field</p><div class="indent"><pre>
+  &lt;field var='file' type='text-single' label='File to Upload'&gt;
+    &lt;validate xmlns='http://jabber.org/protocol/xdata-validate'
+              datatype='sipub:file-transfer'/&gt;
+  &lt;/field&gt;
+    </pre></div>
+    <p class="" style="">When submitting such a form, a field's value(s) MUST be the &lt;sipub/&gt; identifier(s). Also, the submitter MUST provide an &lt;sipub/&gt; element within the data form for each file to be uploaded:</p>
+    <p class="caption"><a name="example-6" id="example-6"></a>Example 6. Submitting an "Upload File" form</p><div class="indent"><pre>
+  &lt;x xmlns='jabber:x:data' type='submit'&gt;
+    &lt;field var='file'&gt;
+      &lt;value&gt;publish-0123&lt;/value&gt;
+    &lt;/field&gt;
+    &lt;sipub xmlns='http://jabber.org/protocol/sipub'
+           id='publish-0123'
+           mime-type='text/html'
+           profile='http://jabber.org/protocol/si/profile/file-transfer'&gt;
+      &lt;file xmlns='http://jabber.org/protocol/si/profile/file-transfer'
+            name='missive.html'
+            size='1024'
+            date='2005-07-21T11:21Z'/&gt;
+    &lt;/sipub&gt;
+  &lt;/x&gt;
+    </pre></div>
+    <p class="" style="">The form processor will use this to retrieve the file(s) to be uploaded.</p>
+  </div>
+  <div class="indent"><h3>3.3 <a name="usecase.trigger" id="usecase.trigger">Triggering the Stream Initiation Request</a></h3>
+    <p class="" style="">A potential receiver starts the stream initiation session by sending an IQ-get to the sender, using the &lt;start xmlns='http://jabber.org/protocol/sipub'/&gt; element. This element contains the 'id' attribute to specify which published stream to retrieve:</p>
+    <p class="caption"><a name="example-7" id="example-7"></a>Example 7. Receiver requests start of stream</p><div class="indent"><pre>
+  &lt;iq type='get'
+      id='sipub-request-0'
+      from='juliet@capulet.com/balcony'
+      to='romeo@montague.net/pda'&gt;
+    &lt;start xmlns='http://jabber.org/protocol/sipub'
+           id='publish-0123'/&gt;
+  &lt;/iq&gt;
+    </pre></div>
+    <p class="" style="">If the sender accepts the request, it responds with an IQ-result containing a &lt;starting/&gt; element. This element indicates the stream initiation identifier to be used:</p>
+    <p class="caption"><a name="example-8" id="example-8"></a>Example 8. Sender accepts request to start stream</p><div class="indent"><pre>
+  &lt;iq type='result'
+      id='sipub-request-0'
+      from='romeo@montague.net/pda'
+      to='juliet@capulet.com/balcony'&gt;
+    &lt;starting xmlns='http://jabber.org/protocol/sipub'
+              sid='session-87651234'/&gt;
+  &lt;/iq&gt;
+    </pre></div>
+    <p class="" style="">Then the sender begins the stream initiation negotiation:</p>
+    <p class="caption"><a name="example-9" id="example-9"></a>Example 9. Sender starts negotiation</p><div class="indent"><pre>
+  &lt;iq type='set'
+      id='sipub-set-1'
+      from='romeo@montague.net/pda'
+      to='juliet@capulet.com/balcony'&gt;
+    &lt;si xmlns='http://jabber.org/protocol/si'
+        id='session-87651234'
+        mime-type='text/html'
+        profile='http://jabber.org/protocol/si/profile/file-transfer'&gt;
+      &lt;file xmlns='http://jabber.org/protocol/si/profile/file-transfer'
+          name='missive.html'
+          size='1024'
+          date='2005-07-21T11:21Z'&gt;
+        &lt;desc&gt;A love letter&lt;/desc&gt;
+      &lt;/file&gt;
+    &lt;/si&gt;
+  &lt;/iq&gt;
+    </pre></div>
+    <p class="" style="">If the requested identifier is not valid, the sender SHOULD respond with a &lt;not-acceptable/&gt; error:</p>
+    <p class="caption"><a name="example-10" id="example-10"></a>Example 10. Sender denies because of invalid id</p><div class="indent"><pre>
+  &lt;iq type='error'
+      id='sipub-set-1'
+      from='romeo@montague.net/pda'
+      to='juliet@capulet.com/balcony'&gt;
+    &lt;start xmlns='http://jabber.org/protocol/sipub'&gt;publish-0123&lt;/start&gt;
+    &lt;error code='405' type='modify'&gt;
+      &lt;not-acceptable xmlns='urn:ietf:params:xml:ns:xmpp-stanzas'/&gt;
+    &lt;/error&gt;
+  &lt;/iq&gt;
+    </pre></div>
+    <p class="" style="">If the receiver does not have permission to request the data stream, the sender SHOULD respond with a &lt;forbidden/&gt; error:</p>
+    <p class="caption"><a name="example-11" id="example-11"></a>Example 11. Sender denies because receiver is forbidden</p><div class="indent"><pre>
+  &lt;iq type='error'
+      id='sipub-set-1'
+      from='romeo@montague.net/pda'
+      to='juliet@capulet.com/balcony'&gt;
+    &lt;start xmlns='http://jabber.org/protocol/sipub'&gt;publish-0123&lt;/start&gt;
+    &lt;error code='403' type='auth'&gt;
+      &lt;forbidden xmlns='urn:ietf:params:xml:ns:xmpp-stanzas'/&gt;
+    &lt;/error&gt;
+  &lt;/iq&gt;
+    </pre></div>
+  </div>
+<h2>4.
+       <a name="sect-id2261250" id="sect-id2261250">Implementation Notes</a></h2>
+  <div class="indent"><h3>4.1 <a name="sect-id2261263" id="sect-id2261263">Publish ID versus SI ID</a></h3>
+    <p class="" style="">When publishing a stream via the &lt;sipub/&gt; element, the identifier SHOULD NOT be used as-is for the &lt;si/&gt; element, since a single publication will likely result in multiple &lt;si/&gt; requests, possibly from the same receiver.</p>
+  </div>
+<h2>5.
+       <a name="security" id="security">Security Considerations</a></h2>
+  <p class="" style="">This document introduces no security concerns beyond those specified in <span class="ref">XEP-0060</span> and the relevant Stream Initiation profile in use.</p>
+<h2>6.
+       <a name="iana" id="iana">IANA Considerations</a></h2>
+  <p class="" style="">This document requires no interaction with the <span class="ref" style=""><a href="http://www.iana.org/">Internet Assigned Numbers Authority (IANA)</a></span>  [<a href="#nt-id2261343">9</a>].</p>
+<h2>7.
+       <a name="registrar" id="registrar">XMPP Registrar Considerations</a></h2>
+  <div class="indent"><h3>7.1 <a name="registrar.namespaces" id="registrar.namespaces">Protocol Namespaces</a></h3>
+    <p class="" style="">The <span class="ref" style=""><a href="http://www.xmpp.org/registrar/">XMPP Registrar</a></span>  [<a href="#nt-id2261389">10</a>] includes 'http://jabber.org/protocol/sipub' in its registry of protocol namespaces.</p>
+  </div>
+  <div class="indent"><h3>7.2 <a name="registrar.xdata-validate" id="registrar.xdata-validate">Data Form Validation Datatypes</a></h3>
+    <p class="" style="">The XMPP Registrar includes 'sipub:' in its registry of Data Forms Validation Datatype Prefixes.</p>
+    <p class="" style="">Normally, each SI profile that wishes to be considered for use with Data Forms MUST register its own datatype qualified by the "sipub:" prefix. However, this document provides an initial seed, based on the currently accepted SI profiles. The following datatypes shall be registered for use with Data Forms Validation:</p>
+    <p class="caption">Data Forms Validation Datatypes Registry Submission</p><div class="indent"><pre>
+&lt;datatype&gt;
+  &lt;name&gt;sipub:file-transfer&lt;/name&gt;
+  &lt;desc&gt;Datatype for publishing an SI using the File Transfer Profile&lt;/desc&gt;
+  &lt;doc&gt;XEP-0096&lt;/doc&gt;
+&lt;/datatype&gt;
+    </pre></div>
+  </div>
+<h2>8.
+       <a name="schema" id="schema">XML Schema</a></h2>
+  <p class="caption"></p><div class="indent"><pre>
+&lt;?xml version='1.0' encoding='UTF-8'?&gt;
+
+&lt;xs:schema
+    xmlns:xs='http://www.w3.org/2001/XMLSchema'
+    targetNamespace='http://jabber.org/protocol/sipub'
+    xmlns='http://jabber.org/protocol/sipub'
+    elementFormDefault='qualified'&gt;
+
+  &lt;xs:annotation&gt;
+    &lt;xs:documentation&gt;
+      The protocol documented by this schema is defined in
+      XEP-0137: http://www.xmpp.org/extensions/xep-0137.html
+    &lt;/xs:documentation&gt;
+  &lt;/xs:annotation&gt;
+
+  &lt;xs:element name='sipub'&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;This is the root content element for advertising a stream.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:any namespace='##other' minOccurs='1' maxOccurs='1'/&gt;
+      &lt;/xs:sequence&gt;
+      &lt;xs:attribute name='id' type='xs:string' use='required'/&gt;
+      &lt;xs:attribute name='from' type='xs:string' use='optional'/&gt;
+      &lt;xs:attribute name='mime-type' type='xs:string' use='optional'/&gt;
+      &lt;xs:attribute name='profile' type='xs:string' use='optional'/&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+
+  &lt;xs:element name='start'&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;This is the element for requesting retrieval of a stream.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:attribute name='id' type='xs:string' use='required'/&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+
+  &lt;xs:element name='starting'&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;This is the element for specifying the stream to be retrieved.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:attribute name='sid' type='xs:string' use='required'/&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+
+&lt;/xs:schema&gt;
+  </pre></div>
+<hr /><h2><a name="notes" id="notes"></a>Notes</h2><div class="indent"><p><a name="nt-id2252641" id="nt-id2252641">1</a>. XEP-0095: Stream Initiation &lt;<a href="http://www.xmpp.org/extensions/xep-0095.html">http://www.xmpp.org/extensions/xep-0095.html</a>&gt;.</p><p><a name="nt-id2252668" id="nt-id2252668">2</a>. XEP-0096: File Transfer &lt;<a href="http://www.xmpp.org/extensions/xep-0096.html">http://www.xmpp.org/extensions/xep-0096.html</a>&gt;.</p><p><a name="nt-id2252730" id="nt-id2252730">3</a>. XEP-0060: Publish-Subscribe &lt;<a href="http://www.xmpp.org/extensions/xep-0060.html">http://www.xmpp.org/extensions/xep-0060.html</a>&gt;.</p><p><a name="nt-id2251307" id="nt-id2251307">4</a>. XEP-0004: Data Forms &lt;<a href="http://www.xmpp.org/extensions/xep-0004.html">http://www.xmpp.org/extensions/xep-0004.html</a>&gt;.</p><p><a name="nt-id2251412" id="nt-id2251412">5</a>. The IANA registry of content types is located at &lt;<a href="http://www.iana.org/assignments/media-types/">http://www.iana.org/assignments/media-types/</a>&gt;.</p><p><a name="nt-id2251528" id="nt-id2251528">6</a>. XEP-0045: Multi-User Chat &lt;<a href="http://www.xmpp.org/extensions/xep-0045.html">http://www.xmpp.org/extensions/xep-0045.html</a>&gt;.</p><p><a name="nt-id2251555" id="nt-id2251555">7</a>. XEP-0033: Extended Stanza Addressing &lt;<a href="http://www.xmpp.org/extensions/xep-0033.html">http://www.xmpp.org/extensions/xep-0033.html</a>&gt;.</p><p><a name="nt-id2261076" id="nt-id2261076">8</a>. XEP-0122: Data Forms Validation &lt;<a href="http://www.xmpp.org/extensions/xep-0122.html">http://www.xmpp.org/extensions/xep-0122.html</a>&gt;.</p><p><a name="nt-id2261343" id="nt-id2261343">9</a>. The Internet Assigned Numbers Authority (IANA) is the central coordinator for the assignment of unique parameter values for Internet protocols, such as port numbers and URI schemes. For further information, see &lt;<a href="http://www.iana.org/">http://www.iana.org/</a>&gt;.</p><p><a name="nt-id2261389" id="nt-id2261389">10</a>. The XMPP Registrar maintains a list of reserved protocol namespaces as well as registries of parameters used in the context of XMPP extension protocols approved by the XMPP Standards Foundation. For further information, see &lt;<a href="http://www.xmpp.org/registrar/">http://www.xmpp.org/registrar/</a>&gt;.</p></div><hr /><h2><a name="revs" id="revs"></a>Revision History</h2><div class="indent"><h4>Version 1.0 (2005-08-26)</h4><div class="indent">Per a vote of the Jabber Council, advanced status to Draft. (psa)
+    </div><h4>Version 0.3 (2005-07-21)</h4><div class="indent">Corrected several errors in the text and examples. (psa)
+    </div><h4>Version 0.2 (2004-11-03)</h4><div class="indent">Editorial review: clarified text throughout and corrected several errors in the examples. (psa)
+    </div><h4>Version 0.1 (2004-06-16)</h4><div class="indent">Initial version. (lw/tjm)
+    </div></div><hr /><p>END</p></body></html>

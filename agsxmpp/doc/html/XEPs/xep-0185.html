@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>XEP-0185: Dialback Key Generation and Validation</title><link rel="stylesheet" type="text/css" href="/xmpp.css" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" /><meta name="DC.Title" content="Dialback Key Generation and Validation" /><meta name="DC.Creator" content="Philipp Hancke" /><meta name="DC.Creator" content="Peter Saint-Andre" /><meta name="DC.Description" content="This document provides a recommended method for generating and validating the keys used in the XMPP server dialback protocol." /><meta name="DC.Publisher" content="XMPP Standards Foundation" /><meta name="DC.Contributor" content="XMPP Extensions Editor" /><meta name="DC.Date" content="2007-02-15" /><meta name="DC.Type" content="XMPP Extension Protocol" /><meta name="DC.Format" content="XHTML" /><meta name="DC.Identifier" content="XEP-0185" /><meta name="DC.Language" content="en" /><meta name="DC.Rights" content="This XMPP Extension Protocol is copyright (c) 1999 - 2008 by the XMPP Standards Foundation (XSF)." /></head><body><h1>XEP-0185: Dialback Key Generation and Validation</h1><p>This document provides a recommended method for generating and validating the keys used in the XMPP server dialback protocol.</p><hr /><p style="color:green">NOTICE: This Informational specification defines a best practice or protocol profile that has been approved by the XMPP Council and/or the XSF Board of Directors. Implementations are encouraged and the best practice or protocol profile is appropriate for deployment in production systems.</p><hr /><h2>Document Information</h2><p class="indent">
+            Series: <a href="http://www.xmpp.org/extensions/">XEP</a><br />
+            Number: 0185<br />
+            Publisher: <a href="/xsf/">XMPP Standards Foundation</a><br />
+            Status: 
+            <a href="http://www.xmpp.org/extensions/xep-0001.html#states-Active">Active</a><br />
+            Type:
+            <a href="http://www.xmpp.org/extensions/xep-0001.html#types-Informational">Informational</a><br />
+            Version: 1.0<br />
+            Last Updated: 2007-02-15<br />
+                Approving Body: <a href="http://www.xmpp.org/council/">XMPP Council</a><br />Dependencies: XMPP Core<br />
+                Supersedes: None<br />
+                Superseded By: None<br />
+            Short Name: N/A<br />
+              Wiki Page: &lt;<a href="http://wiki.jabber.org/index.php/Dialback Key Generation and Validation (XEP-0185)">http://wiki.jabber.org/index.php/Dialback Key Generation and Validation (XEP-0185)</a>&gt;
+            </p><hr /><h2>Author Information</h2><div class="indent"><h3>Philipp Hancke</h3><p class="indent">
+        Email:
+        <a href="mailto:fippo@goodadvice.pages.de">fippo@goodadvice.pages.de</a><br />
+        JabberID: 
+        <a href="xmpp:fippo@goodadvice.pages.de">fippo@goodadvice.pages.de</a><br /></p><h3>Peter Saint-Andre</h3><p class="indent">
+        JabberID: 
+        <a href="xmpp:stpeter@jabber.org">stpeter@jabber.org</a><br />
+        URI: 
+        <a href="https://stpeter.im/">https://stpeter.im/</a><br /></p></div><hr /><h2>Legal Notices</h2><div class="indent"><h3>Copyright</h3>This XMPP Extension Protocol is copyright (c) 1999 - 2008 by the XMPP Standards Foundation (XSF).<h3>Permissions</h3>Permission is hereby granted, free of charge, to any person obtaining a copy of this specification (the "Specification"), to make use of the Specification without restriction, including without limitation the rights to implement the Specification in a software program, deploy the Specification in a network service, and copy, modify, merge, publish, translate, distribute, sublicense, or sell copies of the Specification, and to permit persons to whom the Specification is furnished to do so, subject to the condition that the foregoing copyright notice and this permission notice shall be included in all copies or substantial portions of the Specification. Unless separate permission is granted, modified works that are redistributed shall not contain misleading information regarding the authors, title, number, or publisher of the Specification, and shall not claim endorsement of the modified works by the authors, any organization or project to which the authors belong, or the XMPP Standards Foundation.<h3>Disclaimer of Warranty</h3><span style="font-weight: bold">## NOTE WELL: This Specification is provided on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, express or implied, including, without limitation, any warranties or conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE. In no event shall the XMPP Standards Foundation or the authors of this Specification be liable for any claim, damages, or other liability, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the Specification or the implementation, deployment, or other use of the Specification. ##</span><h3>Limitation of Liability</h3>In no event and under no legal theory, whether in tort (including negligence), contract, or otherwise, unless required by applicable law (such as deliberate and grossly negligent acts) or agreed to in writing, shall the XMPP Standards Foundation or any author of this Specification be liable for damages, including any direct, indirect, special, incidental, or consequential damages of any character arising out of the use or inability to use the Specification (including but not limited to damages for loss of goodwill, work stoppage, computer failure or malfunction, or any and all other commercial damages or losses), even if the XMPP Standards Foundation or such author has been advised of the possibility of such damages.<h3>IPR Conformance</h3>This XMPP Extension Protocol has been contributed in full conformance with the XSF's Intellectual Property Rights Policy (a copy of which may be found at &lt;<a href="http://www.xmpp.org/extensions/ipr-policy.shtml">http://www.xmpp.org/extensions/ipr-policy.shtml</a>&gt; or obtained by writing to XSF, P.O. Box 1641, Denver, CO 80201 USA).</div><hr /><h2>Discussion Venue</h2><p class="indent">The preferred venue for discussion of this document is the Standards discussion list: &lt;<a href="http://mail.jabber.org/mailman/listinfo/standards">http://mail.jabber.org/mailman/listinfo/standards</a>&gt;.</p><p class="indent">Errata may be sent to &lt;<a href="mailto:editor@xmpp.org">editor@xmpp.org</a>&gt;.</p><h2>Relation to XMPP</h2><p class="indent">The Extensible Messaging and Presence Protocol (XMPP) is defined in the XMPP Core (RFC 3920) and XMPP IM (RFC 3921) specifications contributed by the XMPP Standards Foundation to the Internet Standards Process, which is managed by the Internet Engineering Task Force in accordance with RFC 2026. Any protocol defined in this document has been developed outside the Internet Standards Process and is to be understood as an extension to XMPP rather than as an evolution, development, or modification of XMPP itself.</p><h2>Conformance Terms</h2><p class="indent">The following keywords as used in this document are to be interpreted as described in <a href="http://www.ietf.org/rfc/rfc2119.txt">RFC 2119</a>: "MUST", "SHALL", "REQUIRED"; "MUST NOT", "SHALL NOT"; "SHOULD", "RECOMMENDED"; "SHOULD NOT", "NOT RECOMMENDED"; "MAY", "OPTIONAL".</p><hr /><h2>Table of Contents</h2><div class="indent"><p><br />1.  <a href="#intro">Introduction</a><br />2.  <a href="#algorithm">Recommended Algorithm</a><br />3.  <a href="#example">Example</a><br />4.  <a href="#security">Security Considerations</a><br />5.  <a href="#iana">IANA Considerations</a><br />6.  <a href="#registrar">XMPP Registrar Considerations</a><br />7.  <a href="#ack">Acknowledgements</a><br /><a href="#notes">Notes</a><br /><a href="#revs">Revision History</a></p></div><hr /><h2>1.
+       <a name="intro" id="intro">Introduction</a></h2>
+  <p class="" style=""><span class="ref" style=""><a href="http://tools.ietf.org/html/rfc3920">RFC 3920</a></span>  [<a href="#nt-id2252697">1</a>] does not specify in detail a recommended algorithm for generating the keys used in the server dialback protocol. This document provides such a recommendation as an aid to implementors of XMPP servers. This document is not meant to supersede any text in <span class="ref">RFC 3920</span>; however, the recommendations in this document have been incorporated into <span class="ref" style=""><a href="http://tools.ietf.org/html/draft-saintandre-rfc3920bis">rfc3920bis</a></span>  [<a href="#nt-id2252736">2</a>].</p>
+<h2>2.
+       <a name="algorithm" id="algorithm">Recommended Algorithm</a></h2>
+  <p class="" style="">The process for generating and validating a dialback key SHOULD take into account the following four inputs:</p>
+  <ul class="" style="">
+    <li class="" style="">the hostname of the Originating Server</li>
+    <li class="" style="">the hostname of the Receiving Server</li>
+    <li class="" style="">the Stream ID generated by the Receiving Server</li>
+    <li class="" style="">a secret known by the Authoritative Server's network</li>
+  </ul>
+  <p class="" style="">In particular, the following algorithm is RECOMMENDED:</p>
+  <p class="caption"></p><div class="indent"><pre>
+key = HMAC-SHA256
+      ( 
+        SHA256(Secret), 
+        { 
+          Receiving Server, ' ', 
+          Originating Server, ' ', 
+          Stream ID 
+        } 
+      ) 
+  </pre></div>
+  <p class="" style="">Note the following:</p>
+  <ol start="" class="" style="">
+    <li class="" style="">The resulting dialback key is a Keyed-Hash Message Authentication Code (see <span class="ref" style=""><a href="http://csrc.nist.gov/publications/fips/fips198/fips-198a.pdf">HMAC</a></span>  [<a href="#nt-id2251390">3</a>]) generated using the SHA256 hashing algorithm (see <span class="ref" style=""><a href="http://csrc.nist.gov/publications/fips/fips180-2/fips180-2withchangenotice.pdf">SHA</a></span>  [<a href="#nt-id2251558">4</a>]).</li>
+    <li class="" style="">The Secret is used as a "key" within the HMAC generation process; because <span class="ref">HMAC</span> recommends that the length of the HMAC key should be at least half the size of the hash function output, the Secret SHOULD be hashed via SHA256 prior to use in the in HMAC generation process.</li>
+    <li class="" style="">The Secret MUST either be set up in a configuration option for each host or process, or generated as a random string when starting the XMPP server. Creation of the Secret MUST NOT require communication between the Originating Server, the Authoritative Server, and optionally a third party (such as a database).</li>
+    <li class="" style="">The output of the SHA256 hashing algorithm MUST be provided in the hexadecimal representation; this helps to avoid encoding problems.</li>
+    <li class="" style="">The hostname of the Receiving Server, the hostname of the Originating Server, and the Stream ID SHOULD be concatenated with a Unicode space character (U+0020) as the delimiter; this helps to avoid ambiguity in concatenation.  [<a href="#nt-id2251416">5</a>]</li>
+  </ol>
+<h2>3.
+       <a name="example" id="example">Example</a></h2>
+  <p class="" style="">This document closely follows the description of the dialback protocol in <span class="ref">RFC 3920</span> and <span class="ref">rfc3920bis</span>, but omits steps that are not important for the generation and validation of the dialback keys. For ease of comparison the numbering of the steps is the same as in section 8.3 of <span class="ref">RFC 3920</span> and Appendix C.3 of <span class="ref">rfc3920bis</span>. Any line breaks in the examples are included for the purpose of readability only.</p>
+  <p class="" style="">The following data values are used in the examples:</p>
+  <p class="caption"><a name="table-1" id="table-1"></a>Table 1: Data Used in Examples</p><table border="1" cellpadding="3" cellspacing="0">
+    <tr class="body">
+      <td colspan="" rowspan="">Originating Server</td>
+      <td colspan="" rowspan="">example.org</td>
+    </tr>
+    <tr class="body">
+      <td colspan="" rowspan="">Authoritative Server</td>
+      <td colspan="" rowspan="">example.org</td>
+    </tr>
+    <tr class="body">
+      <td colspan="" rowspan="">Receiving Server</td>
+      <td colspan="" rowspan="">xmpp.example.com</td>
+    </tr>
+    <tr class="body">
+      <td colspan="" rowspan="">Secret</td>
+      <td colspan="" rowspan="">s3cr3tf0rd14lb4ck</td>
+    </tr>
+    <tr class="body">
+      <td colspan="" rowspan="">Stream ID</td>
+      <td colspan="" rowspan="">D60000229F</td>
+    </tr>
+  </table>
+  <p class="" style="">3. Receiving Server sends a stream header back to the Originating Server, including a unique ID for this interaction:</p>
+  <p class="caption"></p><div class="indent"><pre>
+&lt;stream:stream
+  xmlns:stream='http://etherx.jabber.org/streams'
+  xmlns='jabber:server'
+  xmlns:db='jabber:server:dialback'
+  to='xmpp.example.com'
+  from='example.org'
+  id='D60000229F'&gt;
+    </pre></div>
+  <p class="" style="">The Originating Server now generates a dialback key to be sent to the Receiving Server:</p>
+  <p class="caption"></p><div class="indent"><pre>
+key = HMAC-SHA256( 
+                   SHA256(secret), 
+                   { Receiving server, ' ', Originating server, ' ', Stream ID}
+                 )
+    = HMAC-SHA256( 
+                   SHA256('s3cr3tf0rd14lb4ck'), 
+                   { 'xmpp.example.com', ' ', 'example.org', ' ', 'D60000229F' }
+                 )
+    = HMAC-SHA256( 
+                   'a7136eb1f46c9ef18c5e78c36ca257067c69b3d518285f0b18a96c33beae9acc', 
+                   'xmpp.example.com example.org D60000229F'
+                 )
+    = '37c69b1cf07a3f67c04a5ef5902fa5114f2c76fe4a2686482ba5b89323075643'
+  </pre></div>
+  <p class="" style="">4. The Originating Server sends the generated dialback key to the Receiving Server:</p>
+  <p class="caption"></p><div class="indent"><pre>
+&lt;db:result
+  to='xmpp.example.com'
+  from='example.org'&gt;
+    37c69b1cf07a3f67c04a5ef5902fa5114f2c76fe4a2686482ba5b89323075643
+&lt;/db:result&gt;
+    </pre></div>
+  <p class="" style="">8. The Receiving Server sends the Authoritative Server a request for verification of the key:</p>
+  <p class="caption"></p><div class="indent"><pre>
+&lt;db:verify
+  to='example.org'
+  from='xmpp.example.com'
+  id='D60000229F'&gt;
+    37c69b1cf07a3f67c04a5ef5902fa5114f2c76fe4a2686482ba5b89323075643
+&lt;/db:verify&gt;
+    </pre></div>
+  <p class="" style="">The Authoritative Server calculates the valid key for this verify request, using data supplied in the packet and the secret shared with the Originating Server.</p>
+  <p class="caption"></p><div class="indent"><pre>
+key = HMAC-SHA256( 
+                   SHA256(secret), 
+                   { Receiving Server, ' ', Authoritative Server, ' ', Stream ID }
+                 )
+    = HMAC-SHA256( 
+                   SHA256('s3cr3tf0rd14lb4ck'), 
+                   { 'xmpp.example.com', ' ', 'example.org', ' ', 'D60000229F' }
+                 )
+    = HMAC-SHA256( 
+                    'a7136eb1f46c9ef18c5e78c36ca257067c69b3d518285f0b18a96c33beae9acc', 
+                    'xmpp.example.com example.org D60000229F'
+                  )
+    = '37c69b1cf07a3f67c04a5ef5902fa5114f2c76fe4a2686482ba5b89323075643'
+    </pre></div>
+    <p class="" style="">9. The Authoritative Server compares this value to the key contained in the verification requests and informs the Originating Server of the result, in our example a success:</p>
+  <p class="caption"></p><div class="indent"><pre>
+&lt;db:verify
+  to='xmpp.example.com'
+  from='example.org'
+  id='D60000229F'
+  type='valid'/&gt;
+    </pre></div>
+<h2>4.
+       <a name="security" id="security">Security Considerations</a></h2>
+  <p class="" style="">This document introduces no security considerations or concerns above and beyond those discussed in <span class="ref">RFC 3920</span> and <span class="ref">rfc3920bis</span>.</p>
+<h2>5.
+       <a name="iana" id="iana">IANA Considerations</a></h2>
+  <p class="" style="">This document requires no interaction with the <span class="ref" style=""><a href="http://www.iana.org/">Internet Assigned Numbers Authority (IANA)</a></span>  [<a href="#nt-id2261260">6</a>].</p>
+<h2>6.
+       <a name="registrar" id="registrar">XMPP Registrar Considerations</a></h2>
+  <p class="" style="">This document requires no interaction with the <span class="ref" style=""><a href="http://www.xmpp.org/registrar/">XMPP Registrar</a></span>  [<a href="#nt-id2261304">7</a>].</p>
+<h2>7.
+       <a name="ack" id="ack">Acknowledgements</a></h2>
+  <p class="" style="">Thanks to Ian Paterson and Matthias Wimmer for their feedback.</p>
+<hr /><h2><a name="notes" id="notes"></a>Notes</h2><div class="indent"><p><a name="nt-id2252697" id="nt-id2252697">1</a>. RFC 3920: Extensible Messaging and Presence Protocol (XMPP): Core &lt;<a href="http://tools.ietf.org/html/rfc3920">http://tools.ietf.org/html/rfc3920</a>&gt;.</p><p><a name="nt-id2252736" id="nt-id2252736">2</a>. rfc3921bis: proposed revisions to Extensible Messaging and Presence Protocol (XMPP): Core &lt;<a href="http://tools.ietf.org/html/draft-saintandre-rfc3920bis">http://tools.ietf.org/html/draft-saintandre-rfc3920bis</a>&gt;. (work in progress)</p><p><a name="nt-id2251390" id="nt-id2251390">3</a>. The Keyed-Hash Message Authentication Code (HMAC): Federal Information Processing Standards Publication 198 &lt;<a href="http://csrc.nist.gov/publications/fips/fips198/fips-198a.pdf">http://csrc.nist.gov/publications/fips/fips198/fips-198a.pdf</a>&gt;.</p><p><a name="nt-id2251558" id="nt-id2251558">4</a>. Secure Hash Standard: Federal Information Processing Standards Publication 180-2  &lt;<a href="http://csrc.nist.gov/publications/fips/fips180-2/fips180-2withchangenotice.pdf">http://csrc.nist.gov/publications/fips/fips180-2/fips186-2withchangenotice.pdf</a>&gt;.</p><p><a name="nt-id2251416" id="nt-id2251416">5</a>. For example, the string "example.inform.example.org" could be construed as a concatenation of "example.info" and "rm.example.org" or of "example.in" and "form.example.org".</p><p><a name="nt-id2261260" id="nt-id2261260">6</a>. The Internet Assigned Numbers Authority (IANA) is the central coordinator for the assignment of unique parameter values for Internet protocols, such as port numbers and URI schemes. For further information, see &lt;<a href="http://www.iana.org/">http://www.iana.org/</a>&gt;.</p><p><a name="nt-id2261304" id="nt-id2261304">7</a>. The XMPP Registrar maintains a list of reserved protocol namespaces as well as registries of parameters used in the context of XMPP extension protocols approved by the XMPP Standards Foundation. For further information, see &lt;<a href="http://www.xmpp.org/registrar/">http://www.xmpp.org/registrar/</a>&gt;.</p></div><hr /><h2><a name="revs" id="revs"></a>Revision History</h2><div class="indent"><h4>Version 1.0 (2007-02-15)</h4><div class="indent"><p class="" style="">Per a vote of the XMPP Council, advanced specification to Active.</p> (psa)
+    </div><h4>Version 0.4 (2007-02-09)</h4><div class="indent"><p class="" style="">Modified order of explanation to ease understanding; removed discussion of alternate algorithms, which is better left to a more in-depth security analysis.</p>
+     (psa/ph)
+    </div><h4>Version 0.3 (2006-11-01)</h4><div class="indent"><p class="" style="">Recommended hashing the secret to satisfy length requirement; hostnames and Stream ID should be separated by spaces to avoid ambiguity; updated example to match rfc3920bis.</p>
+     (ph)
+    </div><h4>Version 0.2 (2006-05-10)</h4><div class="indent">
+      <p class="" style="">Clarified and corrected roles of originating and receiving servers; updated recommendation and main example to use HMAC-SHA256 for key generation.</p>
+     (ph)
+    </div><h4>Version 0.1 (2006-04-11)</h4><div class="indent"><p class="" style="">Initial version.</p> (psa)
+    </div><h4>Version 0.0.1 (2006-03-30)</h4><div class="indent"><p class="" style="">First draft.</p> (ph)
+    </div></div><hr /><p>END</p></body></html>

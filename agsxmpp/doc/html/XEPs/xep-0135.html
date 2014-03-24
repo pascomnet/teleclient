@@ -1,0 +1,561 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>XEP-0135: File Sharing</title><link rel="stylesheet" type="text/css" href="/xmpp.css" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" /><meta name="DC.Title" content="File Sharing" /><meta name="DC.Creator" content="Peter Saint-Andre" /><meta name="DC.Description" content="This document specifies a simple extension to existing protocols for file sharing over Jabber/XMPP." /><meta name="DC.Publisher" content="XMPP Standards Foundation" /><meta name="DC.Contributor" content="XMPP Extensions Editor" /><meta name="DC.Date" content="2004-06-04" /><meta name="DC.Type" content="XMPP Extension Protocol" /><meta name="DC.Format" content="XHTML" /><meta name="DC.Identifier" content="XEP-0135" /><meta name="DC.Language" content="en" /><meta name="DC.Rights" content="This XMPP Extension Protocol is copyright (c) 1999 - 2008 by the XMPP Standards Foundation (XSF)." /></head><body><h1>XEP-0135: File Sharing</h1><p>This document specifies a simple extension to existing protocols for file sharing over Jabber/XMPP.</p><hr /><p style="color:red">WARNING: Consideration of this document has been Deferred by the XMPP Standards Foundation. Implementation of the protocol described herein is not recommended.</p><hr /><h2>Document Information</h2><p class="indent">
+            Series: <a href="http://www.xmpp.org/extensions/">XEP</a><br />
+            Number: 0135<br />
+            Publisher: <a href="/xsf/">XMPP Standards Foundation</a><br />
+            Status: 
+            <a href="http://www.xmpp.org/extensions/xep-0001.html#states-Deferred">Deferred</a><br />
+            Type:
+            <a href="http://www.xmpp.org/extensions/xep-0001.html#types-Standards Track">Standards Track</a><br />
+            Version: 0.1<br />
+            Last Updated: 2004-06-04<br />
+                Approving Body: <a href="http://www.xmpp.org/council/">XMPP Council</a><br />Dependencies: XMPP Core, XEP-0030, XEP-0096<br />
+                Supersedes: None<br />
+                Superseded By: None<br />
+            Short Name: files<br />
+              Wiki Page: &lt;<a href="http://wiki.jabber.org/index.php/File Sharing (XEP-0135)">http://wiki.jabber.org/index.php/File Sharing (XEP-0135)</a>&gt;
+            </p><hr /><h2>Author Information</h2><div class="indent"><h3>Peter Saint-Andre</h3><p class="indent">
+        JabberID: 
+        <a href="xmpp:stpeter@jabber.org">stpeter@jabber.org</a><br />
+        URI: 
+        <a href="https://stpeter.im/">https://stpeter.im/</a><br /></p></div><hr /><h2>Legal Notices</h2><div class="indent"><h3>Copyright</h3>This XMPP Extension Protocol is copyright (c) 1999 - 2008 by the XMPP Standards Foundation (XSF).<h3>Permissions</h3>Permission is hereby granted, free of charge, to any person obtaining a copy of this specification (the "Specification"), to make use of the Specification without restriction, including without limitation the rights to implement the Specification in a software program, deploy the Specification in a network service, and copy, modify, merge, publish, translate, distribute, sublicense, or sell copies of the Specification, and to permit persons to whom the Specification is furnished to do so, subject to the condition that the foregoing copyright notice and this permission notice shall be included in all copies or substantial portions of the Specification. Unless separate permission is granted, modified works that are redistributed shall not contain misleading information regarding the authors, title, number, or publisher of the Specification, and shall not claim endorsement of the modified works by the authors, any organization or project to which the authors belong, or the XMPP Standards Foundation.<h3>Disclaimer of Warranty</h3><span style="font-weight: bold">## NOTE WELL: This Specification is provided on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, express or implied, including, without limitation, any warranties or conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE. In no event shall the XMPP Standards Foundation or the authors of this Specification be liable for any claim, damages, or other liability, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the Specification or the implementation, deployment, or other use of the Specification. ##</span><h3>Limitation of Liability</h3>In no event and under no legal theory, whether in tort (including negligence), contract, or otherwise, unless required by applicable law (such as deliberate and grossly negligent acts) or agreed to in writing, shall the XMPP Standards Foundation or any author of this Specification be liable for damages, including any direct, indirect, special, incidental, or consequential damages of any character arising out of the use or inability to use the Specification (including but not limited to damages for loss of goodwill, work stoppage, computer failure or malfunction, or any and all other commercial damages or losses), even if the XMPP Standards Foundation or such author has been advised of the possibility of such damages.<h3>IPR Conformance</h3>This XMPP Extension Protocol has been contributed in full conformance with the XSF's Intellectual Property Rights Policy (a copy of which may be found at &lt;<a href="http://www.xmpp.org/extensions/ipr-policy.shtml">http://www.xmpp.org/extensions/ipr-policy.shtml</a>&gt; or obtained by writing to XSF, P.O. Box 1641, Denver, CO 80201 USA).</div><hr /><h2>Discussion Venue</h2><p class="indent">The preferred venue for discussion of this document is the Standards discussion list: &lt;<a href="http://mail.jabber.org/mailman/listinfo/standards">http://mail.jabber.org/mailman/listinfo/standards</a>&gt;.</p><p class="indent">Errata may be sent to &lt;<a href="mailto:editor@xmpp.org">editor@xmpp.org</a>&gt;.</p><h2>Relation to XMPP</h2><p class="indent">The Extensible Messaging and Presence Protocol (XMPP) is defined in the XMPP Core (RFC 3920) and XMPP IM (RFC 3921) specifications contributed by the XMPP Standards Foundation to the Internet Standards Process, which is managed by the Internet Engineering Task Force in accordance with RFC 2026. Any protocol defined in this document has been developed outside the Internet Standards Process and is to be understood as an extension to XMPP rather than as an evolution, development, or modification of XMPP itself.</p><h2>Conformance Terms</h2><p class="indent">The following keywords as used in this document are to be interpreted as described in <a href="http://www.ietf.org/rfc/rfc2119.txt">RFC 2119</a>: "MUST", "SHALL", "REQUIRED"; "MUST NOT", "SHALL NOT"; "SHOULD", "RECOMMENDED"; "SHOULD NOT", "NOT RECOMMENDED"; "MAY", "OPTIONAL".</p><hr /><h2>Table of Contents</h2><div class="indent"><p><br />1.  <a href="#intro">Introduction</a><br />2.  <a href="#reqs">Requirements</a><br />3.  <a href="#assumptions">Assumptions</a><br />4.  <a href="#disco">Discovering Support and Address of Offering Entity</a><br />   
+      4.1.  <a href="#disco-owner">Offering Entity is File Owner</a><br />   
+      4.2.  <a href="#disco-host">Offering Entity is not File Owner</a><br />5.  <a href="#find">Finding Files</a><br />   
+      5.1.  <a href="#find-avail">Determining if Files are Available</a><br />   
+      5.2.  <a href="#find-disco">Finding All Files via Service Discovery</a><br />   
+      5.3.  <a href="#find-tree">Retrieving the Tree File</a><br />   
+      5.4.  <a href="#find-details">Determining File Details</a><br />6.  <a href="#retrieve">Retrieving a File</a><br />7.  <a href="#hosting">File-Hosting Services</a><br />8.  <a href="#security">Security Considerations</a><br />9.  <a href="#iana">IANA Considerations</a><br />10.  <a href="#registrar">XMPP Registrar Considerations</a><br />   
+      10.1.  <a href="#registrar-ns">Protocol Namespaces</a><br />   
+      10.2.  <a href="#registrar-nodes">Well-Known Service Discovery Nodes</a><br />   
+      10.3.  <a href="#registrar-identities">Service Discovery Identities</a><br />   
+      10.4.  <a href="#registrar-formtype">Field Standardization</a><br />11.  <a href="#schema">XML Schema</a><br /><a href="#notes">Notes</a><br /><a href="#revs">Revision History</a></p></div><hr /><h2>1.
+       <a name="intro" id="intro">Introduction</a></h2>
+  <p class="" style="">Existing Jabber protocols provide a strong foundation for the controlled, permissions-based sharing of files between Jabber entities, e.g., to enable shared workspaces among ad-hoc workgroups and the attachment of files to <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0045.html">Multi-User Chat</a></span>  [<a href="#nt-id2252866">1</a>] rooms.</p>
+  <p class="" style="">This document defines several additional building blocks (a simple request protocol along with well-known service discovery nodes) that tie together existing protocols to enable the sharing of files between Jabber entities.</p> 
+<h2>2.
+       <a name="reqs" id="reqs">Requirements</a></h2>
+  <ol start="" class="" style="">
+    <li class="" style="">Enable a requesting entity to find files shared by an offering entity without depending on third parties (such as <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0060.html">Publish-Subscribe</a></span>  [<a href="#nt-id2252607">2</a>] services or dedicated <a href="#hosting">file-hosting services</a>) (REQUIRED).</li>
+    <li class="" style="">Enable a requesting entity to discover detailed file information (OPTIONAL).</li>
+    <li class="" style="">Enable a requesting entity to ask for files shared by an offering entity (REQUIRED).</li>
+    <li class="" style="">Re-use existing Jabber/XMPP protocols wherever possible.</li>
+  </ol>
+<h2>3.
+       <a name="assumptions" id="assumptions">Assumptions</a></h2>
+  <p class="" style="">The protocol defined herein assumes that the offering entity is the file owner. The primary reason for this approach is that most likely the file owner (e.g., a chatroom or end user) knows best which files are available and which requesting entities have permission to view which files. Furthermore, for the purposes of this protocol it is unnecessary to assume that dedicated file-hosting services will exist on the Jabber network or that existing Jabber servers will offer file-hosting functionality (though see the <a href="#hosting">File-Hosting Services</a> section of this document).</p>
+<h2>4.
+       <a name="disco" id="disco">Discovering Support and Address of Offering Entity</a></h2>
+  <div class="indent"><h3>4.1 <a name="disco-owner" id="disco-owner">Offering Entity is File Owner</a></h3>
+    <p class="" style="">If an entity directly supports the protocol defined herein, it SHOULD include a feature of "http://jabber.org/protocol/files" in its response to a <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0030.html">Service Discovery</a></span>  [<a href="#nt-id2252703">3</a>] information request. The protocol flow is shown in the following example (an end user querying a chatroom):</p>
+    <p class="caption"><a name="example-1" id="example-1"></a>Example 1. User Queries a Room Regarding Support</p><div class="indent"><pre>
+&lt;iq type='get'
+    from='hag66@shakespeare.lit/pda'
+    to='darkcave@macbeth.shakespeare.lit'
+    id='disco1'&gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#info'/&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="caption"><a name="example-2" id="example-2"></a>Example 2. Room Returns Info</p><div class="indent"><pre>
+&lt;iq type='result'
+    from='darkcave@macbeth.shakespeare.lit'
+    to='hag66@shakespeare.lit/pda'
+    id='disco3'&gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#info'&gt;
+    ...
+    &lt;feature var='http://jabber.org/protocol/files'/&gt;
+    ...
+  &lt;/query&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="" style="">This document stipulates that communications regarding files MUST occur by sending stanzas to the well-known service discovery node "files" (or sub-nodes thereof as defined below). Therefore, even if (as in the foregoing example) the file owner directly supports the protocol defined herein, the requesting entity MUST send subsequent file-related service discovery requests to the node "files" (or sub-nodes thereof). The file owner also SHOULD list that node in its response to a service discovery items request, as shown in the following example:</p>
+    <p class="caption"><a name="example-3" id="example-3"></a>Example 3. User Queries a Room Regarding Items</p><div class="indent"><pre>
+&lt;iq type='get'
+    from='hag66@shakespeare.lit/pda'
+    to='darkcave@macbeth.shakespeare.lit'
+    id='disco2'&gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#items'/&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="caption"><a name="example-4" id="example-4"></a>Example 4. Room Returns Items</p><div class="indent"><pre>
+&lt;iq type='result'
+    from='darkcave@macbeth.shakespeare.lit'
+    to='hag66@shakespeare.lit/pda'
+    id='disco2'&gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#items'&gt;
+    ...
+    &lt;item jid='darkcave@macbeth.shakespeare.lit' 
+          node='files'
+          name='The files attached to this room'/&gt;
+    ...
+  &lt;/query&gt;
+&lt;/iq&gt;
+    </pre></div>
+  </div>
+  <div class="indent"><h3>4.2 <a name="disco-host" id="disco-host">Offering Entity is not File Owner</a></h3>
+    <p class="" style="">It is possible that the file owner does not directly support the protocol defined herein and therefore that the offering entity has a JID different from that of the file owner. In this case, the file owner MUST NOT include a feature of "http://jabber.org/protocol/files" in its response to a service discovery information request, as shown in the following example (an end user querying another end user):</p>
+    <p class="caption"><a name="example-5" id="example-5"></a>Example 5. User Queries Contact Regarding Support</p><div class="indent"><pre>
+&lt;iq type='get'
+    from='juliet@capulet.com/chamber'
+    to='romeo@montague.net/home'
+    id='disco3'&gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#info'/&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="caption"><a name="example-6" id="example-6"></a>Example 6. Contact Returns Info</p><div class="indent"><pre>
+&lt;iq type='result'
+    from='romeo@montague.net/home'
+    to='juliet@capulet.com/chamber'
+    id='disco3'&gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#info'&gt;
+    ...
+  &lt;/query&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="" style="">However, in this case the file owner SHOULD still include the offering entity (e.g., a hosting service) in its response to a service discovery items request:</p>
+    <p class="caption"><a name="example-7" id="example-7"></a>Example 7. User Queries Contact Regarding Items</p><div class="indent"><pre>
+&lt;iq type='get'
+    from='juliet@capulet.com/chamber'
+    to='romeo@montague.net/home'
+    id='disco4'&gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#items'/&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="caption"><a name="example-8" id="example-8"></a>Example 8. Contact Returns Items</p><div class="indent"><pre>
+&lt;iq type='result'
+    from='romeo@montague.net/home'
+    to='juliet@capulet.com/chamber'
+    id='disco4'&gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#items'&gt;
+    ...
+    &lt;item jid='romeo@files.shakespeare.lit' 
+          node='files'
+          name='Romeo&amp;apos;s Files'/&gt;
+    ...
+  &lt;/query&gt;
+&lt;/iq&gt;
+    </pre></div>
+  </div>
+<h2>5.
+       <a name="find" id="find">Finding Files</a></h2>
+  <div class="indent"><h3>5.1 <a name="find-avail" id="find-avail">Determining if Files are Available</a></h3>
+    <p class="" style="">If an offering entity has files to share, it SHOULD reply positively when a requesting entity sends a service discovery items request to the well-known service discovery node "files":</p>
+    <p class="caption"><a name="example-9" id="example-9"></a>Example 9. Requesting the File List</p><div class="indent"><pre>
+&lt;iq type='get'
+    from='hag66@shakespeare.lit/pda'
+    to='darkcave@macbeth.shakespeare.lit' 
+    id='avail'&gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#items'
+         node='files'/&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="" style="">If the requesting entity is not allowed to view the offering entity's files (the requesting entity is not an occupant of a chatroom, is not registered with the offering entity, is not a contact in a user's roster, etc.) or the offering entity has no files to share, the offering entity SHOULD return an empty &lt;query/&gt; element:</p>
+    <p class="caption"><a name="example-10" id="example-10"></a>Example 10. No Files to Share</p><div class="indent"><pre>
+&lt;iq type='result'
+    from='darkcave@macbeth.shakespeare.lit' 
+    to='hag66@shakespeare.lit/pda'
+    id='avail'&gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#items'
+         node='files'/&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="" style="">If the requesting entity is allowed to view the offering entity's files and the offering entity has files to share, the offering entity SHOULD return a list of items:</p>
+    <p class="caption"><a name="example-11" id="example-11"></a>Example 11. Returning the File List</p><div class="indent"><pre>
+&lt;iq type='result'
+    from='darkcave@macbeth.shakespeare.lit' 
+    to='hag66@shakespeare.lit/pda'
+    id='avail'&gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#items' 
+         node='files'&gt;
+    &lt;item jid='darkcave@macbeth.shakespeare.lit'
+          node='files/somedir'/&gt;
+    &lt;item jid='darkcave@macbeth.shakespeare.lit'
+          node='files/somefile'
+          name='file1'/&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="" style="">Note: The NodeID MUST begin with the string 'files' followed by the '/' character followed the name of the directory or file; further subdirectories or files within a directory MUST follow the same pattern (e.g., "files/somedir/anotherfile"). Thus the protocol defined herein enforces semantic meaning on NodeIDs; this is OPTIONAL within <span class="strong">Service Discovery</span> but REQUIRED by this document.</p>
+    <p class="" style="">If the offering entity has only a few files to share, it may be appropriate to make them available via service discovery only, thus requiring the requesting entity to "walk the tree" of directories and files as described in the <a href="#find-disco">Finding All Files via Service Discovery</a> section. However, if the offering entity has a larger number of files to share, the number of service discovery requests and responses required to "walk the tree" of all directories and files might result in excessive amounts of traffic between the requesting entity and the offering entity; in this case, the offering entity SHOULD provide a "tree file" that defines the hierarchy of directories and files in the standardized format specified in the <a href="#find-tree">Retrieving the Tree File</a> section. The number of files that counts as "large" is not defined herein and is left up to the implementation or deployment; in practice, it is RECOMMENDED for the offering entity to provide a tree file if it has more than five (5) files to share.</p>
+  </div>
+  <div class="indent"><h3>5.2 <a name="find-disco" id="find-disco">Finding All Files via Service Discovery</a></h3>
+    <p class="" style="">If the offering entity does not provide a tree file, the requesting entity will need to "walk the tree" via service discovery in order to find all the files shared by the offering entity. The previous example showed an offering entity that had two items available: a directory and a file. In order to determine if an item is a directory or a file, the requesting entity MUST send a disco#info request to the relevant node:</p>
+    <p class="caption"><a name="example-12" id="example-12"></a>Example 12. Requesting Further Information (1)</p><div class="indent"><pre>
+&lt;iq type='get'
+    from='hag66@shakespeare.lit/pda'
+    to='darkcave@macbeth.shakespeare.lit' 
+    id='info1'&gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#info'
+         node='files/somedir'/&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="" style="">If the item is a directory, the offering entity SHOULD return information about the directory, including an identity whose category is "filesys" and whose type is "directory":</p>
+    <p class="caption"><a name="example-13" id="example-13"></a>Example 13. Returning Further Information (1)</p><div class="indent"><pre>
+&lt;iq type='result'
+    from='darkcave@macbeth.shakespeare.lit' 
+    to='hag66@shakespeare.lit/pda'
+    id='info1'&gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#info' 
+         node='files/somedir'&gt;
+    &lt;identity category='filesys' type='directory'/&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="" style="">If the requesting entity wants information about every item, it MUST query each item individually:</p>
+    <p class="caption"><a name="example-14" id="example-14"></a>Example 14. Requesting Further Information (2)</p><div class="indent"><pre>
+&lt;iq type='get'
+    from='hag66@shakespeare.lit/pda'
+    to='darkcave@macbeth.shakespeare.lit' 
+    id='info2'&gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#info'
+         node='files/somefile'/&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="" style="">If the item is a file, the offering entity SHOULD return information about the file, including an identity whose category is "filesys" and whose type is "file":</p>
+    <p class="caption"><a name="example-15" id="example-15"></a>Example 15. Returning Further Information (2)</p><div class="indent"><pre>
+&lt;iq type='result'
+    from='darkcave@macbeth.shakespeare.lit' 
+    to='hag66@shakespeare.lit/pda'
+    id='info2'&gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#info' 
+         node='files/somefile'&gt;
+    &lt;identity category='filesys' type='file' name='file1'/&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="" style="">Note: The offering entity MAY also include detailed information about the file, as described in the <a href="#find-details">Determining File Details</a> section of this document.</p>
+    <p class="" style="">If the requesting entity wants to find all files, it needs to send a disco#items query to the directory:</p>
+    <p class="caption"><a name="example-16" id="example-16"></a>Example 16. Requesting Further Items (1)</p><div class="indent"><pre>
+&lt;iq type='get'
+    from='hag66@shakespeare.lit/pda'
+    to='darkcave@macbeth.shakespeare.lit' 
+    id='items1'&gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#items'
+         node='files/somedir'/&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="" style="">The offering entity will then return a list of files and directories contained within the queried directory:</p>
+    <p class="caption"><a name="example-17" id="example-17"></a>Example 17. Returning Further Items (1)</p><div class="indent"><pre>
+&lt;iq type='result'
+    from='darkcave@macbeth.shakespeare.lit' 
+    to='hag66@shakespeare.lit/pda'
+    id='items1'&gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#items' 
+         node='files/somedir'&gt;
+    &lt;item jid='darkcave@macbeth.shakespeare.lit'
+          node='files/somedir/anotherdir'/&gt;
+    &lt;item jid='darkcave@macbeth.shakespeare.lit'
+          node='files/somedir/anotherfile'
+          name='file2'/&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="" style="">The requesting entity then needs to send further disco#info and disco#items requests to the offering entity, specifying the appropriate service discovery nodes...</p>
+    <p class="caption"><a name="example-18" id="example-18"></a>Example 18. Requesting Further Information (3)</p><div class="indent"><pre>
+&lt;iq type='get'
+    from='hag66@shakespeare.lit/pda'
+    to='darkcave@macbeth.shakespeare.lit' 
+    id='info3'&gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#info'
+         node='files/somedir/anotherdir'/&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="caption"><a name="example-19" id="example-19"></a>Example 19. Returning Further Information (3)</p><div class="indent"><pre>
+&lt;iq type='result'
+    from='darkcave@macbeth.shakespeare.lit' 
+    to='hag66@shakespeare.lit/pda'
+    id='info3'&gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#info' 
+         node='files/somedir/anotherdir'&gt;
+    &lt;identity category='filesys' type='directory'/&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="caption"><a name="example-20" id="example-20"></a>Example 20. Requesting Further Information (4)</p><div class="indent"><pre>
+&lt;iq type='get'
+    from='hag66@shakespeare.lit/pda'
+    to='darkcave@macbeth.shakespeare.lit' 
+    id='info4'&gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#info'
+         node='files/somedir/anotherfile'/&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="caption"><a name="example-21" id="example-21"></a>Example 21. Returning Further Information (4)</p><div class="indent"><pre>
+&lt;iq type='result'
+    from='darkcave@macbeth.shakespeare.lit' 
+    to='hag66@shakespeare.lit/pda'
+    id='info4'&gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#info' 
+         node='files/somedir/anotherfile'&gt;
+    &lt;identity category='filesys' type='file' name='file2'/&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="caption"><a name="example-22" id="example-22"></a>Example 22. Requesting Further Items (2)</p><div class="indent"><pre>
+&lt;iq type='get'
+    from='hag66@shakespeare.lit/pda'
+    to='darkcave@macbeth.shakespeare.lit' 
+    id='items2'&gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#items'
+         node='files/somedir/anotherdir'/&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="caption"><a name="example-23" id="example-23"></a>Example 23. Returning Further Items (2)</p><div class="indent"><pre>
+&lt;iq type='result'
+    from='darkcave@macbeth.shakespeare.lit' 
+    to='hag66@shakespeare.lit/pda'
+    id='items2'&gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#items' 
+         node='files/somedir/anotherdir'&gt;
+    &lt;item jid='darkcave@macbeth.shakespeare.lit'
+          node='files/somedir/anotherdir/yetanotherfile'
+          name='file3'/&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="caption"><a name="example-24" id="example-24"></a>Example 24. Requesting Further Information (5)</p><div class="indent"><pre>
+&lt;iq type='get'
+    from='hag66@shakespeare.lit/pda'
+    to='darkcave@macbeth.shakespeare.lit' 
+    id='info5'&gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#info'
+         node='files/somedir/anotherdir/yetanotherfile'/&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="caption"><a name="example-25" id="example-25"></a>Example 25. Returning Further Information (5)</p><div class="indent"><pre>
+&lt;iq type='result'
+    from='darkcave@macbeth.shakespeare.lit' 
+    to='hag66@shakespeare.lit/pda'
+    id='info5'&gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#info' 
+         node='files/somedir/anotherdir/yetanotherfile'&gt;
+    &lt;identity category='filesys' type='file' name='file3'/&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="" style="">In this scenario, we can reconstruct the file tree as follows:</p>
+    <p class="caption"></p><div class="indent"><pre>
+share
+\--somefile
+\--somedir
+   \--anotherfile
+   \--anotherdir
+      \--yetanotherfile
+    </pre></div>
+  </div>
+  <div class="indent"><h3>5.3 <a name="find-tree" id="find-tree">Retrieving the Tree File</a></h3>
+    <p class="" style="">Obviously, finding all files via service discovery is a tedious process. Therefore, it is RECOMMENDED that the offering entity provide a "tree file" if it has more than five (5) files to share. The format of the tree file is defined by the 'http://jabber.org/profile/si/profile/tree-transfer' namespace that is specified in <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0105.html">Tree Transfer Stream Initiation Profile</a></span>  [<a href="#nt-id2251117">4</a>]. The tree file MUST be named "tree.xml" and MUST be available at the well-known service discovery node "tree.xml". The offering entity MAY create a different tree file for each requesting entity (depending on the requesting entity's permissions to view certain directories and files); for this reason, the tree file SHOULD NOT be contained in the root "files" directory itself (note that its NodeID is "tree.xml", not "files/tree.xml").</p>
+    <p class="" style="">If the offering entity provides a tree file, it MUST communicate that fact in the disco#items result it returns to the requesting entity in response to the initial request:</p>
+    <p class="caption"><a name="example-26" id="example-26"></a>Example 26. Requesting the File List</p><div class="indent"><pre>
+&lt;iq type='get'
+    from='hag66@shakespeare.lit/pda'
+    to='darkcave@macbeth.shakespeare.lit' 
+    id='avail'&gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#items'
+         node='files'/&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="caption"><a name="example-27" id="example-27"></a>Example 27. Returning the File List</p><div class="indent"><pre>
+&lt;iq type='result'
+    from='darkcave@macbeth.shakespeare.lit' 
+    to='hag66@shakespeare.lit/pda'
+    id='avail'&gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#items' 
+         node='files'&gt;
+    &lt;item jid='darkcave@macbeth.shakespeare.lit'
+          node='files/somedir'/&gt;
+    &lt;item jid='darkcave@macbeth.shakespeare.lit'
+          node='files/somefile'
+          name='file1'/&gt;
+    &lt;item jid='darkcave@macbeth.shakespeare.lit'
+          node='tree.xml'
+          name='Tree File'/&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="" style="">If the offering entity includes a service discovery item whose NodeID is "tree.xml", the requesting entity SHOULD retrieve that file (using the protocol specified in the <a href="retrieve">Retrieving a File</a> section) before sending any further service discovery requests to the offering entity.</p>
+    <p class="" style="">The following example shows the exact format of the tree file that would represent the file and directory hierarchy discovered via service discovery in the preceding section:</p>
+    <p class="caption"><a name="example-28" id="example-28"></a>Example 28. A Tree File</p><div class="indent"><pre>
+&lt;tree xmlns='http://jabber.org/profile/si/profile/tree-transfer'
+      numfiles='3'
+      size='72521'&gt;
+  &lt;directory name='files'&gt;
+    &lt;file sid='file1' name='somefile'/&gt;
+    &lt;directory name='somedir'&gt;
+      &lt;file sid='file2' name='anotherfile'/&gt;
+      &lt;directory name='anotherdir'&gt;
+        &lt;file sid='file3' name='yetanotherfile'/&gt;
+      &lt;/directory&gt;
+    &lt;/directory&gt;
+  &lt;/directory&gt;
+&lt;/tree&gt;
+    </pre></div>
+    <p class="" style="">If the offering entity provides a tree file, it is RECOMMENDED (but not required) for the offering entity to also make information about its files discoverable via <span class="strong">Service Discovery</span> as described in the following section.</p>
+  </div>
+  <div class="indent"><h3>5.4 <a name="find-details" id="find-details">Determining File Details</a></h3>
+    <p class="" style="">As is evident from the foregoing examples, neither "walking the tree" via <span class="strong">Service Discovery</span> nor retrieving the tree file will yield the kind of detailed information about a file (MIME type, file size, descriptive text, etc.) that can help a user or application decide whether to retrieve the file.</p>
+    <p class="" style="">To address the felt need for more detailed information about files, an offering entity MAY provide such information in response to disco#info requests sent to a specific NodeID (file or directory) by including extended information structured according to <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0128.html">Service Discovery Extensions</a></span>  [<a href="#nt-id2261588">5</a>]. The following examples illustrate this usage.</p>
+    <p class="caption"><a name="example-29" id="example-29"></a>Example 29. Requesting File Information</p><div class="indent"><pre>
+&lt;iq type='get'
+    from='hag66@shakespeare.lit/pda'
+    to='darkcave@macbeth.shakespeare.lit' 
+    id='file1'&gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#info'
+         node='files/somefile'/&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="caption"><a name="example-30" id="example-30"></a>Example 30. Returning Detailed File Information</p><div class="indent"><pre>
+&lt;iq type='result'
+    from='darkcave@macbeth.shakespeare.lit' 
+    to='hag66@shakespeare.lit/pda'
+    id='info2'&gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#info' 
+         node='files/somefile'&gt;
+    &lt;identity category='filesys' type='file' name='file1'/&gt;
+    &lt;x xmlns='jabber:x:data' type='result'&gt;
+      &lt;field var='FORM_TYPE' type='hidden'&gt;
+        &lt;value&gt;http://jabber.org/protocol/files&lt;/value&gt;
+      &lt;/field&gt;
+      &lt;field var='date'&gt;
+        &lt;value&gt;2004-05-12T02:37:07Z&lt;/value&gt;
+      &lt;/field&gt;
+      &lt;field var='description'&gt;
+        &lt;value&gt;This is just a test file.&lt;/value&gt;
+      &lt;/field&gt;
+      &lt;field var='hash'&gt;
+        &lt;value&gt;552da749930852c69ae5d2141d3766b1&lt;/value&gt;
+      &lt;/field&gt;
+      &lt;field var='mime-type'&gt;
+        &lt;value&gt;text/plain&lt;/value&gt;
+      &lt;/field&gt;
+      &lt;field var='size'&gt;
+        &lt;value&gt;1022&lt;/value&gt;
+      &lt;/field&gt;
+    &lt;/x&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="" style="">The fields shown are RECOMMENDED, and are specified more fully in the <a href="#registrar">XMPP Registrar Considerations</a> section of this document.</p>
+  </div>
+<h2>6.
+       <a name="retrieve" id="retrieve">Retrieving a File</a></h2>
+  <p class="" style="">In order to retrieve a file, the requesting entity sends a retrieval request to the JID+NodeID of the relevant item:</p>
+  <p class="caption"><a name="example-31" id="example-31"></a>Example 31. Retrieving a File</p><div class="indent"><pre>
+&lt;iq type='get'
+    from='hag66@shakespeare.lit/pda'
+    to='darkcave@macbeth.shakespeare.lit' 
+    id='retrieve1'&gt;
+  &lt;retrieve xmlns='http://jabber.org/protocol/files'
+            node='files/somefile'/&gt;
+&lt;/iq&gt;
+  </pre></div>
+  <p class="" style="">Note: If the requested file was found by means of the tree file rather than service discovery, the NodeID of the retrieve request MUST be constructed according to the rules specified above for service discovery NodeIDs (i.e., 'files' followed by the '/' character followed by the name of the directory or file, followed by additional '/' characters and subdirectory or file names as needed).</p>
+  <p class="" style="">If the offering entity agrees to share the file with the requesting entity, it MUST return an IQ result to the requesting entity and then immediately initiate a file transfer to the requesting entity following the protocol defined in <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0096.html">File Transfer</a></span>  [<a href="#nt-id2261697">6</a>]:</p>
+  <p class="caption"><a name="example-32" id="example-32"></a>Example 32. Offering Entity Agrees to Share File</p><div class="indent"><pre>
+&lt;iq type='result' id='retrieve1'/&gt;
+  </pre></div>
+  <p class="caption"><a name="example-33" id="example-33"></a>Example 33. Offering Entity Initiates File Transfer</p><div class="indent"><pre>
+    
+&lt;iq type='set' 
+    from='darkcave@macbeth.shakespeare.lit' 
+    id='offer1' 
+    to='hag66@shakespeare.lit/pda'&gt;
+  &lt;si xmlns='http://jabber.org/protocol/si' 
+      id='file1'
+      mime-type='text/plain'
+      profile='http://jabber.org/protocol/si/profile/file-transfer'&gt;
+    &lt;file xmlns='http://jabber.org/protocol/si/profile/file-transfer'
+          name='somefile'
+          size='1022'/&gt;
+    &lt;feature xmlns='http://jabber.org/protocol/feature-neg'&gt;
+      &lt;x xmlns='jabber:x:data' type='form'&gt;
+        &lt;field var='stream-method' type='list-single'&gt;
+          &lt;option&gt;&lt;value&gt;http://jabber.org/protocol/bytestreams&lt;/value&gt;&lt;/option&gt;
+          &lt;option&gt;&lt;value&gt;http://jabber.org/protocol/ibb&lt;/value&gt;&lt;/option&gt;
+        &lt;/field&gt;
+      &lt;/x&gt;
+    &lt;/feature&gt;
+  &lt;/si&gt;
+&lt;/iq&gt;
+  </pre></div>
+  <p class="" style="">The value of the &lt;si/&gt; element's 'id' attribute MUST be the same as the value of the 'sid' attribute communicated in the tree file or the 'name' attribute communicated via service discovery; for this reason, the service discovery 'name' attribute is REQUIRED for NodeIDs that correspond to files, and its value MUST follow the rules for the 'sid' attribute specified in XEP-0105.</p>
+  <p class="" style="">Upon receiving the file transfer initiation from the offering entity, the requesting entity SHOULD check the SI 'id' in order to correlate the file transfer with the request; if there is a match, the requesting entity SHOULD silently accept the file transfer and not require intervention by a human before proceeding.</p>
+  <p class="" style="">If the offering entity does not agree to share the file with the requesting entity, it MUST return an appropriate IQ error to the requesting entity, such as "Not Authorized", "Forbidden", "Payment Required", "Registration Required", or "Not Found" (see <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0086.html">Error Condition Mappings</a></span>  [<a href="#nt-id2261818">7</a>] regarding error syntax).</p>
+<h2>7.
+       <a name="hosting" id="hosting">File-Hosting Services</a></h2>
+  <p class="" style="">A dedicated file-hosting service may agree to host files on behalf of a user or other entity, in which case the hosting service (or, to be precise, a specific resource of the hosting service) becomes the offering entity in the use cases defined herein. While the nature of such hosting services is outside the scope of this document, the following guidelines may be helpful to implementers.</p>
+  <p class="" style="">First, a file-hosting service SHOULD provide a distinct JID for each account on the service in order to enable communications between the requesting entity and the hosting service. For example, let us suppose that &lt;files.shakespeare.lit&gt; is a file-hosting service; specific accounts on the service could be structured as JIDs of the form &lt;account@files.shakespeare.lit&gt; or &lt;files.shakespeare.lit/account&gt;, in which case the requesting entity would communicate directly with that JID and treat that JID as the offering entity. The file-hosting service SHOULD enable the file owner (e.g., an end user whose JID is &lt;romeo@montague.net&gt;) to upload files to the service using standard Internet protocols (such as HTTP, FTP, scp, or XEP-0096), control who can view or retrieve files, and otherwise configure the offering entity. The file owner SHOULD also list the JID of the "offering entity" in response to service discovery items requests sent to the user's bare JID, so that requesting entities can find files hosted by the service on the file owner's behalf.</p>
+  <p class="" style="">It is possible that some Jabber server deployments would choose to offer file-hosting capabilities for their users (if supported in the underlying server implementation), so that the offering entity would have the same &lt;user@host&gt; address as the file owner. In this case, the server itself can be considered a file-hosting service.</p>
+<h2>8.
+       <a name="security" id="security">Security Considerations</a></h2>
+  <p class="" style="">Managing access to files and directories is the responsibility of the offering entity. However, the offering entity SHOULD NOT share files with requesting entities that are not known to it via presence subscription, prior registration, room occupancy, or some similar mechanism.</p>
+<h2>9.
+       <a name="iana" id="iana">IANA Considerations</a></h2>
+  <p class="" style="">No interaction with the <span class="ref" style=""><a href="http://www.iana.org/">Internet Assigned Numbers Authority (IANA)</a></span>  [<a href="#nt-id2261932">8</a>] is required as a result of this document.</p>
+<h2>10.
+       <a name="registrar" id="registrar">XMPP Registrar Considerations</a></h2>
+  <div class="indent"><h3>10.1 <a name="registrar-ns" id="registrar-ns">Protocol Namespaces</a></h3>
+    <p class="" style="">Upon advancement of this document to a status of Draft, the <span class="ref" style=""><a href="http://www.xmpp.org/registrar/">XMPP Registrar</a></span>  [<a href="#nt-id2262001">9</a>] shall add the 'http://jabber.org/protocol/files' namespace to its registry of protocol namespaces.</p>
+  </div>
+  <div class="indent"><h3>10.2 <a name="registrar-nodes" id="registrar-nodes">Well-Known Service Discovery Nodes</a></h3>
+    <p class="" style="">Upon advancement of this document to a status of Draft, the XMPP Registrar shall add 'files' and 'tree.xml' to its registry of well-known service discovery nodes.</p>
+  </div>
+  <div class="indent"><h3>10.3 <a name="registrar-identities" id="registrar-identities">Service Discovery Identities</a></h3>
+    <p class="" style="">Upon advancement of this document to a status of Draft, the XMPP Registrar shall add a category of 'filesys' to its registry of service discovery identities, with two associated types: 'directory' and 'file'.</p>
+  </div>
+  <div class="indent"><h3>10.4 <a name="registrar-formtype" id="registrar-formtype">Field Standardization</a></h3>
+    <p class="" style=""><span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0068.html">Field Standardization for Data Forms</a></span>  [<a href="#nt-id2262079">10</a>] defines a process for standardizing the fields used within Data Forms scoped by a particular namespace. This document reserves the FORM_TYPE "http://jabber.org/protocol/files" as well as specific fields for use within the context of that FORM_TYPE, as specified in the following registry submission.</p>
+    <p class="caption">Registry Submission</p><div class="indent"><pre>
+&lt;form_type&gt;
+  &lt;name&gt;http://jabber.org/protocol/files&lt;/name&gt;
+  &lt;doc&gt;XEP-01xx&lt;/doc&gt;
+  &lt;desc&gt;Service Discovery extension for file descriptions.&lt;/desc&gt;
+  &lt;field var='date'
+         type='text-single'
+         label='Equivalent to date attribute from XEP-0096'/&gt;
+  &lt;field var='description'
+         type='text-single'
+         label='Equivalent to desc element from XEP-0096'/&gt;
+  &lt;field var='hash'
+         type='text-single'
+         label='Equivalent to hash attribute from XEP-0096'/&gt;
+  &lt;field var='mime-type'
+         type='text-single'
+         label='Equivalent to mime-type attribute from XEP-0095'/&gt;
+  &lt;field var='size'
+         type='text-single'
+         label='Equivalent to size attribute from XEP-0096'/&gt;
+&lt;/form_type&gt;
+    </pre></div>
+  </div>
+<h2>11.
+       <a name="schema" id="schema">XML Schema</a></h2>
+  <p class="caption"></p><div class="indent"><pre>
+&lt;?xml version='1.0' encoding='UTF-8'?&gt;
+
+&lt;xs:schema
+    xmlns:xs='http://www.w3.org/2001/XMLSchema'
+    targetNamespace='http://jabber.org/protocol/files'
+    xmlns='http://jabber.org/protocol/files'
+    elementFormDefault='qualified'&gt;
+  
+  &lt;xs:element name='retrieve'&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:simpleContent&gt;
+        &lt;xs:extension base='empty'&gt;
+          &lt;xs:attribute name='node' type='xs:string' use='required'/&gt;
+        &lt;/xs:extension&gt;
+      &lt;/xs:simpleContent&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+
+  &lt;xs:simpleType name='empty'&gt;
+    &lt;xs:restriction base='xs:string'&gt;
+      &lt;xs:enumeration value=''/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+
+&lt;/xs:schema&gt;
+  </pre></div>
+<hr /><h2><a name="notes" id="notes"></a>Notes</h2><div class="indent"><p><a name="nt-id2252866" id="nt-id2252866">1</a>. XEP-0045: Multi-User Chat &lt;<a href="http://www.xmpp.org/extensions/xep-0045.html">http://www.xmpp.org/extensions/xep-0045.html</a>&gt;.</p><p><a name="nt-id2252607" id="nt-id2252607">2</a>. XEP-0060: Publish-Subscribe &lt;<a href="http://www.xmpp.org/extensions/xep-0060.html">http://www.xmpp.org/extensions/xep-0060.html</a>&gt;.</p><p><a name="nt-id2252703" id="nt-id2252703">3</a>. XEP-0030: Service Discovery &lt;<a href="http://www.xmpp.org/extensions/xep-0030.html">http://www.xmpp.org/extensions/xep-0030.html</a>&gt;.</p><p><a name="nt-id2251117" id="nt-id2251117">4</a>. XEP-0105: Tree Transfer Stream Initiation Profile &lt;<a href="http://www.xmpp.org/extensions/xep-0105.html">http://www.xmpp.org/extensions/xep-0105.html</a>&gt;.</p><p><a name="nt-id2261588" id="nt-id2261588">5</a>. XEP-0128: Service Discovery Extensions &lt;<a href="http://www.xmpp.org/extensions/xep-0128.html">http://www.xmpp.org/extensions/xep-0128.html</a>&gt;.</p><p><a name="nt-id2261697" id="nt-id2261697">6</a>. XEP-0096: File Transfer &lt;<a href="http://www.xmpp.org/extensions/xep-0096.html">http://www.xmpp.org/extensions/xep-0096.html</a>&gt;.</p><p><a name="nt-id2261818" id="nt-id2261818">7</a>. XEP-0086: Error Condition Mappings &lt;<a href="http://www.xmpp.org/extensions/xep-0086.html">http://www.xmpp.org/extensions/xep-0086.html</a>&gt;.</p><p><a name="nt-id2261932" id="nt-id2261932">8</a>. The Internet Assigned Numbers Authority (IANA) is the central coordinator for the assignment of unique parameter values for Internet protocols, such as port numbers and URI schemes. For further information, see &lt;<a href="http://www.iana.org/">http://www.iana.org/</a>&gt;.</p><p><a name="nt-id2262001" id="nt-id2262001">9</a>. The XMPP Registrar maintains a list of reserved protocol namespaces as well as registries of parameters used in the context of XMPP extension protocols approved by the XMPP Standards Foundation. For further information, see &lt;<a href="http://www.xmpp.org/registrar/">http://www.xmpp.org/registrar/</a>&gt;.</p><p><a name="nt-id2262079" id="nt-id2262079">10</a>. XEP-0068: Field Data Standardization for Data Forms &lt;<a href="http://www.xmpp.org/extensions/xep-0068.html">http://www.xmpp.org/extensions/xep-0068.html</a>&gt;.</p></div><hr /><h2><a name="revs" id="revs"></a>Revision History</h2><div class="indent"><h4>Version 0.1 (2004-06-04)</h4><div class="indent">Initial version. (psa)
+    </div></div><hr /><p>END</p></body></html>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<HelpTOC
+	DTDVersion="1.0"
+	PluginStyle="Flat"
+	PluginTitle="agsXMPP SDK"
+	Id="agsXMPP"
+	FileVersion="1.0.0.0"
+	LangId="1033"
+>
+	<HelpTOCNode NodeType="Regular" Title="agsXMPP SDK">
+		<HelpTOCNode NodeType="TOC" Url="agsXMPP" />
+	</HelpTOCNode>
+</HelpTOC>

@@ -1,0 +1,399 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>XEP-0099: IQ Query Action Protocol</title><link rel="stylesheet" type="text/css" href="/xmpp.css" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" /><meta name="DC.Title" content="IQ Query Action Protocol" /><meta name="DC.Creator" content="Iain Shigeoka" /><meta name="DC.Description" content="Standardizes behavior of &lt;iq/&gt; &lt;query/&gt; actions for generic query behavior." /><meta name="DC.Publisher" content="XMPP Standards Foundation" /><meta name="DC.Contributor" content="XMPP Extensions Editor" /><meta name="DC.Date" content="2003-06-25" /><meta name="DC.Type" content="XMPP Extension Protocol" /><meta name="DC.Format" content="XHTML" /><meta name="DC.Identifier" content="XEP-0099" /><meta name="DC.Language" content="en" /><meta name="DC.Rights" content="This XMPP Extension Protocol is copyright (c) 1999 - 2008 by the XMPP Standards Foundation (XSF)." /></head><body><h1>XEP-0099: IQ Query Action Protocol</h1><p>Standardizes behavior of &lt;iq/&gt; &lt;query/&gt; actions for generic query behavior.</p><hr /><p style="color:red">WARNING: Consideration of this document has been Deferred by the XMPP Standards Foundation. Implementation of the protocol described herein is not recommended.</p><hr /><h2>Document Information</h2><p class="indent">
+            Series: <a href="http://www.xmpp.org/extensions/">XEP</a><br />
+            Number: 0099<br />
+            Publisher: <a href="/xsf/">XMPP Standards Foundation</a><br />
+            Status: 
+            <a href="http://www.xmpp.org/extensions/xep-0001.html#states-Deferred">Deferred</a><br />
+            Type:
+            <a href="http://www.xmpp.org/extensions/xep-0001.html#types-Standards Track">Standards Track</a><br />
+            Version: 0.1<br />
+            Last Updated: 2003-06-25<br />
+                Approving Body: <a href="http://www.xmpp.org/council/">XMPP Council</a><br />
+                Dependencies: None<br />
+                Supersedes: None<br />
+                Superseded By: None<br />
+            Short Name: Not yet assigned<br />
+              Wiki Page: &lt;<a href="http://wiki.jabber.org/index.php/IQ Query Action Protocol (XEP-0099)">http://wiki.jabber.org/index.php/IQ Query Action Protocol (XEP-0099)</a>&gt;
+            </p><hr /><h2>Author Information</h2><div class="indent"><h3>Iain Shigeoka</h3><p class="indent">
+        Email:
+        <a href="mailto:iain@jivesoftware.com">iain@jivesoftware.com</a><br />
+        JabberID: 
+        <a href="xmpp:smirk@jabber.com">smirk@jabber.com</a><br /></p></div><hr /><h2>Legal Notices</h2><div class="indent"><h3>Copyright</h3>This XMPP Extension Protocol is copyright (c) 1999 - 2008 by the XMPP Standards Foundation (XSF).<h3>Permissions</h3>Permission is hereby granted, free of charge, to any person obtaining a copy of this specification (the "Specification"), to make use of the Specification without restriction, including without limitation the rights to implement the Specification in a software program, deploy the Specification in a network service, and copy, modify, merge, publish, translate, distribute, sublicense, or sell copies of the Specification, and to permit persons to whom the Specification is furnished to do so, subject to the condition that the foregoing copyright notice and this permission notice shall be included in all copies or substantial portions of the Specification. Unless separate permission is granted, modified works that are redistributed shall not contain misleading information regarding the authors, title, number, or publisher of the Specification, and shall not claim endorsement of the modified works by the authors, any organization or project to which the authors belong, or the XMPP Standards Foundation.<h3>Disclaimer of Warranty</h3><span style="font-weight: bold">## NOTE WELL: This Specification is provided on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, express or implied, including, without limitation, any warranties or conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE. In no event shall the XMPP Standards Foundation or the authors of this Specification be liable for any claim, damages, or other liability, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the Specification or the implementation, deployment, or other use of the Specification. ##</span><h3>Limitation of Liability</h3>In no event and under no legal theory, whether in tort (including negligence), contract, or otherwise, unless required by applicable law (such as deliberate and grossly negligent acts) or agreed to in writing, shall the XMPP Standards Foundation or any author of this Specification be liable for damages, including any direct, indirect, special, incidental, or consequential damages of any character arising out of the use or inability to use the Specification (including but not limited to damages for loss of goodwill, work stoppage, computer failure or malfunction, or any and all other commercial damages or losses), even if the XMPP Standards Foundation or such author has been advised of the possibility of such damages.<h3>IPR Conformance</h3>This XMPP Extension Protocol has been contributed in full conformance with the XSF's Intellectual Property Rights Policy (a copy of which may be found at &lt;<a href="http://www.xmpp.org/extensions/ipr-policy.shtml">http://www.xmpp.org/extensions/ipr-policy.shtml</a>&gt; or obtained by writing to XSF, P.O. Box 1641, Denver, CO 80201 USA).</div><hr /><h2>Discussion Venue</h2><p class="indent">The preferred venue for discussion of this document is the Standards discussion list: &lt;<a href="http://mail.jabber.org/mailman/listinfo/standards">http://mail.jabber.org/mailman/listinfo/standards</a>&gt;.</p><p class="indent">Errata may be sent to &lt;<a href="mailto:editor@xmpp.org">editor@xmpp.org</a>&gt;.</p><h2>Relation to XMPP</h2><p class="indent">The Extensible Messaging and Presence Protocol (XMPP) is defined in the XMPP Core (RFC 3920) and XMPP IM (RFC 3921) specifications contributed by the XMPP Standards Foundation to the Internet Standards Process, which is managed by the Internet Engineering Task Force in accordance with RFC 2026. Any protocol defined in this document has been developed outside the Internet Standards Process and is to be understood as an extension to XMPP rather than as an evolution, development, or modification of XMPP itself.</p><h2>Conformance Terms</h2><p class="indent">The following keywords as used in this document are to be interpreted as described in <a href="http://www.ietf.org/rfc/rfc2119.txt">RFC 2119</a>: "MUST", "SHALL", "REQUIRED"; "MUST NOT", "SHALL NOT"; "SHOULD", "RECOMMENDED"; "SHOULD NOT", "NOT RECOMMENDED"; "MAY", "OPTIONAL".</p><hr /><h2>Table of Contents</h2><div class="indent"><p><br />1.  <a href="#sect-id2260926">Introduction</a><br />2.  <a href="#sect-id2251700">&lt;query/&gt; Action Protocol</a><br />   
+      2.1.  <a href="#sect-id2252810">Description</a><br />   
+      2.2.  <a href="#sect-id2252865">Actions</a><br />   
+      2.3.  <a href="#sect-id2252678">Elements</a><br />   
+      2.4.  <a href="#sect-id2252696">Error Codes</a><br />3.  <a href="#sect-id2251324">Create Action</a><br />   
+      3.1.  <a href="#sect-id2251330">Description</a><br />   
+      3.2.  <a href="#sect-id2251351">Error Codes</a><br />   
+      3.3.  <a href="#sect-id2251410">Examples</a><br />4.  <a href="#sect-id2251455">Read Action</a><br />   
+      4.1.  <a href="#sect-id2251461">Description</a><br />   
+      4.2.  <a href="#sect-id2251490">Error Codes</a><br />   
+      4.3.  <a href="#sect-id2251550">Examples</a><br />5.  <a href="#sect-id2251068">Update Action</a><br />   
+      5.1.  <a href="#sect-id2251081">Description</a><br />   
+      5.2.  <a href="#sect-id2251101">Error Codes</a><br />   
+      5.3.  <a href="#sect-id2251160">Examples</a><br />6.  <a href="#sect-id2261350">Delete Action</a><br />   
+      6.1.  <a href="#sect-id2261356">Description</a><br />   
+      6.2.  <a href="#sect-id2261385">Error Codes</a><br />   
+      6.3.  <a href="#sect-id2261445">Examples</a><br />7.  <a href="#sect-id2261512">Defining an Action Protocol</a><br />   
+      7.1.  <a href="#sect-id2261525">Description</a><br /><a href="#notes">Notes</a><br /><a href="#revs">Revision History</a></p></div><hr /><h2>1.
+       <a name="sect-id2260926" id="sect-id2260926">Introduction</a></h2>
+  <p class="" style="">There is a need for consistent query behavior amongst XMPP &lt;iq/&gt; protocols. Currently
+each protocol invents it's own, slightly different behavior for conducting 
+query behavior to create, read, update, and delete (CRUD) recipient node data. This document defines a generic
+query acton protocol to standardize behavior across &lt;iq/&gt; protocols. In addition, we hope
+this standard will make other protocols easier to understand and implement by using a common
+core protocol.</p>
+<h2>2.
+       <a name="sect-id2251700" id="sect-id2251700">&lt;query/&gt; Action Protocol</a></h2>
+  <div class="indent"><h3>2.1 <a name="sect-id2252810" id="sect-id2252810">Description</a></h3>
+    <p class="" style="">The existing XMPP core protocol defines
+four &lt;iq/&gt; types (get, set, result, and error). Unfortunately, these
+four types don't include a 'delete' type, and the 'set' type must do double duty for
+'create' and 'update'. Many protocols can benefit from a clear separation of create
+and update paralleling other query languages such as SQL.</p>
+    <p class="" style="">Protocols complying with the &lt;query/&gt; action protocol use &lt;iq/&gt; 'set' to initiate
+all request-response interactions. The particular action to be taken MUST be set as an "action" attribute
+in the &lt;iq/&gt; &lt;query/&gt; sub-element. The action attribute MUST have a value of 'create', 'read',
+'update', or 'delete'. Responses use the standard &lt;iq/&gt; 'result' and 'error' types.
+For backward compatibility, an &lt;iq/&gt; 'get' query is treated as equivalent to an &lt;iq/&gt; 'set'
+query with action of 'read'. Action protocols may require all or just a subset of these 
+actions depending on the desired outcome.</p>
+    <p class="" style="">In addition to the action attribute an optional "strict" attribute may be set in the &lt;iq/&gt; &lt;query/&gt;
+sub-element. The only valid values for strict is "true" or "false" (case sensitive).
+The strict behavior of actions causes more errors to be returned which tends to make
+protocols more robust but also more complex. Action protocols MUST define the default value of
+the "strict" attribute in the context of that protocol. In addition, some protocols may 
+not wish to allow changing the strict default, so action protocols MUST declare 
+whether the strict behavior of the protocol may be set in the &lt;iq/&gt; &lt;query/&gt; sub-element.</p>
+  </div>
+  <div class="indent"><h3>2.2 <a name="sect-id2252865" id="sect-id2252865">Actions</a></h3>
+    <p class="caption"><a name="table-1" id="table-1"></a>Table 1: Description of Acceptable &lt;query/&gt; Actions</p><table border="1" cellpadding="3" cellspacing="0">
+      <tr class="body"><td colspan="" rowspan="">create</td><td colspan="" rowspan="">Creates/inserts new data on the recipient node.</td></tr>
+      <tr class="body"><td colspan="" rowspan="">read</td><td colspan="" rowspan="">Retrieves data from the recipient node.</td></tr>
+      <tr class="body"><td colspan="" rowspan="">update</td><td colspan="" rowspan="">Updates existing data on the recipient node.</td></tr>
+      <tr class="body"><td colspan="" rowspan="">delete</td><td colspan="" rowspan="">Deletes existing data on the recipient node.</td></tr>
+    </table>
+  </div>
+  <div class="indent"><h3>2.3 <a name="sect-id2252678" id="sect-id2252678">Elements</a></h3>
+    <p class="" style="">The root element is query which is in a namespace defining the
+protocol in use. The query element MUST have
+an attribute named 'action' with values given in the previous table.</p>
+  </div>
+  <div class="indent"><h3>2.4 <a name="sect-id2252696" id="sect-id2252696">Error Codes</a></h3>
+    <p class="" style="">The following error codes apply to all action codes.</p>
+    <p class="caption"><a name="table-2" id="table-2"></a>Table 2: Error Codes used by Action Protocols</p><table border="1" cellpadding="3" cellspacing="0">
+      <tr class="body">
+        <th colspan="" rowspan="">Code</th><th colspan="" rowspan="">Text</th><th colspan="" rowspan="">Description</th>
+      </tr>
+      <tr class="body">
+        <td colspan="" rowspan="">406</td><td colspan="" rowspan="">Not Acceptable</td><td colspan="" rowspan="">The IQ query contents are not properly formatted for the action protocol.</td>
+      </tr>
+      <tr class="body">
+        <td colspan="" rowspan="">503</td><td colspan="" rowspan="">Service Unavailable</td><td colspan="" rowspan="">The IQ query is sent to a JID that cannot handle the query.</td>
+      </tr>
+    </table>
+  </div>
+<h2>3.
+       <a name="sect-id2251324" id="sect-id2251324">Create Action</a></h2>
+  <div class="indent"><h3>3.1 <a name="sect-id2251330" id="sect-id2251330">Description</a></h3>
+    <p class="" style="">The create action inserts new data on the recipient node. If the strict attribute is
+'true' the create action fails if colliding data already exists on the recipient node. If the strict
+attribute is false, the create action will insert new data on the recipient node overwriting
+existing colliding data if it exists (e.g. equivalent to update).</p>
+  </div>
+  <div class="indent"><h3>3.2 <a name="sect-id2251351" id="sect-id2251351">Error Codes</a></h3>
+    <p class="caption"><a name="table-3" id="table-3"></a>Table 3: Error Codes used by Create Action</p><table border="1" cellpadding="3" cellspacing="0">
+      <tr class="body">
+        <th colspan="" rowspan="">Code</th><th colspan="" rowspan="">Text</th><th colspan="" rowspan="">Description</th>
+      </tr>
+      <tr class="body">
+        <td colspan="" rowspan="">409</td><td colspan="" rowspan="">Conflict</td><td colspan="" rowspan="">The strict attribute is set to 'true' and colliding data exists on the recipient node.</td>
+      </tr>
+    </table>
+  </div>
+  <div class="indent"><h3>3.3 <a name="sect-id2251410" id="sect-id2251410">Examples</a></h3>
+    <p class="" style="">Creating new data on the server using iq:private, and strict actions when no existing data is on the server.</p>
+    <p class="caption"><a name="example-1" id="example-1"></a>Example 1. Client Stores New Private Data</p><div class="indent"><pre>
+SENDER:
+&lt;iq type="set" id="1001"&gt;
+  &lt;query xmlns="jabber:iq:private" action="create" strict="true"&gt;
+    &lt;exodus xmlns="exodus:prefs"&gt;
+      &lt;defaultnick&gt;Hamlet&lt;/defaultnick&gt;
+    &lt;/exodus&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+
+RECIPIENT:
+&lt;iq 
+    type="result" 
+    from="hamlet@shakespeare.lit/denmark" 
+    to="hamlet@shakespeare.lit/denmark" 
+    id="1001"/&gt;
+    </pre></div>			
+    <p class="" style="">With strict actions enabled, conflict data will cause the create action 
+to fail when existing data is on the recipient node. Here we show iq:private, and strict actions with existing data on the server.</p>
+    <p class="caption"><a name="example-2" id="example-2"></a>Example 2. Client Stores New Private Data but Conflicts</p><div class="indent"><pre>
+SENDER:
+&lt;iq type="set" id="1002"&gt;
+  &lt;query xmlns="jabber:iq:private" action="create" strict="true"&gt;
+    &lt;exodus xmlns="exodus:prefs"&gt;
+      &lt;defaultnick&gt;Hamlet&lt;/defaultnick&gt;
+    &lt;/exodus&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+
+RECIPIENT:
+&lt;iq 
+    type="error" 
+    from="hamlet@shakespeare.lit/denmark" 
+    to="hamlet@shakespeare.lit/denmark" 
+    id="1002"&gt;
+    &lt;error code="409"&gt;Conflict&lt;/error&gt;
+    &lt;exodus xmlns="exodus:prefs"&gt;
+      &lt;defaultnick&gt;Hamlet&lt;/defaultnick&gt;
+    &lt;/exodus&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+    </pre></div>			
+  </div>
+<h2>4.
+       <a name="sect-id2251455" id="sect-id2251455">Read Action</a></h2>
+  <div class="indent"><h3>4.1 <a name="sect-id2251461" id="sect-id2251461">Description</a></h3>
+    <p class="" style="">The read action retrieves data on the recipient node. If the strict attribute is
+'true' the read action fails if no appropriate data exists on the recipient node. If the strict
+attribute is false, the read action will always return with a 'result', sending an empty
+result in place of a 'not found' error.</p>
+  </div>
+  <div class="indent"><h3>4.2 <a name="sect-id2251490" id="sect-id2251490">Error Codes</a></h3>
+    <p class="caption"><a name="table-4" id="table-4"></a>Table 4: Error Codes used by Create Action</p><table border="1" cellpadding="3" cellspacing="0">
+      <tr class="body">
+        <th colspan="" rowspan="">Code</th><th colspan="" rowspan="">Text</th><th colspan="" rowspan="">Description</th>
+      </tr>
+      <tr class="body">
+        <td colspan="" rowspan="">404</td><td colspan="" rowspan="">Not found</td><td colspan="" rowspan="">The strict attribute is set to 'true' and no matching data exists on the recipient node.</td>
+      </tr>
+    </table>
+  </div>
+  <div class="indent"><h3>4.3 <a name="sect-id2251550" id="sect-id2251550">Examples</a></h3>
+    <p class="" style="">Reading data on the server using iq:private, and strict actions when data is on the server.</p>
+    <p class="caption"><a name="example-3" id="example-3"></a>Example 3. Client Reads Private Data</p><div class="indent"><pre>
+SENDER:
+&lt;iq type="set" id="1001"&gt;
+  &lt;query xmlns="jabber:iq:private" action="read" strict="true"&gt;
+    &lt;exodus xmlns="exodus:prefs"/&gt;
+      &lt;defaultnick&gt;Hamlet&lt;/defaultnick&gt;
+    &lt;/exodus&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+
+RECIPIENT:
+&lt;iq 
+    type="result" 
+    from="hamlet@shakespeare.lit/denmark" 
+    to="hamlet@shakespeare.lit/denmark" 
+    id="1001"&gt;
+  &lt;query xmlns="jabber:iq:private" action="read" strict="true"&gt;
+    &lt;exodus xmlns="exodus:prefs"/&gt;
+      &lt;defaultnick&gt;Hamlet&lt;/defaultnick&gt;
+    &lt;/exodus&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+    </pre></div>			
+    <p class="" style="">With strict actions enabled, the absence of matching data will cause the read action 
+to fail. Here we show iq:private, and strict actions with no matching data on the server.</p>
+    <p class="caption"><a name="example-4" id="example-4"></a>Example 4. Client Reads Private Data but Not Found (strict)</p><div class="indent"><pre>
+SENDER:
+&lt;iq type="set" id="1002"&gt;
+  &lt;query xmlns="jabber:iq:private" action="read" strict="true"&gt;
+    &lt;data xmlns="imaginary"/&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+
+RECIPIENT:
+&lt;iq 
+    type="error" 
+    from="hamlet@shakespeare.lit/denmark" 
+    to="hamlet@shakespeare.lit/denmark" 
+    id="1002"&gt;
+    &lt;error code="404"&gt;Not Found&lt;/error&gt;
+    &lt;data xmlns="imaginary"/&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+    </pre></div>			
+    <p class="" style="">With strict actions disabled, the absence of matching data will cause the read action 
+to return an 'empty' result. Here we show iq:private, and strict actions disabled with no matching data 
+on the server.</p>
+    <p class="caption"><a name="example-5" id="example-5"></a>Example 5. Client Reads Private Data but Not Found (not strict)</p><div class="indent"><pre>
+SENDER:
+&lt;iq type="set" id="1003"&gt;
+  &lt;query xmlns="jabber:iq:private" action="read" strict="false"&gt;
+    &lt;data xmlns="imaginary"/&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+
+RECIPIENT:
+&lt;iq 
+    type="result" 
+    from="hamlet@shakespeare.lit/denmark" 
+    to="hamlet@shakespeare.lit/denmark" 
+    id="1003"&gt;
+    &lt;data xmlns="imaginary"/&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+    </pre></div>			
+  </div>
+<h2>5.
+       <a name="sect-id2251068" id="sect-id2251068">Update Action</a></h2>
+  <div class="indent"><h3>5.1 <a name="sect-id2251081" id="sect-id2251081">Description</a></h3>
+    <p class="" style="">The update action edits existing data on the recipient node. If the strict attribute is
+'true' the update action fails if matching data does not already exists on the recipient node. If the strict
+attribute is false, the update action will edit existing data, inserting the data on the recipient node
+if necessary.</p>
+  </div>
+  <div class="indent"><h3>5.2 <a name="sect-id2251101" id="sect-id2251101">Error Codes</a></h3>
+    <p class="caption"><a name="table-5" id="table-5"></a>Table 5: Error Codes used by Create Action</p><table border="1" cellpadding="3" cellspacing="0">
+      <tr class="body">
+        <th colspan="" rowspan="">Code</th><th colspan="" rowspan="">Text</th><th colspan="" rowspan="">Description</th>
+      </tr>
+      <tr class="body">
+        <td colspan="" rowspan="">404</td><td colspan="" rowspan="">Not Found</td><td colspan="" rowspan="">The strict attribute is set to 'true' and matching data does NOT already exist on the recipient node.</td>
+      </tr>
+    </table>
+  </div>
+  <div class="indent"><h3>5.3 <a name="sect-id2251160" id="sect-id2251160">Examples</a></h3>
+    <p class="" style="">Updating existing new data on the server using iq:private, and strict actions when existing data is on the server.</p>
+    <p class="caption"><a name="example-6" id="example-6"></a>Example 6. Client Updates Existing Private Data</p><div class="indent"><pre>
+SENDER:
+&lt;iq type="set" id="1001"&gt;
+  &lt;query xmlns="jabber:iq:private" action="update" strict="true"&gt;
+    &lt;exodus xmlns="exodus:prefs"&gt;
+      &lt;defaultnick&gt;Hamlet&lt;/defaultnick&gt;
+    &lt;/exodus&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+
+RECIPIENT:
+&lt;iq 
+    type="result" 
+    from="hamlet@shakespeare.lit/denmark" 
+    to="hamlet@shakespeare.lit/denmark" 
+    id="1001"/&gt;
+    </pre></div>			
+    <p class="" style="">With strict actions enabled, the absence of existing data will cause the update action 
+to fail. Here we show iq:private, and strict actions with no existing data on the server.</p>
+    <p class="caption"><a name="example-7" id="example-7"></a>Example 7. Client Updates Private Data but None Found</p><div class="indent"><pre>
+SENDER:
+&lt;iq type="set" id="1002"&gt;
+  &lt;query xmlns="jabber:iq:private" action="update" strict="true"&gt;
+    &lt;exodus xmlns="exodus:prefs"&gt;
+      &lt;defaultnick&gt;Hamlet&lt;/defaultnick&gt;
+    &lt;/exodus&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+
+RECIPIENT:
+&lt;iq 
+    type="error" 
+    from="hamlet@shakespeare.lit/denmark" 
+    to="hamlet@shakespeare.lit/denmark" 
+    id="1002"&gt;
+    &lt;error code="404"&gt;Not Found&lt;/error&gt;
+    &lt;exodus xmlns="exodus:prefs"&gt;
+      &lt;defaultnick&gt;Hamlet&lt;/defaultnick&gt;
+    &lt;/exodus&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+    </pre></div>			
+  </div>
+<h2>6.
+       <a name="sect-id2261350" id="sect-id2261350">Delete Action</a></h2>
+  <div class="indent"><h3>6.1 <a name="sect-id2261356" id="sect-id2261356">Description</a></h3>
+    <p class="" style="">The delete action deletes existing data on the recipient node. If the strict attribute is
+'true' the delete action fails if matching data does not already exists on the recipient node. If the strict
+attribute is false, the delete action will delete any existing data on the recipient node (if any) and return
+successful..</p>
+  </div>
+  <div class="indent"><h3>6.2 <a name="sect-id2261385" id="sect-id2261385">Error Codes</a></h3>
+    <p class="caption"><a name="table-6" id="table-6"></a>Table 6: Error Codes used by Create Action</p><table border="1" cellpadding="3" cellspacing="0">
+      <tr class="body">
+        <th colspan="" rowspan="">Code</th><th colspan="" rowspan="">Text</th><th colspan="" rowspan="">Description</th>
+      </tr>
+      <tr class="body">
+        <td colspan="" rowspan="">404</td><td colspan="" rowspan="">Not Found</td><td colspan="" rowspan="">The strict attribute is set to 'true' and matching data does NOT already exist on the recipient node.</td>
+      </tr>
+    </table>
+  </div>
+  <div class="indent"><h3>6.3 <a name="sect-id2261445" id="sect-id2261445">Examples</a></h3>
+    <p class="" style="">Deleting existing new data on the server using iq:private, and strict actions when existing data is on the server.</p>
+    <p class="caption"><a name="example-8" id="example-8"></a>Example 8. Client Deletes Existing Private Data</p><div class="indent"><pre>
+SENDER:
+&lt;iq type="set" id="1001"&gt;
+  &lt;query xmlns="jabber:iq:private" action="delete" strict="true"&gt;
+    &lt;exodus xmlns="exodus:prefs"/&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+
+RECIPIENT:
+&lt;iq 
+    type="result" 
+    from="hamlet@shakespeare.lit/denmark" 
+    to="hamlet@shakespeare.lit/denmark" 
+    id="1001"/&gt;
+    </pre></div>			
+    <p class="" style="">With strict actions enabled, the absence of existing data will cause the delete action 
+to fail. Here we show iq:private, and strict actions with no existing data on the server.</p>
+    <p class="caption"><a name="example-9" id="example-9"></a>Example 9. Client Deletes Private Data but None Found (strict)</p><div class="indent"><pre>
+SENDER:
+&lt;iq type="set" id="1002"&gt;
+  &lt;query xmlns="jabber:iq:private" action="delete" strict="true"&gt;
+    &lt;data xmlns="imaginary"/&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+
+RECIPIENT:
+&lt;iq 
+    type="error" 
+    from="hamlet@shakespeare.lit/denmark" 
+    to="hamlet@shakespeare.lit/denmark" 
+    id="1002"&gt;
+    &lt;error code="404"&gt;Not Found&lt;/error&gt;
+    &lt;data xmlns="imaginary"/&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+    </pre></div>			
+    <p class="" style="">With strict actions disabled, the absence of existing data will not cause the delete action 
+to fail. Here we show iq:private, and strict actions with no existing data on the server.</p>
+    <p class="caption"><a name="example-10" id="example-10"></a>Example 10. Client Deletes Private Data but None Found (not strict)</p><div class="indent"><pre>
+SENDER:
+&lt;iq type="set" id="1003"&gt;
+  &lt;query xmlns="jabber:iq:private" action="delete" strict="false"&gt;
+    &lt;data xmlns="imaginary"/&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+
+RECIPIENT:
+&lt;iq 
+    type="result" 
+    from="hamlet@shakespeare.lit/denmark" 
+    to="hamlet@shakespeare.lit/denmark" 
+    id="1003"/&gt;
+    </pre></div>			
+  </div>
+<h2>7.
+       <a name="sect-id2261512" id="sect-id2261512">Defining an Action Protocol</a></h2>
+  <div class="indent"><h3>7.1 <a name="sect-id2261525" id="sect-id2261525">Description</a></h3>
+    <p class="" style="">In order to define an action protocol that uses the &lt;query/&gt; behavior defined in
+this document, you must specify the following:</p>
+    <ul class="" style="">
+      <li class="" style="">The actions (create, read, update, delete) supported in the action protocol.</li>
+      <li class="" style="">The matching semantics for determing if data exists/collides.</li>
+      <li class="" style="">The default "strict" attribute ('true' or 'false'). This may be defined for each action
+          supported or for all actions supported.</li>
+      <li class="" style="">Whether the "strict" attribute may be set by the user. If the attribute may not be set,
+          the strict attribute will always hold the default value.</li>
+    </ul>
+  </div>
+<hr /><h2><a name="notes" id="notes"></a>Notes</h2><div class="indent"></div><hr /><h2><a name="revs" id="revs"></a>Revision History</h2><div class="indent"><h4>Version 0.1 (2003-06-25)</h4><div class="indent">Initial version. (iss)
+    </div></div><hr /><p>END</p></body></html>

@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>XEP-0101: HTTP Authentication using Jabber Tickets</title><link rel="stylesheet" type="text/css" href="/xmpp.css" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" /><meta name="DC.Title" content="HTTP Authentication using Jabber Tickets" /><meta name="DC.Creator" content="Richard Dobson" /><meta name="DC.Description" content="This document defines a protocol for authenticating HTTP requests using Jabber Tickets." /><meta name="DC.Publisher" content="XMPP Standards Foundation" /><meta name="DC.Contributor" content="XMPP Extensions Editor" /><meta name="DC.Date" content="2004-01-18" /><meta name="DC.Type" content="XMPP Extension Protocol" /><meta name="DC.Format" content="XHTML" /><meta name="DC.Identifier" content="XEP-0101" /><meta name="DC.Language" content="en" /><meta name="DC.Rights" content="This XMPP Extension Protocol is copyright (c) 1999 - 2008 by the XMPP Standards Foundation (XSF)." /></head><body><h1>XEP-0101: HTTP Authentication using Jabber Tickets</h1><p>This document defines a protocol for authenticating HTTP requests using Jabber Tickets.</p><hr /><p style="color:red">WARNING: Consideration of this document has been Deferred by the XMPP Standards Foundation. Implementation of the protocol described herein is not recommended.</p><hr /><h2>Document Information</h2><p class="indent">
+            Series: <a href="http://www.xmpp.org/extensions/">XEP</a><br />
+            Number: 0101<br />
+            Publisher: <a href="/xsf/">XMPP Standards Foundation</a><br />
+            Status: 
+            <a href="http://www.xmpp.org/extensions/xep-0001.html#states-Deferred">Deferred</a><br />
+            Type:
+            <a href="http://www.xmpp.org/extensions/xep-0001.html#types-Standards Track">Standards Track</a><br />
+            Version: 0.2<br />
+            Last Updated: 2004-01-18<br />
+                Approving Body: <a href="http://www.xmpp.org/council/">XMPP Council</a><br />Dependencies: XMPP Core, RFC 2616, RFC 2617<br />
+                Supersedes: None<br />
+                Superseded By: None<br />
+            Short Name: Not yet assigned<br />
+              Wiki Page: &lt;<a href="http://wiki.jabber.org/index.php/HTTP Authentication using Jabber Tickets (XEP-0101)">http://wiki.jabber.org/index.php/HTTP Authentication using Jabber Tickets (XEP-0101)</a>&gt;
+            </p><hr /><h2>Author Information</h2><div class="indent"><h3>Richard Dobson</h3><p class="indent">
+        Email:
+        <a href="mailto:richard@dobson-i.net">richard@dobson-i.net</a><br />
+        JabberID: 
+        <a href="xmpp:richard@dobson-i.net">richard@dobson-i.net</a><br /></p></div><hr /><h2>Legal Notices</h2><div class="indent"><h3>Copyright</h3>This XMPP Extension Protocol is copyright (c) 1999 - 2008 by the XMPP Standards Foundation (XSF).<h3>Permissions</h3>Permission is hereby granted, free of charge, to any person obtaining a copy of this specification (the "Specification"), to make use of the Specification without restriction, including without limitation the rights to implement the Specification in a software program, deploy the Specification in a network service, and copy, modify, merge, publish, translate, distribute, sublicense, or sell copies of the Specification, and to permit persons to whom the Specification is furnished to do so, subject to the condition that the foregoing copyright notice and this permission notice shall be included in all copies or substantial portions of the Specification. Unless separate permission is granted, modified works that are redistributed shall not contain misleading information regarding the authors, title, number, or publisher of the Specification, and shall not claim endorsement of the modified works by the authors, any organization or project to which the authors belong, or the XMPP Standards Foundation.<h3>Disclaimer of Warranty</h3><span style="font-weight: bold">## NOTE WELL: This Specification is provided on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, express or implied, including, without limitation, any warranties or conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE. In no event shall the XMPP Standards Foundation or the authors of this Specification be liable for any claim, damages, or other liability, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the Specification or the implementation, deployment, or other use of the Specification. ##</span><h3>Limitation of Liability</h3>In no event and under no legal theory, whether in tort (including negligence), contract, or otherwise, unless required by applicable law (such as deliberate and grossly negligent acts) or agreed to in writing, shall the XMPP Standards Foundation or any author of this Specification be liable for damages, including any direct, indirect, special, incidental, or consequential damages of any character arising out of the use or inability to use the Specification (including but not limited to damages for loss of goodwill, work stoppage, computer failure or malfunction, or any and all other commercial damages or losses), even if the XMPP Standards Foundation or such author has been advised of the possibility of such damages.<h3>IPR Conformance</h3>This XMPP Extension Protocol has been contributed in full conformance with the XSF's Intellectual Property Rights Policy (a copy of which may be found at &lt;<a href="http://www.xmpp.org/extensions/ipr-policy.shtml">http://www.xmpp.org/extensions/ipr-policy.shtml</a>&gt; or obtained by writing to XSF, P.O. Box 1641, Denver, CO 80201 USA).</div><hr /><h2>Discussion Venue</h2><p class="indent">The preferred venue for discussion of this document is the Standards discussion list: &lt;<a href="http://mail.jabber.org/mailman/listinfo/standards">http://mail.jabber.org/mailman/listinfo/standards</a>&gt;.</p><p class="indent">Given that this XMPP Extension Protocol normatively references IETF technologies, discussion on the XSF-IETF list may also be appropriate (see &lt;<a href="http://mail.jabber.org/mailman/listinfo/jsf-ietf">http://mail.jabber.org/mailman/listinfo/jsf-ietf</a>&gt; for details).</p><p class="indent">Errata may be sent to &lt;<a href="mailto:editor@xmpp.org">editor@xmpp.org</a>&gt;.</p><h2>Relation to XMPP</h2><p class="indent">The Extensible Messaging and Presence Protocol (XMPP) is defined in the XMPP Core (RFC 3920) and XMPP IM (RFC 3921) specifications contributed by the XMPP Standards Foundation to the Internet Standards Process, which is managed by the Internet Engineering Task Force in accordance with RFC 2026. Any protocol defined in this document has been developed outside the Internet Standards Process and is to be understood as an extension to XMPP rather than as an evolution, development, or modification of XMPP itself.</p><h2>Conformance Terms</h2><p class="indent">The following keywords as used in this document are to be interpreted as described in <a href="http://www.ietf.org/rfc/rfc2119.txt">RFC 2119</a>: "MUST", "SHALL", "REQUIRED"; "MUST NOT", "SHALL NOT"; "SHOULD", "RECOMMENDED"; "SHOULD NOT", "NOT RECOMMENDED"; "MAY", "OPTIONAL".</p><hr /><h2>Table of Contents</h2><div class="indent"><p><br />1.  <a href="#sect-id2252806">Introduction</a><br />2.  <a href="#sect-id2252848">Requirements</a><br />3.  <a href="#sect-id2252639">Use Cases</a><br />   
+      3.1.  <a href="#sect-id2252645">Client web browser window requests a Jabber Ticket Authentication protected web page</a><br />   
+      3.2.  <a href="#sect-id2252678">Client requests JabberTicket</a><br />   
+      3.3.  <a href="#sect-id2252712">Client replies to 401 HTTP error</a><br />   
+      3.4.  <a href="#sect-id2252724">Server responds and allows or denies access to the file</a><br />4.  <a href="#sect-id2252749">Implementation Notes</a><br />5.  <a href="#sect-id2251337">Security Considerations</a><br />   
+      5.1.  <a href="#sect-id2251343">Man in the middle</a><br />   
+      5.2.  <a href="#sect-id2251363">Key length</a><br />   
+      5.3.  <a href="#sect-id2251379">Ticket expiration</a><br />6.  <a href="#sect-id2251397">IANA Considerations</a><br />7.  <a href="#sect-id2251413">XMPP Registrar Considerations</a><br /><a href="#notes">Notes</a><br /><a href="#revs">Revision History</a></p></div><hr /><h2>1.
+       <a name="sect-id2252806" id="sect-id2252806">Introduction</a></h2>
+  <p class="" style="">Jabber Ticket Authentication is a method of authenticating with HTTP servers using your jabber identification.</p>
+  <p class="" style="">This allows you to login to websites using your jabber address in a single sign-on fashion similar to .NET Passport, but unlike .NET Passport is not locked into a single authentication provider.</p>
+  <p class="" style="">Tickets also mean the jabber ticket provider and the web server do not need to be tightly integrated for authentication to work, also because its not tightly integrated it means webmasters do not need to setup their own jabber server to provide tickets, they can use a third party provider even a central "tickets.jabber.org". Also because tickets are not tightly integrated it makes it far easier for webmasters to integrate with Jabber, it also makes web farms far more scalable and reliable.</p>
+<h2>2.
+       <a name="sect-id2252848" id="sect-id2252848">Requirements</a></h2>
+  <p class="" style="">The motivations for this document are:</p>
+  <ul class="" style="">
+    <li class="" style="">To provide a method of using a jabber connections authenticated stream to provide a method of authenticating with an HTTP server.</li>
+    <li class="" style="">To provide this authentication without needing the jabber ticket component and the webserver to be tightly coupled, this is essential in a web farm environment for scalability.</li>
+    <li class="" style="">To make the communication between the jabber client and the server(s) as simple as possible.</li>
+  </ul>
+<h2>3.
+       <a name="sect-id2252639" id="sect-id2252639">Use Cases</a></h2>
+  <div class="indent"><h3>3.1 <a name="sect-id2252645" id="sect-id2252645">Client web browser window requests a Jabber Ticket Authentication protected web page</a></h3>
+    <p class="caption"><a name="example-1" id="example-1"></a>Example 1. Request for page</p><div class="indent"><pre>
+GET http://www.webserver.com/webpage.html HTTP/1.1</pre></div>
+    <p class="caption"><a name="example-2" id="example-2"></a>Example 2. The server responds with a 401 and WWW-Authenticate header</p><div class="indent"><pre>
+401 Unauthorised HTTP/1.1
+WWW-Authenticate: JabberTicket realm="ticket.server.com"</pre></div>
+<p class="" style="">The realm is the JID you need to request your JabberTicket from.</p>
+  </div>
+  <div class="indent"><h3>3.2 <a name="sect-id2252678" id="sect-id2252678">Client requests JabberTicket</a></h3>
+    <p class="caption"><a name="example-3" id="example-3"></a>Example 3. Request for ticket</p><div class="indent"><pre>
+&lt;iq
+    to='ticket.server.com'
+    type='get'
+    id='ticket1'&gt;
+  &lt;query xmlns="http://jabber.org/protocol/ticket"/&gt;
+&lt;/iq&gt;</pre></div>
+    <p class="caption"><a name="example-4" id="example-4"></a>Example 4. Server responds with jabber ticket</p><div class="indent"><pre>
+&lt;iq
+    to='user@domain.com/resource'
+    from='ticket.server.com'
+    type='result'
+    id='ticket1'&gt;
+  &lt;query xmlns="http://jabber.org/protocol/ticket"&gt;
+    54yudvjhssa76dta6sgdst78r4sadsfjdhs...
+  &lt;/query&gt;
+&lt;/iq&gt;</pre></div>
+<p class="" style="">The ticket is encrypted data represented as a string, the client does not need to decode it since it is passed to the webserver unaltered.</p>
+  </div>
+  <div class="indent"><h3>3.3 <a name="sect-id2252712" id="sect-id2252712">Client replies to 401 HTTP error</a></h3>
+    <p class="caption"><a name="example-5" id="example-5"></a>Example 5. Client HTTP request</p><div class="indent"><pre>
+GET http://www.webserver.com/webpage.html HTTP/1.1
+Authorization: JabberTicket 54yudvjhssa76dta6sgdst78r4sadsfjdhs...</pre></div>
+  </div>
+  <div class="indent"><h3>3.4 <a name="sect-id2252724" id="sect-id2252724">Server responds and allows or denies access to the file</a></h3>
+    <p class="caption"><a name="example-6" id="example-6"></a>Example 6. Server allows access</p><div class="indent"><pre>
+200 OK HTTP/1.1
+Content-Type: text/html</pre></div>
+    <p class="caption"><a name="example-7" id="example-7"></a>Example 7. Server denies access</p><div class="indent"><pre>
+403 Forbidden HTTP/1.1</pre></div>
+  </div>
+<h2>4.
+       <a name="sect-id2252749" id="sect-id2252749">Implementation Notes</a></h2>
+  <p class="" style="">The following guidelines may assist developers.</p>
+  <ul class="" style="">
+    <li class="" style="">The ticket can be encrypted however the provider likes since only they will need to understand it.</li>
+    <li class="" style="">The ticket must somewhere contain in it the JID of the end user (or some method of knowing who the user is), so that the webserver knows who it is.</li>
+    <li class="" style="">It is recommended that your tickets also use an extra level of authentication such as ensuring the User-Agent is the same across requests, that the ip address is the same across requests.</li>
+  </ul>
+<h2>5.
+       <a name="sect-id2251337" id="sect-id2251337">Security Considerations</a></h2>
+  <div class="indent"><h3>5.1 <a name="sect-id2251343" id="sect-id2251343">Man in the middle</a></h3>
+    <p class="" style="">This form of HTTP authentication is susceptable to man in the middle attack where the ticket could be captured and retransmitted by someone else, but this can be solved by using an encrypted jabber connection (e.g. HTTPS) and an HTTPS connection to the webserver.</p>
+  </div>
+  <div class="indent"><h3>5.2 <a name="sect-id2251363" id="sect-id2251363">Key length</a></h3>
+    <p class="" style="">It is recommended the encryption key length for the ticket be long enough to make it hard to crack the ticket.</p>
+  </div>
+  <div class="indent"><h3>5.3 <a name="sect-id2251379" id="sect-id2251379">Ticket expiration</a></h3>
+    <p class="" style="">It is recommended the ticket has an expiration and that it be between a few minutes and a few hours, e.g. 60 minutes.</p>
+  </div>
+<h2>6.
+       <a name="sect-id2251397" id="sect-id2251397">IANA Considerations</a></h2>
+  <p class="" style="">The HTTP authentication scheme "JabberTicket" may need to be registered with IANA.</p>
+<h2>7.
+       <a name="sect-id2251413" id="sect-id2251413">XMPP Registrar Considerations</a></h2>
+  <p class="" style="">The <span class="ref" style=""><a href="http://www.xmpp.org/registrar/">XMPP Registrar</a></span>  [<a href="#nt-id2251450">1</a>] will need to register the new namespace of "http://jabber.org/protocol/ticket".</p>
+<hr /><h2><a name="notes" id="notes"></a>Notes</h2><div class="indent"><p><a name="nt-id2251450" id="nt-id2251450">1</a>. The XMPP Registrar maintains a list of reserved protocol namespaces as well as registries of parameters used in the context of XMPP extension protocols approved by the XMPP Standards Foundation. For further information, see &lt;<a href="http://www.xmpp.org/registrar/">http://www.xmpp.org/registrar/</a>&gt;.</p></div><hr /><h2><a name="revs" id="revs"></a>Revision History</h2><div class="indent"><h4>Version 0.2 (2004-01-18)</h4><div class="indent">Expanded introduction, requirements, implementation notes, security concerns, and added server response use case. (red)
+    </div><h4>Version 0.1 (2003-06-25)</h4><div class="indent">Initial version. (red)
+    </div></div><hr /><p>END</p></body></html>

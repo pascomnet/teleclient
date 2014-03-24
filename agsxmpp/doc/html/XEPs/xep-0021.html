@@ -1,0 +1,340 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>XEP-0021: Jabber Event Notification Service (ENS)</title><link rel="stylesheet" type="text/css" href="/xmpp.css" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" /><meta name="DC.Title" content="Jabber Event Notification Service (ENS)" /><meta name="DC.Creator" content="Robert Norris" /><meta name="DC.Description" content="A generic publish-and-subscribe service for Jabber." /><meta name="DC.Publisher" content="XMPP Standards Foundation" /><meta name="DC.Contributor" content="XMPP Extensions Editor" /><meta name="DC.Date" content="2003-04-22" /><meta name="DC.Type" content="XMPP Extension Protocol" /><meta name="DC.Format" content="XHTML" /><meta name="DC.Identifier" content="XEP-0021" /><meta name="DC.Language" content="en" /><meta name="DC.Rights" content="This XMPP Extension Protocol is copyright (c) 1999 - 2008 by the XMPP Standards Foundation (XSF)." /></head><body><h1>XEP-0021: Jabber Event Notification Service (ENS)</h1><p>A generic publish-and-subscribe service for Jabber.</p><hr /><p style="color:red">WARNING: This document has been retracted by the author(s). Implementation of the protocol described herein is not recommended. Developers desiring similar functionality should implement the protocol that supersedes this one (if any).</p><hr /><h2>Document Information</h2><p class="indent">
+            Series: <a href="http://www.xmpp.org/extensions/">XEP</a><br />
+            Number: 0021<br />
+            Publisher: <a href="/xsf/">XMPP Standards Foundation</a><br />
+            Status: 
+            <a href="http://www.xmpp.org/extensions/xep-0001.html#states-Retracted">Retracted</a><br />
+            Type:
+            <a href="http://www.xmpp.org/extensions/xep-0001.html#types-Standards Track">Standards Track</a><br />
+            Version: 0.2<br />
+            Last Updated: 2003-04-22<br />
+                Approving Body: <a href="http://www.xmpp.org/council/">XMPP Council</a><br />
+                Dependencies: None<br />
+                Supersedes: None<br />
+                Superseded By: None<br />
+            Short Name: None<br />
+              Wiki Page: &lt;<a href="http://wiki.jabber.org/index.php/Jabber Event Notification Service (ENS) (XEP-0021)">http://wiki.jabber.org/index.php/Jabber Event Notification Service (ENS) (XEP-0021)</a>&gt;
+            </p><hr /><h2>Author Information</h2><div class="indent"><h3>Robert Norris</h3><p class="indent">
+        Email:
+        <a href="mailto:rob@cataclysm.cx">rob@cataclysm.cx</a><br />
+        JabberID: 
+        <a href="xmpp:rob@cataclysm.cx">rob@cataclysm.cx</a><br /></p></div><hr /><h2>Legal Notices</h2><div class="indent"><h3>Copyright</h3>This XMPP Extension Protocol is copyright (c) 1999 - 2008 by the XMPP Standards Foundation (XSF).<h3>Permissions</h3>Permission is hereby granted, free of charge, to any person obtaining a copy of this specification (the "Specification"), to make use of the Specification without restriction, including without limitation the rights to implement the Specification in a software program, deploy the Specification in a network service, and copy, modify, merge, publish, translate, distribute, sublicense, or sell copies of the Specification, and to permit persons to whom the Specification is furnished to do so, subject to the condition that the foregoing copyright notice and this permission notice shall be included in all copies or substantial portions of the Specification. Unless separate permission is granted, modified works that are redistributed shall not contain misleading information regarding the authors, title, number, or publisher of the Specification, and shall not claim endorsement of the modified works by the authors, any organization or project to which the authors belong, or the XMPP Standards Foundation.<h3>Disclaimer of Warranty</h3><span style="font-weight: bold">## NOTE WELL: This Specification is provided on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, express or implied, including, without limitation, any warranties or conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE. In no event shall the XMPP Standards Foundation or the authors of this Specification be liable for any claim, damages, or other liability, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the Specification or the implementation, deployment, or other use of the Specification. ##</span><h3>Limitation of Liability</h3>In no event and under no legal theory, whether in tort (including negligence), contract, or otherwise, unless required by applicable law (such as deliberate and grossly negligent acts) or agreed to in writing, shall the XMPP Standards Foundation or any author of this Specification be liable for damages, including any direct, indirect, special, incidental, or consequential damages of any character arising out of the use or inability to use the Specification (including but not limited to damages for loss of goodwill, work stoppage, computer failure or malfunction, or any and all other commercial damages or losses), even if the XMPP Standards Foundation or such author has been advised of the possibility of such damages.<h3>IPR Conformance</h3>This XMPP Extension Protocol has been contributed in full conformance with the XSF's Intellectual Property Rights Policy (a copy of which may be found at &lt;<a href="http://www.xmpp.org/extensions/ipr-policy.shtml">http://www.xmpp.org/extensions/ipr-policy.shtml</a>&gt; or obtained by writing to XSF, P.O. Box 1641, Denver, CO 80201 USA).</div><hr /><h2>Discussion Venue</h2><p class="indent">The preferred venue for discussion of this document is the Standards discussion list: &lt;<a href="http://mail.jabber.org/mailman/listinfo/standards">http://mail.jabber.org/mailman/listinfo/standards</a>&gt;.</p><p class="indent">Errata may be sent to &lt;<a href="mailto:editor@xmpp.org">editor@xmpp.org</a>&gt;.</p><h2>Relation to XMPP</h2><p class="indent">The Extensible Messaging and Presence Protocol (XMPP) is defined in the XMPP Core (RFC 3920) and XMPP IM (RFC 3921) specifications contributed by the XMPP Standards Foundation to the Internet Standards Process, which is managed by the Internet Engineering Task Force in accordance with RFC 2026. Any protocol defined in this document has been developed outside the Internet Standards Process and is to be understood as an extension to XMPP rather than as an evolution, development, or modification of XMPP itself.</p><h2>Conformance Terms</h2><p class="indent">The following keywords as used in this document are to be interpreted as described in <a href="http://www.ietf.org/rfc/rfc2119.txt">RFC 2119</a>: "MUST", "SHALL", "REQUIRED"; "MUST NOT", "SHALL NOT"; "SHOULD", "RECOMMENDED"; "SHOULD NOT", "NOT RECOMMENDED"; "MAY", "OPTIONAL".</p><hr /><h2>Table of Contents</h2><div class="indent"><p><br />1.  <a href="#sect-id2258375">Introduction</a><br />2.  <a href="#sect-id2252671">Definitions</a><br />   
+      2.1.  <a href="#sect-id2252687">Event</a><br />   
+      2.2.  <a href="#sect-id2252757">Subscriber</a><br />   
+      2.3.  <a href="#sect-id2251334">Publisher</a><br />3.  <a href="#sect-id2251387">Subscriber protocol</a><br />   
+      3.1.  <a href="#sect-id2251394">Subscription request</a><br />      
+      3.1.1.  <a href="#sect-id2251424">Option: &lt;auth-info/&gt;</a><br />      
+      3.1.2.  <a href="#sect-id2251458">Option: &lt;reliable/&gt;</a><br />   
+      3.2.  <a href="#sect-id2251496">Subscription response</a><br />   
+      3.3.  <a href="#sect-id2251562">Unsubscription request</a><br />   
+      3.4.  <a href="#sect-id2251591">Unsubscription response</a><br />   
+      3.5.  <a href="#sect-id2261086">Publish</a><br />   
+      3.6.  <a href="#sect-id2261155">Publish response (reliable subscriptions)</a><br />4.  <a href="#sect-id2261196">Publisher protocol</a><br />   
+      4.1.  <a href="#sect-id2261202">Publish</a><br />   
+      4.2.  <a href="#sect-id2261257">Publish response</a><br />   
+      4.3.  <a href="#sect-id2261285">Authorisation request</a><br />   
+      4.4.  <a href="#sect-id2261342">Authorisation response</a><br />5.  <a href="#sect-id2261408">Errors</a><br />6.  <a href="#sect-id2261435">Considerations</a><br />   
+      6.1.  <a href="#sect-id2261450">ENS discovery</a><br />   
+      6.2.  <a href="#sect-id2261549">How reliable should &lt;reliable/&gt; be?</a><br />   
+      6.3.  <a href="#sect-id2261597">Longevity of subscriptions</a><br />   
+      6.4.  <a href="#sect-id2261631">Replacing &lt;presence/&gt; with the ENS?</a><br /><a href="#notes">Notes</a><br /><a href="#revs">Revision History</a></p></div><hr /><h2>1.
+       <a name="sect-id2258375" id="sect-id2258375">Introduction</a></h2>
+  <p class="" style="">The Jabber Event Notification Service (ENS) acts as a dispatcher and may be used by applications as a central point of collection for certain types of events that are of interest to them. Examples of events include:</p>
+
+  <ul class="" style="">
+   <li class="" style="">User has logged in</li>
+   <li class="" style="">A new message has arrived</li>
+   <li class="" style="">User's avatar has changed</li>
+   <li class="" style="">The coffee machine is empty</li>
+  </ul>
+  
+  <p class="" style="">In Jabber, the role of the ENS has traditionally been filled by overloading the &lt;presence/&gt; packet type. However, this method was never designed to be used as a general publish-and-subscribe mechanism, and so has the following problems:</p>
+
+  <ul class="" style="">
+   <li class="" style="">Dispatching of &lt;presence/&gt; packets is performed by the JSM (Jabber Session Manager), and so is not easily usable by components and other entities that don't connect via a client manager (c2s, CCM).</li>
+   <li class="" style="">An entity cannot subscribe to the presence of a specific resource of another entity, only to any presence from that entity. This lack of granularity makes its difficult to use &lt;presence/&gt; in situations where large chunks of data must be dispatched to subscribers (eg avatars).</li>
+  </ul>
+  
+  <p class="" style="">The protocol consists of two parts - the subscriber-to-ENS protocol, and the publisher-to-ENS protocol. Since there is no direct interaction between a publisher and a subscriber, it makes sense to seperate the two parts of the protocol.</p>
+
+  <p class="" style="">The protocol operates in the 'http://xml.cataclysm.cx/jabber/ens/' namespace.</p>
+
+  <p class="" style="">A reference implementation is available at <a href="http://cataclysm.cx/jabber/ens.html">http://cataclysm.cx/jabber/ens.html</a>.</p>
+<h2>2.
+       <a name="sect-id2252671" id="sect-id2252671">Definitions</a></h2>
+  <p class="" style="">Before we begin describing the protocol, is it necessary to define some terms, including the function and responsibilties of the entities that communicate with the ENS.</p>
+
+  <div class="indent"><h3>2.1 <a name="sect-id2252687" id="sect-id2252687">Event</a></h3>
+    <p class="" style="">An event can be defined as a change to the value of one or more properties of a resource.</p>
+
+    <p class="" style="">In the ENS, an event type is referred to by a JID (Jabber IDentifier), including the JID resource. For example, consider a hypothetical publisher that is linked to an IMAP message store. It might notify the ENS of the fact the a message has arrived, deleted, or filed, using the following JIDs:</p>
+
+    <ul class="" style="">
+      <li class="" style="">rob@imap.cataclysm.cx/NewMessage</li>
+      <li class="" style="">joe@imap.cataclysm.cx/DeletedMessage</li>
+      <li class="" style="">jim@imap.cataclysm.cx/FiledMessage</li>
+    </ul>
+
+    <p class="" style="">Alternatively, an end-user client that wanted to notify the ENS when its avatar changes might do so using a JID like "rob@cataclysm.cx/avatar"</p>
+  </div>
+
+  <div class="indent"><h3>2.2 <a name="sect-id2252757" id="sect-id2252757">Subscriber</a></h3>
+    <p class="" style="">A subscriber is a Jabber entity that receives notifications about events. Usually, a subscriber will be an end-user client, but it may be any Jabber entity.</p>
+
+    <p class="" style="">As the name suggests, a subscriber can subscribe and unsubscribe to various events via the ENS. When it subscribes, the publisher responsible for the event it is subscribing to will be asked by the ENS to authorise the subscription request. To facilitate this, the subscriber may provide an XML fragment containing information that the publisher can use to authorise it. The use of this fragment is application specific.
+    </p>
+
+    <p class="" style="">Once subscribed to an event, the subscriber will receive any notifications that the publisher sends about that event.</p>
+  </div>
+
+  <div class="indent"><h3>2.3 <a name="sect-id2251334" id="sect-id2251334">Publisher</a></h3>
+    <p class="" style="">A publisher is the Jabber entity responsible for actually sending event notifications to the ENS. A notification contains the event type JID of the event that occured, and an optional "payload" XML fragment, that is passed untouched by the ENS to the subscriber. The contents of this payload is application-specific and can be used to provide detailed information about the event to the subscriber. For example, in the case of the NewMessage event above, the payload might contain the contents of the To:, From: and Subject: headers of the message.</p>
+
+    <p class="" style="">Additionally, the publisher is responsible for deciding who may subscribe to events it publishes. When the ENS receives a subscription request, it will ask the publisher to decide whether or not the subscriber may subscribe to a particular event. This authorisation request may also contain an XML fragment from the subscriber containing information that may be used for authorisation.</p>
+  </div>
+
+<h2>3.
+       <a name="sect-id2251387" id="sect-id2251387">Subscriber protocol</a></h2>
+
+  <div class="indent"><h3>3.1 <a name="sect-id2251394" id="sect-id2251394">Subscription request</a></h3>
+    <p class="" style="">To subscribe to a particular event, the subscriber sends a packet like of the following form to the ENS:</p>
+
+    <p class="caption"><a name="example-1" id="example-1"></a>Example 1. Subscription request</p><div class="indent"><pre>
+&lt;iq id='sub1' type='set' from='subscriber-jid' to='ens-jid'&gt;
+  &lt;subscribe xmlns='http://xml.cataclysm.cx/jabber/ens/' jid='event-jid'/&gt;
+&lt;/iq&gt;
+    </pre></div>
+
+    <div class="indent"><h3>3.1.1 <a name="sect-id2251424" id="sect-id2251424">Option: &lt;auth-info/&gt;</a></h3>
+      <p class="" style="">The subscriber may include an &lt;auth-info/&gt; XML fragment containing some (application-specific) information that the publisher can use to authorise it:</p>
+
+      <p class="caption"><a name="example-2" id="example-2"></a>Example 2. Subscription request with authorisation information</p><div class="indent"><pre>
+&lt;iq id='sub2' type='set' from='subscriber-jid' to='ens-jid'&gt;
+  &lt;subscribe xmlns='http://xml.cataclysm.cx/jabber/ens/' jid='event-jid'&gt;
+    &lt;auth-info xmlns='jabber:iq:auth'&gt;password&lt;/auth-info&gt;
+  &lt;/subscribe&gt;
+&lt;/iq&gt;
+      </pre></div>
+    </div>
+
+    <div class="indent"><h3>3.1.2 <a name="sect-id2251458" id="sect-id2251458">Option: &lt;reliable/&gt;</a></h3>
+      <p class="" style="">If it wishes, the subscriber may request a "reliable" subscription. This option guarantees that the subscriber will receive all notifications about this event (as far as the Jabber architecture guarantees delivery). This changes the semantics of the subscriber publish protocol - see section 3.6 for more details.</p>
+
+      <p class="caption"><a name="example-3" id="example-3"></a>Example 3. Reliable subscription request</p><div class="indent"><pre>
+&lt;iq id='sub2' type='set' from='subscriber-jid' to='ens-jid'&gt;
+  &lt;subscribe xmlns='http://xml.cataclysm.cx/jabber/ens/' jid='event-jid'&gt;
+    &lt;reliable/&gt;
+  &lt;/subscribe&gt;
+&lt;/iq&gt;
+      </pre></div>
+    </div>
+
+  </div>
+
+  <div class="indent"><h3>3.2 <a name="sect-id2251496" id="sect-id2251496">Subscription response</a></h3>
+    <p class="" style="">Once subscribed, the ENS will return a packet of the following form to the subscriber:</p>
+
+    <p class="caption"><a name="example-4" id="example-4"></a>Example 4. Successful subscription response</p><div class="indent"><pre>
+&lt;iq id='sub1' type='result' from='ens-jid' to='subscriber-jid'&gt;
+  &lt;subscribed xmlns='http://xml.cataclysm.cx/jabber/ens/' jid='event-jid'/&gt;
+&lt;/iq&gt;
+    </pre></div>
+
+    <p class="" style="">If an error occured during subscription (such as the publisher not allowing the subscriber to subscribe), an error packet will be returned to the subscriber:</p>
+
+    <p class="caption"><a name="example-5" id="example-5"></a>Example 5. Failed subscription response</p><div class="indent"><pre>
+&lt;iq id='sub1' type='error' from='ens-jid' to='subscriber-jid'&gt;
+  &lt;subscribe xmlns='http://xml.cataclysm.cx/jabber/ens/' jid='event-jid'/&gt;
+  &lt;error code='401'&gt;Unauthorized&lt;/error&gt;
+&lt;/iq&gt;
+    </pre></div>
+
+    <p class="" style="">The actual error fragment in the packet is a direct copy of the one returned by the publisher when it fails the authorisation request from the ENS. If the publisher does not provide one, error code 503 (Service Unavailable) will be returned instead. If the publisher does not respond to the authorisation request (after an implementation-specific timeout), error code (Remote Server Timeout) will be returned.</p>
+  </div>
+
+  <div class="indent"><h3>3.3 <a name="sect-id2251562" id="sect-id2251562">Unsubscription request</a></h3>
+    <p class="" style="">To unsubscribe from a particular event, the subscriber sends a packet like of the following form to the ENS:</p>
+
+    <p class="caption"><a name="example-6" id="example-6"></a>Example 6. Unsubscription request</p><div class="indent"><pre>
+&lt;iq id='unsub1' type='set' from='subscriber-jid' to='ens-jid'&gt;
+  &lt;unsubscribe xmlns='http://xml.cataclysm.cx/jabber/ens/' jid='event-jid'/&gt;
+&lt;/iq&gt;
+    </pre></div>
+  </div>
+
+  <div class="indent"><h3>3.4 <a name="sect-id2251591" id="sect-id2251591">Unsubscription response</a></h3>
+    <p class="" style="">Once unsubscribed, the ENS will return a packet of the following form to the subscriber:</p>
+
+    <p class="caption"><a name="example-7" id="example-7"></a>Example 7. Unsubscription response</p><div class="indent"><pre>
+&lt;iq id='unsub1' type='result' from='ens-jid' to='subscriber-jid'&gt;
+  &lt;unsubscribed xmlns='http://xml.cataclysm.cx/jabber/ens/' jid='event-jid'/&gt;
+&lt;/iq&gt;
+    </pre></div>
+
+    <p class="" style="">No further notifications for the event will be received.</p>
+  </div>
+
+  <div class="indent"><h3>3.5 <a name="sect-id2261086" id="sect-id2261086">Publish</a></h3>
+    <p class="" style="">When a publisher publishes a notification to the ENS, the ENS will forward the notification to any subscribers for that event. A notification sent to a subscriber takes the following form:</p>
+
+    <p class="caption"><a name="example-8" id="example-8"></a>Example 8. Event notification (publish)</p><div class="indent"><pre>
+&lt;iq id='enspub1' type='set' from='ens-jid' to='subscriber-jid'&gt;
+  &lt;publish xmlns='http://xml.cataclysm.cx/jabber/ens/' jid='event-jid'/&gt;
+&lt;/iq&gt;
+    </pre></div>
+
+    <p class="" style="">A notification may also contain a (application-specific) "payload" XML fragment:</p>
+    
+    <p class="caption"><a name="example-9" id="example-9"></a>Example 9. Event notification (publish) with payload</p><div class="indent"><pre>
+&lt;iq id='enspub2' type='set' from='ens-jid' to='subscriber-jid'&gt;
+  &lt;publish xmlns='http://xml.cataclysm.cx/jabber/ens/' jid='event-jid'&gt;
+    &lt;xml-payload/&gt;
+  &lt;/publish&gt;
+&lt;/iq&gt;
+    </pre></div>
+
+    <p class="" style="">Section 4.1 has more information about the payload.</p>
+
+    <p class="" style="">If the subscriber responds to the notification with an error, the subscriber will be automatically unsubscribed from the event by the ENS.</p>
+  </div>
+
+  <div class="indent"><h3>3.6 <a name="sect-id2261155" id="sect-id2261155">Publish response (reliable subscriptions)</a></h3>
+    <p class="" style="">If the &lt;reliable/&gt; option was specified when the subscriber subscribed to the event, then the subscriber is expected to acknowledge a notification with a packet of the following form:</p>
+
+    <p class="caption"><a name="example-10" id="example-10"></a>Example 10. Event notification (publish) response</p><div class="indent"><pre>
+&lt;iq id='enspub1' type='result' from='subscriber-jid' to='ens-jid'&gt;
+  &lt;published xmlns='http://xml.cataclysm.cx/jabber/ens/'/&gt;
+&lt;/iq&gt;
+    </pre></div>
+
+    <p class="" style="">If the subscriber does not respond, or responds with an error, the notification will be resent by the ENS after a (implementation-specific) timeout.</p>
+  </div>
+<h2>4.
+       <a name="sect-id2261196" id="sect-id2261196">Publisher protocol</a></h2>
+  <div class="indent"><h3>4.1 <a name="sect-id2261202" id="sect-id2261202">Publish</a></h3>
+    <p class="" style="">To publish a notification, the publisher sends a packet of the following form to the ENS:</p>
+
+    <p class="caption"><a name="example-11" id="example-11"></a>Example 11. Event notification (publish)</p><div class="indent"><pre>
+&lt;iq id='pub1' type='set' from='event-jid' to='ens-jid'&gt;
+  &lt;publish xmlns='http://xml.cataclysm.cx/jabber/ens/'/&gt;
+&lt;/iq&gt;
+    </pre></div>
+
+    <p class="" style="">A notification may also contain a (application-specific) "payload" XML fragment:</p>
+    
+    <p class="caption"><a name="example-12" id="example-12"></a>Example 12. Event notification (publish) with payload</p><div class="indent"><pre>
+&lt;iq id='pub1' type='set' from='event-jid' to='ens-jid'&gt;
+  &lt;publish xmlns='http://xml.cataclysm.cx/jabber/ens/'&gt;
+    &lt;xml-payload/&gt;
+  &lt;/publish&gt;
+&lt;/iq&gt;
+    </pre></div>
+
+    <p class="" style="">The payload can be any well-formed XML data. Everything inside the &lt;publish/&gt; tag will be forwarded untouched to the subscriber.</p>
+  </div>
+
+  <div class="indent"><h3>4.2 <a name="sect-id2261257" id="sect-id2261257">Publish response</a></h3>
+    <p class="" style="">Once the ENS has dispatched the notification to subscribers, it will return a packet of the following form to the publisher:</p>
+
+    <p class="caption"><a name="example-13" id="example-13"></a>Example 13. Event notification (publish) response</p><div class="indent"><pre>
+&lt;iq id='pub1' type='result' from='ens-jid' to='event-jid'&gt;
+  &lt;published xmlns='http://xml.cataclysm.cx/jabber/ens/'/&gt;
+&lt;/iq&gt;
+    </pre></div>
+  </div>
+
+  <div class="indent"><h3>4.3 <a name="sect-id2261285" id="sect-id2261285">Authorisation request</a></h3>
+    <p class="" style="">A publisher is required to approve subcription requests. When a subscriber attempts to subscribe to an event, the publisher will receive a packet of the following form from the ENS:</p>
+
+    <p class="caption"><a name="example-14" id="example-14"></a>Example 14. Authorisation request</p><div class="indent"><pre>
+&lt;iq id='ensauth1' type='get' from='ens-jid' to='event-jid'&gt;
+  &lt;authorise xmlns='http://xml.cataclysm.cx/jabber/ens/' jid='subscriber-jid'/&gt;
+&lt;/iq&gt;
+    </pre></div>
+
+    <p class="" style="">The subscriber may include an &lt;auth-info/&gt; XML fragment containing some (application-specific) information that the publisher can use to authorise it:</p>
+    
+    <p class="caption"><a name="example-15" id="example-15"></a>Example 15. Authorisation request with authorisation information</p><div class="indent"><pre>
+&lt;iq id='ensauth1' type='get' from='ens-jid' to='event-jid'&gt;
+  &lt;authorise xmlns='http://xml.cataclysm.cx/jabber/ens/' jid='subscriber-jid'&gt;
+    &lt;auth-info xmlns='jabber:iq:auth'&gt;password&lt;/auth-info&gt;
+  &lt;/authorise&gt;
+&lt;/iq&gt;
+    </pre></div>
+
+  </div>
+
+  <div class="indent"><h3>4.4 <a name="sect-id2261342" id="sect-id2261342">Authorisation response</a></h3>
+    <p class="" style="">To signal to the ENS that a subscriber should be allowed to subscribe, the publisher should return a packet of the following form:</p>
+    
+    <p class="caption"><a name="example-16" id="example-16"></a>Example 16. Successful authorisation response</p><div class="indent"><pre>
+&lt;iq id='ensauth1' type='result' from='event-jid' to='ens-jid'&gt;
+  &lt;authorised xmlns='http://xml.cataclysm.cx/jabber/ens/' jid='subscriber-jid'/&gt;
+&lt;/iq&gt;
+    </pre></div>
+
+    <p class="" style="">To deny the subscription, the publisher should return an error packet, containing the appropriate &lt;error/&gt; fragment:</p>
+
+    <p class="caption"><a name="example-17" id="example-17"></a>Example 17. Unsuccessful authorisation response</p><div class="indent"><pre>
+&lt;iq id='ensauth1' type='error' from='event-jid' to='ens-jid'&gt;
+  &lt;authorise xmlns='http://xml.cataclysm.cx/jabber/ens/' jid='subscriber-jid'/&gt;
+  &lt;error code='401'&gt;Unauthorized&lt;/error&gt;
+&lt;/iq&gt;
+    </pre></div>
+
+    <p class="" style="">The &lt;error/&gt; fragment will be copied untouched into the error response sent back to the subscriber. See section 3.2 for more details.</p>
+  </div>
+<h2>5.
+       <a name="sect-id2261408" id="sect-id2261408">Errors</a></h2>
+  <p class="" style="">The ENS will respond with error code 400 (Bad Request) any time it receives a request that it cannot understand (a malformed packet, for example).</p>
+
+  <p class="" style="">Other errors may occur, and they are described in the appropriate sections of the above protocol specification.</p>
+<h2>6.
+       <a name="sect-id2261435" id="sect-id2261435">Considerations</a></h2>
+  <p class="" style="">The following items should be discussed before this proposal is approved by the Council:</p>
+
+  <div class="indent"><h3>6.1 <a name="sect-id2261450" id="sect-id2261450">ENS discovery</a></h3>
+    <p class="" style="">The ENS, as described, works well. However, no provisions are made for a subscriber to find out which ENS a publisher is publishing to. It does a subscriber no good to subscribe to an event on the wrong ENS - the subscription would succeed (assuming the publisher allows it), but no notifications would ever be received.</p>
+
+    <p class="" style="">There are several potential solutions, each with their problems:</p>
+
+    <ul class="" style="">
+      <li class="" style="">Leave it to the subscriber to find the appropriate ENS outside of the ENS framework itself. This might be via a browse to the publisher, or maybe just entering it into their client's configuration. Obviously, this is very application-specific.</li>
+      <li class="" style="">Force the publisher to publish to multiple ENSs, as necessary. This would require additions to the protocol (to tell the publisher of new ENSs), and would require the publisher to maintain a list of JIDs it needs to publish to. This solution is pointless - if the publisher is going to publish to multiple JIDs and maintain its own list, it might as well publish direct to subscribers.</li>
+      <li class="" style="">Have some sort of ENS-to-ENS protocol, and have ENSs proxy publishes for other ENSs. This does not fix the problem, it just moves it away from the subscriber and into the ENS. An ENS will still need to find out which ENS the publisher is publishing to.</li>
+      <li class="" style="">Integrate ENS into the session manager. This leaves us with a glorified presence system, and makes the ENS basically unusable by non-session-manager-based server components.</li>
+    </ul>
+    
+    <p class="" style="">This problem may be outside of the scope of this specification.</p>
+  </div>
+
+  <div class="indent"><h3>6.2 <a name="sect-id2261549" id="sect-id2261549">How reliable should &lt;reliable/&gt; be?</a></h3>
+    <p class="" style="">Currently, if a subscriber obtains a reliable subscription, and then disappears from the network (as an end-user client might), the ENS will continue to send notifications to it (ignoring errors) until it unsubscribes. If the subscriber never comes back, then ENS will send notifications forever (in theory).</p>
+
+    <p class="" style="">At what point should even &lt;reliable/&gt; have its limits? Should we unsubscribe a reliable subscriber who bounces (ie. the Jabber server failed to deliver) more than, say, 10 publishes? Or maybe they should be unsubscribed if they do not respond (as in section 3.6) to anything for, say, 10 minutes?</p>
+
+    <p class="" style="">&lt;reliable/&gt; is an interesting idea, but it may be that it is too problematic for its own good.</p>
+  </div>
+
+  <div class="indent"><h3>6.3 <a name="sect-id2261597" id="sect-id2261597">Longevity of subscriptions</a></h3>
+    <p class="" style="">The topic of reliable subscriptions raises the question as to how long a subscription lasts. Should a subscription last forever (like &lt;presence/&gt; does), even across restarts of the server?</p>
+
+    <p class="" style="">If end-user clients are to be subscribers, then under this scheme the ENS would have to subscribe to presence, so as to know when the client has disconnected. Since presence is a function of the session manager, this could have the effect of making the ENS less generic that we may like.</p>
+  </div>
+
+  <div class="indent"><h3>6.4 <a name="sect-id2261631" id="sect-id2261631">Replacing &lt;presence/&gt; with the ENS?</a></h3>
+    <p class="" style="">As I see it, basic presence will always be a function of the session manager, for the following reasons:</p>
+
+    <ul class="" style="">
+      <li class="" style="">No ENS discovery problems</li>
+      <li class="" style="">Subscriptions are maintained across sessions</li>
+      <li class="" style="">In very widespread use (ie. everywhere)</li>
+    </ul>
+
+    <p class="" style="">I think the places where the ENS can boom will be in applications like avatars, and genuine event-based systems (like the kind described above - "you have new mail", "someone has scheduled a meeting with you in your online calendar", etc).</p>
+  </div>
+<hr /><h2><a name="notes" id="notes"></a>Notes</h2><div class="indent"></div><hr /><h2><a name="revs" id="revs"></a>Revision History</h2><div class="indent"><h4>Version 0.2 (2003-04-22)</h4><div class="indent">At the request of the author, the status of this document has been changed to Retracted since it has been superseded by XEP-0060. (psa)
+    </div><h4>Version 0.1 (2002-03-04)</h4><div class="indent">Initial version (rn)
+    </div></div><hr /><p>END</p></body></html>

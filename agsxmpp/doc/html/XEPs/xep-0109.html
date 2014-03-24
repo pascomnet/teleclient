@@ -1,0 +1,187 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>XEP-0109: Vacation Messages</title><link rel="stylesheet" type="text/css" href="/xmpp.css" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" /><meta name="DC.Title" content="Vacation Messages" /><meta name="DC.Creator" content="Robert Norris" /><meta name="DC.Description" content="A protocol for setting up vacation messages in Jabber." /><meta name="DC.Publisher" content="XMPP Standards Foundation" /><meta name="DC.Contributor" content="XMPP Extensions Editor" /><meta name="DC.Date" content="2003-08-12" /><meta name="DC.Type" content="XMPP Extension Protocol" /><meta name="DC.Format" content="XHTML" /><meta name="DC.Identifier" content="XEP-0109" /><meta name="DC.Language" content="en" /><meta name="DC.Rights" content="This XMPP Extension Protocol is copyright (c) 1999 - 2008 by the XMPP Standards Foundation (XSF)." /></head><body><h1>XEP-0109: Vacation Messages</h1><p>A protocol for setting up vacation messages in Jabber.</p><hr /><p style="color:red">WARNING: Consideration of this document has been Deferred by the XMPP Standards Foundation. Implementation of the protocol described herein is not recommended.</p><hr /><h2>Document Information</h2><p class="indent">
+            Series: <a href="http://www.xmpp.org/extensions/">XEP</a><br />
+            Number: 0109<br />
+            Publisher: <a href="/xsf/">XMPP Standards Foundation</a><br />
+            Status: 
+            <a href="http://www.xmpp.org/extensions/xep-0001.html#states-Deferred">Deferred</a><br />
+            Type:
+            <a href="http://www.xmpp.org/extensions/xep-0001.html#types-Informational">Informational</a><br />
+            Version: 0.2<br />
+            Last Updated: 2003-08-12<br />
+                Approving Body: <a href="http://www.xmpp.org/council/">XMPP Council</a><br />
+                Dependencies: None<br />
+                Supersedes: None<br />
+                Superseded By: None<br />
+            Short Name: vacation<br />
+              Wiki Page: &lt;<a href="http://wiki.jabber.org/index.php/Vacation Messages (XEP-0109)">http://wiki.jabber.org/index.php/Vacation Messages (XEP-0109)</a>&gt;
+            </p><hr /><h2>Author Information</h2><div class="indent"><h3>Robert Norris</h3><p class="indent">
+        Email:
+        <a href="mailto:rob@cataclysm.cx">rob@cataclysm.cx</a><br />
+        JabberID: 
+        <a href="xmpp:rob@cataclysm.cx">rob@cataclysm.cx</a><br /></p></div><hr /><h2>Legal Notices</h2><div class="indent"><h3>Copyright</h3>This XMPP Extension Protocol is copyright (c) 1999 - 2008 by the XMPP Standards Foundation (XSF).<h3>Permissions</h3>Permission is hereby granted, free of charge, to any person obtaining a copy of this specification (the "Specification"), to make use of the Specification without restriction, including without limitation the rights to implement the Specification in a software program, deploy the Specification in a network service, and copy, modify, merge, publish, translate, distribute, sublicense, or sell copies of the Specification, and to permit persons to whom the Specification is furnished to do so, subject to the condition that the foregoing copyright notice and this permission notice shall be included in all copies or substantial portions of the Specification. Unless separate permission is granted, modified works that are redistributed shall not contain misleading information regarding the authors, title, number, or publisher of the Specification, and shall not claim endorsement of the modified works by the authors, any organization or project to which the authors belong, or the XMPP Standards Foundation.<h3>Disclaimer of Warranty</h3><span style="font-weight: bold">## NOTE WELL: This Specification is provided on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, express or implied, including, without limitation, any warranties or conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE. In no event shall the XMPP Standards Foundation or the authors of this Specification be liable for any claim, damages, or other liability, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the Specification or the implementation, deployment, or other use of the Specification. ##</span><h3>Limitation of Liability</h3>In no event and under no legal theory, whether in tort (including negligence), contract, or otherwise, unless required by applicable law (such as deliberate and grossly negligent acts) or agreed to in writing, shall the XMPP Standards Foundation or any author of this Specification be liable for damages, including any direct, indirect, special, incidental, or consequential damages of any character arising out of the use or inability to use the Specification (including but not limited to damages for loss of goodwill, work stoppage, computer failure or malfunction, or any and all other commercial damages or losses), even if the XMPP Standards Foundation or such author has been advised of the possibility of such damages.<h3>IPR Conformance</h3>This XMPP Extension Protocol has been contributed in full conformance with the XSF's Intellectual Property Rights Policy (a copy of which may be found at &lt;<a href="http://www.xmpp.org/extensions/ipr-policy.shtml">http://www.xmpp.org/extensions/ipr-policy.shtml</a>&gt; or obtained by writing to XSF, P.O. Box 1641, Denver, CO 80201 USA).</div><hr /><h2>Discussion Venue</h2><p class="indent">The preferred venue for discussion of this document is the Standards discussion list: &lt;<a href="http://mail.jabber.org/mailman/listinfo/standards">http://mail.jabber.org/mailman/listinfo/standards</a>&gt;.</p><p class="indent">Errata may be sent to &lt;<a href="mailto:editor@xmpp.org">editor@xmpp.org</a>&gt;.</p><h2>Relation to XMPP</h2><p class="indent">The Extensible Messaging and Presence Protocol (XMPP) is defined in the XMPP Core (RFC 3920) and XMPP IM (RFC 3921) specifications contributed by the XMPP Standards Foundation to the Internet Standards Process, which is managed by the Internet Engineering Task Force in accordance with RFC 2026. Any protocol defined in this document has been developed outside the Internet Standards Process and is to be understood as an extension to XMPP rather than as an evolution, development, or modification of XMPP itself.</p><h2>Conformance Terms</h2><p class="indent">The following keywords as used in this document are to be interpreted as described in <a href="http://www.ietf.org/rfc/rfc2119.txt">RFC 2119</a>: "MUST", "SHALL", "REQUIRED"; "MUST NOT", "SHALL NOT"; "SHOULD", "RECOMMENDED"; "SHOULD NOT", "NOT RECOMMENDED"; "MAY", "OPTIONAL".</p><hr /><h2>Table of Contents</h2><div class="indent"><p><br />1.  <a href="#sect-id2251698">Introduction</a><br />2.  <a href="#sect-id2252824">Requirements</a><br />3.  <a href="#sect-id2252629">Use cases</a><br />   
+      3.1.  <a href="#sect-id2252635">Discovering support for vacation messages</a><br />   
+      3.2.  <a href="#sect-id2252690">Retrieving the current vacation settings</a><br />   
+      3.3.  <a href="#sect-id2251336">Setting new vacation settings</a><br />   
+      3.4.  <a href="#sect-id2251395">Removing vacation settings</a><br />4.  <a href="#sect-id2251426">Server requirements</a><br />5.  <a href="#sect-id2251457">Security Considerations</a><br />6.  <a href="#sect-id2251472">IANA Considerations</a><br />7.  <a href="#sect-id2251496">XMPP Registrar Considerations</a><br />8.  <a href="#sect-id2251532">XML Schema</a><br /><a href="#notes">Notes</a><br /><a href="#revs">Revision History</a></p></div><hr /><h2>1.
+       <a name="sect-id2251698" id="sect-id2251698">Introduction</a></h2>
+  <p class="" style="">Popular electronic mail systems have long including features that allow users to set up automated messages that are returned to message senders when the user is not able to deal with the message immediately. This feature is commonly known as "vacation messages", because it is most commonly used when a user is unable to read their messages because they are on vacation.</p>
+  <p class="" style="">This document describes a similar system that allows Jabber users to setup vacation messages when they are away.</p>
+<h2>2.
+       <a name="sect-id2252824" id="sect-id2252824">Requirements</a></h2>
+  <p class="" style="">The requirements for this document are fairly straightforward. A user MUST be able to:</p>
+
+  <ul class="" style="">
+    <li class="" style="">Discover if their server supports vacation messages.</li>
+    <li class="" style="">Retrieve their current vacation settings.</li>
+    <li class="" style="">Set new vacation settings.</li>
+    <li class="" style="">Remove vacation settings.</li>
+  </ul>
+
+  <p class="" style="">Additionally, a server supporting vacation messages MUST respond to a message sent to a local user that has an active vacation message set by automatically sending that message to the sender.</p>
+
+<h2>3.
+       <a name="sect-id2252629" id="sect-id2252629">Use cases</a></h2>
+
+  <div class="indent"><h3>3.1 <a name="sect-id2252635" id="sect-id2252635">Discovering support for vacation messages</a></h3>
+
+    <p class="" style="">Before attempting to set or retrieve its current vacation settings, a user SHOULD first verify that their server supports vacation messages. To do this, the user makes a <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0030.html">Service Discovery</a></span>  [<a href="#nt-id2252676">1</a>] "#info" query to their server. If supported, the server includes a feature of "http://www.jabber.org/protocol/vacation" in the result.</p>
+
+    <p class="caption"><a name="example-1" id="example-1"></a>Example 1. Discovering support for vacation messages</p><div class="indent"><pre>
+&lt;iq type='get' to='cataclysm.cx' id='disco1'&gt;
+  &lt;query xmlns='http://www.jabber.org/protocol/disco#info'/&gt;
+&lt;/iq&gt;
+
+ </pre></div>
+    <p class="caption"><a name="example-2" id="example-2"></a>Example 2. Discovery response</p><div class="indent"><pre>
+&lt;iq type='result' from='cataclysm.cx' id='disco1'&gt;
+  &lt;query xmlns='http://www.jabber.org/protocol/disco#info'&gt;
+    ...
+    &lt;feature var='http://www.jabber.org/protocol/vacation'/&gt;
+    ...
+  &lt;/query&gt;
+&lt;/iq&gt;
+ </pre></div>
+
+  </div>
+
+  <div class="indent"><h3>3.2 <a name="sect-id2252690" id="sect-id2252690">Retrieving the current vacation settings</a></h3>
+
+    <p class="" style="">A user may request their current vacation settings by sending an IQ get to the local server like so:</p>
+
+    <p class="caption"><a name="example-3" id="example-3"></a>Example 3. Retrieving the current vacation settings</p><div class="indent"><pre>
+&lt;iq type='get' id='get1'&gt;
+  &lt;query xmlns='http://www.jabber.org/protocol/vacation'/&gt;
+&lt;/iq&gt;
+ </pre></div>
+
+    <p class="caption"><a name="example-4" id="example-4"></a>Example 4. Server returns vacation settings</p><div class="indent"><pre>
+&lt;iq type='result' id='get1'&gt;
+  &lt;query xmlns='http://www.jabber.org/protocol/vacation'&gt;
+    &lt;start&gt;2003-07-06T10:30:00+10:00&lt;/start&gt;
+    &lt;end&gt;2003-07-13T08:00:00+10:00&lt;/end&gt;
+    &lt;message&gt;I'm attending OSCON in sunny Portland and won't be able to
+             read your message until I get back. If its urgent, please
+             send email to rob@cataclysm.cx.&lt;/message&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+ </pre></div>
+
+    <p class="" style="">&lt;start/&gt; and &lt;end/&gt; define the times between which this vacation message is valid. These are in the format specified by <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0082.html">XMPP Date and Time Profiles</a></span>  [<a href="#nt-id2251309">2</a>].</p>
+    <p class="" style="">&lt;message/&gt; contains the text of the message that will be sent to a remote user that sends the user a message while they have active vacation settings.</p>
+
+    <p class="" style="">If the user has no stored vacation settings, the user will receive a result like the following:</p>
+
+    <p class="caption"><a name="example-5" id="example-5"></a>Example 5. User does not have any vacation settings</p><div class="indent"><pre>
+&lt;iq type='result' id='get1'/&gt;
+ </pre></div>
+  
+  </div>
+
+  <div class="indent"><h3>3.3 <a name="sect-id2251336" id="sect-id2251336">Setting new vacation settings</a></h3>
+
+    <p class="" style="">A user may set new vacation settings by sending a IQ to the local server like so:</p>
+
+    <p class="caption"><a name="example-6" id="example-6"></a>Example 6. Setting new vacation settings</p><div class="indent"><pre>
+&lt;iq type='set' id='set1'&gt;
+  &lt;query xmlns='http://www.jabber.org/protocol/vacation'&gt;
+    &lt;start&gt;2003-07-06T10:30:00+10:00&lt;/start&gt;
+    &lt;end&gt;2003-07-13T08:00:00+10:00&lt;/end&gt;
+    &lt;message&gt;I'm attending OSCON in sunny Portland and won't be able to
+             read your message until I get back. If its urgent, please
+             send email to rob@cataclysm.cx.&lt;/message&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+ </pre></div>
+
+   <p class="caption"><a name="example-7" id="example-7"></a>Example 7. Vacation settings set successfully</p><div class="indent"><pre>
+&lt;iq type='result' id='set1'/&gt;
+ </pre></div>
+
+    <p class="" style="">The meaning of each element is as outlined above. All elements are required.</p>
+
+    <p class="" style="">Additionally, the &lt;start/&gt; and &lt;end/&gt; elements MAY be empty (ie have no CDATA). When &lt;start/&gt; is empty, the server MUST take this to mean that the settings should take effect immediately. Similarly, when &lt;end/&gt; is empty, the server MUST take this to mean that the settings should never expire (unless they are explicitly removed).</p>
+
+  </div>
+
+  <div class="indent"><h3>3.4 <a name="sect-id2251395" id="sect-id2251395">Removing vacation settings</a></h3>
+
+    <p class="" style="">A user may remove all stored vacation settings by sending a IQ to the local server like so:</p>
+
+    <p class="caption"><a name="example-8" id="example-8"></a>Example 8. Remove vacation settings</p><div class="indent"><pre>
+&lt;iq type='set' id='set2'&gt;
+  &lt;query xmlns='http://www.jabber.org/protocol/vacation'/&gt;
+&lt;/iq&gt;
+ </pre></div>
+
+   <p class="caption"><a name="example-9" id="example-9"></a>Example 9. Vacation settings removed successfully</p><div class="indent"><pre>
+&lt;iq type='result' id='set2'/&gt;
+ </pre></div>
+
+  </div>
+
+<h2>4.
+       <a name="sect-id2251426" id="sect-id2251426">Server requirements</a></h2>
+  <p class="" style="">A server implementing vacation messages MUST reply to the message using the text specified in the receiving users' vacation settings if the time that message arrived from the remote users falls within data range specified, but only if the received message is to be queued for later delivery.</p>
+
+  <p class="" style="">Implementing servers SHOULD (if local resource contraints allow) only send one automated response to a remote user for each local user that has active vacation settings. The memory of this action MUST be reset when the active settings have expired or when the user resets or removes them.</p>
+<h2>5.
+       <a name="sect-id2251457" id="sect-id2251457">Security Considerations</a></h2>
+  <p class="" style="">None yet defined.</p>
+<h2>6.
+       <a name="sect-id2251472" id="sect-id2251472">IANA Considerations</a></h2>
+  <p class="" style="">This document requires no interaction with the <span class="ref" style=""><a href="http://www.iana.org/">Internet Assigned Numbers Authority (IANA)</a></span>  [<a href="#nt-id2251511">3</a>].</p>
+<h2>7.
+       <a name="sect-id2251496" id="sect-id2251496">XMPP Registrar Considerations</a></h2>
+  <p class="" style="">The 'http://jabber.org/protocol/vacation' namespace shall be registered with the <span class="ref" style=""><a href="http://www.xmpp.org/registrar/">XMPP Registrar</a></span>  [<a href="#nt-id2251544">4</a>] as a result of this document.</p>
+<h2>8.
+       <a name="sect-id2251532" id="sect-id2251532">XML Schema</a></h2>
+  <p class="caption"></p><div class="indent"><pre>
+&lt;?xml version='1.0' encoding='UTF-8'?&gt;
+
+&lt;xs:schema
+    xmlns:xs='http://www.w3.org/2001/XMLSchema'
+    targetNamespace='http://jabber.org/protocol/vacation'
+    xmlns='http://jabber.org/protocol/vacation'
+    elementFormDefault='qualified'&gt;
+
+  &lt;xs:element name='query'&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element ref='start' minOccurs='0' maxOccurs='1'/&gt;
+        &lt;xs:element ref='end' minOccurs='0' maxOccurs='1'/&gt;
+        &lt;xs:element ref='message' minOccurs='0' maxOccurs='1'/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+
+  &lt;xs:element name='start' type='xs:string'/&gt;
+  &lt;xs:element name='end' type='xs:string'/&gt;
+  &lt;xs:element name='message' type='xs:string'/&gt;
+
+&lt;/xs:schema&gt;
+  </pre></div>
+<hr /><h2><a name="notes" id="notes"></a>Notes</h2><div class="indent"><p><a name="nt-id2252676" id="nt-id2252676">1</a>. XEP-0030: Service Discovery &lt;<a href="http://www.xmpp.org/extensions/xep-0030.html">http://www.xmpp.org/extensions/xep-0030.html</a>&gt;.</p><p><a name="nt-id2251309" id="nt-id2251309">2</a>. XEP-0082: XMPP Date and Time Profiles &lt;<a href="http://www.xmpp.org/extensions/xep-0082.html">http://www.xmpp.org/extensions/xep-0082.html</a>&gt;.</p><p><a name="nt-id2251511" id="nt-id2251511">3</a>. The Internet Assigned Numbers Authority (IANA) is the central coordinator for the assignment of unique parameter values for Internet protocols, such as port numbers and URI schemes. For further information, see &lt;<a href="http://www.iana.org/">http://www.iana.org/</a>&gt;.</p><p><a name="nt-id2251544" id="nt-id2251544">4</a>. The XMPP Registrar maintains a list of reserved protocol namespaces as well as registries of parameters used in the context of XMPP extension protocols approved by the XMPP Standards Foundation. For further information, see &lt;<a href="http://www.xmpp.org/registrar/">http://www.xmpp.org/registrar/</a>&gt;.</p></div><hr /><h2><a name="revs" id="revs"></a>Revision History</h2><div class="indent"><h4>Version 0.2 (2003-08-12)</h4><div class="indent">Added use cases for removing vacation settings; described semantics when start and end times are not specified; changed document type to Informational; small editorial changes. (rn)
+    </div><h4>Version 0.1 (2003-07-28)</h4><div class="indent">Initial version. (rn)
+    </div></div><hr /><p>END</p></body></html>

@@ -1,0 +1,1830 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>XEP-0204: Collaborative Data Objects</title><link rel="stylesheet" type="text/css" href="/xmpp.css" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" /><meta name="DC.Title" content="Collaborative Data Objects" /><meta name="DC.Creator" content="Dave Bryson" /><meta name="DC.Creator" content="Dan Winkowski" /><meta name="DC.Creator" content="Michael Krutsch" /><meta name="DC.Creator" content="Chad Smith" /><meta name="DC.Creator" content="Jasen Jacobsen" /><meta name="DC.Creator" content="Marshall Huss" /><meta name="DC.Description" content="This document specifies an XMPP protocol extension that supports the exchange of structured data objects." /><meta name="DC.Publisher" content="XMPP Standards Foundation" /><meta name="DC.Contributor" content="XMPP Extensions Editor" /><meta name="DC.Date" content="2007-01-17" /><meta name="DC.Type" content="XMPP Extension Protocol" /><meta name="DC.Format" content="XHTML" /><meta name="DC.Identifier" content="XEP-0204" /><meta name="DC.Language" content="en" /><meta name="DC.Rights" content="This XMPP Extension Protocol is copyright (c) 1999 - 2008 by the XMPP Standards Foundation (XSF)." /></head><body><h1>XEP-0204: Collaborative Data Objects</h1><p>This document specifies an XMPP protocol extension that supports the exchange of structured data objects.</p><hr /><p style="color:red">WARNING: This Standards-Track document is Experimental. Publication as an XMPP Extension Protocol does not imply approval of this proposal by the XMPP Standards Foundation. Implementation of the protocol described herein is encouraged in exploratory implementations, but production systems should not deploy implementations of this protocol until it advances to a status of Draft.</p><hr /><h2>Document Information</h2><p class="indent">
+            Series: <a href="http://www.xmpp.org/extensions/">XEP</a><br />
+            Number: 0204<br />
+            Publisher: <a href="/xsf/">XMPP Standards Foundation</a><br />
+            Status: 
+            <a href="http://www.xmpp.org/extensions/xep-0001.html#states-Experimental">Experimental</a><br />
+            Type:
+            <a href="http://www.xmpp.org/extensions/xep-0001.html#types-Standards Track">Standards Track</a><br />
+            Version: 0.1<br />
+            Last Updated: 2007-01-17<br />
+                Approving Body: <a href="http://www.xmpp.org/council/">XMPP Council</a><br />Dependencies: XMPP Core<br />
+                Supersedes: None<br />
+                Superseded By: None<br />
+            Short Name: TO BE ISSUED<br />
+              Wiki Page: &lt;<a href="http://wiki.jabber.org/index.php/Collaborative Data Objects (XEP-0204)">http://wiki.jabber.org/index.php/Collaborative Data Objects (XEP-0204)</a>&gt;
+            </p><hr /><h2>Author Information</h2><div class="indent"><h3>Dave Bryson</h3><p class="indent">
+        Email:
+        <a href="mailto:dbryson@mitre.org">dbryson@mitre.org</a><br /></p><h3>Dan Winkowski</h3><p class="indent">
+        Email:
+        <a href="mailto:winkowsk@mitre.org">winkowsk@mitre.org</a><br /></p><h3>Michael Krutsch</h3><p class="indent">
+        Email:
+        <a href="mailto:michael@mitre.org">michael@mitre.org</a><br /></p><h3>Chad Smith</h3><p class="indent">
+        Email:
+        <a href="mailto:chadsm@mitre.org">chadsm@mitre.org</a><br /></p><h3>Jasen Jacobsen</h3><p class="indent">
+        Email:
+        <a href="mailto:jasenj1@mitre.org">jasenj1@mitre.org</a><br /></p><h3>Marshall Huss</h3><p class="indent">
+        Email:
+        <a href="mailto:mhuss@mitre.org">mhuss@mitre.org</a><br /></p></div><hr /><h2>Legal Notices</h2><div class="indent"><h3>Copyright</h3>This XMPP Extension Protocol is copyright (c) 1999 - 2008 by the XMPP Standards Foundation (XSF).<h3>Permissions</h3>Permission is hereby granted, free of charge, to any person obtaining a copy of this specification (the "Specification"), to make use of the Specification without restriction, including without limitation the rights to implement the Specification in a software program, deploy the Specification in a network service, and copy, modify, merge, publish, translate, distribute, sublicense, or sell copies of the Specification, and to permit persons to whom the Specification is furnished to do so, subject to the condition that the foregoing copyright notice and this permission notice shall be included in all copies or substantial portions of the Specification. Unless separate permission is granted, modified works that are redistributed shall not contain misleading information regarding the authors, title, number, or publisher of the Specification, and shall not claim endorsement of the modified works by the authors, any organization or project to which the authors belong, or the XMPP Standards Foundation.<h3>Disclaimer of Warranty</h3><span style="font-weight: bold">## NOTE WELL: This Specification is provided on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, express or implied, including, without limitation, any warranties or conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE. In no event shall the XMPP Standards Foundation or the authors of this Specification be liable for any claim, damages, or other liability, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the Specification or the implementation, deployment, or other use of the Specification. ##</span><h3>Limitation of Liability</h3>In no event and under no legal theory, whether in tort (including negligence), contract, or otherwise, unless required by applicable law (such as deliberate and grossly negligent acts) or agreed to in writing, shall the XMPP Standards Foundation or any author of this Specification be liable for damages, including any direct, indirect, special, incidental, or consequential damages of any character arising out of the use or inability to use the Specification (including but not limited to damages for loss of goodwill, work stoppage, computer failure or malfunction, or any and all other commercial damages or losses), even if the XMPP Standards Foundation or such author has been advised of the possibility of such damages.<h3>IPR Conformance</h3>This XMPP Extension Protocol has been contributed in full conformance with the XSF's Intellectual Property Rights Policy (a copy of which may be found at &lt;<a href="http://www.xmpp.org/extensions/ipr-policy.shtml">http://www.xmpp.org/extensions/ipr-policy.shtml</a>&gt; or obtained by writing to XSF, P.O. Box 1641, Denver, CO 80201 USA).</div><hr /><h2>Discussion Venue</h2><p class="indent">The preferred venue for discussion of this document is the Standards discussion list: &lt;<a href="http://mail.jabber.org/mailman/listinfo/standards">http://mail.jabber.org/mailman/listinfo/standards</a>&gt;.</p><p class="indent">Errata may be sent to &lt;<a href="mailto:editor@xmpp.org">editor@xmpp.org</a>&gt;.</p><h2>Relation to XMPP</h2><p class="indent">The Extensible Messaging and Presence Protocol (XMPP) is defined in the XMPP Core (RFC 3920) and XMPP IM (RFC 3921) specifications contributed by the XMPP Standards Foundation to the Internet Standards Process, which is managed by the Internet Engineering Task Force in accordance with RFC 2026. Any protocol defined in this document has been developed outside the Internet Standards Process and is to be understood as an extension to XMPP rather than as an evolution, development, or modification of XMPP itself.</p><h2>Conformance Terms</h2><p class="indent">The following keywords as used in this document are to be interpreted as described in <a href="http://www.ietf.org/rfc/rfc2119.txt">RFC 2119</a>: "MUST", "SHALL", "REQUIRED"; "MUST NOT", "SHALL NOT"; "SHOULD", "RECOMMENDED"; "SHOULD NOT", "NOT RECOMMENDED"; "MAY", "OPTIONAL".</p><hr /><h2>Table of Contents</h2><div class="indent"><p><br />1.  <a href="#intro">Introduction</a><br />2.  <a href="#reqs">Requirements</a><br />3.  <a href="#usemodel">Usage Model</a><br />   
+      3.1.  <a href="#strictmode">Strict Synchronization mode</a><br />   
+      3.2.  <a href="#lazymode">Lazy Synchronization mode</a><br />4.  <a href="#descriptionLanguage">Description Language</a><br />5.  <a href="#protocol">Protocol</a><br />6.  <a href="#usecases">Use Cases</a><br />   
+      6.1.  <a href="#queryforcdosupport">Query a client to determine if it supports a CDO message</a><br />   
+      6.2.  <a href="#queryfortypes">Query the Server to determine available CDO types</a><br />   
+      6.3.  <a href="#cdostate">Query the Server to determine the state of a specific CDO</a><br />   
+      6.4.  <a href="#cdolist">Query an endpoint for a list of CDOs</a><br />   
+      6.5.  <a href="#cdocreate">Create a new CDO</a><br />   
+      6.6.  <a href="#cdoitemcreate">Create a new Item on an existing CDO</a><br />   
+      6.7.  <a href="#cdoitemupdate">Update an Item on an existing CDO</a><br />      
+      6.7.1.  <a href="#sect-id2262754">Update Styles</a><br />   
+      6.8.  <a href="#cdoitemdelete">Delete an Item on an existing CDO</a><br />   
+      6.9.  <a href="#cdoretire">Retire an existing CDO</a><br />7.  <a href="#errors">Errors</a><br />   
+      7.1.  <a href="#cdoerrorconditions">CDO specific conditions</a><br />   
+      7.2.  <a href="#invalidconstraints">Invalid Constraint condition types</a><br />   
+      7.3.  <a href="#specialcases">Special Case: Outdated version error</a><br />8.  <a href="#impl">Implementation Notes</a><br />   
+      8.1.  <a href="#service">Service</a><br />   
+      8.2.  <a href="#client">Client</a><br />9.  <a href="#security">Security Considerations</a><br />   
+      9.1.  <a href="#authentication">User Authentication and Authorization</a><br />   
+      9.2.  <a href="#encryption">End-to-End Encryption</a><br />10.  <a href="#iana">IANA Considerations</a><br />11.  <a href="#registrar">XMPP Registrar Considerations</a><br />   
+      11.1.  <a href="#ns">Protocol Namespace</a><br />12.  <a href="#schema">XML Schema</a><br />   
+      12.1.  <a href="#xmlschemaDescriptionLanguage">Description Language</a><br />   
+      12.2.  <a href="#xmlschemaProtocol">Data Synchronization Protocol</a><br /><a href="#notes">Notes</a><br /><a href="#revs">Revision History</a></p></div><hr /><h2>1.
+       <a name="intro" id="intro">Introduction</a></h2>
+    <p class="" style="">
+  While the value of IM and Multi-user chat is obvious to anyone reading this JEP, the potential for ambiguity and miscommunication 
+  (particularly in a structured data environment) may not be.  There are several domains where text communication is accompanied 
+  by a need to exchange structured data, e.g.: a help desk dealing with trouble tickets; a financial institution dealing with trades (buy and sell orders), 
+  an emergency scenario with first responders.  The purpose of this JEP is to define a set of Collaborative Data Object (CDO) protocols 
+  that support the exchange of structured data objects. These data objects are explicitly described by a declarative language, instantiated as 
+  structured XML, and transported as extended XMPP stanzas.  This JEP defines a protocol for exchanging these structured CDOs as 
+  part of a session conversation (either IM or Multi-User Chat) based around a <span class="em">strict synchronization</span> model. In a strict synchronization model,
+  participants will receive every change made to a CDO. An alternative synchronization model, a
+            <span class="em">lazy synchronization</span>
+  model is also described to support users who either do not wish, or are not able because of infrastructure limitations, to receive the CDO stanzas 
+  in real time and wish to explicitly request them.
+        </p>
+  <h2>2.
+       <a name="reqs" id="reqs">Requirements</a></h2>
+    <p class="" style="">This JEP describes a protocol that is designed to fulfill the following requirements: </p>
+    <ol start="" class="" style="">
+      <li class="" style="">Determine the ability for clients and servers to support and exchange collaborative data objects</li>
+      <li class="" style="">Enable the exchange of structured data objects between clients</li>
+      <li class="" style="">Define a protocol that supports the synchronization of structure data among participating clients. Currently 
+                  the protocol is based on a strict synchronization model where users will receive every change made to a CDO.  
+                  Future versions of the protocol may contain a <span class="em">lazy</span> synchronization model that may relax the current approach.
+            </li>
+      <li class="" style="">Operate in both private and group chat</li>
+    </ol>
+    <p class="" style="">Future enhancements may provide the ability to:</p>
+    <ul class="" style="">
+      <li class="" style="">Query room for active CDOs</li>
+      <li class="" style="">Query room history - results in CDO events for playback (per CDO or for all CDOs)</li>
+      <li class="" style="">Register methods to a CDO</li>
+      <li class="" style="">Register synchronization preference with framework (strict, lazy) CDO</li>
+      <li class="" style="">Method invocation request to framework to execute and return response</li>
+    </ul>
+  <h2>3.
+       <a name="usemodel" id="usemodel">Usage Model</a></h2>
+    <p class="" style="">Here is a high-level description of the flow between two clients exchanging information using the CDO protocol.</p>
+    <div class="indent"><h3>3.1 <a name="strictmode" id="strictmode">Strict Synchronization mode</a></h3>
+      <p class="" style="">Participants using strict synchronization will receive
+                <span class="strong">every</span> change event to the CDOs in a room or private chat.
+            </p>
+      <p class="" style="">Imagine two chat clients,
+                <span class="strong">A</span> and
+                <span class="strong">B</span>,that wish to share structured data in a synchronized manner.
+      Both clients want to ensure they have the most up-to-date information. The two endpoints can do so by collaborating on the data using the CDO protocol.
+            </p>
+      <p class="" style="">For example, let's assume the clients wish to coordinate a meeting over chat. The process may look like this:</p>
+      <ol start="" class="" style="">
+        <li class="" style="">Client
+                    <span class="strong">A</span> creates a new meeting that contains structured data such as the title of the meeting, participant e-mail list, start time, date,
+        length, and location.
+                </li>
+        <li class="" style="">Client
+                    <span class="strong">A</span> sends the meeting information to client B over normal chat.
+                </li>
+        <li class="" style="">When client
+                    <span class="strong">A</span> adds, updates, or deletes an item on the meeting, the changes are reflected to Client
+                    <span class="strong">B</span>
+        </li>
+        <li class="" style="">Similarily, when client
+                    <span class="strong">B</span> adds, updates, or deletes an item on the meeting, the changes are reflected to Client
+                    <span class="strong">A</span>
+        </li>
+      </ol>
+      <p class="" style="">The above example describes the main flow between two clients. However a more detailed description of the flow using the example above would look
+    like the following below. In this example we also show the interaction with the server (server
+                <span class="strong">X</span>). Server
+                <span class="strong">X</span> is the IM
+    server that both client
+                <span class="strong">A</span> and
+                <span class="strong">B</span> are connected to.
+            </p>
+      <ol start="" class="" style="">
+        <li class="" style="">Client
+                    <span class="strong">A</span> wishes to send information about a new meeting to client
+                    <span class="strong">B</span>
+        </li>
+        <li class="" style="">Client
+                    <span class="strong">A</span> first sends an IQ packet to client
+                    <span class="strong">B</span> to determine if the client supports the CDO protocol.
+                </li>
+        <li class="" style="">Client
+                    <span class="strong">B</span> responds to the IQ packet from client
+                    <span class="strong">A</span> confirming that it does support the CDO protocol.
+                </li>
+        <li class="" style="">Client
+                    <span class="strong">A</span> creates a new meeting that contains structured data such as the title of the meeting and the location.
+                </li>
+        <li class="" style="">When client
+                    <span class="strong">A</span> sends the CDO to client
+                    <span class="strong">B</span>, the message is intercepted by server
+                    <span class="strong">X</span>.
+                </li>
+        <li class="" style="">Server
+                    <span class="strong">X</span>, examines the message from client
+                    <span class="strong">A</span> and determines that it is a CDO create message.  The server
+      increments the version of the meeting items and forwards the message to client
+                    <span class="strong">B</span>.
+                </li>
+        <li class="" style="">When client
+                    <span class="strong">A</span> adds, updates, or deletes an item on the meeting, the changes are first interrogated by server
+                    <span class="strong">X</span>
+      and  then forwarded to Client
+                    <span class="strong">B</span>
+        </li>
+        <li class="" style="">Similarily, When client
+                    <span class="strong">B</span> adds, updates, or deletes an item on the meeting, the changes are first interrogated by server
+                    <span class="strong">X</span>
+    and  then forwarded to Client
+                    <span class="strong">A</span>
+        </li>
+        <li class="" style="">After processing the message from Client
+                    <span class="strong">A</span>, Server
+                    <span class="strong">X</span> will return a receipt to Client
+                    <span class="strong">A</span>.
+    The receipt contains the UUID for the new item along with confirming the event was valid.
+                </li>
+      </ol>
+    </div>
+    <div class="indent"><h3>3.2 <a name="lazymode" id="lazymode">Lazy Synchronization mode</a></h3>
+      <p class="" style="">
+            Lazy synchronization is a proposed alternate synchronization scheme that is appropriate for entities who either do 
+            not wish, or are not able because of infrastructure limitations, to receive the CDO stanzas in real time and wish to 
+            explicitly request them. Under lazy synchronization, entities are only notified that CDOs have been created, retired or 
+            that the existing CDOs that they keep track of have been updated and are now outdated. The details behind these 
+            events are not transmitted. Explicit action is required to resynchronized to the current state for any specific CDO identifier or 
+            change to the strict synchronization scheme. Lazy synchronization is set per endpoint (groupchat room).
+            </p>
+    </div>
+  <h2>4.
+       <a name="descriptionLanguage" id="descriptionLanguage">Description Language</a></h2>
+    <p class="" style="">In topic-focused collaboration, a group of participants come together to discuss particular categories of information.  This use of a topic as a focal point is significant because it provides participants with meaningful, often unspoken, context of information.  Semantic cues, manipulation capabilities, state transitions, and information presentation are all included in this context.</p>
+    <p class="" style="">CDOs leverage topic-focused collaboration by requiring every CDO to be an instance of a type.  A type is analogous to a topic because participants are given a common understanding of the information being discussed and its context. This relationship is also similar to the programming concept of a class and an object.  Much like a class describes the capabilities of an object, a CDO type describes an instance.</p>
+    <p class="" style="">CDO Description Language (CDO-DL) is the means by which a type is defined.  It is meant to be a highly extensible framework through which multiple (but equivalent) definitions of type capabilities can exist.  This extensibility allows users with different operating environments to collaborate consistently.</p>
+    <p class="" style="">Some information is required for every CDO-DL to maintain consistent interpretation:</p>
+    <ul class="" style="">
+      <li class="" style="">
+        <span class="strong">UUID</span>: A universally unique identifier to distinguish this type from all others.  This value is meant for machine use, but it may also be structured for human use.</li>
+      <li class="" style="">
+        <span class="strong">Label</span>: The primary identifier meant for human use.  This should concisely describe the data and context of a type.  Although uniqueness of this field is not required, it is highly recommended.</li>
+      <li class="" style="">
+        <span class="strong">Version</span>: The version associated with the type.  As a type matures, its UUID and version will change.  This also provides a mechanism for determining deprecation of previous versions.</li>
+      <li class="" style="">
+        <span class="strong">Description</span>: A more complete description of the data and context of a type.  A description can exist for individual languages.</li>
+      <li class="" style="">
+        <span class="strong">Schema</span>: The XML Schema definition of the data associated with a type.  This can either be embedded in the CDO-DL or referenced in an external URL.</li>
+    </ul>
+    <p class="" style="">Beyond this core data, every CDO-DL can have multiple (but equivalent) standard-specific implementations for the remaining context of the type:</p>
+    <ul class="" style="">
+      <li class="" style="">
+        <span class="strong">Layout</span>: The means by which data is presented to a user.  Layouts are arranged in groups, each with a unique identifier and title.  Each group is capable of containing multiple equivalent standard-specific presentations to support a diverse client base, but each group must contain at least an XHTML/XForm presentation. Individual presentations can embedded or referenced in an external URL, and one layout group must be marked as the default layout through which users will initially interact with the data.</li>
+      <li class="" style="">
+        <span class="strong">Method</span>: The operations which can be carried out on the data.  Equivalent standard-specific operations can be grouped together as a single notional method with a single unique identifier and description.</li>
+      <li class="" style="">
+        <span class="strong">State</span>: The finite states through which a data set can transition.  States are individually defined along with the criteria for entering each.  State transitions are also defined along with the actions they perform (such as turning on or off specific layouts and methods).</li>
+    </ul>
+  <h2>5.
+       <a name="protocol" id="protocol">Protocol</a></h2>
+    <p class="" style="">The CDO protocol uses the namespace:
+            <span class="strong">http://www.xmpp.org/extensions/xep-0204.html#ns</span>
+    </p>
+    <p class="" style="">
+      <span class="strong">&lt;data-sync/&gt;</span> is the root element and
+            <span class="strong">MUST</span> be contained within a message stanza
+            <span class="strong">&lt;message/&gt;</span> element. When the
+            <span class="strong">&lt;data-sync&gt;</span> element is present in the
+            <span class="strong">&lt;message&gt;</span>,the message
+            <span class="strong">MUST</span> not contain a
+            <span class="strong">&lt;body&gt;</span> element.
+        </p>
+    <p class="caption"><a name="example-1" id="example-1"></a>Example 1. Message with data-sync element</p><div class="indent"><pre>
+&lt;message to='romeo@example.net/orchard' 
+               from='juliet@example.com/balcony' 
+              type='chat' xml:lang='en'&gt;
+  &lt;data-sync protocol="1.0" uuid="" type="cdo:Meeting" 
+                   event="create" xmlns="http://www.xmpp.org/extensions/xep-0204.html#ns"&gt;
+     &lt;item type="field" uuid="" event="create" ref="/Meeting/Title" version="0"&gt;
+          &lt;value&gt;This is a new meeting&lt;/value&gt;
+     &lt;/item&gt;
+  &lt;/data-sync&gt;
+&lt;/message&gt;
+        </pre></div>
+    <p class="" style="">The
+            <span class="strong">&lt;data-sync&gt;</span> element
+            <span class="strong">may </span>contain
+            <span class="strong">&lt;item&gt;</span> elements.The attributes of the
+            <span class="strong">&lt;data-sync&gt;</span> element maintain high-level information about the enclosed
+            <span class="strong">&lt;item&gt;</span> elements to help synchronize information exchanged between clients.
+        </p>
+    <p class="caption"><a name="table-1" id="table-1"></a>Table 1: Attributes in the &lt;data-sync&gt; element:</p><table border="1" cellpadding="3" cellspacing="0">
+      <tr class="body">
+        <td colspan="" rowspan="">
+          <span class="strong">Attribute</span>
+        </td>
+        <td colspan="" rowspan="">
+          <span class="strong">Description</span>
+        </td>
+        <td colspan="" rowspan="">
+          <span class="strong">Mandatory?</span>
+        </td>
+      </tr>
+      <tr class="body">
+        <td colspan="" rowspan=""> protocol
+                    </td>
+        <td colspan="" rowspan="">
+                        The version of the CDO exchange protocol
+                    </td>
+        <td colspan="" rowspan="">
+                        Yes
+                    </td>
+      </tr>
+      <tr class="body">
+        <td colspan="" rowspan="">
+                       uuid
+                    </td>
+        <td colspan="" rowspan="">
+                        A universal unique identification number
+                    </td>
+        <td colspan="" rowspan="">
+                        Yes
+                    </td>
+      </tr>
+      <tr class="body">
+        <td colspan="" rowspan="">
+                        packetID
+                    </td>
+        <td colspan="" rowspan="">
+                        a unique number created by the client to identify the cdo request, referenced by the framework
+                        in responses to a client (errors, responses to events). The packetID of the receipt MUST match the original data-synch message from the sender.
+                    </td>
+        <td colspan="" rowspan="">
+                        Yes
+                    </td>
+      </tr>
+      <tr class="body">
+        <td colspan="" rowspan="">
+                        type
+                    </td>
+        <td colspan="" rowspan="">
+                        the uuid of the CDO definition (CDO-DL)
+                    </td>
+        <td colspan="" rowspan="">
+                        mandatory on create event and info event, otherwise forbidden
+                    </td>
+      </tr>
+      <tr class="body">
+        <td colspan="" rowspan="">
+                        event
+                    </td>
+        <td colspan="" rowspan="">
+                        cdo event type: create, update, retire, info
+                    </td>
+        <td colspan="" rowspan="">
+                        Yes
+                    </td>
+      </tr>
+    </table>
+    <p class="caption"><a name="table-2" id="table-2"></a>Table 2: Attributes in the &lt;item&gt; element:</p><table border="1" cellpadding="3" cellspacing="0">
+      <tr class="body">
+        <td colspan="" rowspan="">
+          <p class="" style="">
+            <span class="strong">Attribute</span>
+          </p>
+        </td>
+        <td colspan="" rowspan="">
+          <p class="" style="">
+            <span class="strong">Description</span>
+          </p>
+        </td>
+        <td colspan="" rowspan="">
+          <p class="" style="">
+            <span class="strong">Mandatory?</span>
+          </p>
+        </td>
+      </tr>
+      <tr class="body">
+        <td colspan="" rowspan="">
+          <p class="" style="">uuid</p>
+        </td>
+        <td colspan="" rowspan="">
+          <p class="" style="">assigned ID of the field instance at creation time</p>
+        </td>
+        <td colspan="" rowspan="">
+          <p class="" style="">Yes</p>
+        </td>
+      </tr>
+      <tr class="body">
+        <td colspan="" rowspan="">
+          <p class="" style="">type</p>
+        </td>
+        <td colspan="" rowspan="">
+          <p class="" style="">distinguishes the type of field (allowed children may vary)</p>
+        </td>
+        <td colspan="" rowspan="">
+          <p class="" style="">No</p>
+        </td>
+      </tr>
+      <tr class="body">
+        <td colspan="" rowspan="">
+          <p class="" style="">ref</p>
+        </td>
+        <td colspan="" rowspan="">
+          <p class="" style="">xpath reference to the element</p>
+        </td>
+        <td colspan="" rowspan="">
+          <p class="" style="">mandatory on create event and info event, otherwise forbidden</p>
+        </td>
+      </tr>
+      <tr class="body">
+        <td colspan="" rowspan="">
+          <p class="" style="">event</p>
+        </td>
+        <td colspan="" rowspan="">
+          <p class="" style="">identified action on the item: create, update, delete, and info with update as default</p>
+        </td>
+        <td colspan="" rowspan="">
+          <p class="" style="">Yes</p>
+        </td>
+      </tr>
+      <tr class="body">
+        <td colspan="" rowspan="">
+          <p class="" style="">version</p>
+        </td>
+        <td colspan="" rowspan="">
+          <p class="" style="">integer version number of item being changed</p>
+        </td>
+        <td colspan="" rowspan="">
+          <p class="" style="">Yes</p>
+        </td>
+      </tr>
+      <tr class="body">
+        <td colspan="" rowspan="">
+          <p class="" style="">updateStyle</p>
+        </td>
+        <td colspan="" rowspan="">
+          <p class="" style="">indicates inclusive or exclusive update style with exclusive as the default</p>
+        </td>
+        <td colspan="" rowspan="">
+          <p class="" style="">No</p>
+        </td>
+      </tr>
+    </table>
+    <p class="" style="">Each &lt;item&gt; <span class="strong">may</span>  contain:
+        </p>
+    <ul class="" style="">
+      <li class="" style="">
+        <p class="" style=""> 0 or 1 (0..1)
+                    <span class="strong">&lt;value&gt;</span> elements with content corresponding to the change to the identified CDO instance element  contents
+                </p>
+      </li>
+    </ul>
+    <p class="caption"><a name="example-2" id="example-2"></a>Example 2. Value elements</p><div class="indent"><pre>
+&lt;item type="field" uuid="" event="create" ref="/Meeting/Title" version="0"&gt;
+  &lt;value&gt;This is a new meeting&lt;/value&gt;
+&lt;/item&gt;</pre></div>
+    <ul class="" style="">
+      <li class="" style="">
+        <p class="" style=""> 0 or unbounded (0..*)
+                    <span class="strong">&lt;attribute&gt;</span> elements. 
+                    The name attribute corresponds to the name of the attribute in the CDO-DL. Note: All attributes are sent as part of an item, even those not changed when
+                    using the updateStyle exclusive.
+                </p>
+      </li>
+    </ul>
+    <p class="caption"><a name="example-3" id="example-3"></a>Example 3. Attribute elements</p><div class="indent"><pre>
+&lt;item type="field" uuid="" event="create" ref="/Meeting/Time/Start" version="0"&gt;
+  &lt;attribute name="date"&gt;28 May 2006&lt;/attribute&gt;
+&lt;/item&gt;</pre></div>
+  <h2>6.
+       <a name="usecases" id="usecases">Use Cases</a></h2>
+    <div class="indent"><h3>6.1 <a name="queryforcdosupport" id="queryforcdosupport">Query a client to determine if it supports a CDO message</a></h3>
+      <p class="" style="">
+     Client A should send an IQ packet to another client (client B) before exchanging CDO messages to determine
+     if client B supports CDO processing. This is accomplished using Service Discovery as described in .
+    </p>
+      <p class="" style="">
+    NOTE: This assumes we register our information in the Jabber registrar. Here is an example of the exchange
+    between two clients: See Service Discovery for specific packet requirements
+    </p>
+      <p class="caption"><a name="example-4" id="example-4"></a>Example 4. Client A construct an IQ packet and sends it to Client B</p><div class="indent"><pre>
+&lt;iq type='get'from='joe@mitre.org/Desktop' to='bob.mitre.org/Laptop'&gt;
+   &lt;query xmlns='http://jabber.org/protocol/disco#info'/&gt;
+&lt;/iq&gt;</pre></div>
+      <p class="caption"><a name="example-5" id="example-5"></a>Example 5. Client B receives the packet and responds with the following</p><div class="indent"><pre>
+&lt;iq type='result'
+    from='bob.mitre.org/Laptop'
+    to='joe@mitre.org/Desktop'&gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#info'&gt;
+    &lt;identity
+        category='cdo'
+        type='text'
+        name='Collborative Data Objects'/&gt;
+    &lt;feature var='http://www.xmpp.org/extensions/xep-0204.html#ns'/&gt;
+    &lt;feature var='jabber:iq:register'/&gt;
+    &lt;feature var='jabber:iq:search'/&gt;
+    &lt;feature var='jabber:iq:time'/&gt;
+    &lt;feature var='jabber:iq:version'/&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+</pre></div>
+      <p class="caption"><a name="example-6" id="example-6"></a>Example 6. When client A receives the response above, it will look for the value of the var attribute in feature</p><div class="indent"><pre>
+&lt;feature var='http://www.xmpp.org/extensions/xep-0204.html#ns'/&gt;
+</pre></div>
+      <p class="caption"><a name="example-7" id="example-7"></a>Example 7. If client A finds the value</p><div class="indent"><pre>
+http://www.xmpp.org/extensions/xep-0204.html#ns
+</pre></div>
+      <p class="" style="">
+    it can assume the Client B supports the CDO protocol.
+    </p>
+    </div>
+    <div class="indent"><h3>6.2 <a name="queryfortypes" id="queryfortypes">Query the Server to determine available CDO types</a></h3>
+      <p class="" style="">
+     A CDO client can determine what types of CDOs are available by querying the server
+   </p>
+      <p class="caption"><a name="example-8" id="example-8"></a>Example 8. Client A constructs an IQ get and sends it to Server X</p><div class="indent"><pre>
+&lt;iq type='get' from='joe@mitre.org/Desktop' id='cdo_list_1&gt;
+  &lt;query xmlns='http://www.xmpp.org/extensions/xep-0204.html#ns-types'/&gt;
+&lt;/iq&gt;
+</pre></div>
+      <p class="caption"><a name="example-9" id="example-9"></a>Example 9. Server X responds with an IQ result listing the available CDO types</p><div class="indent"><pre>
+&lt;iq type='result' to= id='joe@mitre.org/Desktop' cdo_list_1&gt;
+    &lt;query xmlns='http://www.xmpp.org/extensions/xep-0204.html#ns-types'&gt;
+      &lt;item id='1023'&gt;
+         &lt;name&gt;Meeting CDO&lt;/name&gt;
+         &lt;description&gt;Describes a meeting&lt;/description&gt;
+      &lt;/item&gt;
+      &lt;item id='2001'&gt;
+         &lt;name&gt;Trouble ticket&lt;/name&gt;
+         &lt;description&gt;Describes a Trouble shooting ticket&lt;/description&gt;
+      &lt;/item&gt;
+   &lt;/query&gt;
+&lt;/iq&gt;
+</pre></div>
+      <p class="caption"><a name="example-10" id="example-10"></a>Example 10. Client A selects the CDO type it would like to download by the item id</p><div class="indent"><pre>
+&lt;iq type='get' from='joe@mitre.org/Desktop' id='cdo_list_2&gt;
+  &lt;query xmlns='http://www.xmpp.org/extensions/xep-0204.html#ns-types'&gt;
+    &lt;item id = '1023'/&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+</pre></div>
+      <p class="caption"><a name="example-11" id="example-11"></a>Example 11. Server X responds with the selected CDO type. Returning the CDO description language needed by the client</p><div class="indent"><pre>
+&lt;iq type='result' to='joe@mitre.org/Desktop' id='cdo_list_2'&gt;
+   &lt;query xmlns='http://www.xmpp.org/extensions/xep-0204.html#ns-types'&gt;
+     &lt;cdo-dl&gt;
+       ...Actual CDO-DL definition
+     &lt;/cdo-dl&gt;
+   &lt;/query&gt;
+&lt;/iq&gt;
+</pre></div>
+    </div>
+    <div class="indent"><h3>6.3 <a name="cdostate" id="cdostate">Query the Server to determine the state of a specific CDO</a></h3>
+      <p class="" style="">
+A CDO client can query the server to determine the specific state of a particular CDO:
+</p>
+      <p class="caption"><a name="example-12" id="example-12"></a>Example 12. Client A constructs an IQ get and sends it to Server X wishing to obtain the current state of an existing CDO</p><div class="indent"><pre>
+&lt;iq type='get' from='joe@mitre.org/Desktop' id='cdo_state_1&gt;
+     &lt;query xmlns='http://www.xmpp.org/extensions/xep-0204.html#ns-state'/&gt;
+        &lt;cdo uuid='ly8qoxl6r0rk42faell48a'/&gt;
+     &lt;/query&gt;
+&lt;/iq&gt;
+</pre></div>
+      <p class="caption"><a name="example-13" id="example-13"></a>Example 13. Server X responds with an IQ result showing the current state of the selected CDO.</p><div class="indent"><pre>
+&lt;iq type='result' to='joe@mitre.org/Desktop' id='cdo_state_1'&gt;
+     &lt;query xmlns='http://www.xmpp.org/extensions/xep-0204.html#ns-state'&gt;
+       &lt;data-sync protocol="1.0"  
+           uuid="ly8qoxl6r0rk42faell48a"  
+           type="cdo:Meeting" 
+           packetID="0001" 
+           event="info" 
+           xmlns="http://www.xmpp.org/extensions/xep-0204.html#ns"&gt;
+           &lt;item type="field" 
+               uuid="kej3n4kd" 
+               event="info" 
+               ref="/Meeting/Attendees" 
+               version="2"&gt;
+             &lt;value&gt;Bob, Jim, Mike, Added Dave&lt;/value&gt;
+           &lt;/item&gt; 
+       &lt;/data-sync&gt;
+     &lt;/query&gt;
+&lt;/iq&gt;
+</pre></div>
+Note an event type of info. This requires all attributes for the data-sync element and items be present
+</div>
+    <div class="indent"><h3>6.4 <a name="cdolist" id="cdolist">Query an endpoint for a list of CDOs</a></h3>
+In some cases a client may be interested in the state of all CDOs belonging to a specific endpoint - for example a chat room.
+<p class="caption"><a name="example-14" id="example-14"></a>Example 14. Client A constructs an IQ get and sends it to Server X wishing to obtain the current state of all CDOs belonging to the CDO users chatroom</p><div class="indent"><pre>
+&lt;iq type='get' from='joe@mitre.org/Desktop' to='cdo_users@mitre.org' id='cdo_state_2&gt;
+    &lt;query xmlns='http://www.xmpp.org/extensions/xep-0204.html#ns-state'&gt;
+      &lt;cdo uuid='*'/&gt;
+    &lt;/query&gt;
+&lt;/iq&gt;
+</pre></div>
+      <p class="caption"><a name="example-15" id="example-15"></a>Example 15. Server X responds with an IQ result listing all current CDOs belonging to the CDO users chatroom</p><div class="indent"><pre>
+&lt;iq type='result' to='joe@mitre.org/Desktop' id='cdo_state_2'&gt;
+     &lt;query xmlns='http://www.xmpp.org/extensions/xep-0204.html#ns-state'&gt;
+       &lt;data-sync protocol="1.0"  
+          uuid="ly8qoxl6r0rk42faell48a"  
+          type="cdo:Meeting" 
+          event="info" 
+          xmlns="http://www.xmpp.org/extensions/xep-0204.html#ns"/&gt;
+       &lt;data-sync protocol="1.0"  
+          uuid="9sdfs454jh5"  
+          type="cdo:Location" 
+          event="info" 
+          xmlns="http://www.xmpp.org/extensions/xep-0204.html#ns"/&gt;
+        ... 
+          
+     &lt;/query&gt;
+&lt;/iq&gt;
+</pre></div>
+Note the value of the uuid for the cdo tag above uses an asterisk (*) to indicate all CDOs
+<p class="" style="">
+If desired, Client A can then query the Server for the details on the state of a specific CDO using the protocol described earlier.
+</p>
+    </div>
+    <div class="indent"><h3>6.5 <a name="cdocreate" id="cdocreate">Create a new CDO</a></h3>
+When two endpoints (client A and client B) wish to create a new CDO. Each client and server MUST follow this algorithm:
+<p class="caption"><a name="example-16" id="example-16"></a>Example 16. Client A creates a new CDO and sends it to client B</p><div class="indent"><pre>
+&lt;message
+    to='joe@mitre.org/Desktop'
+    from='bob@mitre.org/Laptop'
+    type='chat'
+    xml:lang='en'&gt;
+   &lt;data-sync protocol="1.0" 
+              uuid=""  
+              type="cdo:Meeting" 
+              packetID="0001" 
+              event="create" 
+              xmlns="http://www.xmpp.org/extensions/xep-0204.html#ns"&gt;
+              &lt;item type="field" uuid="" event="create" ref="/Meeting/Title" version="0"&gt;
+                &lt;value&gt;Technical Exchange Meeting&lt;/value&gt;
+              &lt;/item&gt;
+   &lt;/data-sync&gt;
+&lt;/message&gt;
+</pre></div>
+Here client A, has created a packetID and set event=create in both &lt;data-sync&gt; and &lt;item&gt;. The version MUST be set to zero
+<p class="" style="">
+Next, the message is intercepted by Server X. Server X is the IM server that both clients are connected to. When the server receives 
+the message, it MUST increment the version number and assign a uuid for both the &lt;data-sync&gt; and &lt;item&gt;. Once processed
+Server X MUST send a copy of the message back to client A as a receipt that the message has been processed by Server X and forward the message to client B
+</p>
+      <p class="caption"><a name="example-17" id="example-17"></a>Example 17. Send receipt from Server X to client A</p><div class="indent"><pre>
+&lt;message
+    to='joe@mitre.org/Desktop'
+    from='joe@mitre.org/Desktop'
+    type='chat'
+    xml:lang='en'&gt;
+   &lt;data-sync protocol="1.0" 
+              uuid="ly8qoxl6r0rk42faell48a"  
+              type="cdo:Meeting" 
+              packetID="0001" 
+              event="create" 
+              xmlns="http://www.xmpp.org/extensions/xep-0204.html#ns"&gt;
+   &lt;item type="field" 
+         uuid="xdF10939" 
+         event="create" 
+         ref="/Meeting/Title" 
+         version="1"&gt;
+        &lt;value&gt;Technical Exchange Meeting&lt;/value&gt;
+   &lt;/item&gt;
+   &lt;/data-sync&gt;
+&lt;/message&gt;
+</pre></div>
+      <p class="caption"><a name="example-18" id="example-18"></a>Example 18. Forward the processed message from Server X to client B</p><div class="indent"><pre>
+&lt;message
+    to='joe@mitre.org/Desktop'
+    from='bob@mitre.org/Laptop'
+    type='chat'
+    xml:lang='en'&gt;
+   &lt;data-sync protocol="1.0" 
+              uuid="ly8qoxl6r0rk42faell48a"  
+              type="cdo:Meeting" 
+              packetID="0001" 
+              event="create" 
+              xmlns="http://www.xmpp.org/extensions/xep-0204.html#ns"&gt;
+     &lt;item type="field" 
+         uuid="xdF10939" 
+         event="create" 
+         ref="/Meeting/Title" 
+         version="1"&gt;
+        &lt;value&gt;Technical Exchange Meeting&lt;/value&gt;
+     &lt;/item&gt;
+   &lt;/data-sync&gt;
+&lt;/message&gt;
+</pre></div>
+Once this is completed, both clients have a synchronized CDO message with a uuid and a version number assigned by the server.
+</div>
+    <div class="indent"><h3>6.6 <a name="cdoitemcreate" id="cdoitemcreate">Create a new Item on an existing CDO</a></h3>
+When client A wishes to create a new Item on an existing CDO, he sends the following information to client B
+<p class="caption"><a name="example-19" id="example-19"></a>Example 19. Client A creates a new item on an existing CDO and sends it to client B</p><div class="indent"><pre>
+&lt;message
+    to='joe@mitre.org/Desktop'
+    from='bob@mitre.org/Laptop'
+    type='chat'
+    xml:lang='en'&gt;
+   &lt;data-sync protocol="1.0" 
+              uuid="ly8qoxl6r0rk42faell48a"  
+              type="cdo:Meeting" 
+              packetID="0002" 
+              event="update" 
+              xmlns="http://www.xmpp.org/extensions/xep-0204.html#ns"&gt;
+           &lt;item type="field" uuid="" event="create" ref="/Meeting/Title" version="0"&gt;
+          &lt;value&gt;Meeting&lt;/value&gt;
+     &lt;/item&gt;
+   &lt;/data-sync&gt;
+&lt;/message&gt;
+</pre></div>
+      <p class="" style="">
+Here client A, has set event=update on the &lt;data-sync&gt; and event=create on the new &lt;item&gt;. The version MUST be set to zero on the new item.
+The message is intercepted by Server X. Server X is the IM server that both clients are connected to. When the server receives the message, it MUST increment 
+the version number and assign a uuid for the new &lt;item&gt;
+</p>
+      <p class="" style="">
+Next, Server X MUST send a copy of the message back to client A as a receipt that the message has been processed by Server X and forward the message to client B
+</p>
+      <p class="caption"><a name="example-20" id="example-20"></a>Example 20. Send receipt from Server X to client A</p><div class="indent"><pre>
+&lt;message
+    to='joe@mitre.org/Desktop'
+    from='joe@mitre.org/Desktop'
+    type='chat'
+    xml:lang='en'&gt;
+   &lt;data-sync protocol="1.0" 
+              uuid="ly8qoxl6r0rk42faell48a"  
+              type="cdo:Meeting" 
+              packetID="0002" 
+              event="update" 
+              xmlns="http://www.xmpp.org/extensions/xep-0204.html#ns"&gt;
+        &lt;item type="field" uuid="kej3n4kd" event="create" ref="/Meeting/Title/" version="1"&gt;
+          &lt;value&gt;Meeting&lt;/value&gt;
+        &lt;/item&gt;
+    &lt;/data-sync&gt;
+&lt;/message&gt;
+</pre></div>
+      <p class="caption"><a name="example-21" id="example-21"></a>Example 21. Forward the message from Server X to client B</p><div class="indent"><pre>
+&lt;message
+    to='joe@mitre.org/Desktop'
+    from='bob@mitre.org/Laptop'
+    type='chat'
+    xml:lang='en'&gt;
+   &lt;data-sync protocol="1.0" 
+              uuid="ly8qoxl6r0rk42faell48a"  
+              type="cdo:Meeting" 
+              packetID="0002" 
+              event="update" 
+              xmlns="http://www.xmpp.org/extensions/xep-0204.html#ns"&gt;
+      &lt;item type="field" uuid="kej3n4kd" event="create" ref="/Meeting/Title/" version="1"&gt;
+          &lt;value&gt;Meeting&lt;/value&gt;
+        &lt;/item&gt;
+   &lt;/data-sync&gt;
+&lt;/message&gt;
+</pre></div>
+Once this is completed, both clients have a synchronized CDO message with a new item. The new item has been assigned a uuid and a version number by the server.
+</div>
+    <div class="indent"><h3>6.7 <a name="cdoitemupdate" id="cdoitemupdate">Update an Item on an existing CDO</a></h3>
+When client A wishes to update an item on an existing CDO, he sends the following information to client B
+<p class="caption"><a name="example-22" id="example-22"></a>Example 22. Client A updates an item on an existing CDO and sends it to client B</p><div class="indent"><pre>
+&lt;message
+    to='joe@mitre.org/Desktop'
+    from='bob@mitre.org/Laptop'
+    type='chat'
+    xml:lang='en'&gt;
+   &lt;data-sync protocol="1.0" 
+              uuid="ly8qoxl6r0rk42faell48a"  
+              type="cdo:Meeting" 
+              packetID="0003" 
+              event="update" 
+              xmlns="http://www.xmpp.org/extensions/xep-0204.html#ns"&gt;
+     &lt;item type="field" 
+           uuid="kej3n4kd" 
+           event="update" 
+           version="1"&gt;
+          &lt;value&gt;2006-07-24T14:55:00&lt;/value&gt;
+     &lt;/item&gt;
+   &lt;/data-sync&gt;
+&lt;/message&gt;
+</pre></div>
+      <p class="" style="">
+Here client A, has set event=update on the &lt;data-sync&gt; and event=update on the changed &lt;item&gt;. Note the version is set to the current 
+version being edited, in this case 1, and both the &lt;item&gt; and &lt;data-sync&gt; have an existing uuid.
+</p>
+      <p class="" style="">
+The message is intercepted by Server X. Server X is the IM server that both clients are connected to. When the server receives the message, it 
+MUST increment the version number and assign a uuid for the new &lt;item&gt;
+</p>
+      <p class="" style="">
+Next, Server X MUST send a copy of the message back to client A as a receipt that the message has been processed by Server X and forward the message to client B
+</p>
+      <p class="caption"><a name="example-23" id="example-23"></a>Example 23. Send receipt from Server X to client A</p><div class="indent"><pre>
+&lt;message
+    to='joe@mitre.org/Desktop'
+    from='joe@mitre.org/Desktop'
+    type='chat'
+    xml:lang='en'&gt;
+   &lt;data-sync protocol="1.0" 
+              uuid="ly8qoxl6r0rk42faell48a"  
+              type="cdo:Meeting" 
+              packetID="0003" 
+              event="update" 
+              xmlns="http://www.xmpp.org/extensions/xep-0204.html#ns"&gt;
+     &lt;item type="field" 
+           uuid="kej3n4kd" 
+           event="update" 
+           version="2"&gt;
+          &lt;value&gt;2006-07-24T14:55:00&lt;/value&gt;
+     &lt;/item&gt; 
+   &lt;/data-sync&gt;
+&lt;/message&gt;
+</pre></div>
+      <p class="caption"><a name="example-24" id="example-24"></a>Example 24. Forward the message from Server X to client B</p><div class="indent"><pre>
+&lt;message
+    to='joe@mitre.org/Desktop'
+    from='bob@mitre.org/Laptop'
+    type='chat'
+    xml:lang='en'&gt;
+   &lt;data-sync protocol="1.0" 
+              uuid="ly8qoxl6r0rk42faell48a"  
+              type="cdo:Meeting" 
+              packetID="0003" 
+              event="update" 
+              xmlns="http://www.xmpp.org/extensions/xep-0204.html#ns"&gt;
+     &lt;item type="field" 
+           uuid="kej3n4kd" 
+           event="update" 
+           version="2"&gt;
+          &lt;value&gt;2006-07-24T14:55:00&lt;/value&gt;
+     &lt;/item&gt; 
+   &lt;/data-sync&gt;
+&lt;/message&gt;
+</pre></div>
+Once this is completed, both clients have a synchronized CDO message with an updated item. The updated item has the version number incremented.
+  <div class="indent"><h3>6.7.1 <a name="sect-id2262754" id="sect-id2262754">Update Styles</a></h3>
+        <p class="" style="">
+       There are two types of behaviors associated with an item update: inclusive and exclusive. For an inclusive update, the content of the item element 
+       in the CDO data synchronization packet is considered to be fully representative of the value that item will have at the end of the update operation. 
+       This behavior results in previously set values for an item being destroyed if they are not repeated for each item update. For an exclusive update, the 
+       content of the item element in the CDO data synchronization packet is considered to contain only the values to be modified as a result of the update 
+       operation. This behavior results in previously set values for an item being carried over if they are not explicitly contradicted in each subsequent item update.
+     </p>
+        <p class="" style="">
+     Assume that client A has created a CDO cdo_1. This CDO has an item item_1 with the attribute named attr_1 set. If A wants to update item_1 with a value 
+     for the attribute named attr_2 without destroying the previously set value for attr_1, the following data synchronization packets are equivalent:
+     </p>
+        <pre>
+&lt;data-sync protocol="1.0" uuid="cdo_1"  packetID="0003" 
+           event="update" xmlns="http://www.xmpp.org/extensions/xep-0204.html#ns"&gt;
+  &lt;item type="field" 
+           uuid="item_1" 
+           event="update" 
+           version="1" 
+           updateStyle="inclusive"&gt;
+    &lt;attribute name="attr_1"&gt;old value&lt;/attribute&gt;
+    &lt;attribute name="attr_2"&gt;new value&lt;/attribute&gt;
+  &lt;/item&gt;
+&lt;/data-sync&gt;
+     </pre>
+        <pre>
+&lt;data-sync protocol="1.0" uuid="cdo_1"  packetID="0003" 
+           event="update" xmlns="http://www.xmpp.org/extensions/xep-0204.html#ns"&gt;
+  &lt;item type="field" 
+           uuid="item_1" 
+           event="update" 
+           version="1" 
+           updateStyle="exclusive"&gt;
+       &lt;attribute name="attr_2"&gt;new value&lt;/attribute&gt;
+  &lt;/item&gt; 
+&lt;/data-sync&gt;
+     </pre>
+      </div>
+    </div>
+    <div class="indent"><h3>6.8 <a name="cdoitemdelete" id="cdoitemdelete">Delete an Item on an existing CDO</a></h3>
+When client A wishes to delete an item on an existing CDO, he sends the following information to client B
+<p class="caption"><a name="example-25" id="example-25"></a>Example 25. Client A deletes an item on an existing CDO and sends it to client B</p><div class="indent"><pre>
+&lt;message
+    to='joe@mitre.org/Desktop'
+    from='bob@mitre.org/Laptop'
+    type='chat'
+    xml:lang='en'&gt;
+   &lt;data-sync protocol="1.0" 
+              uuid="ly8qoxl6r0rk42faell48a"  
+              type="cdo:Meeting" 
+              packetID="0004" 
+              event="update" 
+              xmlns="http://www.xmpp.org/extensions/xep-0204.html#ns"&gt;
+     &lt;item type="field" 
+           uuid="kej3n4kd" 
+           event="delete" 
+           version="2"&gt;
+     &lt;/item&gt;
+   &lt;/data-sync&gt;
+&lt;/message&gt;
+</pre></div>
+      <p class="" style="">
+Here client A, has set event=update on the &lt;data-sync&gt; and event=delete on the changed &lt;item&gt;. Note the version is set to the current 
+version being deleted, in this case 2, and both the &lt;item&gt; and &lt;data-sync&gt; have an existing uuid.
+</p>
+      <p class="" style="">
+The message is intercepted by Server X. Server X is the IM server that both clients are connected to. Server X MUST send a copy of the message 
+back to client A as a receipt that the message has been processed by Server X and forward the message to client B
+</p>
+      <p class="caption"><a name="example-26" id="example-26"></a>Example 26. Send receipt from Server X to client A</p><div class="indent"><pre>
+&lt;message
+    to='joe@mitre.org/Desktop'
+    from='joe@mitre.org/Desktop'
+    type='chat'
+    xml:lang='en'&gt;
+   &lt;data-sync protocol="1.0" 
+              uuid="ly8qoxl6r0rk42faell48a"  
+              type="cdo:Meeting" 
+              packetID="0004" 
+              event="update" 
+              xmlns="http://www.xmpp.org/extensions/xep-0204.html#ns"&gt;
+     &lt;item type="field" 
+           uuid="kej3n4kd" 
+           event="delete" 
+           version="2"&gt;          
+     &lt;/item&gt; 
+   &lt;/data-sync&gt;
+&lt;/message&gt;
+</pre></div>
+      <p class="caption"><a name="example-27" id="example-27"></a>Example 27. Forward the message from Server X to client B</p><div class="indent"><pre>
+&lt;message
+    to='joe@mitre.org/Desktop'
+    from='bob@mitre.org/Laptop'
+    type='chat'
+    xml:lang='en'&gt;
+   &lt;data-sync protocol="1.0" 
+              uuid="ly8qoxl6r0rk42faell48a"  
+              type="cdo:Meeting" 
+              packetID="0004" 
+              event="update" 
+              xmlns="http://www.xmpp.org/extensions/xep-0204.html#ns"&gt;
+     &lt;item type="field" 
+           uuid="kej3n4kd" 
+           event="delete" 
+           version="2"&gt;
+     &lt;/item&gt; 
+   &lt;/data-sync&gt;
+&lt;/message&gt;
+</pre></div>
+Once this is completed, both clients have a synchronized CDO message with a deleted item.
+</div>
+    <div class="indent"><h3>6.9 <a name="cdoretire" id="cdoretire">Retire an existing CDO</a></h3>
+      <p class="" style="">
+Retired objects are different than deleted items in that retired objects can still be referenced and reviewed but no changes can be made.
+</p>
+      <p class="" style="">
+When client A wishes to retire an entire existing CDO, he sends the following information to client B
+</p>
+      <p class="caption"><a name="example-28" id="example-28"></a>Example 28. Client A deletes an existing CDO and sends it to client B</p><div class="indent"><pre>
+&lt;message
+    to='joe@mitre.org/Desktop'
+    from='bob@mitre.org/Laptop'
+    type='chat'
+    xml:lang='en'&gt;
+   &lt;data-sync protocol="1.0" 
+              uuid="ly8qoxl6r0rk42faell48a"  
+              type="cdo:Meeting" 
+              packetID="0005" 
+              event="retire" 
+              xmlns="http://www.xmpp.org/extensions/xep-0204.html#ns"&gt;
+   &lt;/data-sync&gt;
+&lt;/message&gt;
+</pre></div>
+      <p class="" style="">
+Here client A, has set event=retire on the &lt;data-sync&gt;.
+</p>
+      <p class="" style="">
+The message is intercepted by Server X. Server X is the IM server that both clients are connected to. Server X MUST send a copy of the 
+message back to client A as a receipt that the message has been processed by Server X and forward the message to client B:
+</p>
+      <p class="caption"><a name="example-29" id="example-29"></a>Example 29. Send receipt from Server X to client A</p><div class="indent"><pre>
+&lt;message
+    to='joe@mitre.org/Descktop'
+    from='joe@mitre.org/Descktop'
+    type='chat'
+    xml:lang='en'&gt;
+   &lt;data-sync protocol="1.0" 
+              uuid="ly8qoxl6r0rk42faell48a"  
+              type="cdo:Meeting" 
+              packetID="0005" 
+              event="retire" 
+              xmlns="http://www.xmpp.org/extensions/xep-0204.html#ns"&gt;
+   &lt;/data-sync&gt;
+&lt;/message&gt;
+</pre></div>
+      <p class="caption"><a name="example-30" id="example-30"></a>Example 30. Forward the message from Server X to client B</p><div class="indent"><pre>
+&lt;message
+    to='joe@mitre.org/Desktop'
+    from='bob@mitre.org/Laptop'
+    type='chat'
+    xml:lang='en'&gt;
+   &lt;data-sync protocol="1.0" 
+              uuid="ly8qoxl6r0rk42faell48a"  
+              type="cdo:Meeting" 
+              packetID="0005" 
+              event="retire" 
+              xmlns="http://www.xmpp.org/extensions/xep-0204.html#ns"&gt;
+   &lt;/data-sync&gt;
+&lt;/message&gt;
+</pre></div>
+Once this is completed, both clients have retired (deleted) the CDO.
+</div>
+  <h2>7.
+       <a name="errors" id="errors">Errors</a></h2>
+    <p class="" style="">
+The error reporting mechanism for this specification follows the recommendations as set forth in the XMPP Core RFC. As such, when an error condition is detected, 
+a stanza-related error must be generated and returned to sending entity. The error condition should be described using an XMPP general condition and CDO specific 
+condition. Further amplification to the error condition should be provided by including the applicable subset of the data-sync message which caused the error.
+</p>
+    <p class="" style="">
+Error types other than continue (cancel, modify, wait) disrupt the normal processing of CDO data-synch messages and only the associate error message 
+will be issued by a supporting server.
+</p>
+    <p class="" style="">
+Addition of only the applicable subset of the data-sync message in an error stanza is meant to assist the sending entity in isolating what directive in the message caused the error. 
+Most CDO specific conditions include sufficient metadata to enable the sender to isolate the cause, but it is possible for the sender to generate messages in which this metadata is 
+not present. In this case, it may not be possible for the sender to determine the message subset causing the error unless that subset is included in the error.
+</p>
+    <p class="caption"><a name="example-31" id="example-31"></a>Example 31. Assume the following message is sent:</p><div class="indent"><pre>
+&lt;message from="miles@example.com" to="aral@example.com"&gt;
+        &lt;cdo:data-sync 
+                protocol="1.0" 
+                packetID="miles@example.com:packet-1" 
+                event="update" 
+                uuid="miles@example.com:instance-1"&gt;
+                &lt;item type="field" event="create" ref="/Meeting/Title"&gt;
+                    &lt;value&gt;Winterfair preparation&lt;/value&gt;
+                &lt;/item&gt;
+                &lt;item type="field" event="update" 
+                      uuid="miles@example.com:field-1" version="2"&gt;
+                    &lt;value&gt;Imperial waltz&lt;/value&gt;
+                &lt;/item&gt;
+        &lt;/cdo:data-sync&gt;
+&lt;/message&gt;
+</pre></div>
+    <p class="" style="">
+The first potential cause for an error in a data syonchronization packet is the root data-sync element. An error at this level is indepedent of the content of any element descendents of the data-sync element.  When this occurs, a server error sent to the recipient <span class="strong">MUST</span> include the data-sync element to provide context; a bandwidth-constrainted connection <span class="strong">MAY</span> omit the element descendants.
+</p>
+    <p class="caption"><a name="example-32" id="example-32"></a>Example 32. </p><div class="indent"><pre>
+&lt;message to="aral@example.com" type="error"&gt;
+        &lt;cdo:data-sync 
+          protocol="1.0" 
+          packetID="miles@example.com:packet-1" 
+          event="update" 
+          uuid="miles@example.com:instance-1"/&gt;
+        &lt;error type="cancel"&gt;
+           &lt;item-not-found/&gt;
+           &lt;cdo:no-such-instance/&gt;
+        &lt;/error&gt;
+&lt;/message&gt;
+</pre></div>
+    <p class="" style="">
+ The second potential cause for an error is a child item element. For an item of event type create, the sender is not required to nominate a UUID for the item. If multiple items are used 
+ in this fashion, it is not possible for the item related to the error to be identified by reference. The only way to indicate to the sender the item related to the error is by isolating that 
+ item in the error stanza. As a result, the subset for this case is the data-sync element with all child item elements removed except the item related to the error.
+</p>
+    <p class="caption"><a name="example-33" id="example-33"></a>Example 33. </p><div class="indent"><pre>
+&lt;message to="aral@example.com" type="error"&gt;
+        &lt;cdo:data-sync 
+            protocol="1.0" 
+            packetID="miles@example.com:packet-1" 
+            event="update" 
+            uuid="miles@example.com:instance-1"&gt;
+            &lt;item type="field" event="update" 
+                  uuid="miles@example.com:field-1" version="2"&gt;
+              &lt;value&gt;Imperial waltz&lt;/value&gt;
+            &lt;/item&gt;
+        &lt;/cdo:data-sync&gt;
+        &lt;error type="cancel"&gt;
+          &lt;item-not-found/&gt;
+          &lt;cdo:no-such-item/&gt;
+        &lt;/error&gt;
+&lt;/message&gt;
+</pre></div>
+    <div class="indent"><h3>7.1 <a name="cdoerrorconditions" id="cdoerrorconditions">CDO specific conditions</a></h3>
+      <p class="caption"><a name="table-3" id="table-3"></a>Table 3: Specific Conditions</p><table border="1" cellpadding="3" cellspacing="0">
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <span class="strong">Error Type</span>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <span class="strong">General Condition</span>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <span class="strong">Specific Condition</span>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <span class="strong">Description</span>
+            </p>
+          </td>
+        </tr>
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">cancel</p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;xmpp:feature-not-implemented/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;cdo:unkown-protocol-version/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">The protocol version for the data sync packet is unknown to the framework and cannot be processed.</p>
+          </td>
+        </tr>
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">continue</p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;xmpp:undefined-condition/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;cdo:deprecated-protocol-version framework-protocol-version="P"/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">The protocol version for the data sync packet is older than that used by the framework, but the packet can still be processed.</p>
+          </td>
+        </tr>
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">cancel</p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;xmpp:feature-not-implemented/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;cdo:deprecated-protocol-version framework-protocol-version="P"/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">The protocol version for the data sync packet is older than that used by the framework, and the framework cannot process the packet.</p>
+          </td>
+        </tr>
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">continue</p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;xmpp:undefined-condition/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;cdo:instance-identifier- conflict new-identifier="I"/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">The framework cannot create a new instance with the specified identifier because one already exists with that identifier.  As a result, the framework has created a new identifier for the instance to be created.</p>
+          </td>
+        </tr>
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">cancel</p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;xmpp:item-not-found/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;cdo:no-such-instance/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">The framework has no record of an instance with the specified identifier.</p>
+          </td>
+        </tr>
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">cancel</p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;xmpp:not-allowed/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;cdo:instance-retired/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">The event cannot be executed on the instance because that instance has been retired.</p>
+          </td>
+        </tr>
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">wait</p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;xmpp:undefined-condition/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;cdo:instance-is-active/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">The retire event cannot be executed on the instance because the instance is actively being updated.</p>
+          </td>
+        </tr>
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">cancel</p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;xmpp:item-not-found/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;cdo:no-such-type/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">The framework has no record of a type with the specified identifier.</p>
+          </td>
+        </tr>
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">continue</p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;xmpp:undefined-condition/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;cdo:deprecated-type latest-type="type-identifier"/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">The framework will create a new instance with the specified type, but one or more types have been registered as superseding this type.</p>
+          </td>
+        </tr>
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">continue</p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;xmpp:undefined-condition/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;cdo:item-identifier- conflict old-identifier="I0" new-identifier="I1"/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">The framework cannot create a new item with the specified identifier because one already exists with that identifier.  As a result, the framework has created a new identifier for the item to be created.</p>
+          </td>
+        </tr>
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">cancel</p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;xmpp:item-not-found/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;cdo:no-such-item identifier="I"/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">The framework has no record of an item with the specified identifier for the specified instance.</p>
+          </td>
+        </tr>
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">cancel</p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;xmpp:conflict/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;cdo:item-version-outdated identifier=I" version=V"/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">The request cannot be executed on the item because the referenced version is outdated.  The framework MAY indicate the current version in the reply.</p>
+          </td>
+        </tr>
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">modify</p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;xmpp:bad-request/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;cdo:no-such-item-version identifier="I" version="V"/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">The framework has no record of the specified version for the specified item.  The framework MAY return the current version in the reply.</p>
+          </td>
+        </tr>
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">cancel</p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;xmpp:item-not-found/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;cdo:no-such-item-xpath identifier="I"/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">The xpath in the specified identifier is not valid.</p>
+          </td>
+        </tr>
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">modify</p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;xmpp:not-acceptable/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;cdo:item-xpath-not-acceptable identifier="I"/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">The xpath in the specified identifier does not resolve to a leaf element.</p>
+          </td>
+        </tr>
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">modify</p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;xmpp:not-acceptable/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;cdo:item-modification-insufficient identifier="I"/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">The modification proposed on the item does not actually constitute a modification.</p>
+          </td>
+        </tr>
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">modify</p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;xmpp:bad-request/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;cdo:invalid-item-value identifier="I"/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">The value proposed for the specified item is invalid.</p>
+          </td>
+        </tr>
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">cancel</p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;xmpp:item-not-found/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;cdo:no-such-item-attribute identifier="I" attribute-name="N"/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">The item attribute in the specified identifier is invalid.</p>
+          </td>
+        </tr>
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">modify</p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;xmpp:bad-request/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;cdo:invalid-item-value identifier="I" attribute-name="N"/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">The value proposed for the specified item's attribute is invalid.</p>
+          </td>
+        </tr>
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">modify</p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;xmpp:bad-request/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <tt>&lt;cdo:invalid-constraint type="T" identifier="I"/&gt;</tt>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">The data-sync packet is not logically valid as described by the type T (see section X.3).  The framework MAY include the identifier of the offending data-sync packet or item.</p>
+          </td>
+        </tr>
+      </table>
+      <p class="" style="">Errors which may result from schema validation have been omitted.</p>
+    </div>
+    <div class="indent"><h3>7.2 <a name="invalidconstraints" id="invalidconstraints">Invalid Constraint condition types</a></h3>
+      <p class="" style="">
+   The CDO specific condition "invalid-constraint" enables the server to indicate logical invalidity of a data-sync packet. The use of a single condition for this purpose provides a consistent 
+   reporting mechanism to the sender, but the invalidity must be described with the "type" attribute as follows:
+  </p>
+      <p class="caption"><a name="table-4" id="table-4"></a>Table 4: Invalid Constraint types</p><table border="1" cellpadding="3" cellspacing="0">
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <span class="strong">Type</span>
+            </p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">
+              <span class="strong">Description</span>
+            </p>
+          </td>
+        </tr>
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">instance-identifier-required</p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">Data-sync packets of event type "update" and "retire" MUST specify the target instance.</p>
+          </td>
+        </tr>
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">instance-type-prohibited</p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">Data-sync packets of event type "update" and "retire" MUST NOT specify an instance type.</p>
+          </td>
+        </tr>
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">instance-type-required</p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">Data-sync packets of event type "create" MUST specify an instance type.</p>
+          </td>
+        </tr>
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">item-required</p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">Data-sync packets of event type "update" MUST include at least one data-sync item.</p>
+          </td>
+        </tr>
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">items-prohibited</p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">Data-sync packets of event type "retire" MUST NOT include any data-sync items.</p>
+          </td>
+        </tr>
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">item-event-prohibited</p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">Data-sync packets of event type "create" MUST ONLY include data-sync items of event type "create."</p>
+          </td>
+        </tr>
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">item-identifier-required</p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">Data-sync items of event type "update" and "delete" MUST include the target identifier.</p>
+          </td>
+        </tr>
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">item-update-style-prohibited</p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">Data-sync items of event type "create" and "delete" MUST NOT specify an update style.</p>
+          </td>
+        </tr>
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">item-value-prohibited</p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">Data-sync items of event type "delete" MUST NOT contain a value.</p>
+          </td>
+        </tr>
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">item-value-required</p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">Data-sync items of event type "create" and "update" MUST contain a value.</p>
+          </td>
+        </tr>
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">item-version-prohibited</p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">Data-sync items of event type "create" MUST NOT specify a version.</p>
+          </td>
+        </tr>
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">item-version-required</p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">Data-sync items of event type "update" and "delete" MUST specify a version.</p>
+          </td>
+        </tr>
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">item-xpath-prohibited</p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">Data-sync items of event type "update" and "delete" MUST NOT specify an XPath.</p>
+          </td>
+        </tr>
+        <tr class="body">
+          <td colspan="" rowspan="">
+            <p class="" style="">item-xpath-required</p>
+          </td>
+          <td colspan="" rowspan="">
+            <p class="" style="">Data-sync items of event type "create" MUST specify an XPath.</p>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="indent"><h3>7.3 <a name="specialcases" id="specialcases">Special Case: Outdated version error</a></h3>
+      <p class="" style="">
+It is possible for a notional conflict to exist between two clients attempting to update a CDO instance. In this case, two separate clients submit data sync packets 
+containing at least one overlapping item. When this occurs, the first packet to arrive at the framework is executed, but the error information 
+reported back to the client of the second packet MAY be extended to describe the notional conflict. This additional error information is meant to facilitate 
+collaboration between the clients.
+</p>
+The additional error information provide includes:
+<ul class="" style="">
+        <li class="" style="">The resource identifier of the client originating the data sync packet with which this error conflicts.</li>
+        <li class="" style="">The timestamp of when the originating data sync packet was executed.</li>
+        <li class="" style="">The item element of the originating data sync packet with which this error conflicts.</li>
+      </ul>
+      <p class="caption"><a name="example-34" id="example-34"></a>Example 34. </p><div class="indent"><pre>
+&lt;cdo:item-version-outdated identifier='I' version='V'&gt;
+   &lt;cdo:conflict resource-identifier='R' execution-timestamp='T'&gt;
+     &lt;item identifier='I' version='V1' event='E'&gt;
+       &lt;value&gt;VALUE&lt;/value&gt;
+       &lt;attribute name='N'&gt;VALUE&lt;/attribute&gt;
+    &lt;/cdo:conflict&gt;
+&lt;/cdo:item-version-outdated&gt;
+</pre></div>
+    </div>
+  <h2>8.
+       <a name="impl" id="impl">Implementation Notes</a></h2>
+    <div class="indent"><h3>8.1 <a name="service" id="service">Service</a></h3>
+      <p class="" style="">
+   To properly handle the protocol described in this JEP. A server side service will need to be able to process CDO packets and IQ messages.  
+   This means at a minimum, the service will need to be able to: 
+   </p>
+      <ol start="" class="" style="">
+        <li class="" style="">Filter for data-sync and IQ protocol extentions as described above</li>
+        <li class="" style="">Handle packet extentions that appear as a child element to the message element</li>
+        <li class="" style="">Provide an underlying framework that can manage versioning of data-sync messages. If designed accordingly, it may be possible for this framework to be re-used by clients as well.</li>
+      </ol>
+      <p class="" style="">
+   Additionally, a server MUST ignore any 'to' address on a cdo related IQ "set", and MUST treat any cdo IQ "set" as applying to the sender.  
+   </p>
+    </div>
+    <div class="indent"><h3>8.2 <a name="client" id="client">Client</a></h3>
+      <p class="" style="">For a client to be able to exchange CDO messages it will need to provide capabilites similar to those described above: </p>
+      <ol start="" class="" style="">
+        <li class="" style="">Filter and respond to data-sync and IQ protocol extentions described in this specification</li>
+        <li class="" style="">Properly handle packet extentions that appear as a child elements to the message element</li>
+        <li class="" style="">Provide an underlying framework that can manage the version of data-sync messages. (see 3. above)</li>
+        <li class="" style="">Provide a form based GUI to properly construct the CDO messages.</li>
+        <li class="" style="">Provide the ability to construct data-sync related IQ messages</li>
+      </ol>
+      <p class="" style="">
+  Additionally, a client SHOULD check the "from" address of a cdo query  (incoming IQ of type "result" containing a cdo type) to ensure that it is 
+  from a trusted source; specifically, the stanza MUST either have no 'from' attribute (i.e., implicitly from the server) or have a 'from' attribute whose 
+  value matches the user's bare JID (of the form &lt;user@domain&gt;) or full JID (of the form &lt;user@domain/resource&gt;); otherwise, the client 
+  SHOULD ignore the cdo query result. 
+  </p>
+    </div>
+  <h2>9.
+       <a name="security" id="security">Security Considerations</a></h2>
+    <div class="indent"><h3>9.1 <a name="authentication" id="authentication">User Authentication and Authorization</a></h3>
+      <p class="" style="">
+   No form of authentication or authorization is defined by this specification. However, if required, RFC 3920 describes channel encryption and 
+   strong authentication via TLS and SASL that may fulfill this requirement.
+   </p>
+    </div>
+    <div class="indent"><h3>9.2 <a name="encryption" id="encryption">End-to-End Encryption</a></h3>
+      <p class="" style="">
+   No end-to-end message or session encryption method defined in this specification. Users SHOULD NOT trust a service to exchange secret CDO messages.
+   </p>
+    </div>
+  <h2>10.
+       <a name="iana" id="iana">IANA Considerations</a></h2>
+    <p class="" style="">This JEP requires no interaction with the Internet Assigned Numbers Authority (IANA).</p>
+  <h2>11.
+       <a name="registrar" id="registrar">XMPP Registrar Considerations</a></h2>
+    <div class="indent"><h3>11.1 <a name="ns" id="ns">Protocol Namespace</a></h3>
+      <p class="" style="">Until this specification advances to a status of Draft, its associated namespace shall be "http://www.xmpp.org/extensions/xep-0204.html#ns" (along with relevant "sub-namespaces" in which "#ns" is followed by the "-" character and a subname string); upon advancement of this specification, the XMPP Registrar shall issue a permanent namespace in accordance with the process defined in Section 4 of <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0053.html">XMPP Registrar Function</a></span>  [<a href="#nt-id2265711">1</a>].</p>
+      <p class="" style="">Note: As this protocol is currently used in implemented software, the namespaces are of the form "http://www.mitre.org/mtp/cdo", "http://www.mitre.org/mtp/cdo/types", etc.</p>
+    </div>
+  <h2>12.
+       <a name="schema" id="schema">XML Schema</a></h2>
+    <div class="indent"><h3>12.1 <a name="xmlschemaDescriptionLanguage" id="xmlschemaDescriptionLanguage">Description Language</a></h3>
+      <p class="caption"></p><div class="indent"><pre>
+&lt;?xml version='1.0' encoding='UTF-8'?&gt;
+&lt;xsd:schema 
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:cdodl="http://mitre.org/MTP/CDO-DL"
+    targetNamespace="http://mitre.org/MTP/CDO-DL"
+    elementFormDefault="unqualified"
+    attributeFormDefault="unqualified"&gt;
+
+    &lt;xsd:element name="Definition" type="cdodl:DefinitionType"/&gt;
+
+    &lt;xsd:complexType name="DefinitionType"&gt;
+      &lt;xsd:sequence&gt;
+        &lt;xsd:element name="MetaData" minOccurs="1" maxOccurs="1"&gt;
+          &lt;xsd:complexType&gt;
+            &lt;xsd:sequence&gt;
+              &lt;xsd:element name="Label" minOccurs="1" maxOccurs="1"/&gt;
+              &lt;xsd:element name="Version" minOccurs="1" maxOccurs="1"&gt;
+                &lt;xsd:simpleType&gt;
+                  &lt;xsd:restriction base="xsd:string"&gt;
+                    &lt;xsd:pattern value="[1-9][0-9]*\.[0-9]+.[0-9]+.[0-9]+"/&gt;
+                  &lt;/xsd:restriction&gt;
+                &lt;/xsd:simpleType&gt;
+              &lt;/xsd:element&gt;
+              &lt;xsd:element name="Description" minOccurs="1" maxOccurs="1"/&gt;
+            &lt;/xsd:sequence&gt;
+          &lt;/xsd:complexType&gt;
+        &lt;/xsd:element&gt;
+        &lt;xsd:element name="Type" minOccurs="1" maxOccurs="1"&gt;
+          &lt;xsd:complexType&gt;
+            &lt;xsd:sequence&gt;
+              &lt;xsd:element ref="xsd:schema" minOccurs="0" maxOccurs="1"/&gt;
+            &lt;/xsd:sequence&gt;
+            &lt;xsd:attribute name="rootElement" use="required" type="xsd:QName"/&gt;
+            &lt;xsd:attribute name="schemaLocation" use="optional" type="xsd:anyURI"/&gt;
+          &lt;/xsd:complexType&gt;
+        &lt;/xsd:element&gt;
+        &lt;xsd:element name="Layouts" minOccurs="1" maxOccurs="1"&gt;
+          &lt;xsd:complexType&gt;
+            &lt;xsd:sequence&gt;
+              &lt;xsd:element name="Layout" minOccurs="1" maxOccurs="unbounded"&gt;
+                &lt;xsd:complexType&gt;
+                  &lt;xsd:sequence&gt;
+                    &lt;xsd:element name="Description" 
+                                 minOccurs="1" 
+                                 maxOccurs="1" 
+                                 type="xsd:string"/&gt;
+                    &lt;any namespace="##other" minOccurs="1" maxOccurs="unbounded"/&gt;
+                  &lt;/xsd:sequence&gt;
+                  &lt;xsd:attribute name="default" 
+                                 use="optional" 
+                                 default="false" 
+                                 type="xsd:boolean"/&gt;
+                  &lt;xsd:attribute name="uuid" use="required" type="xsd:string"/&gt;
+                &lt;/xsd:complexType&gt;
+              &lt;/xsd:element&gt;
+            &lt;/xsd:sequence&gt;
+          &lt;/xsd:complexType&gt;
+        &lt;/xsd:element&gt;
+        &lt;xsd:element name="Methods" minOccurs="1" maxOccurs="1"&gt;
+          &lt;xsd:complexType&gt;
+            &lt;xsd:sequence&gt;
+              &lt;xsd:element name="Method" minOccurs="1" maxOccurs="unbounded"&gt;
+                &lt;xsd:complexType&gt;
+                  &lt;xsd:sequence&gt;
+                    &lt;xsd:element name="Description" 
+                                 minOccurs="1" 
+                                 maxOccurs="1" 
+                                 type="xsd:string"/&gt;
+                    &lt;any namespace="##other" minOccurs="1" maxOccurs="unbounded"/&gt;
+                  &lt;/xsd:sequence&gt;
+                  &lt;xsd:attribute name="uuid" use="required" type="xsd:string"/&gt;
+                &lt;/xsd:complexType&gt;
+              &lt;/xsd:element&gt;
+            &lt;/xsd:sequence&gt;
+          &lt;/xsd:complexType&gt;
+        &lt;/xsd:element&gt;
+        &lt;xsd:element name="States" minOccurs="1" maxOccurs="1"&gt;
+          &lt;xsd:complexType&gt;
+            &lt;xsd:sequence&gt;
+              &lt;any namespace="##other" minOccurs="1" maxOccurs="unbounded"/&gt;
+            &lt;/xsd:sequence&gt;
+          &lt;/xsd:complexType&gt;
+        &lt;/xsd:element&gt;
+      &lt;/xsd:sequence&gt;
+      &lt;xsd:attribute name="uuid" use="required" type="xsd:string"/&gt;
+    &lt;/xsd:complexType&gt;
+&lt;/xsd:schema&gt;
+</pre></div>
+    </div>
+    <div class="indent"><h3>12.2 <a name="xmlschemaProtocol" id="xmlschemaProtocol">Data Synchronization Protocol</a></h3>
+      <p class="caption"></p><div class="indent"><pre>
+&lt;?xml version='1.0' encoding='UTF-8'?&gt;
+&lt;xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+   xmlns:cdo="http://www.xmpp.org/extensions/xep-0204.html#ns-data-sync"
+   targetNamespace="http://www.xmpp.org/extensions/xep-0204.html#ns-data-sync" 
+   elementFormDefault="unqualified"
+   attributeFormDefault="unqualified"&gt;
+  &lt;xsd:element name="data-sync" type="cdo:DataSyncPacketType" /&gt;
+  &lt;xsd:complexType name="DataSyncPacketType"&gt;
+  &lt;xsd:sequence&gt;
+    &lt;xsd:element name="item" 
+                 type="cdo:DataSyncItemType" 
+                 minOccurs="0" 
+                 maxOccurs="unbounded" /&gt;
+  &lt;/xsd:sequence&gt;
+  &lt;xsd:attribute name="protocol" use="required"&gt;
+   &lt;xsd:simpleType&gt;
+    &lt;xsd:restriction base="xsd:string"&gt;
+     &lt;xsd:pattern value="[1-9][0-9]*\.[0-9]+" /&gt;
+    &lt;/xsd:restriction&gt;
+   &lt;/xsd:simpleType&gt;
+  &lt;/xsd:attribute&gt;
+  &lt;xsd:attribute name="packetID" use="required" type="xsd:string" /&gt;
+  &lt;xsd:attribute name="event" use="required"&gt;
+    &lt;xsd:simpleType&gt;
+      &lt;xsd:restriction base="xsd:string"&gt;
+       &lt;xsd:enumeration value="create" /&gt;
+       &lt;xsd:enumeration value="update" /&gt;
+       &lt;xsd:enumeration value="retire" /&gt;
+       &lt;xsd:enumeration value="info" /&gt;
+      &lt;/xsd:restriction&gt;
+     &lt;/xsd:simpleType&gt;
+  &lt;/xsd:attribute&gt;
+  &lt;xsd:attribute name="uuid" use="optional" type="xsd:string" /&gt;
+  &lt;xsd:attribute name="type" use="optional" type="xsd:string" /&gt;
+  &lt;/xsd:complexType&gt;
+  &lt;xsd:complexType name="DataSyncItemType"&gt;
+   &lt;xsd:sequence&gt;
+     &lt;xsd:element name="value" type="xsd:string" minOccurs="0" maxOccurs="1" /&gt;
+     &lt;xsd:element name="attribute" 
+                  type="cdo:DataSyncAttributeType" 
+                  minOccurs="0" 
+                  maxOccurs="unbounded" /&gt;
+   &lt;/xsd:sequence&gt;
+   &lt;xsd:attribute name="type" use="optional" default="field"&gt;
+     &lt;xsd:simpleType&gt;
+      &lt;xsd:restriction base="xsd:string"&gt;
+       &lt;xsd:enumeration value="field" /&gt;
+       &lt;xsd:enumeration value="method" /&gt;
+       &lt;xsd:enumeration value="state" /&gt;
+      &lt;/xsd:restriction&gt;
+     &lt;/xsd:simpleType&gt;
+   &lt;/xsd:attribute&gt;
+   &lt;xsd:attribute name="event" use="required"&gt;
+     &lt;xsd:simpleType&gt;
+      &lt;xsd:restriction base="xsd:string"&gt;
+       &lt;xsd:enumeration value="create" /&gt;
+       &lt;xsd:enumeration value="update" /&gt;
+       &lt;xsd:enumeration value="delete" /&gt;
+       &lt;xsd:enumeration value="info" /&gt;
+      &lt;/xsd:restriction&gt;
+     &lt;/xsd:simpleType&gt;
+  &lt;/xsd:attribute&gt;
+  &lt;xsd:attribute name="updateStyle" use="optional" default="exclusive"&gt;
+   &lt;xsd:simpleType&gt;
+     &lt;xsd:restriction base="xsd:string"&gt;
+      &lt;xsd:enumeration value="inclusive" /&gt;
+      &lt;xsd:enumeration value="exclusive" /&gt;
+     &lt;/xsd:restriction&gt;
+   &lt;/xsd:simpleType&gt;
+  &lt;/xsd:attribute&gt;
+  &lt;xsd:attribute name="uuid" use="optional" type="xsd:string" /&gt;
+  &lt;xsd:attribute name="ref" use="optional"&gt;
+    &lt;xsd:simpleType&gt;
+      &lt;xsd:restriction base="xsd:string"&gt;
+        &lt;xsd:annotation&gt;
+        &lt;xsd:documentation xml:lang="en"&gt;
+            The pattern associated with this restriction
+            is intended to model a simple XPath statement 
+            restricted only to element names. The included 
+            regular expression is not fully representative 
+            of all legal XML element names and should be 
+            extended.
+        &lt;/xsd:documentation&gt;
+       &lt;/xsd:annotation&gt;
+       &lt;xsd:pattern value="(/([a-zA-Z_][\w\.-_]*:)?[a-zA-Z_][\w\.-_]*)+" /&gt;
+     &lt;/xsd:restriction&gt;
+    &lt;/xsd:simpleType&gt;
+  &lt;/xsd:attribute&gt;
+  &lt;xsd:attribute name="version" use="optional" type="xsd:positiveInteger" /&gt;
+  &lt;/xsd:complexType&gt;
+  &lt;xsd:complexType name="DataSyncAttributeType"&gt;
+    &lt;xsd:simpleContent&gt;
+     &lt;xsd:extension base="xsd:string"&gt;
+      &lt;xsd:attribute name="name" type="xsd:QName" use="required" /&gt;
+     &lt;/xsd:extension&gt;
+   &lt;/xsd:simpleContent&gt;
+ &lt;/xsd:complexType&gt;
+&lt;/xsd:schema&gt;
+</pre></div>
+    </div>
+  <hr /><h2><a name="notes" id="notes"></a>Notes</h2><div class="indent"><p><a name="nt-id2265711" id="nt-id2265711">1</a>. XEP-0053: XMPP Registrar Function &lt;<a href="http://www.xmpp.org/extensions/xep-0053.html">http://www.xmpp.org/extensions/xep-0053.html</a>&gt;.</p></div><hr /><h2><a name="revs" id="revs"></a>Revision History</h2><div class="indent"><h4>Version 0.1 (2007-01-17)</h4><div class="indent">
+        <p class="" style="">Initial published version; modified namespaces to adhere to XSF policy.</p>
+       (psa)
+    </div><h4>Version 0.0.3 (2006-12-29)</h4><div class="indent">
+        <p class="" style="">Converting to validate against new XEP schema</p>
+       (mwh)
+    </div><h4>Version 0.0.2 (2006-09-15)</h4><div class="indent">
+        <p class="" style="">Edits, some reformating, Spell check</p>
+       (deb)
+    </div><h4>Version 0.0.1 (2006-08-30)</h4><div class="indent">
+        <p class="" style="">First draft.</p>
+       (deb)
+    </div></div><hr /><p>END</p></body></html>

@@ -1,0 +1,1410 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en"><head><title>Mapping the Extensible Messaging and Presence Protocol (XMPP) to Common Presence and Instant Messaging (CPIM)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="description" content="Mapping the Extensible Messaging and Presence Protocol (XMPP) to Common Presence and Instant Messaging (CPIM)">
+<meta name="keywords" content="RFC, Request for Comments, I-D, Internet-Draft, XMPP, Extensible Messaging and Presence Protocol, Jabber, IM, Instant Messaging, Presence, CPIM, Common Presence and Instant Messaging, XML, Extensible Markup Language">
+<meta name="generator" content="xml2rfc v1.32 (http://xml.resource.org/)">
+<style type='text/css'><!--
+        body {
+                font-family: verdana, charcoal, helvetica, arial, sans-serif;
+                font-size: small; color: #000; background-color: #FFF;
+                margin: 2em;
+        }
+        h1, h2, h3, h4, h5, h6 {
+                font-family: helvetica, monaco, "MS Sans Serif", arial, sans-serif;
+                font-weight: bold; font-style: normal;
+        }
+        h1 { color: #900; background-color: transparent; text-align: right; }
+        h3 { color: #333; background-color: transparent; }
+
+        td.RFCbug {
+                font-size: x-small; text-decoration: none;
+                width: 30px; height: 30px; padding-top: 2px;
+                text-align: justify; vertical-align: middle;
+                background-color: #000;
+        }
+        td.RFCbug span.RFC {
+                font-family: monaco, charcoal, geneva, "MS Sans Serif", helvetica, verdana, sans-serif;
+                font-weight: bold; color: #666;
+        }
+        td.RFCbug span.hotText {
+                font-family: charcoal, monaco, geneva, "MS Sans Serif", helvetica, verdana, sans-serif;
+                font-weight: normal; text-align: center; color: #FFF;
+        }
+
+        table.TOCbug { width: 30px; height: 15px; }
+        td.TOCbug {
+                text-align: center; width: 30px; height: 15px;
+                color: #FFF; background-color: #900;
+        }
+        td.TOCbug a {
+                font-family: monaco, charcoal, geneva, "MS Sans Serif", helvetica, sans-serif;
+                font-weight: bold; font-size: x-small; text-decoration: none;
+                color: #FFF; background-color: transparent;
+        }
+
+        td.header {
+                font-family: arial, helvetica, sans-serif; font-size: x-small;
+                vertical-align: top; width: 33%;
+                color: #FFF; background-color: #666;
+        }
+        td.author { font-weight: bold; font-size: x-small; margin-left: 4em; }
+        td.author-text { font-size: x-small; }
+
+        /* info code from SantaKlauss at http://www.madaboutstyle.com/tooltip2.html */
+        a.info {
+                /* This is the key. */
+                position: relative;
+                z-index: 24;
+                text-decoration: none;
+        }
+        a.info:hover {
+                z-index: 25;
+                color: #FFF; background-color: #900;
+        }
+        a.info span { display: none; }
+        a.info:hover span.info {
+                /* The span will display just on :hover state. */
+                display: block;
+                position: absolute;
+                font-size: smaller;
+                top: 2em; left: -5em; width: 15em;
+                padding: 2px; border: 1px solid #333;
+                color: #900; background-color: #EEE;
+                text-align: left;
+        }
+
+        a { font-weight: bold; }
+        a:link    { color: #900; background-color: transparent; }
+        a:visited { color: #633; background-color: transparent; }
+        a:active  { color: #633; background-color: transparent; }
+
+        p { margin-left: 2em; margin-right: 2em; }
+        p.copyright { font-size: x-small; }
+        p.toc { font-size: small; font-weight: bold; margin-left: 3em; }
+        table.toc { margin: 0 0 0 3em; padding: 0; border: 0; vertical-align: text-top; }
+        td.toc { font-size: small; font-weight: bold; vertical-align: text-top; }
+
+        ol.text { margin-left: 2em; margin-right: 2em; }
+        ul.text { margin-left: 2em; margin-right: 2em; }
+        li      { margin-left: 3em; }
+
+        /* RFC-2629 <spanx>s and <artwork>s. */
+        em     { font-style: italic; }
+        strong { font-weight: bold; }
+        dfn    { font-weight: bold; font-style: normal; }
+        cite   { font-weight: normal; font-style: normal; }
+        tt     { color: #036; }
+        tt, pre, pre dfn, pre em, pre cite, pre span {
+                font-family: "Courier New", Courier, monospace; font-size: small;
+        }
+        pre {
+                text-align: left; padding: 4px;
+                color: #000; background-color: #CCC;
+        }
+        pre dfn  { color: #900; }
+        pre em   { color: #66F; background-color: #FFC; font-weight: normal; }
+        pre .key { color: #33C; font-weight: bold; }
+        pre .id  { color: #900; }
+        pre .str { color: #000; background-color: #CFF; }
+        pre .val { color: #066; }
+        pre .rep { color: #909; }
+        pre .oth { color: #000; background-color: #FCF; }
+        pre .err { background-color: #FCC; }
+
+        /* RFC-2629 <texttable>s. */
+        table.all, table.full, table.headers, table.none {
+                font-size: small; text-align: center; border-width: 2px;
+                vertical-align: top; border-collapse: collapse;
+        }
+        table.all, table.full { border-style: solid; border-color: black; }
+        table.headers, table.none { border-style: none; }
+        th {
+                font-weight: bold; border-color: black;
+                border-width: 2px 2px 3px 2px;
+        }
+        table.all th, table.full th { border-style: solid; }
+        table.headers th { border-style: none none solid none; }
+        table.none th { border-style: none; }
+        table.all td {
+                border-style: solid; border-color: #333;
+                border-width: 1px 2px;
+        }
+        table.full td, table.headers td, table.none td { border-style: none; }
+
+        hr { height: 1px; }
+        hr.insert {
+                width: 80%; border-style: none; border-width: 0;
+                color: #CCC; background-color: #CCC;
+        }
+--></style>
+</head>
+<body>
+
+<table border="0" cellpadding="0" cellspacing="2" width="30" align="right">
+    <tr>
+        <td class="RFCbug">
+                <span class="RFC">&nbsp;RFC&nbsp;</span><br /><span class="hotText">&nbsp;3922&nbsp;</span>
+        </td>
+    </tr>
+    <tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a><br /></td></tr>
+</table>
+<table summary="layout" width="66%" border="0" cellpadding="0" cellspacing="0"><tr><td><table summary="layout" width="100%" border="0" cellpadding="2" cellspacing="1">
+<tr><td class="header">Network Working Group</td><td class="header">P. Saint-Andre</td></tr>
+<tr><td class="header">Request for Comments: 3922</td><td class="header">Jabber Software Foundation</td></tr>
+<tr><td class="header">Category: Standards Track</td><td class="header">October 2004</td></tr>
+</table></td></tr></table>
+<h1><br />Mapping the Extensible Messaging and Presence Protocol (XMPP) to Common Presence and Instant Messaging (CPIM)</h1>
+
+<h3>Status of this Memo</h3>
+<p>
+This document specifies an Internet standards track protocol for the Internet
+community, and requests discussion and suggestions for improvements.
+Please refer to the current edition of the &ldquo;Internet Official Protocol
+Standards&rdquo; (STD&nbsp;1) for the standardization state and status of this
+protocol.
+Distribution of this memo is unlimited.</p>
+
+<h3>Copyright Notice</h3>
+<p>
+Copyright &copy; The Internet Society (2004).</p>
+
+<h3>Abstract</h3>
+
+<p>This memo describes a mapping between the Extensible Messaging and Presence Protocol (XMPP) and the Common Presence and Instant Messaging (CPIM) specifications.
+</p><a name="toc"></a><hr />
+
+<table border="0" cellpadding="0" cellspacing="2" width="30" align="right">
+    <tr>
+        <td class="RFCbug">
+                <span class="RFC">&nbsp;RFC&nbsp;</span><br /><span class="hotText">&nbsp;3922&nbsp;</span>
+        </td>
+    </tr>
+    <tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a><br /></td></tr>
+</table>
+<h3>Table of Contents</h3>
+<p class="toc">
+<a href="#intro">1.</a>&nbsp;
+Introduction<br />
+<a href="#approach">2.</a>&nbsp;
+Approach<br />
+<a href="#addr">3.</a>&nbsp;
+Address Mapping<br />
+<a href="#im">4.</a>&nbsp;
+Syntax Mapping of Instant Messages<br />
+<a href="#pres">5.</a>&nbsp;
+Syntax Mapping of Presence Information<br />
+<a href="#service">6.</a>&nbsp;
+XMPP-CPIM Gateway as Presence Service<br />
+<a href="#security">7.</a>&nbsp;
+Security Considerations<br />
+<a href="#rfc.references1">8.</a>&nbsp;
+References<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#rfc.references1">8.1.</a>&nbsp;
+Normative References<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#rfc.references2">8.2.</a>&nbsp;
+Informative References<br />
+<a href="#rfc.authors">&#167;</a>&nbsp;
+Author's Address<br />
+<a href="#rfc.copyright">&#167;</a>&nbsp;
+Intellectual Property and Copyright Statements<br />
+</p>
+<br clear="all" />
+
+<a name="intro"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.1"></a><h3>1.&nbsp;
+Introduction</h3>
+
+<a name="intro-overview"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.1.1"></a><h3>1.1.&nbsp;
+Overview</h3>
+
+<p>The Instant Messaging and Presence (IMPP) Working Group has defined an abstract framework for interoperability among instant messaging (IM) and presence systems that are compliant with <a class='info' href='#IMP-REQS'>[IMP&#8209;REQS]<span> (</span><span class='info'>Day, M., Aggarwal, S., and J. Vincent, &ldquo;Instant Messaging / Presence Protocol Requirements,&rdquo; February&nbsp;2000.</span><span>)</span></a>.  This framework is commonly called Common Presence and Instant Messaging or "CPIM".  The CPIM family of specifications include a <a class='info' href='#CPIM'>Common Profile for Instant Messaging<span> (</span><span class='info'>Peterson, J., &ldquo;Common Profile for Instant Messaging (CPIM),&rdquo; August&nbsp;2004.</span><span>)</span></a> [CPIM] (also called CPIM), a <a class='info' href='#CPP'>Common Profile for Presence<span> (</span><span class='info'>Peterson, J., &ldquo;Common Profile for Presence (CPP),&rdquo; August&nbsp;2004.</span><span>)</span></a> [CPP], a <a class='info' href='#MSGFMT'>CPIM Message Format<span> (</span><span class='info'>Klyne, G. and D. Atkins, &ldquo;Common Presence and Instant Messaging (CPIM): Message Format,&rdquo; August&nbsp;2004.</span><span>)</span></a> [MSGFMT], and a <a class='info' href='#PIDF'>Common Presence Information Data Format<span> (</span><span class='info'>Sugano, H., Fujimoto, S., Klyne, G., Bateman, A., Carr, W., and J. Peterson, &ldquo;Presence Information Data Format (PIDF),&rdquo; August&nbsp;2004.</span><span>)</span></a> [PIDF].  (Note: To prevent confusion, Common Presence and Instant Messaging is referred to herein collectively as "the CPIM specifications", whereas the Common Profile for Instant Messaging is referred to as "CPIM".)
+</p>
+<p>This memo describes how the Extensible Messaging and Presence Protocol (<a class='info' href='#XMPP-CORE'>[XMPP&#8209;CORE]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Extensible Messaging and Presence Protocol (XMPP): Core,&rdquo; October&nbsp;2004.</span><span>)</span></a>, <a class='info' href='#XMPP-IM'>[XMPP&#8209;IM]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Extensible Messaging and Presence Protocol (XMPP): Instant Messaging and Presence,&rdquo; October&nbsp;2004.</span><span>)</span></a>) maps to the abstract model contained in the CPIM specifications, mainly for the purpose of establishing gateways between XMPP services and non-XMPP services that conform to <a class='info' href='#IMP-REQS'>[IMP&#8209;REQS]<span> (</span><span class='info'>Day, M., Aggarwal, S., and J. Vincent, &ldquo;Instant Messaging / Presence Protocol Requirements,&rdquo; February&nbsp;2000.</span><span>)</span></a>.  Such a gateway, referred to herein as an "XMPP-CPIM gateway", may be established to interpret the protocols of one service and translate them into the protocols of the other service.  We can visualize this relationship as follows:
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+  +-------------+        +-------------+        +------------+
+  |             |        |             |        |            |
+  |    XMPP     |        |  XMPP-CPIM  |        |  Non-XMPP  |
+  |   Service   | &lt;----&gt; |   Gateway   | &lt;----&gt; |  Service   |
+  |             |        |             |        |            |
+  +-------------+        +-------------+        +------------+
+</pre></div>
+<p>This memo defines a mapping for use by a gateway that translates between XMPP and a non-XMPP protocol via the CPIM specifications.  Such a gateway is not an intermediate hop on a network of non-XMPP servers (whose native formats may or may not be defined by the CPIM specifications), but a dedicated translator between XMPP and a non-XMPP protocol, where the CPIM specifications define the common formats into which the protocols are translated for purposes of interworking.
+</p>
+<p>The mapping defined herein applies to instant messages and presence information that are not encrypted or signed for end-to-end security.  For information about secure communications to or from an XMPP service through an XMPP-CPIM gateway, refer to <a class='info' href='#XMPP-E2E'>[XMPP&#8209;E2E]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;End-to-End Signing and Object Encryption for the Extensible Messaging and Presence Protocol (XMPP),&rdquo; October&nbsp;2004.</span><span>)</span></a>.
+</p>
+<a name="intro-terminology"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.1.2"></a><h3>1.2.&nbsp;
+Terminology</h3>
+
+<p>This memo inherits vocabulary defined in <a class='info' href='#IMP-MODEL'>[IMP&#8209;MODEL]<span> (</span><span class='info'>Day, M., Rosenberg, J., and H. Sugano, &ldquo;A Model for Presence and Instant Messaging,&rdquo; February&nbsp;2000.</span><span>)</span></a>.  Terms such as CLOSED, INSTANT INBOX, INSTANT MESSAGE, OPEN , PRESENCE SERVICE, PRESENTITY, SUBSCRIPTION, and WATCHER are used in the same meaning as defined therein.
+</p>
+<p>This memo also inherits vocabulary defined in <a class='info' href='#XMPP-CORE'>[XMPP&#8209;CORE]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Extensible Messaging and Presence Protocol (XMPP): Core,&rdquo; October&nbsp;2004.</span><span>)</span></a>.  Terms such as ENTITY, NODE IDENTIFIER, DOMAIN IDENTIFIER, RESOURCE IDENTIFIER, MESSAGE STANZA, and PRESENCE STANZA are used in the same meaning as defined therein.
+</p>
+<a name="intro-conventions"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.1.3"></a><h3>1.3.&nbsp;
+Conventions Used in this Document</h3>
+
+<p>The capitalized key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <a class='info' href='#TERMS'>[TERMS]<span> (</span><span class='info'>Bradner, S., &ldquo;Key words for use in RFCs to Indicate Requirement Levels,&rdquo; March&nbsp;1997.</span><span>)</span></a>.
+</p>
+<a name="approach"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.2"></a><h3>2.&nbsp;
+Approach</h3>
+
+<p>XMPP and CPIM are distinctly foreign technologies.  Therefore, care must be taken in mapping between XMPP and the abstract syntax defined by the CPIM specifications.
+</p>
+<p>At root, XMPP is a data transport protocol for streaming XML elements (called "stanzas") between any two endpoints on the network; message and presence stanzas are two of the core data elements defined in XMPP and are often used to exchange instant messages and presence information between IM users (although the inherent extensibility of XML enables applications to use the general semantics of these stanza types for other purposes).  XMPP is not based on <a class='info' href='#MIME'>[MIME]<span> (</span><span class='info'>Freed, N. and N. Borenstein, &ldquo;Multipurpose Internet Mail Extensions (MIME) Part One: Format of Internet Message Bodies,&rdquo; November&nbsp;1996.</span><span>)</span></a>; instead, <a class='info' href='#XMPP-CORE'>[XMPP&#8209;CORE]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Extensible Messaging and Presence Protocol (XMPP): Core,&rdquo; October&nbsp;2004.</span><span>)</span></a> defines XML schemas for both message and presence stanzas (for example, the &lt;body/&gt; child of a message stanza contains XML character data that is usually intended to be read by a human user).
+</p>
+<p>The CPIM specifications provide common formats for instant messaging and presence through two <a class='info' href='#MIME'>[MIME]<span> (</span><span class='info'>Freed, N. and N. Borenstein, &ldquo;Multipurpose Internet Mail Extensions (MIME) Part One: Format of Internet Message Bodies,&rdquo; November&nbsp;1996.</span><span>)</span></a> content-types: "Message/CPIM" for messages (<a class='info' href='#MSGFMT'>[MSGFMT]<span> (</span><span class='info'>Klyne, G. and D. Atkins, &ldquo;Common Presence and Instant Messaging (CPIM): Message Format,&rdquo; August&nbsp;2004.</span><span>)</span></a>) and "application/pidf+xml" for presence (<a class='info' href='#PIDF'>[PIDF]<span> (</span><span class='info'>Sugano, H., Fujimoto, S., Klyne, G., Bateman, A., Carr, W., and J. Peterson, &ldquo;Presence Information Data Format (PIDF),&rdquo; August&nbsp;2004.</span><span>)</span></a>).  The syntax of "Message/CPIM" objects is similar to but stricter than that defined in <a class='info' href='#RFC2822'>[RFC2822]<span> (</span><span class='info'>Resnick, P., &ldquo;Internet Message Format,&rdquo; April&nbsp;2001.</span><span>)</span></a>, and provides the ability to include arbitrary <a class='info' href='#MIMETYPES'>MIME media types<span> (</span><span class='info'>Freed, N. and N. Borenstein, &ldquo;Multipurpose Internet Mail Extensions (MIME) Part Two: Media Types,&rdquo; November&nbsp;1996.</span><span>)</span></a> [MIMETYPES].  By contrast, each "application/pidf+xml" object is a complete XML document whose structure is defined by an XML schema.
+</p>
+<p>The approach taken herein is to specify mappings from XMPP elements and attributes to the headers and MIME formats defined by <a class='info' href='#MSGFMT'>[MSGFMT]<span> (</span><span class='info'>Klyne, G. and D. Atkins, &ldquo;Common Presence and Instant Messaging (CPIM): Message Format,&rdquo; August&nbsp;2004.</span><span>)</span></a> and <a class='info' href='#PIDF'>[PIDF]<span> (</span><span class='info'>Sugano, H., Fujimoto, S., Klyne, G., Bateman, A., Carr, W., and J. Peterson, &ldquo;Presence Information Data Format (PIDF),&rdquo; August&nbsp;2004.</span><span>)</span></a> in order to comply with the semantics defined by <a class='info' href='#CPIM'>[CPIM]<span> (</span><span class='info'>Peterson, J., &ldquo;Common Profile for Instant Messaging (CPIM),&rdquo; August&nbsp;2004.</span><span>)</span></a> and <a class='info' href='#CPP'>[CPP]<span> (</span><span class='info'>Peterson, J., &ldquo;Common Profile for Presence (CPP),&rdquo; August&nbsp;2004.</span><span>)</span></a>.  Naturally, mappings in the opposite direction are provided as well.
+</p>
+<a name="addr"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3"></a><h3>3.&nbsp;
+Address Mapping</h3>
+
+<a name="addr-overview"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3.1"></a><h3>3.1.&nbsp;
+Overview</h3>
+
+<p>Address mapping may be required since the address formats used to identify XMPP entities (specified in <a class='info' href='#XMPP-CORE'>[XMPP&#8209;CORE]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Extensible Messaging and Presence Protocol (XMPP): Core,&rdquo; October&nbsp;2004.</span><span>)</span></a>) are different from those used to identify instant inboxes (the im: URI scheme specified in <a class='info' href='#CPIM'>[CPIM]<span> (</span><span class='info'>Peterson, J., &ldquo;Common Profile for Instant Messaging (CPIM),&rdquo; August&nbsp;2004.</span><span>)</span></a>) and presentities (the pres: URI scheme specified in <a class='info' href='#CPP'>[CPP]<span> (</span><span class='info'>Peterson, J., &ldquo;Common Profile for Presence (CPP),&rdquo; August&nbsp;2004.</span><span>)</span></a>).  In particular, different characters are allowed in im: and pres: URIs than are allowed in XMPP addresses:
+</p>
+<p>
+        </p>
+<ul class="text">
+<li>The following <a class='info' href='#US-ASCII'>[US&#8209;ASCII]<span> (</span><span class='info'>Cerf, V., &ldquo;ASCII format for network interchange,&rdquo; October&nbsp;1969.</span><span>)</span></a> characters are allowed in im:/pres: URIs but not in XMPP addresses: #26; (&amp;), #27; ('), and #2f; (/).
+</li>
+<li>Many non-US-ASCII (specifically, UTF-8) characters are allowed in XMPP addresses but not allowed in im:/pres: URIs, since XMPP allows internationalized local-part addresses.
+</li>
+</ul><p>
+      
+</p>
+<p>Note: In this document we discuss characters allowed in local-part addresses only (i.e., we have ruled the mapping of domain names as out of scope for the initial version of this document, since it is a matter for the Domain Name System and the translation of fully internationalized domain names).
+</p>
+<a name="addr-xmpp"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3.2"></a><h3>3.2.&nbsp;
+XMPP to CPIM</h3>
+
+<p>The following is a high-level algorithm for mapping an XMPP address to an im: or pres: URI:
+</p>
+<p>
+        </p>
+<ol class="text">
+<li>Split XMPP address into node identifier (local-part; mapping described in remaining steps), domain identifier (hostname; mapping is out of scope), and resource identifier (specifier for particular device or connection; discard this for cross-system interoperability)
+</li>
+<li>Apply Nodeprep profile of <a class='info' href='#STRINGPREP'>[STRINGPREP]<span> (</span><span class='info'>Hoffman, P. and M. Blanchet, &ldquo;Preparation of Internationalized Strings (&quot;stringprep&quot;),&rdquo; December&nbsp;2002.</span><span>)</span></a> (as specified in <a class='info' href='#XMPP-CORE'>[XMPP&#8209;CORE]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Extensible Messaging and Presence Protocol (XMPP): Core,&rdquo; October&nbsp;2004.</span><span>)</span></a>) for canonicalization (OPTIONAL)
+</li>
+<li>Translate #26; to &amp;, #27; to ', and #2f; to / respectively
+</li>
+<li>For each byte, if the byte is not in the set A-Za-z0-9!$*.?_~+= then change to %hexhex as described in Section 2.2.5 of <a class='info' href='#URL-GUIDE'>[URL&#8209;GUIDE]<span> (</span><span class='info'>Masinter, L., Alvestrand, H., Zigmond, D., and R. Petke, &ldquo;Guidelines for new URL Schemes,&rdquo; November&nbsp;1999.</span><span>)</span></a>
+</li>
+<li>Combine resulting local-part with mapped hostname to form local@domain address
+</li>
+<li>Prepend with 'im:' scheme (for XMPP &lt;message/&gt; stanzas) or 'pres:' scheme (for XMPP &lt;presence/&gt; stanzas)
+</li>
+</ol><p>
+      
+</p>
+<a name="addr-cpim"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3.3"></a><h3>3.3.&nbsp;
+CPIM to XMPP</h3>
+
+<p>The following is a high-level algorithm for mapping an im: or pres: URI to an XMPP address:
+</p>
+<p>
+        </p>
+<ol class="text">
+<li>Remove URI scheme
+</li>
+<li>Split at the first '@' character into local-part and hostname (mapping the latter is out of scope)
+</li>
+<li>Translate %hexhex to equivalent octets as described in Section 2.2.5 of <a class='info' href='#URL-GUIDE'>[URL&#8209;GUIDE]<span> (</span><span class='info'>Masinter, L., Alvestrand, H., Zigmond, D., and R. Petke, &ldquo;Guidelines for new URL Schemes,&rdquo; November&nbsp;1999.</span><span>)</span></a>
+</li>
+<li>Treat result as a UTF-8 string
+</li>
+<li>Translate &amp; to #26;, ' to #27;, and / to #2f respectively
+</li>
+<li>Apply Nodeprep profile of <a class='info' href='#STRINGPREP'>[STRINGPREP]<span> (</span><span class='info'>Hoffman, P. and M. Blanchet, &ldquo;Preparation of Internationalized Strings (&quot;stringprep&quot;),&rdquo; December&nbsp;2002.</span><span>)</span></a> (as specified in <a class='info' href='#XMPP-CORE'>[XMPP&#8209;CORE]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Extensible Messaging and Presence Protocol (XMPP): Core,&rdquo; October&nbsp;2004.</span><span>)</span></a>) for canonicalization (OPTIONAL)
+</li>
+<li>Recombine local-part with mapped hostname to form local@domain address
+</li>
+</ol><p>
+      
+</p>
+<a name="im"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4"></a><h3>4.&nbsp;
+Syntax Mapping of Instant Messages</h3>
+
+<p>This section describes how a gateway SHOULD map instant messages between an XMPP service and a non-XMPP service using a "Message/CPIM" object as the bearer of encapsulated text content in order to comply with the instant messaging semantics defined by <a class='info' href='#CPIM'>[CPIM]<span> (</span><span class='info'>Peterson, J., &ldquo;Common Profile for Instant Messaging (CPIM),&rdquo; August&nbsp;2004.</span><span>)</span></a>.
+</p>
+<a name="im-syntax-xmpp"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.1"></a><h3>4.1.&nbsp;
+Message Syntax Mapping from XMPP to CPIM Specifications</h3>
+
+<p>This section defines the mapping of syntax primitives from XMPP message stanzas to "Message/CPIM" objects with encapsulated text content.
+</p>
+<p>Note: As specified in <a class='info' href='#MIME'>[MIME]<span> (</span><span class='info'>Freed, N. and N. Borenstein, &ldquo;Multipurpose Internet Mail Extensions (MIME) Part One: Format of Internet Message Bodies,&rdquo; November&nbsp;1996.</span><span>)</span></a>, the default Content-type of a MIME object is "Content-type: text/plain; charset=us-ascii".  Because XMPP uses the <a class='info' href='#UTF-8'>[UTF&#8209;8]<span> (</span><span class='info'>Yergeau, F., &ldquo;UTF-8, a transformation format of ISO 10646,&rdquo; November&nbsp;2003.</span><span>)</span></a> character encoding exclusively, the encapsulated MIME object generated by an XMPP-CPIM gateway MUST set the 'Content-type' header for that object.  Specifically, the "Content-type" MUST be set to "text/plain" and the charset MUST be set to "utf-8".
+</p>
+<a name="im-syntax-xmpp-from"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.1.1"></a><h3>4.1.1.&nbsp;
+From Address</h3>
+
+<p>The 'from' attribute of an XMPP message stanza maps to the 'From' header of a "Message/CPIM" object.  In XMPP, the sender's server stamps or validates the "from" address and sets its value to the full &lt;user@host/resource&gt; negotiated between client and server during authentication and resource binding as defined in <a class='info' href='#XMPP-CORE'>[XMPP&#8209;CORE]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Extensible Messaging and Presence Protocol (XMPP): Core,&rdquo; October&nbsp;2004.</span><span>)</span></a>.  Thus an XMPP-CPIM gateway will receive from the sender's XMPP server a message stanza containing a "from" address of the form &lt;user@host/resource&gt;.  To map the 'from' attribute of an XMPP message stanza to the 'From' header of a "Message/CPIM" object, the gateway MUST remove the resource identifier, MUST append the "im:" Instant Messaging URI scheme to the front of the address, and MAY include a CPIM "Formal-name" for the sender (if known).
+</p>
+<p>Example: From Address Mapping
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+XMPP 'from' attribute
+  &lt;message from='juliet@example.com/balcony'&gt;
+    ...
+  &lt;/message&gt;
+
+CPIM 'From' header
+  From: Juliet Capulet &lt;im:juliet@example.com&gt;
+</pre></div>
+<a name="im-syntax-xmpp-to"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.1.2"></a><h3>4.1.2.&nbsp;
+To Address</h3>
+
+<p>The 'to' attribute of an XMPP message stanza maps to the 'To' header of a "Message/CPIM" object.  In XMPP, the sender SHOULD include a 'to' attribute on a message stanza, and MUST include it if the message is intended for delivery to another user.  Thus an XMPP-CPIM gateway will receive from the sender's XMPP server a message stanza containing a "to" address of the form &lt;user@host&gt; or &lt;user@host/resource&gt;.  To map the 'to' attribute of an XMPP message stanza to the 'To' header of a "Message/CPIM" object, the gateway MUST remove the resource identifier (if included), MUST append the "im:" Instant Messaging URI scheme to the front of the address, and MAY include a CPIM "Formal-name" for the recipient (if known).
+</p>
+<p>Example: To Address Mapping
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+XMPP 'to' attribute
+  &lt;message to='romeo@example.net/orchard'&gt;
+    ...
+  &lt;/message&gt;
+
+CPIM 'To' header
+  To: Romeo Montague &lt;im:romeo@example.net&gt;
+</pre></div>
+<a name="im-syntax-xmpp-id"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.1.3"></a><h3>4.1.3.&nbsp;
+Stanza ID</h3>
+
+<p>An XMPP message stanza MAY possess an 'id' attribute, which is used by the sending application for the purpose of tracking stanzas and is not a globally-unique identifier such as is defined by the MIME Content-ID header.  Because the XMPP 'id' attribute does not have the same meaning as the MIME Content-ID header, it SHOULD NOT be mapped to that header; however, if the 'id' is known to be unique (e.g., if it is generated to be unique by the XMPP server and that fact is known by the XMPP-CPIM gateway), then it SHOULD be so mapped.
+</p>
+<a name="im-syntax-xmpp-type"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.1.4"></a><h3>4.1.4.&nbsp;
+Message Type</h3>
+
+<p>An XMPP message stanza MAY possess a 'type' attribute, which is used by the sending application to capture the conversational context of the message.  There is no mapping of an XMPP 'type' attribute to a "Message/CPIM" header, common MIME features, or encapsulated text content.  Therefore if an XMPP stanza received by an XMPP-CPIM gateway possesses a 'type' attribute, the gateway SHOULD ignore the value provided.
+</p>
+<a name="im-syntax-xmpp-thread"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.1.5"></a><h3>4.1.5.&nbsp;
+Message Thread</h3>
+
+<p>An XMPP message stanza MAY contain a &lt;thread/&gt; child element to specify the conversation thread in which the message is situated.  There is no mapping of an XMPP &lt;thread/&gt; element to a "Message/CPIM" header, common MIME features, or encapsulated text content.  Therefore if an XMPP message stanza received by an XMPP-CPIM gateway contains a &lt;thread/&gt; child element, the gateway SHOULD ignore the value provided.
+</p>
+<a name="im-syntax-xmpp-subject"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.1.6"></a><h3>4.1.6.&nbsp;
+Message Subject</h3>
+
+<p>An XMPP message stanza MAY include a &lt;subject/&gt; child element.  If included, it maps to the 'Subject' header of a "Message/CPIM" object.  To map the XMPP &lt;subject/&gt; element to the 'Subject' header of a "Message/CPIM" object, the gateway SHOULD simply map the XML character data of the XMPP &lt;subject/&gt; element to the value of the 'Subject' header.  The &lt;subject/&gt; element MAY include an 'xml:lang' attribute specifying the language in which the subject is written.  If an 'xml:lang' attribute is provided, it MUST be mapped by including ';lang=tag' after the header name and colon, where 'tag' is the value of the 'xml:lang' attribute.
+</p>
+<p>Example: Subject Mapping
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+XMPP &lt;subject/&gt; element
+  &lt;subject&gt;Hi!&lt;/subject&gt;
+  &lt;subject xml:lang='cz'&gt;Ahoj!&lt;/subject&gt;
+
+CPIM 'Subject' header
+  Subject: Hi!
+  Subject:;lang=cz Ahoj!
+</pre></div>
+<a name="im-syntax-xmpp-body"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.1.7"></a><h3>4.1.7.&nbsp;
+Message Body</h3>
+
+<p>The &lt;body/&gt; child element of an XMPP message stanza is used to provide the primary meaning of the message.  The XML character data of the XMPP &lt;body/&gt; element maps to the encapsulated text message content.
+</p>
+<p>Example: Message Body
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+XMPP message &lt;body/&gt;
+  &lt;message&gt;
+    &lt;body&gt;Wherefore art thou, Romeo?&lt;/body&gt;
+  &lt;/message&gt;
+
+Encapsulated MIME text content
+  Content-type: text/plain; charset=utf-8
+  Content-ID: &lt;123456789@example.net&gt;
+
+  Wherefore art thou, Romeo?
+</pre></div>
+<a name="im-syntax-xmpp-extensions"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.1.8"></a><h3>4.1.8.&nbsp;
+Message Extensions</h3>
+
+<p>As defined in <a class='info' href='#XMPP-CORE'>[XMPP&#8209;CORE]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Extensible Messaging and Presence Protocol (XMPP): Core,&rdquo; October&nbsp;2004.</span><span>)</span></a>, an XMPP message stanza may contain "extended" content in any namespace in order to supplement or extend the semantics of the core message stanza.  With the exception of extended information qualified by the 'urn:ietf:params:xml:ns:xmpp-e2e' namespace as defined in <a class='info' href='#XMPP-E2E'>[XMPP&#8209;E2E]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;End-to-End Signing and Object Encryption for the Extensible Messaging and Presence Protocol (XMPP),&rdquo; October&nbsp;2004.</span><span>)</span></a>, an XMPP-CPIM gateway SHOULD ignore such information and not pass it through the gateway to the intended recipient.  No mapping for such information is defined.
+</p>
+<a name="im-syntax-xmpp-gen"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.1.9"></a><h3>4.1.9.&nbsp;
+Gateway-Generated CPIM Syntax</h3>
+
+<p>CPIM specifies the existence of "Message/CPIM" headers in addition to those described above, but there is no exact analogue for those headers in the core XMPP specifications.  These include:
+</p>
+<p>
+          </p>
+<ul class="text">
+<li>cc -- specifies the address of an entity that is to receive a "courtesy copy" of the message (i.e., a non-primary addressee)
+</li>
+<li>DateTime -- specifies the datetime at which the message was sent
+</li>
+<li>NS -- specifies the namespace of a feature extension
+</li>
+<li>Require -- specifies mandatory-to-recognize features
+</li>
+</ul><p>
+        
+</p>
+<p>An XMPP-CPIM gateway MAY independently generate such headers based on its own information (e.g., the datetime at which it received a message stanza from an XMPP entity) or based on data encoded in non-core XMPP extensions, but rules for doing so are out of scope for this memo.
+</p>
+<a name="im-syntax-cpim"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.2"></a><h3>4.2.&nbsp;
+Message Syntax Mapping from CPIM Specifications to XMPP</h3>
+
+<p>This section defines the mapping of syntax primitives from "Message/CPIM" objects with encapsualted text content to XMPP message stanzas.
+</p>
+<a name="im-syntax-cpim-from"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.2.1"></a><h3>4.2.1.&nbsp;
+From Address</h3>
+
+<p>The 'From' header of a "Message/CPIM" object maps to the 'from' attribute of an XMPP message stanza.  To map the CPIM 'From' header to the XMPP 'from' attribute, the gateway MUST remove the "im:" Instant Messaging URI scheme from the front of the address and MUST remove the CPIM "Formal-name" (if provided).
+</p>
+<p>Example: From Address Mapping
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+CPIM 'From' header
+  From: Romeo Montague &lt;im:romeo@example.net&gt;
+
+XMPP 'from' attribute
+  &lt;message from='romeo@example.net'&gt;
+    ...
+  &lt;/message&gt;
+</pre></div>
+<a name="im-syntax-cpim-to"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.2.2"></a><h3>4.2.2.&nbsp;
+To Address</h3>
+
+<p>The 'To' header of a "Message/CPIM" object maps to the 'to' attribute of an XMPP message stanza.  To map the CPIM 'To' header to the XMPP 'to' attribute, the gateway MUST remove the "im:" Instant Messaging URI scheme from the front of the address and MUST remove the CPIM "Formal-name" (if provided).  If the gateway possesses knowledge of the resource identifier in use by the XMPP entity, the gateway MAY append the resource identifier to the address.
+</p>
+<p>Example: To Address Mapping
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+CPIM 'To' header
+  To: Juliet Capulet &lt;im:juliet@example.com&gt;
+
+XMPP 'to' attribute
+  &lt;message to='juliet@example.com/balcony'&gt;
+    ...
+  &lt;/message&gt;
+</pre></div>
+<a name="im-syntax-cpim-cc"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.2.3"></a><h3>4.2.3.&nbsp;
+Courtesy Copy</h3>
+
+<p>The core XMPP specification does not include syntax for specifying a "courtesy copy" (non-primary addressee) for a message stanza.  Therefore, if an XMPP-CPIM gateway receives a "Message/CPIM" object that contains a 'cc' header, it SHOULD NOT pass the information contained in that header on to the XMPP recipient.
+</p>
+<a name="im-syntax-cpim-datetime"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.2.4"></a><h3>4.2.4.&nbsp;
+DateTime Header</h3>
+
+<p>The core XMPP specification does not include syntax for specifying the datetime at which a message stanza was sent.  Therefore, if an XMPP-CPIM gateway receives a "Message/CPIM" object that contains a 'DateTime' header, it SHOULD NOT pass the information contained in that header on to the XMPP recipient.
+</p>
+<a name="im-syntax-cpim-subject"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.2.5"></a><h3>4.2.5.&nbsp;
+Message Subject</h3>
+
+<p>The 'Subject' header of a "Message/CPIM" object maps to the &lt;subject/&gt; child element of an XMPP message stanza.  To map the CPIM 'Subject' header to the XMPP &lt;subject/&gt; element, the gateway SHOULD simply map the value of the 'Subject' header to the XML character data of the XMPP &lt;subject/&gt; element.  The 'Subject' header MAY specify the "lang" in which the subject is written.  If "lang" information is provided, it MUST be mapped to the 'xml:lang' attribute of the &lt;subject/&gt; element, where the value of the 'xml:lang' attribute is the "tag" value supplied in the string ';lang=tag' included after the CPIM 'Subject' header name and colon.
+</p>
+<p>Example: Subject Mapping
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+CPIM 'Subject' header
+  Subject: Hi!
+  Subject:;lang=cz Ahoj!
+
+XMPP &lt;subject/&gt; element
+  &lt;subject&gt;Hi!&lt;/subject&gt;
+  &lt;subject xml:lang='cz'&gt;Ahoj!&lt;/subject&gt;
+</pre></div>
+<a name="im-syntax-cpim-header"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.2.6"></a><h3>4.2.6.&nbsp;
+Header Extensions</h3>
+
+<p>"Message/CPIM" objects MAY include an optional 'NS' header to specify the namespace of a feature extension.  An XMPP-CPIM gateway MUST NOT pass such headers through to the XMPP recipient, and no mapping for such headers is defined.
+</p>
+<a name="im-syntax-cpim-require"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.2.7"></a><h3>4.2.7.&nbsp;
+Require Header</h3>
+
+<p>"Message/CPIM" objects MAY include an optional 'Require' header to specify mandatory-to-recognize features.  In general, such a header would be included by the non-XMPP sending application to (1) insist that the receiving application needs to understand functionality specified by a particular header or (2) indicate that some non-header semantics need to be implemented by the receiving application in order to understand the contents of the message (e.g., "Locale.MustRenderKanji").  Because the mandatory-to-recognize features would be required of the XMPP receiving application rather than the XMPP-CPIM gateway itself, the gateway cannot properly handle the 'Require' header without detailed knowledge about the capabilities of the XMPP receiving application.  Therefore, it seems appropriate that the XMPP-CPIM gateway SHOULD return a warning or error to the non-XMPP sending application if it includes one or more 'Require' headers in a "Message/CPIM" object; the exact nature of the warning or error will depend on the nature of the non-XMPP technology used by the foreign system, and is not defined herein.  Furthermore, any mapping of the 'Require' header into XMPP or an XMPP extension is left up to the implementation or to a future specification.
+</p>
+<a name="im-syntax-cpim-contentid"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.2.8"></a><h3>4.2.8.&nbsp;
+MIME Content-ID</h3>
+
+<p>XMPP does not include an element or attribute that captures a globally unique ID as is defined for the Content-ID MIME header as specified in <a class='info' href='#MIME'>[MIME]<span> (</span><span class='info'>Freed, N. and N. Borenstein, &ldquo;Multipurpose Internet Mail Extensions (MIME) Part One: Format of Internet Message Bodies,&rdquo; November&nbsp;1996.</span><span>)</span></a>.  If an XMPP-CPIM gateway receives a MIME object that includes a Content-ID, it MAY provide the Content-ID as the value of the message stanza's 'id' attribute, but this is OPTIONAL.
+</p>
+<p>Example: Content-ID for Encapsulated Object
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+MIME header
+  Content-ID: &lt;123456789@example.net&gt;
+
+XMPP 'id' attribute (OPTIONAL)
+  &lt;message id='123456789@example.net'&gt;
+    ...
+  &lt;/message&gt;
+</pre></div>
+<a name="im-syntax-cpim-body"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.2.9"></a><h3>4.2.9.&nbsp;
+Message Body</h3>
+
+<p>If the Content-type of an encapsulated MIME object is "text/plain", then the encapsulated text message content maps to the XML character data of the &lt;body/&gt; child element of an XMPP message stanza.
+</p>
+<p>Example: Message Body
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+Encapsulated MIME text content
+  Content-type: text/plain; charset=utf-8
+  Content-ID: &lt;123456789@example.net&gt;
+
+  Wherefore art thou?
+
+XMPP message &lt;body/&gt;
+  &lt;message id='123456789@example.net'&gt;
+    &lt;body&gt;Wherefore art thou?&lt;/body&gt;
+  &lt;/message&gt;
+</pre></div>
+<p>If the Content-Type is not "text/plain", the XMPP-CPIM gateway MAY map the content to an XMPP extension but MUST NOT map it to the &lt;body/&gt; child of the XMPP message stanza, which is allowed to contain XML character data only.  The only exception to this rule is a multi-part MIME object of the kind specified in <a class='info' href='#XMPP-E2E'>[XMPP&#8209;E2E]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;End-to-End Signing and Object Encryption for the Extensible Messaging and Presence Protocol (XMPP),&rdquo; October&nbsp;2004.</span><span>)</span></a>, which is to be mapped as described in that memo.
+</p>
+<p>If the charset is "US-ASCII" or "UTF-8", the gateway MUST map the "Message/CPIM" object; otherwise it SHOULD NOT.
+</p>
+<a name="im-syntax-cpim-gen"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.2.10"></a><h3>4.2.10.&nbsp;
+Gateway-Generated XMPP Syntax</h3>
+
+<p>XMPP specifies the existence of a 'type' attribute for XMPP message stanzas, which enables the sender to define the conversational context of the message.  There is no exact analogue for this attribute in CPIM.  An XMPP-CPIM gateway MAY independently generate the 'type' attribute based on its own information, but this is OPTIONAL and rules for doing so are out of scope for this memo.
+</p>
+<a name="pres"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5"></a><h3>5.&nbsp;
+Syntax Mapping of Presence Information</h3>
+
+<p>This section describes how a gateway SHOULD map presence information between an XMPP service and a non-XMPP service using a "Message/CPIM" object as the bearer of an encapsulated <a class='info' href='#PIDF'>[PIDF]<span> (</span><span class='info'>Sugano, H., Fujimoto, S., Klyne, G., Bateman, A., Carr, W., and J. Peterson, &ldquo;Presence Information Data Format (PIDF),&rdquo; August&nbsp;2004.</span><span>)</span></a> object in order to comply with the presence semantics defined by <a class='info' href='#CPP'>[CPP]<span> (</span><span class='info'>Peterson, J., &ldquo;Common Profile for Presence (CPP),&rdquo; August&nbsp;2004.</span><span>)</span></a>.
+</p>
+<a name="pres-syntax-xmpp"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.1"></a><h3>5.1.&nbsp;
+Presence Syntax Mapping from XMPP to CPIM Specifications</h3>
+
+<p>This section defines the mapping of syntax primitives from XMPP presence stanzas to "Message/CPIM" objects with encapsulated "application/pidf+xml" objects.
+</p>
+<p>Note: As specified in <a class='info' href='#MIME'>[MIME]<span> (</span><span class='info'>Freed, N. and N. Borenstein, &ldquo;Multipurpose Internet Mail Extensions (MIME) Part One: Format of Internet Message Bodies,&rdquo; November&nbsp;1996.</span><span>)</span></a>, the default Content-type of a MIME object is "Content-type: text/plain; charset=us-ascii".  Because XMPP uses the <a class='info' href='#UTF-8'>[UTF&#8209;8]<span> (</span><span class='info'>Yergeau, F., &ldquo;UTF-8, a transformation format of ISO 10646,&rdquo; November&nbsp;2003.</span><span>)</span></a> character encoding exclusively and because PIDF specifies the "application/pidf+xml" MIME type, the encapsulated MIME object generated by an XMPP-CPIM gateway for presence information MUST set the 'Content-type' header for that object.  The "Content-type" MUST be set to "application/pidf+xml" and the charset MUST be set to "utf-8".
+</p>
+<a name="pres-syntax-xmpp-from"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.1.1"></a><h3>5.1.1.&nbsp;
+From Address</h3>
+
+<p>The 'from' attribute of an XMPP presence stanza maps to the 'From' header of a "Message/CPIM" object.  In XMPP, the sender's server stamps or validates the "from" address and sets its value to the &lt;user@host/resource&gt; negotiated between client and server during authenticating and resource binding as defined in <a class='info' href='#XMPP-CORE'>[XMPP&#8209;CORE]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Extensible Messaging and Presence Protocol (XMPP): Core,&rdquo; October&nbsp;2004.</span><span>)</span></a>.  Thus an XMPP-CPIM gateway will receive from the sender's XMPP server a presence stanza containing a "from" address of the form &lt;user@host/resource&gt;.  To map the 'from' attribute of an XMPP presence stanza to the 'From' header of a "Message/CPIM" object, the gateway MUST remove the resource identifier, MUST append the "im:" Instant Messaging URI scheme to the front of the address, and MAY include a CPIM "Formal-name" for the sender (if known).
+</p>
+<p>Example: From Address Mapping
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+XMPP 'from' attribute
+  &lt;presence from='juliet@example.com/balcony'&gt;
+    ...
+  &lt;/presence&gt;
+
+CPIM 'From' header
+  From: Juliet Capulet &lt;im:juliet@example.com&gt;
+</pre></div>
+<p>In addition, the 'from' attribute of an XMPP presence stanza maps to the 'entity' attribute of a PIDF &lt;presence/&gt; root element.  To map the XMPP 'from' attribute to the PIDF 'entity' attribute, the gateway MUST remove the resource identifier and MUST append the "pres:" Instant Messaging URI scheme to the front of the address.
+</p>
+<p>Example: From Address Mapping (PIDF)
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+XMPP 'from' attribute
+  &lt;presence from='juliet@example.com/balcony'&gt;
+    ...
+  &lt;/presence&gt;
+
+PIDF 'entity' attribute
+  &lt;presence entity='pres:juliet@example.com'&gt;
+    ...
+  &lt;/presence&gt;
+</pre></div>
+<p>Finally, an XMPP-CPIM gateway SHOULD map the resource identifier of the XMPP address contained in the XMPP 'from' attribute to the 'id' attribute of the PIDF &lt;tuple/&gt; child element.
+</p>
+<p>Example: Resource Identifier Mapping
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+XMPP 'from' attribute
+  &lt;presence from='juliet@example.com/balcony'&gt;
+    ...
+  &lt;/presence&gt;
+
+PIDF 'id' for &lt;tuple/&gt;
+  &lt;presence entity='pres:juliet@example.com'&gt;
+    &lt;tuple id='balcony'&gt;
+      ...
+    &lt;/tuple&gt;
+  &lt;/presence&gt;
+</pre></div>
+<a name="pres-syntax-xmpp-to"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.1.2"></a><h3>5.1.2.&nbsp;
+To Address</h3>
+
+<p>The 'to' attribute of an XMPP presence stanza maps to the 'To' header of a "Message/CPIM" object.  In XMPP, the sender MAY include a 'to' attribute on a presence stanza, and MUST include it if the presence stanza is intended for delivery directly to another user (presence stanzas intended for broadcasting are stamped with a 'to' address by the sender's server).  Thus an XMPP-CPIM gateway will receive from the sender's XMPP server a presence stanza containing a "to" address of the form &lt;user@host&gt; or &lt;user@host/resource&gt;.  To map the 'to' attribute of an XMPP presence stanza to the 'To' header of a "Message/CPIM" object, the gateway MUST remove the resource identifier (if included), MUST append the "im:" Instant Messaging URI scheme to the front of the address, and MAY include a CPIM "Formal-name" for the recipient (if known).
+</p>
+<p>Example: To Address Mapping
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+XMPP 'to' attribute
+  &lt;presence to='romeo@example.net/orchard'&gt;
+    ...
+  &lt;/presence&gt;
+
+CPIM 'To' header
+  To: Romeo Montague &lt;im:romeo@example.net&gt;
+</pre></div>
+<a name="pres-syntax-xmpp-id"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.1.3"></a><h3>5.1.3.&nbsp;
+Stanza ID</h3>
+
+<p>An XMPP presence stanza MAY possess an 'id' attribute, which is used by the sending application for the purpose of tracking stanzas and is not a globally-unique identifier such as is defined by the MIME Content-ID header.  Because the XMPP 'id' attribute does not have the same meaning as the MIME Content-ID header, it SHOULD NOT be mapped to that header; however, if the 'id' is known to be unique (e.g., if it is generated to be unique by the XMPP server and that fact is known by the XMPP-CPIM gateway), then it SHOULD be so mapped.
+</p>
+<a name="pres-syntax-xmpp-type"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.1.4"></a><h3>5.1.4.&nbsp;
+Presence Type</h3>
+
+<p>An XMPP presence stanza MAY possess a 'type' attribute.  If no 'type' attribute is included, the presence stanza indicates that the sender is available; this state maps to the PIDF basic presence type of OPEN.  If the 'type' attribute has a value of "unavailable", the presence stanza indicates that the sender is no longer available; this state maps to the PIDF basic presence type of CLOSED.  Thus both the absence of a 'type' attribute and a 'type' attribute set to a value of "unavailable" correspond to the <a class='info' href='#CPP'>[CPP]<span> (</span><span class='info'>Peterson, J., &ldquo;Common Profile for Presence (CPP),&rdquo; August&nbsp;2004.</span><span>)</span></a> "notify operation".  All other presence types are used to manage presence subscriptions or probe for current presence; mappings for these other presence types are defined under <a class='info' href='#service'>XMPP-CPIM Gateway as Presence Service<span> (</span><span class='info'>XMPP-CPIM Gateway as Presence Service</span><span>)</span></a>.
+</p>
+<p>Example: Available Presence
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+XMPP available presence
+  &lt;presence from='juliet@example.com/balcony'/&gt;
+
+PIDF basic presence (OPEN)
+  &lt;?xml version='1.0' encoding='UTF-8'?&gt;
+  &lt;presence xmlns='urn:ietf:params:xml:ns:pidf'
+            entity='pres:juliet@example.com'&gt;
+    &lt;tuple id='balcony'&gt;
+      &lt;status&gt;
+        &lt;basic&gt;open&lt;/basic&gt;
+      &lt;/status&gt;
+    &lt;/tuple&gt;
+  &lt;/presence&gt;
+</pre></div>
+<p>Example: Unavailable Presence
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+XMPP unavailable presence
+  &lt;presence from='juliet@example.com/balcony' type='unavailable'/&gt;
+
+PIDF basic presence (CLOSED)
+  &lt;?xml version='1.0' encoding='UTF-8'?&gt;
+  &lt;presence xmlns='urn:ietf:params:xml:ns:pidf'
+            entity='pres:romeo@example.net'&gt;
+    &lt;tuple id='balcony'&gt;
+      &lt;status&gt;
+        &lt;basic&gt;closed&lt;/basic&gt;
+      &lt;/status&gt;
+    &lt;/tuple&gt;
+  &lt;/presence&gt;
+</pre></div>
+<a name="pres-syntax-xmpp-show"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.1.5"></a><h3>5.1.5.&nbsp;
+Show Element</h3>
+
+<p>The &lt;show/&gt; child element of an XMPP presence stanza provides additional information about the sender's availability.  The XML character data of the XMPP &lt;show/&gt; element maps to extended &lt;status/&gt; content in PIDF.  The defined values of the &lt;show/&gt; element are 'away', 'chat', 'dnd', and 'xa'; as soon as values are specified for extended status states in the 'urn:ietf:params:xml:ns:pidf:im' namespace, the XMPP values will be mapped to the PIDF values.
+</p>
+<p>Example: Show Element
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+XMPP &lt;show/&gt; element
+  &lt;presence from='juliet@example.com/balcony'&gt;
+    &lt;show&gt;away&lt;/show&gt;
+  &lt;/presence&gt;
+
+PIDF extended presence information
+  &lt;?xml version='1.0' encoding='UTF-8'?&gt;
+  &lt;presence xmlns='urn:ietf:params:xml:ns:pidf'
+            xmlns:im='urn:ietf:params:xml:ns:pidf:im'
+            entity='pres:juliet@example.com'&gt;
+    &lt;tuple id='balcony'&gt;
+      &lt;status&gt;
+        &lt;basic&gt;open&lt;/basic&gt;
+        &lt;im:im&gt;away&lt;/im:im&gt;
+      &lt;/status&gt;
+    &lt;/tuple&gt;
+  &lt;/presence&gt;
+</pre></div>
+<a name="pres-syntax-xmpp-status"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.1.6"></a><h3>5.1.6.&nbsp;
+Status Element</h3>
+
+<p>The &lt;status/&gt; child element of an XMPP presence stanza provides a user-defined, natural-language description of the sender's detailed availability state.  The XMPP &lt;status/&gt; element maps to the PIDF &lt;note/&gt; child of the PIDF &lt;tuple/&gt; element.
+</p>
+<p>Example: Status Element
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+XMPP &lt;status/&gt; element
+  &lt;presence from='juliet@example.com/balcony'&gt;
+    &lt;show&gt;away&lt;/show&gt;
+    &lt;status&gt;retired to the chamber&lt;/status&gt;
+  &lt;/presence&gt;
+
+PIDF &lt;note/&gt; element
+  &lt;?xml version='1.0' encoding='UTF-8'?&gt;
+  &lt;presence xmlns='urn:ietf:params:xml:ns:pidf'
+            xmlns:im='urn:ietf:params:xml:ns:pidf:im'
+            entity='pres:juliet@example.com'&gt;
+    &lt;tuple id='balcony'&gt;
+      &lt;status&gt;
+        &lt;basic&gt;open&lt;/basic&gt;
+        &lt;im:im&gt;away&lt;/im:im&gt;
+      &lt;/status&gt;
+      &lt;note&gt;retired to the chamber&lt;/note&gt;
+    &lt;/tuple&gt;
+  &lt;/presence&gt;
+</pre></div>
+<a name="pres-syntax-xmpp-priority"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.1.7"></a><h3>5.1.7.&nbsp;
+Presence Priority</h3>
+
+<p>An XMPP presence stanza MAY contain a &lt;priority/&gt; child element whose value is an integer between -128 and +127.  The value of this element MAY be mapped to the 'priority' attribute of the &lt;contact/&gt; child of the PIDF &lt;tuple/&gt; element.  If the value of the XMPP &lt;priority/&gt; element is negative, an XMPP-CPIM gateway MUST NOT map the value.  The range of allowable values for the PIDF 'priority' attribute is any decimal number from zero to one inclusive, with a maximum of three decimal places.  If an XMPP-CPIM gateway maps these values, it SHOULD treat XMPP &lt;priority&gt;0&lt;/priority&gt; as PIDF priority='0' and XMPP &lt;priority&gt;127&lt;/priority&gt; as PIDF priority='1', mapping intermediate values appropriately so that they are unique (e.g., XMPP priority 1 to PIDF priority 0.007, XMPP priority 2 to PIDF priority 0.015, and so on up through mapping XMPP priority 126 to PIDF priority 0.992; note that this is an example only, and that the exact mapping shall be determined by the XMPP-CPIM gateway).
+</p>
+<p>Example: Presence Priority
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+XMPP &lt;status/&gt; element
+  &lt;presence from='juliet@example.com/balcony'&gt;
+    &lt;priority&gt;13&lt;/priority&gt;
+  &lt;/presence&gt;
+
+PIDF &lt;note/&gt; element
+  &lt;?xml version='1.0' encoding='UTF-8'?&gt;
+  &lt;presence xmlns='urn:ietf:params:xml:ns:pidf'
+            entity='pres:juliet@example.com'&gt;
+    &lt;tuple id='balcony'&gt;
+      ...
+      &lt;contact priority='0.102'&gt;im:juliet@example.com&lt;/contact&gt;
+    &lt;/tuple&gt;
+  &lt;/presence&gt;
+</pre></div>
+<a name="pres-syntax-xmpp-extensions"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.1.8"></a><h3>5.1.8.&nbsp;
+Presence Extensions</h3>
+
+<p>As defined in <a class='info' href='#XMPP-CORE'>[XMPP&#8209;CORE]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Extensible Messaging and Presence Protocol (XMPP): Core,&rdquo; October&nbsp;2004.</span><span>)</span></a>, an XMPP presence stanza may contain "extended" content in any namespace in order to supplement or extend the semantics of the core presence stanza.  With the exception of extended information qualified by the 'urn:ietf:params:xml:ns:xmpp-e2e' namespace as defined in <a class='info' href='#XMPP-E2E'>[XMPP&#8209;E2E]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;End-to-End Signing and Object Encryption for the Extensible Messaging and Presence Protocol (XMPP),&rdquo; October&nbsp;2004.</span><span>)</span></a>, an XMPP-CPIM gateway SHOULD ignore such information and not pass it through the gateway to the intended recipient.  No mapping for such information is defined.
+</p>
+<a name="pres-syntax-xmpp-gen"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.1.9"></a><h3>5.1.9.&nbsp;
+Gateway-Generated CPIM and PIDF Syntax</h3>
+
+<a name="pres-syntax-xmpp-gen-cpim"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.1.9.1"></a><h3>5.1.9.1.&nbsp;
+CPIM Message Headers</h3>
+
+<p>CPIM specifies the existence of "Message/CPIM" headers in addition to those described above, but there is no exact analogue for those headers in the core XMPP specifications.  These include:
+</p>
+<p>
+            </p>
+<ul class="text">
+<li>cc -- specifies the address of an entity that is to receive a "courtesy copy" of the presence information (i.e., a non-primary addressee)
+</li>
+<li>DateTime -- specifies the datetime at which the presence information was sent
+</li>
+<li>NS -- specifies the namespace of a feature extension
+</li>
+<li>Subject -- specifies the subject or topic of the encapsulated "Message/CPIM" object
+</li>
+<li>Require -- specifies mandatory-to-recognize features
+</li>
+</ul><p>
+          
+</p>
+<p>An XMPP-CPIM gateway MAY independently generate such headers based on its own information (e.g., the datetime at which it received a presence stanza from an XMPP entity) or based on data encoded in non-core XMPP extensions, but rules for doing so are out of scope for this memo.
+</p>
+<a name="pres-syntax-xmpp-gen-pidf"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.1.9.2"></a><h3>5.1.9.2.&nbsp;
+PIDF Elements</h3>
+
+<p>PIDF specifies the existence of XML elements in addition to those described above, but there is no exact analogue for those XML elements in the core XMPP specifications.  These include:
+</p>
+<p>
+            </p>
+<ul class="text">
+<li>&lt;contact/&gt; -- specifies an address (e.g., an im:, tel:, or mailto: URI) at which one may communicate with the presentity; an XMPP-CPIM gateway MAY include this element, in which case it SHOULD set its value to the &lt;user@host&gt; of the XMPP sender, prepended by the "im:" Instant Messaging URI scheme.
+</li>
+<li>&lt;timestamp/&gt; -- specifies the datetime at which the presence information was sent; an XMPP-CPIM gateway MAY independently generate this element based on its own information (e.g., the datetime at which it received the presence stanza from an XMPP entity) or based on data encoded in non-core XMPP extensions, but rules for doing so are out of scope for this memo.
+</li>
+</ul><p>
+          
+</p>
+<a name="pres-syntax-cpim"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.2"></a><h3>5.2.&nbsp;
+Presence Syntax Mapping from CPIM Specifications to XMPP</h3>
+
+<p>This section defines the mapping of syntax primitives from "Message/CPIM" objects with encapsulated "application/pidf+xml" objects to XMPP presence stanzas.
+</p>
+<p>Note: An XMPP-CPIM gateway MUST NOT map to an XMPP presence stanza a "Message/CPIM" object whose encapsulated MIME object has a Content-type other than "application/pidf+xml" (with the exception of multi-part MIME objects as specified in <a class='info' href='#XMPP-E2E'>[XMPP&#8209;E2E]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;End-to-End Signing and Object Encryption for the Extensible Messaging and Presence Protocol (XMPP),&rdquo; October&nbsp;2004.</span><span>)</span></a>).
+</p>
+<a name="pres-syntax-cpim-from"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.2.1"></a><h3>5.2.1.&nbsp;
+From Address</h3>
+
+<p>The 'From' header of a "Message/CPIM" object maps to the &lt;user@host&gt; portion of the 'from' attribute of an XMPP presence stanza, and the 'id' attribute of the PIDF &lt;tuple/&gt; child element maps to the resource identifier portion XMPP 'from' attribute.  Therefore, to map the CPIM and PIDF information to the XMPP 'from' attribute, the gateway MUST remove the "im:" Instant Messaging URI scheme from the front of the address and MUST remove the CPIM "Formal-name" (if provided) in order to generate the &lt;user@host&gt; portion of the XMPP 'from' attribute, then add a '/' character followed by the value of the PIDF &lt;tuple/&gt; element's 'id' attribute.
+</p>
+<p>Example: From Address Mapping
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+CPIM 'From' header
+  From: Romeo Montague &lt;im:romeo@example.net&gt;
+
+XMPP 'from' attribute
+  &lt;presence from='romeo@example.net'&gt;
+    ...
+  &lt;/presence&gt;
+</pre></div>
+<p>Example: Resource Identifier Mapping
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+XMPP 'from' attribute
+  &lt;presence from='juliet@example.com/balcony'&gt;
+    ...
+  &lt;/presence&gt;
+
+PIDF 'id' for &lt;tuple/&gt;
+  &lt;presence entity='pres:juliet@example.com'&gt;
+    &lt;tuple id='balcony'&gt;
+      ...
+    &lt;/tuple&gt;
+  &lt;/presence&gt;
+</pre></div>
+<a name="pres-syntax-cpim-to"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.2.2"></a><h3>5.2.2.&nbsp;
+To Address</h3>
+
+<p>The 'To' header of a "Message/CPIM" object maps to the 'to' attribute of an XMPP presence stanza.  To map the CPIM 'To' header to the XMPP 'to' attribute, the gateway MUST remove the "im:" Instant Messaging URI scheme from the front of the address and MUST remove the CPIM "Formal-name" (if provided).  If the gateway possesses knowledge of the resource identifier in use by the XMPP entity, the gateway MAY append the resource identifier to the address.
+</p>
+<p>Example: To Address Mapping
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+CPIM 'To' header
+  To: Juliet Capulet &lt;im:juliet@example.com&gt;
+
+XMPP 'to' attribute
+  &lt;presence to='juliet@example.com/balcony'&gt;
+    ...
+  &lt;/presence&gt;
+</pre></div>
+<a name="pres-syntax-cpim-cc"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.2.3"></a><h3>5.2.3.&nbsp;
+Courtesy Copy</h3>
+
+<p>The core XMPP specification does not include syntax for specifying a "courtesy copy" (non-primary addressee) for a presence stanza.  Therefore, if an XMPP-CPIM gateway receives a "Message/CPIM" object with encapsulated PIDF object that contains a 'cc' header, it SHOULD NOT pass the information contained in that header on to the XMPP recipient.
+</p>
+<a name="pres-syntax-cpim-datetime"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.2.4"></a><h3>5.2.4.&nbsp;
+DateTime Header</h3>
+
+<p>The core XMPP specification does not include syntax for specifying the datetime at which a presence stanza was sent.  Therefore, if an XMPP-CPIM gateway receives a "Message/CPIM" object with encapsulated PIDF object that contains a 'DateTime' header, it SHOULD NOT pass the information contained in that header on to the XMPP recipient.
+</p>
+<a name="pres-syntax-cpim-subject"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.2.5"></a><h3>5.2.5.&nbsp;
+Subject Header</h3>
+
+<p>An XMPP presence stanza contains no information that can be mapped to the 'Subject' header of a "Message/CPIM" object.  Therefore, if an XMPP-CPIM gateway receives a "Message/CPIM" object with encapsulated PIDF object that contains a 'Subject' header, it SHOULD NOT pass the information contained in that header on to the XMPP recipient.
+</p>
+<a name="pres-syntax-cpim-header"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.2.6"></a><h3>5.2.6.&nbsp;
+Header Extensions</h3>
+
+<p>"Message/CPIM" objects MAY include an optional 'NS' header to specify the namespace of a feature extension.  An XMPP-CPIM gateway MUST NOT pass such headers through to the XMPP recipient, and no mapping for such headers is defined.
+</p>
+<a name="pres-syntax-cpim-require"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.2.7"></a><h3>5.2.7.&nbsp;
+Require Header</h3>
+
+<p>"Message/CPIM" objects MAY include an optional 'Require' header to specify mandatory-to-recognize features.  An XMPP-CPIM gateway MUST NOT pass such headers through to the XMPP recipient, and no mapping for such headers is defined.
+</p>
+<a name="pres-syntax-cpim-contentid"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.2.8"></a><h3>5.2.8.&nbsp;
+MIME Content-ID</h3>
+
+<p>XMPP does not include an element or attribute that captures a globally unique ID as is defined for the Content-ID MIME header as specified in <a class='info' href='#MIME'>[MIME]<span> (</span><span class='info'>Freed, N. and N. Borenstein, &ldquo;Multipurpose Internet Mail Extensions (MIME) Part One: Format of Internet Message Bodies,&rdquo; November&nbsp;1996.</span><span>)</span></a>.  If an XMPP-CPIM gateway receives a MIME object that includes a Content-ID, it MAY provide the Content-ID as the value of the presence stanza's 'id' attribute, but this is OPTIONAL.
+</p>
+<p>Example: Content-ID for Encapsulated Object
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+MIME header
+  Content-ID: &lt;123456789@example.net&gt;
+
+XMPP 'id' attribute (OPTIONAL)
+  &lt;presence id='123456789@example.net'&gt;
+    ...
+  &lt;/presence&gt;
+</pre></div>
+<a name="pres-syntax-cpim-basic"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.2.9"></a><h3>5.2.9.&nbsp;
+Basic Presence Status</h3>
+
+<p>The basic presence status types defined in PIDF are OPEN and CLOSED.  The PIDF basic presence status of OPEN maps to an XMPP presence stanza that possesses no 'type' attribute (indicating default availability).  The PIDF basic presence status of CLOSED maps to an XMPP presence stanza that possesses a 'type' attribute with a value of "unavailable".
+</p>
+<p>Example: OPEN Presence
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+PIDF basic presence (OPEN)
+  &lt;?xml version='1.0' encoding='UTF-8'?&gt;
+  &lt;presence xmlns='urn:ietf:params:xml:ns:pidf'
+            entity='pres:romeo@example.net'&gt;
+    &lt;tuple id='orchard'&gt;
+      &lt;status&gt;
+        &lt;basic&gt;open&lt;/basic&gt;
+      &lt;/status&gt;
+    &lt;/tuple&gt;
+  &lt;/presence&gt;
+
+XMPP available presence
+  &lt;presence from='romeo@example.net/orchard'/&gt;
+</pre></div>
+<p>Example: CLOSED Presence
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+PIDF basic presence (CLOSED)
+  &lt;?xml version='1.0' encoding='UTF-8'?&gt;
+  &lt;presence xmlns='urn:ietf:params:xml:ns:pidf'
+            entity='pres:romeo@example.net'&gt;
+    &lt;tuple id='orchard'&gt;
+      &lt;status&gt;
+        &lt;basic&gt;closed&lt;/basic&gt;
+      &lt;/status&gt;
+    &lt;/tuple&gt;
+  &lt;/presence&gt;
+
+XMPP unavailable presence
+  &lt;presence from='romeo@example.net/orchard'
+            type='unavailable'/&gt;
+</pre></div>
+<a name="pres-syntax-cpim-ext"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.2.10"></a><h3>5.2.10.&nbsp;
+Extended Status Information</h3>
+
+<p>PIDF documents may contain extended &lt;status/&gt; content.  As of this writing there are no pre-defined extended status states that can be mapped to the defined values of the XMPP &lt;show/&gt; element ('away', 'chat', 'dnd', and 'xa').  Once PIDF extensions for such extended status states are defined within the Internet Standards Process, a gateway SHOULD map those extensions; however, any such mapping is out of scope for this memo, since the relevant PIDF extensions have not yet been defined.
+</p>
+<p>Example: Extended Status Information (provisional)
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+PIDF extended presence information
+  &lt;?xml version='1.0' encoding='UTF-8'?&gt;
+  &lt;presence xmlns='urn:ietf:params:xml:ns:pidf'
+            xmlns:im='urn:ietf:params:xml:ns:pidf:im'
+            entity='pres:romeo@example.net'&gt;
+    &lt;tuple id='orchard'&gt;
+      &lt;status&gt;
+        &lt;basic&gt;open&lt;/basic&gt;
+        &lt;im:im&gt;busy&lt;/im:im&gt;
+      &lt;/status&gt;
+    &lt;/tuple&gt;
+  &lt;/presence&gt;
+
+XMPP &lt;show/&gt; element
+  &lt;presence from='romeo@example.net/orchard'&gt;
+    &lt;show&gt;dnd&lt;/show&gt;
+  &lt;/presence&gt;
+</pre></div>
+<a name="pres-syntax-cpim-note"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.2.11"></a><h3>5.2.11.&nbsp;
+Note Element</h3>
+
+<p>A PIDF &lt;tuple/&gt; element may contain a &lt;note/&gt; child that provides a user-defined, natural-language description of the sender's detailed availability state.  The PIDF &lt;note/&gt; element maps to the XMPP &lt;status/&gt; element.
+</p>
+<p>Example: Note Element
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+PIDF &lt;note/&gt; element
+  &lt;?xml version='1.0' encoding='UTF-8'?&gt;
+  &lt;presence xmlns='urn:ietf:params:xml:ns:pidf'
+            xmlns:im='urn:ietf:params:xml:ns:pidf:im'
+            entity='pres:romeo@example.net'&gt;
+    &lt;tuple id='orchard'&gt;
+      &lt;status&gt;
+        &lt;basic&gt;open&lt;/basic&gt;
+        &lt;im:im&gt;busy&lt;/im:im&gt;
+      &lt;/status&gt;
+      &lt;note&gt;Wooing Juliet&lt;/note&gt;
+    &lt;/tuple&gt;
+  &lt;/presence&gt;
+
+XMPP &lt;status/&gt; element
+  &lt;presence from='romeo@example.net/orchard'&gt;
+    &lt;show&gt;dnd&lt;/show&gt;
+    &lt;status&gt;Wooing Juliet&lt;/status&gt;
+  &lt;/presence&gt;
+</pre></div>
+<p>A PIDF document with zero tuples MAY contain one or more &lt;note/&gt; elements as direct children of the PIDF &lt;presence/&gt; element.  There is no mapping of such a PIDF document to an XMPP presence stanza; an entity on the non-XMPP side of an XMPP-CPIM gateway SHOULD NOT send such a PIDF document to an XMPP recipient if possible, and an XMPP-CPIM gateway MUST NOT map such a PIDF document to an XMPP presence stanza (see <a class='info' href='#service-notify-zero'>Zero Resources<span> (</span><span class='info'>Zero Resources</span><span>)</span></a>).
+</p>
+<a name="pres-syntax-cpim-contact"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.2.12"></a><h3>5.2.12.&nbsp;
+Contact Element</h3>
+
+<p>A PIDF document may contain a &lt;contact/&gt; element specifying the URI of an address at which the principal can be contacted (e.g., an im:, tel:, or mailto: URI).  The core XMPP specification does not include syntax for specifying the URI of a contact address, since the contact address is implicit in the 'from' attribute of the XMPP presence stanza.  Therefore, if an XMPP-CPIM gateway receives a "Message/CPIM" object with encapsulated PIDF object that contains a &lt;contact/&gt; element, it SHOULD NOT pass the XML character data of the &lt;contact/&gt; element on to the XMPP recipient.  (However, see <a class='info' href='#pres-syntax-cpim-include'>Inclusion of Complete PIDF Document<span> (</span><span class='info'>Inclusion of Complete PIDF Document</span><span>)</span></a> below.)
+</p>
+<p>Example: PIDF Contact Element
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+PIDF &lt;contact/&gt; element
+  &lt;?xml version='1.0' encoding='UTF-8'?&gt;
+  &lt;presence xmlns='urn:ietf:params:xml:ns:pidf'
+            entity='pres:romeo@example.net'&gt;
+    &lt;tuple id='orchard'&gt;
+      ...
+      &lt;contact&gt;im:romeo@example.net&lt;/contact&gt;
+    &lt;/tuple&gt;
+  &lt;/presence&gt;
+
+XMPP presence stanza
+  &lt;presence from='romeo@example.net/orchard'/&gt;
+</pre></div>
+<a name="pres-syntax-cpim-priority"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.2.13"></a><h3>5.2.13.&nbsp;
+Presence Priority</h3>
+
+<p>The &lt;contact/&gt; child of the PIDF &lt;tuple/&gt; element MAY possess a 'priority' attribute whose value is a decimal number between zero and one (with a maximum of three decimal places).  The value of this attribute MAY be mapped to the &lt;priority/&gt; child element of an XMPP presence stanza.  An XMPP-CPIM gateway MUST NOT map PIDF priority values to negative values of the XMPP &lt;priority/&gt; element.  If an XMPP-CPIM gateway maps these values, it SHOULD treat PIDF priority='0' as XMPP &lt;priority&gt;0&lt;/priority&gt; and PIDF priority='1' as &lt;priority&gt;127&lt;/priority&gt;, mapping intermediate values appropriately so that they are unique (e.g., PIDF priorities between 0.001 and 0.007 to XMPP priority 1, PIDF priorities between 0.008 and 0.015 to XMPP priority 2, and so on up through mapping PIDF priorities between 0.992 and 0.999 to XMPP priority 126; note that this is an example only, and that the exact mapping shall be determined by the XMPP-CPIM gateway).
+</p>
+<a name="pres-syntax-cpim-timestamp"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.2.14"></a><h3>5.2.14.&nbsp;
+Timestamp Element</h3>
+
+<p>The core XMPP specification does not include syntax for specifying the datetime or timestamp at which a presence stanza was sent.  Therefore, if an XMPP-CPIM gateway receives a "Message/CPIM" object with encapsulated PIDF object that contains a &lt;timestamp/&gt; element, it SHOULD NOT pass the XML character data of the &lt;timestamp/&gt; element on to the XMPP recipient.
+</p>
+<a name="pres-syntax-cpim-include"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.2.15"></a><h3>5.2.15.&nbsp;
+Inclusion of Complete PIDF Document</h3>
+
+<p>Certain PIDF elements do not map to XMPP presence stanza syntax (e.g., the XML character data of the &lt;contact/&gt; element).  However, an XMPP client may be able to handle such information by parsing a native PIDF document.  To make this possible, an XMPP-CPIM gateway MAY include the complete PIDF document as a child element of the presence stanza, as described in <a class='info' href='#XMPP-PIDF'>[XMPP&#8209;PIDF]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Transporting Presence Information Data Format (PIDF) over the Extensible Messaging and Presence Protocol (XMPP),&rdquo; February&nbsp;2004.</span><span>)</span></a>.  If an XMPP client does not understand this extended data, it naturally MUST ignore it.
+</p>
+<a name="service"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.6"></a><h3>6.&nbsp;
+XMPP-CPIM Gateway as Presence Service</h3>
+
+<p><a class='info' href='#CPP'>[CPP]<span> (</span><span class='info'>Peterson, J., &ldquo;Common Profile for Presence (CPP),&rdquo; August&nbsp;2004.</span><span>)</span></a> defines semantics for an abstract presence service.  An XMPP-CPIM gateway MAY function as such a presence service, and if so an XMPP entity can use defined XMPP syntax to interact with the gateway's presence service.  Because <a class='info' href='#PIDF'>[PIDF]<span> (</span><span class='info'>Sugano, H., Fujimoto, S., Klyne, G., Bateman, A., Carr, W., and J. Peterson, &ldquo;Presence Information Data Format (PIDF),&rdquo; August&nbsp;2004.</span><span>)</span></a> does not specify syntax for semantic operations such as subscribe, this section defines only the XMPP interactions with the presence service offered by an XMPP-CPIM gateway, not the translation of such XMPP syntax into PIDF.  (Note: Detailed information about XMPP presence services can be found in <a class='info' href='#XMPP-IM'>[XMPP&#8209;IM]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Extensible Messaging and Presence Protocol (XMPP): Instant Messaging and Presence,&rdquo; October&nbsp;2004.</span><span>)</span></a>; as much as possible, an XMPP-CPIM gateway SHOULD implement the syntax, semantics, and server business rules defined therein.)
+</p>
+<a name="service-request"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.6.1"></a><h3>6.1.&nbsp;
+Requesting a Subscription</h3>
+
+<p>If an XMPP entity wants to subscribe to the presence information of a non-XMPP presentity through an XMPP-CPIM gateway, it MUST send a presence stanza of type "subscribe" to the target presentity.  The syntax mapping is as follows:
+</p>
+<p></p>
+<ul class="text">
+<li>The XMPP 'from' attribute (user@host) MUST be mapped to the CPP "watcher parameter" field (pres:user@host).  The XMPP-CPIM gateway MUST append the "pres:" Presence URI scheme to the front of the address.
+</li>
+<li>The XMPP 'to' attribute (user@host) MUST be mapped to the CPP "target parameter" field (pres:user@host).  The XMPP-CPIM gateway MUST append the "pres:" Presence URI scheme to the front of the address.
+</li>
+<li>There is no XMPP mapping for the CPP "duration parameter", since XMPP subscriptions are active until they have been explicitly "unsubscribed".
+</li>
+<li>The XMPP 'id' attribute SHOULD be mapped to the CPP "TransID" field.
+</li>
+</ul>
+
+<p>If the target presentity approves the subscription request (through whatever protocol it uses to interact with the gateway), the XMPP-CPIM gateway MUST return a presence stanza of type "subscribed" to the XMPP entity and notify the XMPP entity of the target's current available presence.  Thereafter, until the subscription is cancelled, the gateway MUST notify the subscribing XMPP entity every time the target's presence information changes.
+</p>
+<p>If the target presentity denies the subscription request, the XMPP-CPIM gateway MUST return a presence stanza of type "unsubscribed" to the XMPP entity and MUST NOT invoke the notify operation.
+</p>
+<p>In addition to the approval and denial cases, one of the following exceptions may occur:
+</p>
+<p></p>
+<ul class="text">
+<li>The target parameter (XMPP "to" address) does not refer to a valid presentity; if this exception occurs, the XMPP-CPIM gateway MUST return an &lt;item-not-found/&gt; stanza error to the XMPP entity.
+</li>
+<li>Access control rules do not permit the entity to subscribe to the target; if this exception occurs, the XMPP-CPIM gateway MUST return a &lt;forbidden/&gt; stanza error to the XMPP entity.
+</li>
+<li>There exists a pre-existing subscription or in-progress subscribe operation between the XMPP entity and the target presentity; if this exception occurs, the XMPP-CPIM gateway SHOULD return a &lt;conflict/&gt; stanza error to the XMPP entity.
+</li>
+</ul>
+
+<p>XMPP services assume that a subscription is active until it is explicitly terminated.  However, non-XMPP services may implement subscriptions of limited duration, which must be periodically refreshed in order to mimic the permanence of XMPP subscriptions.  Therefore, an XMPP-to-CPIM gateway may need to send such refreshes to the non-XMPP entity on behalf of the XMPP entity to that the subscription does not expire.  Whether such refreshes are necessary depends on the native protocol implemented by the CPIM-aware non-XMPP service to which the gateway is translating.
+</p>
+<a name="service-receive"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.6.2"></a><h3>6.2.&nbsp;
+Receiving a Subscription Request</h3>
+
+<p>If a non-XMPP presentity wants to subscribe to the presence information of an XMPP entity through an XMPP-CPIM gateway, it MUST use whatever protocol it uses to interact with the gateway in order to request the subscription; subject to local access rules, the gateway MUST then send a presence stanza of type "subscribe" to the XMPP entity from the non-XMPP watcher.  The syntax mapping is as follows:
+</p>
+<p></p>
+<ul class="text">
+<li>The CPP "watcher parameter" field (pres:user@host) MUST be mapped to the XMPP 'from' attribute (user@host).  The XMPP-CPIM gateway MUST remove the "pres:" Presence URI scheme from the front of the address.
+</li>
+<li>The CPP "target parameter" field (pres:user@host) MUST be mapped to the XMPP 'to' attribute (user@host).  The XMPP-CPIM gateway MUST remove the "pres:" Presence URI scheme from the front of the address.
+</li>
+<li>There is no XMPP mapping for the CPP "duration parameter", since XMPP subscriptions are active until they have been explicitly "unsubscribed".
+</li>
+<li>The CPP "TransID" field SHOULD be mapped to the XMPP 'id' attribute.
+</li>
+</ul>
+
+<p>If the target XMPP entity approves the subscription request, it MUST send a presence stanza of type "subscribed" to the watcher presentity.  The XMPP-CPIM gateway MUST then notify the watcher presentity of the target XMPP entity's current available presence.  Thereafter, until the subscription is cancelled, the gateway MUST notify the watcher presentity every time the target's presence information changes.
+</p>
+<p>If the target XMPP entity denies the subscription request, it MUST send a presence stanza of type "unsubscribed" to the watcher presentity.  The XMPP-CPIM gateway MUST NOT invoke the notify operation.
+</p>
+<p>In addition to the approval and denial cases, one of the following exceptions MAY occur:
+</p>
+<p></p>
+<ul class="text">
+<li>The target parameter (XMPP "to" address) does not refer to a valid XMPP entity
+</li>
+<li>Access control rules do not permit the watcher presentity to subscribe to the target XMPP entity
+</li>
+<li>There exists a pre-existing subscription or in-progress subscribe operation between the watcher presentity and the target XMPP entity
+</li>
+</ul>
+
+<p>If any of these exceptions occurs, the XMPP-CPIM gateway MUST inform the watcher presentity of failure.
+</p>
+<p>XMPP services assume that a subscription is active until it is explicitly terminated.  With the exception of handling duration parameters whose value is zero, handling duration parameters will be highly dependent on the implementation and requirements of the XMPP-CPIM gateway.  Since there are no explicit requirements for supporting a "duration parameter" specified in either <a class='info' href='#IMP-MODEL'>[IMP&#8209;MODEL]<span> (</span><span class='info'>Day, M., Rosenberg, J., and H. Sugano, &ldquo;A Model for Presence and Instant Messaging,&rdquo; February&nbsp;2000.</span><span>)</span></a> or <a class='info' href='#IMP-REQS'>[IMP&#8209;REQS]<span> (</span><span class='info'>Day, M., Aggarwal, S., and J. Vincent, &ldquo;Instant Messaging / Presence Protocol Requirements,&rdquo; February&nbsp;2000.</span><span>)</span></a>, duration parameter mapping is a local issue that falls outside the scope of this memo.  However, an XMPP-CPIM gateway MAY keep track of the duration parameter if received from an entity on the non-XMPP service and delete the subscription after that duration parameter expires.
+</p>
+<a name="service-notify"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.6.3"></a><h3>6.3.&nbsp;
+The Notify Operation</h3>
+
+<p>An XMPP-CPIM gateway invokes the CPP "notify operation" whenever the presence information associated with an XMPP entity or CPP presentity changes and there are subscribers to that information on the other side of the gateway.  The syntax mapping for presence information related to a notify operation is defined under <a class='info' href='#pres'>Mapping for Presence<span> (</span><span class='info'>Syntax Mapping of Presence Information</span><span>)</span></a>.
+</p>
+<a name="service-notify-multiple"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.6.3.1"></a><h3>6.3.1.&nbsp;
+Multiple Resources</h3>
+
+<p>Semantically, PIDF contains the notion of multiple presence "tuples".  Normally, a PIDF document will contain at least one tuple but MAY contain more than one tuple (or zero tuples, for which see next section).  In the terminology of XMPP, each tuple would map to presence information for a separate resource.  However, XMPP does not include the ability to send presence information about more than one resource at a time, since the resource that generates the presence information is contained in the 'from' address of a presence stanza.  Therefore, an XMPP-CPIM gateway that acts as a presence service SHOULD split a PIDF document that contains multiple tuples into multiple XMPP presence stanzas, and SHOULD generate only one PIDF document (with multiple tuples) if an XMPP user currently has multiple connected resources.
+</p>
+<p>In the interest of not multiplying XMPP stanzas beyond necessity, an XMPP-CPIM gateway SHOULD generate an XMPP presence stanza only if the presence information contained in a PIDF tuple communicates a change in the availability status of the device or application associated with that tuple ID.
+</p>
+<p>In the interest of complying with the PIDF recommendation to provide information about multiple "resources" in multiple tuples rather than in multiple PIDF documents, an XMPP-CPIM gateway SHOULD include information about all of an XMPP user's resources in one PIDF document (with one tuple for each resource), even if the availability status of only one resource has changed.
+</p>
+<a name="service-notify-zero"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.6.3.2"></a><h3>6.3.2.&nbsp;
+Zero Resources</h3>
+
+<p>A PIDF document may contain zero tuples.  For example:
+</p>
+<p>PIDF Document with Zero Tuples
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+  &lt;presence entity='pres:juliet@example.com'
+            xmlns='urn:ietf:params:xml:ns:pidf'/&gt;
+</pre></div>
+<p>Because (1) the 'entity' attribute of a PIDF &lt;presence/&gt; element maps to the &lt;user@host&gt; portion of an XMPP address and (2) the 'id' attribute of a PIDF &lt;tuple/&gt; element maps to the resource identifier portion of an XMPP address, a PIDF document that contains zero tuples would provide presence information about a &lt;user@host&gt; rather than a &lt;user@host/resource&gt; when mapped to XMPP.  Although the notion of presence notifications about a mere user rather than one of the user's resources is nearly meaningless in the XMPP context, an XMPP-CPIM gateway SHOULD map a PIDF document with zero tuples to an XMPP presence stanza whose 'from' address is the user@host of the non-XMPP entity.  However, an XMPP-CPIM gateway MUST NOT generate a PIDF document with zero &lt;tuple/&gt; children when receiving a presence stanza from an XMPP entity (i.e., all PIDF documents communicated by the gateway to a non-XMPP service MUST contain at least one &lt;tuple/&gt; element).
+</p>
+<a name="service-unsubscribe"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.6.4"></a><h3>6.4.&nbsp;
+Unsubscribing</h3>
+
+<p>If an XMPP entity wants to unsubscribe from the presence of a non-XMPP presentity through an XMPP-CPIM gateway, it MUST send a presence stanza of type "unsubscribe" to the target presentity.  The syntax mapping is as follows:
+</p>
+<p></p>
+<ul class="text">
+<li>The XMPP 'from' attribute (user@host) MUST be mapped to the CPP "watcher parameter" field (pres:user@host).  The XMPP-CPIM gateway MUST append the "pres:" Presence URI scheme to the front of the address.
+</li>
+<li>The XMPP 'to' attribute (user@host) MUST be mapped to the CPP "target parameter" field (pres:user@host).  The XMPP-CPIM gateway MUST append the "pres:" Presence URI scheme to the front of the address.
+</li>
+<li>The CPP "duration parameter" MUST be set to zero.
+</li>
+<li>The XMPP 'id' attribute SHOULD be mapped to the CPP "TransID" field.
+</li>
+</ul>
+
+<p>If the target parameter (XMPP "to" address) does not refer to a valid presentity, the XMPP-CPIM gateway MUST return an &lt;item-not-found/&gt; stanza error to the XMPP entity.
+</p>
+<p>Upon receiving the presence stanza of type "unsubscribe" from the XMPP entity, the XMPP-CPIM gateway MUST NOT send further presence notifications to the XMPP entity.
+</p>
+<a name="service-cancel"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.6.5"></a><h3>6.5.&nbsp;
+Cancelling a Subscription</h3>
+
+<p>If an XMPP entity wants to cancel a non-XMPP presentity's subscription to the entity's presence through an XMPP-CPIM gateway, it MUST send a presence stanza of type "unsubscribed" to the target presentity.  The syntax mapping is as follows:
+</p>
+<p>
+        </p>
+<ul class="text">
+<li>The XMPP 'from' attribute (user@host) MUST be mapped to the CPP "watcher parameter" field (pres:user@host).  The XMPP-CPIM gateway MUST add the "pres:" Presence URI scheme to the front of the address.
+</li>
+<li>The XMPP 'to' attribute (user@host) MUST be mapped to the CPP "target parameter" field (pres:user@host).  The XMPP-CPIM gateway MUST add the "pres:" Presence URI scheme to the front of the address.
+</li>
+<li>The CPP "duration parameter" MUST be set to zero.
+</li>
+<li>The XMPP 'id' attribute SHOULD be mapped to the CPP "TransID" field.
+</li>
+</ul><p>
+      
+</p>
+<p>Upon receiving the presence stanza of type "unsubscribed" from the XMPP entity, the XMPP-CPIM gateway MUST NOT send further presence notifications to the watcher presentity.
+</p>
+<a name="security"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.7"></a><h3>7.&nbsp;
+Security Considerations</h3>
+
+<p>Detailed security considerations for instant messaging and presence protocols are given in <a class='info' href='#IMP-REQS'>[IMP&#8209;REQS]<span> (</span><span class='info'>Day, M., Aggarwal, S., and J. Vincent, &ldquo;Instant Messaging / Presence Protocol Requirements,&rdquo; February&nbsp;2000.</span><span>)</span></a>, specifically in Sections 5.1 through 5.4.
+</p>
+<p>This document specifies methods for exchanging instant messages and presence information through a gateway that implements <a class='info' href='#CPIM'>[CPIM]<span> (</span><span class='info'>Peterson, J., &ldquo;Common Profile for Instant Messaging (CPIM),&rdquo; August&nbsp;2004.</span><span>)</span></a> and <a class='info' href='#CPP'>[CPP]<span> (</span><span class='info'>Peterson, J., &ldquo;Common Profile for Presence (CPP),&rdquo; August&nbsp;2004.</span><span>)</span></a>.  Such a gateway MUST be compliant with the minimum security requirements of the instant messaging and presence protocols with which it interfaces.  The introduction of gateways to the security model of instant messaging and presence in RFC 2779 also introduces some new risks.  In particular, end-to-end security properties (especially confidentiality and integrity) between instant messaging and presence user agents that interface through an XMPP-CPIM gateway can be provided only if common formats are supported; these formats are specified fully in <a class='info' href='#XMPP-E2E'>[XMPP&#8209;E2E]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;End-to-End Signing and Object Encryption for the Extensible Messaging and Presence Protocol (XMPP),&rdquo; October&nbsp;2004.</span><span>)</span></a>.
+</p>
+<a name="rfc.references"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.8"></a><h3>8.&nbsp;
+References</h3>
+
+<a name="rfc.references1"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<h3>8.1.&nbsp;Normative References</h3>
+<table width="99%" border="0">
+<tr><td class="author-text" valign="top"><a name="CPIM">[CPIM]</a></td>
+<td class="author-text">Peterson, J., &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc3860.txt">Common Profile for Instant Messaging (CPIM)</a>,&rdquo; RFC&nbsp;3860, August&nbsp;2004.</td></tr>
+<tr><td class="author-text" valign="top"><a name="CPP">[CPP]</a></td>
+<td class="author-text">Peterson, J., &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc3859.txt">Common Profile for Presence (CPP)</a>,&rdquo; RFC&nbsp;3859, August&nbsp;2004.</td></tr>
+<tr><td class="author-text" valign="top"><a name="IMP-MODEL">[IMP-MODEL]</a></td>
+<td class="author-text"><a href="mailto:mday@alum.mit.edu">Day, M.</a>, <a href="mailto:jdrosen@dynamicsoft.com">Rosenberg, J.</a>, and <a href="mailto:suga@flab.fujitsu.co.jp">H. Sugano</a>, &ldquo;<a href="http://www.ietf.org/rfc/rfc2778.txt">A Model for Presence and Instant Messaging</a>,&rdquo; RFC&nbsp;2778, February&nbsp;2000.</td></tr>
+<tr><td class="author-text" valign="top"><a name="IMP-REQS">[IMP-REQS]</a></td>
+<td class="author-text"><a href="mailto:mday@alum.mit.edu">Day, M.</a>, <a href="mailto:sonuag@microsoft.com">Aggarwal, S.</a>, and <a href="mailto:jesse@intonet.com">J. Vincent</a>, &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc2779.txt">Instant Messaging / Presence Protocol Requirements</a>,&rdquo; RFC&nbsp;2779, February&nbsp;2000.</td></tr>
+<tr><td class="author-text" valign="top"><a name="MIME">[MIME]</a></td>
+<td class="author-text"><a href="mailto:ned@innosoft.com">Freed, N.</a> and <a href="mailto:nsb@nsb.fv.com">N. Borenstein</a>, &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc2045.txt">Multipurpose Internet Mail Extensions (MIME) Part One: Format of Internet Message Bodies</a>,&rdquo; RFC&nbsp;2045, November&nbsp;1996.</td></tr>
+<tr><td class="author-text" valign="top"><a name="MSGFMT">[MSGFMT]</a></td>
+<td class="author-text">Klyne, G. and D. Atkins, &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc3862.txt">Common Presence and Instant Messaging (CPIM): Message Format</a>,&rdquo; RFC&nbsp;3862, August&nbsp;2004.</td></tr>
+<tr><td class="author-text" valign="top"><a name="PIDF">[PIDF]</a></td>
+<td class="author-text">Sugano, H., Fujimoto, S., Klyne, G., Bateman, A., Carr, W., and J. Peterson, &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc3863.txt">Presence Information Data Format (PIDF)</a>,&rdquo; RFC&nbsp;3863, August&nbsp;2004.</td></tr>
+<tr><td class="author-text" valign="top"><a name="STRINGPREP">[STRINGPREP]</a></td>
+<td class="author-text">Hoffman, P. and M. Blanchet, &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc3454.txt">Preparation of Internationalized Strings ("stringprep")</a>,&rdquo; RFC&nbsp;3454, December&nbsp;2002.</td></tr>
+<tr><td class="author-text" valign="top"><a name="TERMS">[TERMS]</a></td>
+<td class="author-text"><a href="mailto:-">Bradner, S.</a>, &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc2119.txt">Key words for use in RFCs to Indicate Requirement Levels</a>,&rdquo; BCP&nbsp;14, RFC&nbsp;2119, March&nbsp;1997.</td></tr>
+<tr><td class="author-text" valign="top"><a name="URL-GUIDE">[URL-GUIDE]</a></td>
+<td class="author-text"><a href="mailto:masinter@parc.xerox.com">Masinter, L.</a>, <a href="mailto:harald.alvestrand@maxware.no">Alvestrand, H.</a>, <a href="mailto:djz@corp.webtv.net">Zigmond, D.</a>, and <a href="mailto:rpetke@wcom.net">R. Petke</a>, &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc2718.txt">Guidelines for new URL Schemes</a>,&rdquo; RFC&nbsp;2718, November&nbsp;1999.</td></tr>
+<tr><td class="author-text" valign="top"><a name="US-ASCII">[US-ASCII]</a></td>
+<td class="author-text">Cerf, V., &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc20.txt">ASCII format for network interchange</a>,&rdquo; RFC&nbsp;20, October&nbsp;1969.</td></tr>
+<tr><td class="author-text" valign="top"><a name="UTF-8">[UTF-8]</a></td>
+<td class="author-text">Yergeau, F., &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc3629.txt">UTF-8, a transformation format of ISO 10646</a>,&rdquo; STD&nbsp;63, RFC&nbsp;3629, November&nbsp;2003.</td></tr>
+<tr><td class="author-text" valign="top"><a name="XMPP-CORE">[XMPP-CORE]</a></td>
+<td class="author-text">Saint-Andre, P., &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc3920.txt">Extensible Messaging and Presence Protocol (XMPP): Core</a>,&rdquo; RFC&nbsp;3920, October&nbsp;2004.</td></tr>
+<tr><td class="author-text" valign="top"><a name="XMPP-E2E">[XMPP-E2E]</a></td>
+<td class="author-text">Saint-Andre, P., &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc3923.txt">End-to-End Signing and Object Encryption for the Extensible Messaging and Presence Protocol (XMPP)</a>,&rdquo; RFC&nbsp;3923, October&nbsp;2004.</td></tr>
+<tr><td class="author-text" valign="top"><a name="XMPP-IM">[XMPP-IM]</a></td>
+<td class="author-text">Saint-Andre, P., &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc3921.txt">Extensible Messaging and Presence Protocol (XMPP): Instant Messaging and Presence</a>,&rdquo; RFC&nbsp;3921, October&nbsp;2004.</td></tr>
+</table>
+
+<a name="rfc.references2"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<h3>8.2.&nbsp;Informative References</h3>
+<table width="99%" border="0">
+<tr><td class="author-text" valign="top"><a name="RFC2822">[RFC2822]</a></td>
+<td class="author-text">Resnick, P., &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc2822.txt">Internet Message Format</a>,&rdquo; RFC&nbsp;2822, April&nbsp;2001.</td></tr>
+<tr><td class="author-text" valign="top"><a name="MIMETYPES">[MIMETYPES]</a></td>
+<td class="author-text"><a href="mailto:ned@innosoft.com">Freed, N.</a> and <a href="mailto:nsb@nsb.fv.com">N. Borenstein</a>, &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc2046.txt">Multipurpose Internet Mail Extensions (MIME) Part Two: Media Types</a>,&rdquo; RFC&nbsp;2046, November&nbsp;1996.</td></tr>
+<tr><td class="author-text" valign="top"><a name="XMPP-PIDF">[XMPP-PIDF]</a></td>
+<td class="author-text">Saint-Andre, P., &ldquo;<a href="http://www.ietf.org/internet-drafts/draft-saintandre-xmpp-pidf-00.txt">Transporting Presence Information Data Format (PIDF) over the Extensible Messaging and Presence Protocol (XMPP)</a>,&rdquo; draft-saintandre-xmpp-pidf-00 (work in progress), February&nbsp;2004.</td></tr>
+</table>
+
+<a name="rfc.authors"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<h3>Author's Address</h3>
+<table width="99%" border="0" cellpadding="0" cellspacing="0">
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Peter Saint-Andre</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Jabber Software Foundation</td></tr>
+<tr><td class="author" align="right">Email:&nbsp;</td>
+<td class="author-text"><a href="mailto:stpeter@jabber.org">stpeter@jabber.org</a></td></tr>
+</table>
+<a name="rfc.copyright"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<h3>Full Copyright Statement</h3>
+<p class='copyright'>
+Copyright &copy; The Internet Society (2004).</p>
+<p class='copyright'>
+This document is subject to the rights,
+licenses and restrictions contained in BCP&nbsp;78,
+and except as set forth therein,
+the authors retain all their rights.</p>
+<p class='copyright'>
+This document and the information contained herein are provided
+on an &ldquo;AS IS&rdquo; basis and THE CONTRIBUTOR,
+THE ORGANIZATION HE/SHE REPRESENTS OR IS SPONSORED BY (IF ANY),
+THE INTERNET SOCIETY AND THE INTERNET ENGINEERING TASK FORCE DISCLAIM
+ALL WARRANTIES,
+EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE
+INFORMATION HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED
+WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.</p>
+<h3>Intellectual Property</h3>
+<p class='copyright'>
+The IETF takes no position regarding the validity or scope of any
+Intellectual Property Rights or other rights that might be claimed
+to pertain to the implementation or use of the technology
+described in this document or the extent to which any license
+under such rights might or might not be available; nor does it
+represent that it has made any independent effort to identify any
+such rights.
+Information on the procedures with respect to
+rights in RFC documents can be found in BCP&nbsp;78 and BCP&nbsp;79.</p>
+<p class='copyright'>
+Copies of IPR disclosures made to the IETF Secretariat and any
+assurances of licenses to be made available,
+or the result of an attempt made to obtain a general license or
+permission for the use of such proprietary rights by implementers or
+users of this specification can be obtained from the IETF on-line IPR
+repository at <a href='http://www.ietf.org/ipr'>http://www.ietf.org/ipr</a>.</p>
+<p class='copyright'>
+The IETF invites any interested party to bring to its attention
+any copyrights,
+patents or patent applications,
+or other
+proprietary rights that may cover technology that may be required
+to implement this standard.
+Please address the information to the IETF at <a href='mailto:ietf-ipr@ietf.org'>ietf-ipr@ietf.org</a>.</p>
+<h3>Acknowledgment</h3>
+<p class='copyright'>
+Funding for the RFC Editor function is provided by
+the IETF Administrative Support Activity (IASA).</p>
+</body></html>

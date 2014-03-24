@@ -1,0 +1,357 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>XEP-0068: Field Standardization for Data Forms</title><link rel="stylesheet" type="text/css" href="/xmpp.css" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" /><meta name="DC.Title" content="Field Standardization for Data Forms" /><meta name="DC.Creator" content="Joe Hildebrand" /><meta name="DC.Creator" content="Peter Saint-Andre" /><meta name="DC.Description" content="This document specifies how to standardize field variables used in the context of jabber:x:data forms." /><meta name="DC.Publisher" content="XMPP Standards Foundation" /><meta name="DC.Contributor" content="XMPP Extensions Editor" /><meta name="DC.Date" content="2004-07-07" /><meta name="DC.Type" content="XMPP Extension Protocol" /><meta name="DC.Format" content="XHTML" /><meta name="DC.Identifier" content="XEP-0068" /><meta name="DC.Language" content="en" /><meta name="DC.Rights" content="This XMPP Extension Protocol is copyright (c) 1999 - 2008 by the XMPP Standards Foundation (XSF)." /></head><body><h1>XEP-0068: Field Standardization for Data Forms</h1><p>This document specifies how to standardize field variables used in the context of jabber:x:data forms.</p><hr /><p style="color:green">NOTICE: This Informational specification defines a best practice or protocol profile that has been approved by the XMPP Council and/or the XSF Board of Directors. Implementations are encouraged and the best practice or protocol profile is appropriate for deployment in production systems.</p><hr /><h2>Document Information</h2><p class="indent">
+            Series: <a href="http://www.xmpp.org/extensions/">XEP</a><br />
+            Number: 0068<br />
+            Publisher: <a href="/xsf/">XMPP Standards Foundation</a><br />
+            Status: 
+            <a href="http://www.xmpp.org/extensions/xep-0001.html#states-Active">Active</a><br />
+            Type:
+            <a href="http://www.xmpp.org/extensions/xep-0001.html#types-Informational">Informational</a><br />
+            Version: 1.1<br />
+            Last Updated: 2004-07-07<br />
+                Approving Body: <a href="http://www.xmpp.org/council/">XMPP Council</a><br />Dependencies: XMPP Core, XEP-0004<br />
+                Supersedes: None<br />
+                Superseded By: None<br />
+            Short Name: formtypes<br />
+              Registry: 
+              
+              &lt;<a href="http://www.xmpp.org/registrar/formtypes.html">http://www.xmpp.org/registrar/formtypes.html</a>&gt;
+              <br />
+              Wiki Page: &lt;<a href="http://wiki.jabber.org/index.php/Field Standardization for Data Forms (XEP-0068)">http://wiki.jabber.org/index.php/Field Standardization for Data Forms (XEP-0068)</a>&gt;
+            </p><hr /><h2>Author Information</h2><div class="indent"><h3>Joe Hildebrand</h3><p class="indent">
+        Email:
+        <a href="mailto:jhildebrand@jabber.com">jhildebrand@jabber.com</a><br />
+        JabberID: 
+        <a href="xmpp:hildjj@jabber.org">hildjj@jabber.org</a><br /></p><h3>Peter Saint-Andre</h3><p class="indent">
+        JabberID: 
+        <a href="xmpp:stpeter@jabber.org">stpeter@jabber.org</a><br />
+        URI: 
+        <a href="https://stpeter.im/">https://stpeter.im/</a><br /></p></div><hr /><h2>Legal Notices</h2><div class="indent"><h3>Copyright</h3>This XMPP Extension Protocol is copyright (c) 1999 - 2008 by the XMPP Standards Foundation (XSF).<h3>Permissions</h3>Permission is hereby granted, free of charge, to any person obtaining a copy of this specification (the "Specification"), to make use of the Specification without restriction, including without limitation the rights to implement the Specification in a software program, deploy the Specification in a network service, and copy, modify, merge, publish, translate, distribute, sublicense, or sell copies of the Specification, and to permit persons to whom the Specification is furnished to do so, subject to the condition that the foregoing copyright notice and this permission notice shall be included in all copies or substantial portions of the Specification. Unless separate permission is granted, modified works that are redistributed shall not contain misleading information regarding the authors, title, number, or publisher of the Specification, and shall not claim endorsement of the modified works by the authors, any organization or project to which the authors belong, or the XMPP Standards Foundation.<h3>Disclaimer of Warranty</h3><span style="font-weight: bold">## NOTE WELL: This Specification is provided on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, express or implied, including, without limitation, any warranties or conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE. In no event shall the XMPP Standards Foundation or the authors of this Specification be liable for any claim, damages, or other liability, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the Specification or the implementation, deployment, or other use of the Specification. ##</span><h3>Limitation of Liability</h3>In no event and under no legal theory, whether in tort (including negligence), contract, or otherwise, unless required by applicable law (such as deliberate and grossly negligent acts) or agreed to in writing, shall the XMPP Standards Foundation or any author of this Specification be liable for damages, including any direct, indirect, special, incidental, or consequential damages of any character arising out of the use or inability to use the Specification (including but not limited to damages for loss of goodwill, work stoppage, computer failure or malfunction, or any and all other commercial damages or losses), even if the XMPP Standards Foundation or such author has been advised of the possibility of such damages.<h3>IPR Conformance</h3>This XMPP Extension Protocol has been contributed in full conformance with the XSF's Intellectual Property Rights Policy (a copy of which may be found at &lt;<a href="http://www.xmpp.org/extensions/ipr-policy.shtml">http://www.xmpp.org/extensions/ipr-policy.shtml</a>&gt; or obtained by writing to XSF, P.O. Box 1641, Denver, CO 80201 USA).</div><hr /><h2>Discussion Venue</h2><p class="indent">The preferred venue for discussion of this document is the Standards discussion list: &lt;<a href="http://mail.jabber.org/mailman/listinfo/standards">http://mail.jabber.org/mailman/listinfo/standards</a>&gt;.</p><p class="indent">Errata may be sent to &lt;<a href="mailto:editor@xmpp.org">editor@xmpp.org</a>&gt;.</p><h2>Relation to XMPP</h2><p class="indent">The Extensible Messaging and Presence Protocol (XMPP) is defined in the XMPP Core (RFC 3920) and XMPP IM (RFC 3921) specifications contributed by the XMPP Standards Foundation to the Internet Standards Process, which is managed by the Internet Engineering Task Force in accordance with RFC 2026. Any protocol defined in this document has been developed outside the Internet Standards Process and is to be understood as an extension to XMPP rather than as an evolution, development, or modification of XMPP itself.</p><h2>Conformance Terms</h2><p class="indent">The following keywords as used in this document are to be interpreted as described in <a href="http://www.ietf.org/rfc/rfc2119.txt">RFC 2119</a>: "MUST", "SHALL", "REQUIRED"; "MUST NOT", "SHALL NOT"; "SHOULD", "RECOMMENDED"; "SHOULD NOT", "NOT RECOMMENDED"; "MAY", "OPTIONAL".</p><hr /><h2>Table of Contents</h2><div class="indent"><p><br />1.  <a href="#intro">Introduction</a><br />2.  <a href="#reqs">Requirements</a><br />3.  <a href="#approach">Approach</a><br />   
+      3.1.  <a href="#approach-overview">Overview</a><br />   
+      3.2.  <a href="#approach-register">Whether to Register</a><br />   
+      3.3.  <a href="#approach-naming">Naming Convention</a><br />   
+      3.4.  <a href="#approach-fieldnames">Field Names</a><br />   
+      3.5.  <a href="#approach-values">Field Values</a><br />4.  <a href="#usecases">Use Cases</a><br />   
+      4.1.  <a href="#usecases-unspecified">Unspecified Form</a><br />   
+      4.2.  <a href="#usecases-correct">Correctly Specified FORM_TYPE</a><br />   
+      4.3.  <a href="#usecases-incorrect">Incorrectly Specified FORM_TYPE</a><br />   
+      4.4.  <a href="#usecases-badfield">Message with Bad Field</a><br />   
+      4.5.  <a href="#usecases-IQ">IQ Example</a><br />5.  <a href="#impl">Implementation Notes</a><br />6.  <a href="#errors">Error Codes</a><br />7.  <a href="#security">Security Considerations</a><br />8.  <a href="#iana">IANA Considerations</a><br />9.  <a href="#registrar">XMPP Registrar Considerations</a><br />   
+      9.1.  <a href="#registrar-reg">Registries</a><br />      
+      9.1.1.  <a href="#registrar-reg-formtypes">FORM_TYPEs Registry</a><br />        
+      9.1.1.1.  <a href="#registrar-reg-formtypes-process">Process</a><br /><a href="#notes">Notes</a><br /><a href="#revs">Revision History</a></p></div><hr /><h2>1.
+       <a name="intro" id="intro">Introduction</a></h2>
+    <p class="" style="">Now that <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0004.html">Data Forms</a></span>  [<a href="#nt-id2252648">1</a>] has been finalized, several uses of jabber:x:data forms have been put on the standards track, including <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0045.html">Multi-User Chat</a></span>  [<a href="#nt-id2252677">2</a>].  These protocols typically need a way to gather data from both humans (using a GUI format) and computer processes (using a pre-defined but flexible format).</p>
+    <p class="" style="">The 'jabber:x:data' namespace provides an adequate mechanism for both of these uses, as long as computer processes can rely on the var="" names on a particular type of form.</p>
+    <p class="" style="">This document proposes a specific mechanism for the <span class="ref" style=""><a href="http://www.xmpp.org/registrar/">XMPP Registrar</a></span>  [<a href="#nt-id2252760">3</a>] to standardize these form field variable names. Thus this document enables existing clients to process forms as they have to this point, but enables protocol authors to specify a mechanism for non-GUI processors of those forms to determine the semantic meanings of those forms.</p>
+<h2>2.
+       <a name="reqs" id="reqs">Requirements</a></h2>
+    <ol start="" class="" style="">
+      <li class="" style="">Forms must continue to be presentable to humans for data entry.</li>
+      <li class="" style="">Jabber clients that know how to process generic jabber:x:data messages must be supported; the basic format of jabber:x:data must not change.</li>
+      <li class="" style="">If a form type is used in the context of a standards-track protocol, it should be standardized and registered; however, there is no requirement that all form types must be registered (e.g., form types used in custom applications).</li>
+      <li class="" style="">If a form type is standardized and registered, field names used in the context of that form type must either be standardized as well or else be clearly labeled as unregistered.</li>
+      <li class="" style="">Forms that are not directed <span class="em">to</span> an entity must be able to traverse the entity (e.g., a form sent to a MUC room, intended for the participants of the room, and not the room itself).</li>
+      <li class="" style="">Forms must continue to be flexible for implementations; unknown future expansion fields must not be limited.</li>
+      <li class="" style="">The chosen approach must work for forms embedded in messages as well as in IQs.</li>
+    </ol>
+<h2>3.
+       <a name="approach" id="approach">Approach</a></h2>
+    <div class="indent"><h3>3.1 <a name="approach-overview" id="approach-overview">Overview</a></h3>
+        <p class="" style="">Within Jabber, namespaces are used to scope data that conforms to a schema (often data that extends the core protocol in some fashion). In addition, namespaces can also provide context for the field variable names used in jabber:x:data forms and reports. This proposal makes that link explicit by defining a mechanism for linking a namespace name with a form and the field names and types used in that form. Specifically, the namespace name is specified in the form as the value of a hidden variable called "FORM_TYPE".</p>
+    </div>
+    <div class="indent"><h3>3.2 <a name="approach-register" id="approach-register">Whether to Register</a></h3>
+        <p class="" style="">The first decision-point is whether a FORM_TYPE needs to be registered with the XMPP Registrar. The following rules apply:</p>
+        <ol start="" class="" style="">
+          <li class="" style="">If the FORM_TYPE is used in the context of a form defined in a XEP published by the <span class="ref" style=""><a href="http://www.xmpp.org/xsf/">XMPP Standards Foundation (XSF)</a></span>  [<a href="#nt-id2251442">4</a>], it MUST be registered.</li>
+          <li class="" style="">If the FORM_TYPE is used in the context of some other XMPP protocol but the form is not defined in a XEP, it MAY be registered.</li>
+          <li class="" style="">If the FORM_TYPE is used in the context of a custom protocol, it MAY be registered.</li>
+        </ol>
+    </div>
+    <div class="indent"><h3>3.3 <a name="approach-naming" id="approach-naming">Naming Convention</a></h3>
+        <p class="" style="">While the value of the FORM_TYPE attribute SHOULD be considered an opaque string from the application perspective, the following rules apply:</p>
+        <ol start="" class="" style="">
+          <li class="" style="">For custom protocols, the name SHOULD be an HTTP URI that is managed by the namespace "owner".</li>
+          <li class="" style="">For all new protocols approved by the XSF, the name MUST be an HTTP URI or IETF-style URN.</li>
+          <li class="" style="">For "legacy" protocols managed by the XSF, the name SHOULD use the old-style "jabber:*:*" format.</li>
+        </ol>
+    </div>
+    <div class="indent"><h3>3.4 <a name="approach-fieldnames" id="approach-fieldnames">Field Names</a></h3>
+        <p class="" style="">For FORM_TYPEs that are registered with the XMPP Registrar, the field names MUST conform to one of the following two conditions:</p>
+        <ol start="" class="" style="">
+          <li class="" style="">If the field name is defined by the relevant XEP or by registration, the field name MUST be registered with the XMPP Registrar and MAY have any name (except a name that begins with "x-"), subject to approval by the XMPP Registrar.</li>
+          <li class="" style="">If the field name is unregistered, the field name MUST begin with "x-".</li>
+        </ol>
+        <p class="" style="">If the FORM_TYPE is not registered, the field name MAY have any name (presumably managed by the namespace "owner").</p>
+    </div>
+    <div class="indent"><h3>3.5 <a name="approach-values" id="approach-values">Field Values</a></h3>
+      <p class="" style="">Field values may also be registered; refer to the <a href="registrar">XMPP Registrar</a> section of this document.</p>
+    </div>
+<h2>4.
+       <a name="usecases" id="usecases">Use Cases</a></h2>
+    <div class="indent"><h3>4.1 <a name="usecases-unspecified" id="usecases-unspecified">Unspecified Form</a></h3>
+      <p class="" style="">These are forms that do not have a hidden field of name FORM_TYPE.
+        Existing processing rules still apply.</p>
+      <p class="caption"><a name="example-1" id="example-1"></a>Example 1. Message with no FORM_TYPE</p><div class="indent"><pre>
+&lt;message 
+    from='juliet@capulet.com/balcony'
+    to='romeo@montague.net/garden'&gt;
+  &lt;thread&gt;vote-thread-reatmon-134&lt;/thread&gt;
+  &lt;x xmlns='jabber:x:data' type='form'&gt;
+    &lt;title&gt;Vote #134&lt;/title&gt;
+    &lt;instructions&gt;
+      This is the vote to pick a new mascot. 
+      Thanks for your time!
+    &lt;/instructions&gt;
+    &lt;field var='mascot' type='list-single'&gt;
+      &lt;required/&gt;
+      &lt;option label='Light Bulb'&gt;&lt;value&gt;light_bulb&lt;/value&gt;&lt;/option&gt;
+      &lt;option label='Penguin'&gt;&lt;value&gt;penguin&lt;/value&gt;&lt;/option&gt;
+      &lt;option label='Moose'&gt;&lt;value&gt;moose&lt;/value&gt;&lt;/option&gt;
+      &lt;option label='Triangle Man'&gt;&lt;value&gt;triangle_man&lt;/value&gt;&lt;/option&gt;
+      &lt;option label='Other'&gt;&lt;value&gt;other&lt;/value&gt;&lt;/option&gt;
+    &lt;/field&gt;
+  &lt;/x&gt;
+&lt;/message&gt;
+    </pre></div>
+    </div>
+    <div class="indent"><h3>4.2 <a name="usecases-correct" id="usecases-correct">Correctly Specified FORM_TYPE</a></h3>
+      <p class="" style="">In the following example, the FORM_TYPE is 'http://jabber.org/protocol/pubsub', and all of the fields whose var names start with pubsub_ would be registered with the XMPP Registrar, associated with that namespace.</p>
+
+      <p class="caption"><a name="example-2" id="example-2"></a>Example 2. Message with FORM_TYPE</p><div class="indent"><pre>
+&lt;message to="node-owner" from="pubsub.jabber.org"&gt;
+    &lt;x xmlns="jabber:x:data" type="form"&gt;
+       &lt;title&gt;PubSub subscriber request&lt;/title&gt;
+       &lt;instructions&gt;To approve this entity's subscription request,
+            click the OK button. To deny the request, click the
+            cancel button.&lt;/instructions&gt;
+       &lt;field var="FORM_TYPE" type="hidden"&gt;
+           &lt;value&gt;http://jabber.org/protocol/pubsub&lt;/value&gt;
+       &lt;/field&gt;
+       &lt;field var="pubsub_node" type="hidden"&gt;
+           &lt;value&gt;generic/pgm-mp3-player&lt;/value&gt;
+       &lt;/field&gt;
+       &lt;field var="pubsub_node_label" type="fixed"&gt;
+           &lt;value&gt;The pub-sub node is: generic/pgm-mp3-player&lt;/value&gt;
+       &lt;/field&gt;
+       &lt;field var="pubsub_subscriber_jid" type="jid-single" 
+              label="Jabber ID of Subscriber"&gt;
+           &lt;value&gt;sub1@foo.com&lt;/value&gt;
+       &lt;/field&gt;
+       &lt;field var="x-time_restrictions" type="text-multi" 
+              label="Limit to these time ranges"&gt;
+           &lt;value&gt;09:00-12:00&lt;/value&gt;
+           &lt;value&gt;13:00-17:00&lt;/value&gt;
+       &lt;/field&gt;
+    &lt;/x&gt;
+&lt;/message&gt;
+      </pre></div>
+    </div>
+    <div class="indent"><h3>4.3 <a name="usecases-incorrect" id="usecases-incorrect">Incorrectly Specified FORM_TYPE</a></h3>
+    <p class="" style="">If the FORM_TYPE field is not hidden, it MUST be ignored as a
+    context indicator.</p>
+
+      <p class="caption"><a name="example-3" id="example-3"></a>Example 3. Message with bad FORM_TYPE</p><div class="indent"><pre>
+&lt;message to="juliet@capulet.com" from="romeo@montague.net/garden"&gt;
+    &lt;x xmlns="jabber:x:data" type="form"&gt;
+       &lt;title&gt;Balcony Scene (Act 2, Scene 2)&lt;/title&gt;
+       &lt;instructions&gt;But soft! What light through yonder window breaks?&lt;/instructions&gt;
+       &lt;!-- Not hidden.  Treated as any other text-single field: --&gt;
+       &lt;field var="FORM_TYPE" type="text-single"&gt;
+         &lt;value&gt;http://jabber.org/protocol/shakespeare&lt;/value&gt;
+       &lt;/field&gt;
+       &lt;field var="light" type="list-multi"&gt;
+           &lt;option label="Juliet"&gt;Sun&lt;/option&gt;
+           &lt;option lable="Maid"&gt;Moon&lt;/option&gt;
+           &lt;option label="Eyes"&gt;Stars&lt;/option&gt;
+       &lt;/field&gt;
+    &lt;/x&gt;
+&lt;/message&gt;
+      </pre></div>
+  </div>
+  <div class="indent"><h3>4.4 <a name="usecases-badfield" id="usecases-badfield">Message with Bad Field</a></h3>
+    <p class="" style="">When a FORM_TYPE is specified correctly, and an unknown field is found whose name does not start with "x-", a receiver MAY respond with an "Not Acceptable" error.</p>
+      <p class="caption"><a name="example-4" id="example-4"></a>Example 4. Message with bad field</p><div class="indent"><pre>
+&lt;message to="juliet@capulet.com" from="romeo@montague.net/garden"&gt;
+    &lt;x xmlns="jabber:x:data" type="form"&gt;
+       &lt;title&gt;Balcony Scene (Act 2, Scene 2)&lt;/title&gt;
+       &lt;instructions&gt;But soft! What light through yonder window breaks?&lt;/instructions&gt;
+       &lt;field var="FORM_TYPE" type="hidden"&gt;
+           &lt;value&gt;http://jabber.org/protocol/shakespeare&lt;/value&gt;
+       &lt;/field&gt;
+       &lt;field var="light" type="list-multi"&gt;
+           &lt;option label="Juliet"&gt;Sun&lt;/option&gt;
+           &lt;option lable="Maid"&gt;Moon&lt;/option&gt;
+           &lt;option label="Eyes"&gt;Stars&lt;/option&gt;
+       &lt;/field&gt;
+    &lt;/x&gt;
+&lt;/message&gt;
+
+&lt;message from="juliet@capulet.com" to="romeo@montague.net/garden" type="error"&gt;
+  &lt;error code="406" type='modify'&gt;
+    &lt;not-acceptable xmlns='urn:ietf:params:xml:ns:xmpp-stanzas'/&gt;
+    &lt;text xmlns='urn:ietf:params:xml:ns:xmpp-stanzas'&gt;
+      The field "light" is not acceptable.
+    &lt;/text&gt;
+  &lt;/error&gt;
+&lt;/message&gt;
+      </pre></div>
+  </div>
+  <div class="indent"><h3>4.5 <a name="usecases-IQ" id="usecases-IQ">IQ Example</a></h3>
+    <p class="" style="">The following example shows a user's interaction with a Multi-User Chat room in order to register with the room.</p>
+    <p class="caption"><a name="example-5" id="example-5"></a>Example 5. User Requests Registration Requirements</p><div class="indent"><pre>
+&lt;iq
+    from='hag66@shakespeare.lit/pda'
+    to='darkcave@macbeth.shakespeare.lit'
+    type='get'
+    id='reg1'&gt;
+  &lt;query xmlns='jabber:iq:register'/&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="caption"><a name="example-6" id="example-6"></a>Example 6. Service Returns Registration Form</p><div class="indent"><pre>
+&lt;iq 
+    type='result'
+    from='darkcave@macbeth.shakespeare.lit'
+    to='hag66@shakespeare.lit/pda'
+    id='reg1'&gt;
+  &lt;query xmlns='jabber:iq:register'&gt;
+    &lt;instructions&gt;
+      To register on the web, visit http://shakespeare.lit/
+    &lt;/instructions&gt;
+    &lt;x xmlns='jabber:x:data' type='form'&gt;
+      &lt;title&gt;Dark Cave Registration&lt;/title&gt;
+      &lt;instructions&gt;
+        Please provide the following information
+        to register with this room.
+      &lt;/instructions&gt;
+      &lt;field
+          type='hidden'
+          var='FORM_TYPE'&gt;
+        &lt;value&gt;http://jabber.org/protocol/muc#user&lt;/value&gt; 
+      &lt;/field&gt;
+      &lt;field 
+          type='text-single'
+          label='First Name'
+          var='muc#user_first'&gt;
+        &lt;required/&gt;
+      &lt;/field&gt;
+      &lt;field 
+          type='text-single'
+          label='Last Name'
+          var='muc#user_last'&gt;
+        &lt;required/&gt;
+      &lt;/field&gt;
+      &lt;field 
+          type='text-single'
+          label='Desired Nickname'
+          var='muc#user_roomnick'&gt;
+        &lt;required/&gt;
+      &lt;/field&gt;
+      &lt;field 
+          type='text-single'
+          label='Your URL'
+          var='muc#user_url'/&gt;
+      &lt;field 
+          type='text-single'
+          label='Email Address'
+          var='muc#user_email'/&gt;
+      &lt;field 
+          type='text-multi'
+          label='FAQ Entry'
+          var='muc#user_faqentry'/&gt;
+    &lt;/x&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="caption"><a name="example-7" id="example-7"></a>Example 7. User Submits Registration Form</p><div class="indent"><pre>
+&lt;iq 
+    type='set'
+    from='hag66@shakespeare.lit/pda'
+    to='darkcave@macbeth.shakespeare.lit'
+    id='reg2'&gt;
+  &lt;query xmlns='jabber:iq:register'&gt;
+    &lt;x xmlns='jabber:x:data' type='submit'&gt;
+      &lt;field var='FORM_TYPE'&gt;
+        &lt;value&gt;http://jabber.org/protocol/muc#user&lt;/value&gt; 
+      &lt;/field&gt;
+      &lt;field var='muc#user_first'&gt;
+        &lt;value&gt;Brunhilde&lt;/value&gt;
+      &lt;/field&gt;
+      &lt;field var='muc#user_last'&gt;
+        &lt;value&gt;Entwhistle-Throckmorton&lt;/value&gt;
+      &lt;/field&gt;
+      &lt;field var='muc#user_roomnick'&gt;
+        &lt;value&gt;thirdwitch&lt;/value&gt;
+      &lt;/field&gt;
+      &lt;field var='muc#user_url'&gt;
+        &lt;value&gt;http://witchesonline/~hag66/&lt;/value&gt;
+      &lt;/field&gt;
+      &lt;field var='muc#user_email'&gt;
+        &lt;value&gt;hag66@witchesonline&lt;/value&gt;
+      &lt;/field&gt;
+      &lt;field var='muc#user_faqentry'&gt;
+        &lt;value&gt;Just another witch.&lt;/value&gt;
+      &lt;/field&gt;
+    &lt;/x&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+    </pre></div>
+  </div>
+<h2>5.
+       <a name="impl" id="impl">Implementation Notes</a></h2>
+    <p class="" style="">If the FORM_TYPE field is not type="hidden", it does not have the special meaning defined herein.</p>
+    <p class="" style="">If the form is used in an IQ, the namespace of the &lt;query/&gt; element SHOULD match the base namespace of the FORM_TYPE. (One possible way of solving this problem would have been to reuse the &lt;query/&gt; tag from the IQ form of jabber:x:data within messages, but that would have meant that existing clients would not have been able to participate in these exchanges.)</p>
+<h2>6.
+       <a name="errors" id="errors">Error Codes</a></h2>
+  <p class="" style="">If the receiving entity believes that a specified field is invalid for the given FORM_TYPE, the receiver MAY respond to the sender with a "Not Acceptable" error; alternatively, the receiver MAY choose to ignore unknown fields.</p>
+<h2>7.
+       <a name="security" id="security">Security Considerations</a></h2>
+  <p class="" style="">Security-conscious programs that are using this approach should be careful to process only agreed-upon fields, with agreed-upon types, or "x-" fields that are understood by a particular implementation and a user of that implementation.</p>
+<h2>8.
+       <a name="iana" id="iana">IANA Considerations</a></h2>
+  <p class="" style="">This document requires no interaction with the <span class="ref" style=""><a href="http://www.iana.org/">Internet Assigned Numbers Authority (IANA)</a></span>  [<a href="#nt-id2261397">5</a>] for now.  However, if this document is submitted to the IETF later, IANA should be used to standardize the field names rather than the XMPP Registrar.</p>
+<h2>9.
+       <a name="registrar" id="registrar">XMPP Registrar Considerations</a></h2>
+  <div class="indent"><h3>9.1 <a name="registrar-reg" id="registrar-reg">Registries</a></h3>
+    <div class="indent"><h3>9.1.1 <a name="registrar-reg-formtypes" id="registrar-reg-formtypes">FORM_TYPEs Registry</a></h3>
+      <p class="" style="">The XMPP Registrar shall maintain a registry of information about submitted FORM_TYPEs.</p>
+      <div class="indent"><h3>9.1.1.1 <a name="registrar-reg-formtypes-process" id="registrar-reg-formtypes-process">Process</a></h3>
+        <p class="" style="">In order to submit new values to this registry, the registrant must define an XML fragment of the following form and either include it in the relevant XMPP Extension Protocol or send it to the email address &lt;registrar@xmpp.org&gt;:</p>
+        <p class="caption"></p><div class="indent"><pre>
+&lt;form_type&gt;
+  &lt;name&gt;FORM_TYPE namespace or namespace derivative&lt;/name&gt;
+  &lt;doc&gt;associated specification&lt;/doc&gt;
+  &lt;desc&gt;natural-language description of form type&lt;/desc&gt;
+  &lt;field
+      var='the_field_name'
+      type='the_field_type'
+      label='natural-language description of field'/&gt;
+&lt;/form_type&gt;
+        </pre></div>
+        <p class="" style="">The registrant MAY register more than one FORM_TYPE at a time, each contained in a separate &lt;form_type/&gt; element. The registrant MAY also register more than one field at a time, each contained in a separate &lt;field/&gt; child element. Registrations of new fields within an existing FORM_TYPE MUST include the full XML snippet but SHOULD NOT include the FORM_TYPE description (only the name and the XEP number or other document identifier). Note that for ease of use the format for the &lt;field/&gt; element in the registry submission is the same as that defined in XEP-0004; in addition, the value of the 'type' attribute MUST be one of those defined in that XEP-0004.</p>
+        <p class="" style="">In addition, a registrant MAY also register particular field option values for fields of type 'list-single' and 'list-multi'. The format for such submissions is as follows:</p>
+        <p class="caption"></p><div class="indent"><pre>
+&lt;form_type&gt;
+  &lt;name&gt;FORM_TYPE namespace or namespace derivative&lt;/name&gt;
+  &lt;doc&gt;associated XEP or other document&lt;/doc&gt;
+  &lt;desc&gt;natural-language description of form type&lt;/desc&gt;
+  &lt;field
+      var='the_field_name'
+      type='the_field_type'
+      label='natural-language description of field'&gt;
+    &lt;option label='natural-language description of option'&gt;
+      &lt;value&gt;the_value&lt;/value&gt;
+    &lt;/option&gt;
+  &lt;/field&gt;
+&lt;/form_type&gt;
+        </pre></div>
+      </div>
+    </div>
+  </div>
+<hr /><h2><a name="notes" id="notes"></a>Notes</h2><div class="indent"><p><a name="nt-id2252648" id="nt-id2252648">1</a>. XEP-0004: Data Forms &lt;<a href="http://www.xmpp.org/extensions/xep-0004.html">http://www.xmpp.org/extensions/xep-0004.html</a>&gt;.</p><p><a name="nt-id2252677" id="nt-id2252677">2</a>. XEP-0045: Multi-User Chat &lt;<a href="http://www.xmpp.org/extensions/xep-0045.html">http://www.xmpp.org/extensions/xep-0045.html</a>&gt;.</p><p><a name="nt-id2252760" id="nt-id2252760">3</a>. The XMPP Registrar maintains a list of reserved protocol namespaces as well as registries of parameters used in the context of XMPP extension protocols approved by the XMPP Standards Foundation. For further information, see &lt;<a href="http://www.xmpp.org/registrar/">http://www.xmpp.org/registrar/</a>&gt;.</p><p><a name="nt-id2251442" id="nt-id2251442">4</a>. The XMPP Standards Foundation (XSF) is an independent, non-profit membership organization that develops open extensions to the IETF's Extensible Messaging and Presence Protocol (XMPP). For further information, see &lt;<a href="http://www.xmpp.org/xsf/">http://www.xmpp.org/xsf/</a>&gt;.</p><p><a name="nt-id2261397" id="nt-id2261397">5</a>. The Internet Assigned Numbers Authority (IANA) is the central coordinator for the assignment of unique parameter values for Internet protocols, such as port numbers and URI schemes. For further information, see &lt;<a href="http://www.iana.org/">http://www.iana.org/</a>&gt;.</p></div><hr /><h2><a name="revs" id="revs"></a>Revision History</h2><div class="indent"><h4>Version 1.1 (2004-07-07)</h4><div class="indent">Specified ability to standardize field option values. (psa)
+    </div><h4>Version 1.0 (2003-08-18)</h4><div class="indent">Per a vote of the Jabber Council, advanced status to Active. (psa)
+    </div><h4>Version 0.3 (2003-06-05)</h4><div class="indent">Specified rules regarding registration and naming of FORM_TYPEs and associated fields. (psa)
+    </div><h4>Version 0.2 (2003-05-09)</h4><div class="indent">Clarified the relation of FORM_TYPE to registered namespaces; defined registry format; added IQ example. (psa)
+    </div><h4>Version 0.1 (2003-01-22)</h4><div class="indent">Initial version. (jjh)
+    </div></div><hr /><p>END</p></body></html>

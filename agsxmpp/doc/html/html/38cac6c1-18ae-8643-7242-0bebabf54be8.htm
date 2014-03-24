@@ -1,0 +1,85 @@
+﻿<html xmlns:MSHelp="http://msdn.microsoft.com/mshelp"><head><title>agsXMPP.IO.Compression Namespace</title><link rel="stylesheet" type="text/css" href="../styles/presentation.css" /><link rel="stylesheet" type="text/css" href="ms-help://Hx/HxRuntime/HxLink.css" /><script type="text/javascript" src="../scripts/EventUtilities.js"> </script><script type="text/javascript" src="../scripts/StyleUtilities.js"> </script><script type="text/javascript" src="../scripts/SplitScreen.js"> </script><script type="text/javascript" src="../scripts/ElementCollection.js"> </script><script type="text/javascript" src="../scripts/MemberFilter.js"> </script><script type="text/javascript" src="../scripts/CollapsibleSection.js"> </script><script type="text/javascript" src="../scripts/LanguageFilter.js"> </script><script type="text/javascript" src="../scripts/CookieDataStore.js"> </script><meta name="file" content="38cac6c1-18ae-8643-7242-0bebabf54be8" /><xml xmlns:msxsl="urn:schemas-microsoft-com:xslt"><MSHelp:Attr Name="AssetID" Value="N:agsXMPP.IO.Compression" /><MSHelp:Keyword Index="A" Term="N:agsXMPP.IO.Compression" /><MSHelp:Keyword Index="A" Term="frlrfagsXMPPIOCompression" /><MSHelp:Keyword Index="K" Term="agsXMPP.IO.Compression namespace" /><MSHelp:Keyword Index="F" Term="agsXMPP.IO.Compression" /><MSHelp:Attr Name="TopicType" Value="apiref" /><MSHelp:Attr Name="TopicType" Value="kbSyntax" /><MSHelp:Attr Name="Locale" Value="en-us" /><MSHelp:Attr Name="Abstract" Value=" " /></xml><link type="text/css" rel="stylesheet" href="../styles/highlight.css" /><script type="text/javascript" src="../scripts/highlight.js"></script></head><body><script type="text/javascript">var store = new CookieDataStore('docs');registerEventHandler(window, 'load', function() { var ss = new SplitScreen('control', 'main'); selectLanguage(store.get('lang')); });</script><div id="control"><span class="productTitle">agsXMPP SDK</span><br /><span class="topicTitle">agsXMPP.IO.Compression Namespace</span><br /><div id="toolbar"><span id="chickenFeet"><a href="d4648875-d41a-783b-d5f4-638df39ee413.htm">Namespaces</a> ► <span class="selflink">agsXMPP.IO.Compression</span></span><span id="languageFilter"><select id="languageSelector" onchange="var names = this.value.split(' '); toggleVisibleLanguage(names[1]); lfc.switchLanguage(names[0]); store.set('lang',this.value); store.save();"><option value="CSharp cs">C#</option><option value="VisualBasic vb">Visual Basic</option><option value="ManagedCPlusPlus cpp">Visual C++</option></select></span><script>var sd = getStyleDictionary(); var lfc = new LanguageFilterController();</script></div></div><div id="main"><span style="color: DarkGray"> </span><div class="summary"> </div><div class="section"><div class="sectionTitle" onclick="toggleSection(this.parentNode)"><img src="../icons/collapse_all.gif" /> Declaration Syntax</div><div class="sectionContent"><table class="filter"><tr class="tabs" id="syntaxTabs"><td class="tab" x-lang="CSharp" onclick="st.toggleClass('x-lang','CSharp','activeTab','tab'); sb.toggleStyle('x-lang','CSharp','display','block','none');">C#</td><td class="tab" x-lang="VisualBasic" onclick="st.toggleClass('x-lang','VisualBasic','activeTab','tab'); sb.toggleStyle('x-lang','VisualBasic','display','block','none');">Visual Basic</td><td class="tab" x-lang="ManagedCPlusPlus" onclick="st.toggleClass('x-lang','ManagedCPlusPlus','activeTab','tab'); sb.toggleStyle('x-lang','ManagedCPlusPlus','display','block','none');">Visual C++</td></tr></table><div id="syntaxBlocks"><div class="code" x-lang="CSharp"><pre><span class="keyword">namespace</span> <span class="identifier">agsXMPP.IO.Compression</span></pre></div><div class="code" x-lang="VisualBasic"><pre><span class="keyword">Namespace</span> <span class="identifier">agsXMPP.IO.Compression</span></pre></div><div class="code" x-lang="ManagedCPlusPlus"><pre><span class="keyword">namespace</span> <span class="identifier">agsXMPP.IO.Compression</span></pre></div></div><script type="text/javascript">
+						var st = new ElementCollection('syntaxTabs');
+						var sb = new ElementCollection('syntaxBlocks');
+						lfc.registerTabbedArea(st, sb);
+						st.toggleClass('x-lang','CSharp','activeTab','tab');
+						sb.toggleStyle('x-lang','CSharp','display','block','none');
+					</script></div></div><div class="section"><div class="sectionTitle" onclick="toggleSection(this.parentNode)"><img src="../icons/collapse_all.gif" /> Types</div><div class="sectionContent"><table class="filter"><tr class="tabs" id="typeFilter"><td class="tab" value="all" onclick="tt.toggleClass('value','all','activeTab','tab'); tf.subgroup='all'; ts.process(getInstanceDelegate(tf,'filterElement'));">All Types</td><td class="tab" value="class" onclick="tt.toggleClass('value','class','activeTab','tab'); tf.subgroup='class'; ts.process(getInstanceDelegate(tf,'filterElement'));">Classes</td><td class="tab" value="enumeration" onclick="tt.toggleClass('value','enumeration','activeTab','tab'); tf.subgroup='enumeration'; ts.process(getInstanceDelegate(tf,'filterElement'));">Enumerations</td></tr></table><table id="typeList" class="members"><tr><th class="iconColumn">Icon</th><th class="nameColumn">Type</th><th class="descriptionColumn">Description</th></tr><tr data="class; public"><td><img src="../icons/pubclass.gif" /></td><td><b><a href="20f3d2d7-77d6-3d20-350a-5d44e0bf490b.htm">Deflater</a></b></td><td><div class="summary">
+             This is the Deflater class.  The deflater class compresses input
+             with the deflate algorithm described in RFC 1951.  It has several
+             compression levels and three different strategies described below.
+            
+             This class is <i>not</i> thread safe.  This is inherent in the API, due
+             to the split of deflate and setInput.
+             
+             author of the original java version : Jochen Hoenicke
+             </div><br /></td></tr><tr data="class; public"><td><img src="../icons/pubclass.gif" /></td><td><b><a href="19e11cc6-c1c0-3e81-afb7-ad4d973f5504.htm">DeflaterConstants</a></b></td><td><div class="summary">
+            This class contains constants used for deflation.
+            </div><br /></td></tr><tr data="class; public"><td><img src="../icons/pubclass.gif" /></td><td><b><a href="b4b6b2e2-946b-c7a8-50ed-937ab90ac2da.htm">DeflaterEngine</a></b></td><td><div class="summary">
+            Low level compression engine for deflate algorithm which uses a 32K sliding window
+            with secondary compression from Huffman/Shannon-Fano codes.
+            </div><br /></td></tr><tr data="class; public"><td><img src="../icons/pubclass.gif" /></td><td><b><a href="e3dfbabb-7088-b739-e528-619520a59813.htm">DeflaterHuffman</a></b></td><td><div class="summary">
+            This is the DeflaterHuffman class.
+            
+            This class is <i>not</i> thread safe.  This is inherent in the API, due
+            to the split of deflate and setInput.
+            
+            author of the original java version : Jochen Hoenicke
+            </div><br /></td></tr><tr data="class; public"><td><img src="../icons/pubclass.gif" /></td><td><b><a href="b7a1177b-9d70-d7c5-0fdd-cc51d9a69b4a.htm">DeflaterPending</a></b></td><td><div class="summary">
+            This class stores the pending output of the Deflater.
+            
+            author of the original java version : Jochen Hoenicke
+            </div><br /></td></tr><tr data="enumeration; public"><td><img src="../icons/pubenum.gif" /></td><td><b><a href="1c9afcac-049e-2c63-4709-41e035f3705f.htm">DeflateStrategy</a></b></td><td><div class="summary">
+            Strategies for deflater
+            </div><br /></td></tr><tr data="class; public"><td><img src="../icons/pubclass.gif" /></td><td><b><a href="7a7a9bd5-6705-e835-64ae-a0a0ee045d3a.htm">Inflater</a></b></td><td><div class="summary">
+             Inflater is used to decompress data that has been compressed according
+             to the "deflate" standard described in rfc1951.
+             
+             By default Zlib (rfc1950) headers and footers are expected in the input.
+             You can use constructor <span id="cbc_1" x-lang="CSharp" codeLanguage="CSharp"><div class="highlight-title"><span class="highlight-copycode" onkeypress="javascript:CopyColorizedCodeCheckKey(this.parentNode, event);" tabindex="0" onmouseover="CopyCodeChangeIcon(this)" onmouseout="CopyCodeChangeIcon(this)" onclick="javascript:CopyColorizedCode(this.parentNode);"><img src="../icons/CopyCode.gif" style="margin-right: 5px;" />Copy</span>C#</div><div class="code"><pre><span class="highlight-keyword">public</span> Inflater(<span class="highlight-keyword">bool</span> noHeader)</pre></div></span> passing true
+             if there is no Zlib header information
+            
+             The usage is as following.  First you have to set some input with
+             <span id="cbc_2" x-lang="CSharp" codeLanguage="CSharp"><div class="highlight-title"><span class="highlight-copycode" onkeypress="javascript:CopyColorizedCodeCheckKey(this.parentNode, event);" tabindex="0" onmouseover="CopyCodeChangeIcon(this)" onmouseout="CopyCodeChangeIcon(this)" onclick="javascript:CopyColorizedCode(this.parentNode);"><img src="../icons/CopyCode.gif" style="margin-right: 5px;" />Copy</span>C#</div><div class="code"><pre>setInput()</pre></div></span>, then inflate() it.  If inflate doesn't
+             inflate any bytes there may be three reasons:
+             <ul><li>needsInput() returns true because the input buffer is empty.
+             You have to provide more input with <span id="cbc_3" x-lang="CSharp" codeLanguage="CSharp"><div class="highlight-title"><span class="highlight-copycode" onkeypress="javascript:CopyColorizedCodeCheckKey(this.parentNode, event);" tabindex="0" onmouseover="CopyCodeChangeIcon(this)" onmouseout="CopyCodeChangeIcon(this)" onclick="javascript:CopyColorizedCode(this.parentNode);"><img src="../icons/CopyCode.gif" style="margin-right: 5px;" />Copy</span>C#</div><div class="code"><pre>setInput()</pre></div></span>.
+             NOTE: needsInput() also returns true when, the stream is finished.
+             </li><li>needsDictionary() returns true, you have to provide a preset
+                dictionary with <span id="cbc_4" x-lang="CSharp" codeLanguage="CSharp"><div class="highlight-title"><span class="highlight-copycode" onkeypress="javascript:CopyColorizedCodeCheckKey(this.parentNode, event);" tabindex="0" onmouseover="CopyCodeChangeIcon(this)" onmouseout="CopyCodeChangeIcon(this)" onclick="javascript:CopyColorizedCode(this.parentNode);"><img src="../icons/CopyCode.gif" style="margin-right: 5px;" />Copy</span>C#</div><div class="code"><pre>setDictionary()</pre></div></span>.</li><li>finished() returns true, the inflater has finished.</li></ul>
+             Once the first output byte is produced, a dictionary will not be
+             needed at a later stage.
+            
+             author of the original java version : John Leuner, Jochen Hoenicke
+             </div><br /></td></tr><tr data="class; public"><td><img src="../icons/pubclass.gif" /></td><td><b><a href="94ebf448-0263-5724-4a3c-4840d33c9c19.htm">InflaterHuffmanTree</a></b></td><td><div class="summary">
+            Huffman tree used for inflation
+            </div><br /></td></tr><tr data="class; public"><td><img src="../icons/pubclass.gif" /></td><td><b><a href="10165de6-7bcd-de69-de66-f93e52e34a36.htm">PendingBuffer</a></b></td><td><div class="summary">
+            This class is general purpose class for writing data to a buffer.
+            
+            It allows you to write bits as well as bytes
+            Based on DeflaterPending.java
+            
+            author of the original java version : Jochen Hoenicke
+            </div><br /></td></tr><tr data="class; public"><td><img src="../icons/pubclass.gif" /></td><td><b><a href="e6de2805-9f8c-f3b0-4991-0e0aab27ce66.htm">SharpZipBaseException</a></b></td><td><div class="summary">
+            SharpZipBaseException is the base exception class for the SharpZipLibrary.
+            All library exceptions are derived from this.
+            </div><br /></td></tr><tr data="class; public"><td><img src="../icons/pubclass.gif" /></td><td><b><a href="da1723d3-14a3-4122-7d1a-0a9d5a112c94.htm">DeflaterHuffman<span class="languageSpecificText"><span class="cs">.</span><span class="vb">.</span><span class="cpp">::</span><span class="nu">.</span></span>Tree</a></b></td><td><div class="summary">
+            Not documented
+            </div><br /></td></tr></table><script type="text/javascript">
+					var tt = new ElementCollection('typeFilter');
+					var ts = new ElementCollection('typeList');
+					var tf = new TypeFilter();
+					tt.toggleClass('value','all','activeTab','tab');
+				</script></div></div><div id="footer"><p />Send comments on this topic to
+        <a id="HT_MailLink" href="mailto:gnauck%40ag-software.de?Subject=agsXMPP SDK">gnauck@ag-software.de</a>
+        <script type="text/javascript">
+        var HT_mailLink = document.getElementById("HT_MailLink");
+        var HT_mailLinkText = HT_mailLink.innerHTML;
+        HT_mailLink.href += ": " + document.title;
+        HT_mailLink.innerHTML = HT_mailLinkText;
+        </script> <p /><a href="http://www.ag-software.de">Copyright (c) 2003-2008 by AG-Software</a></div></div><script type="text/javascript">sb.elements.push(document.getElementById('cbc_1'));
+sb.elements.push(document.getElementById('cbc_2'));
+sb.elements.push(document.getElementById('cbc_3'));
+sb.elements.push(document.getElementById('cbc_4'));
+						sb.toggleStyle('x-lang','CSharp','display','block','none');
+</script></body></html>

@@ -1,0 +1,1193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en"><head><title>End-to-End Signing and Object Encryption for the Extensible Messaging and Presence Protocol (XMPP)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="description" content="End-to-End Signing and Object Encryption for the Extensible Messaging and Presence Protocol (XMPP)">
+<meta name="keywords" content="RFC, Request for Comments, I-D, Internet-Draft, XMPP, Extensible Messaging and Presence Protocol, Jabber, IM, Instant Messaging, Presence, XML, Extensible Markup Language">
+<meta name="generator" content="xml2rfc v1.32 (http://xml.resource.org/)">
+<style type='text/css'><!--
+        body {
+                font-family: verdana, charcoal, helvetica, arial, sans-serif;
+                font-size: small; color: #000; background-color: #FFF;
+                margin: 2em;
+        }
+        h1, h2, h3, h4, h5, h6 {
+                font-family: helvetica, monaco, "MS Sans Serif", arial, sans-serif;
+                font-weight: bold; font-style: normal;
+        }
+        h1 { color: #900; background-color: transparent; text-align: right; }
+        h3 { color: #333; background-color: transparent; }
+
+        td.RFCbug {
+                font-size: x-small; text-decoration: none;
+                width: 30px; height: 30px; padding-top: 2px;
+                text-align: justify; vertical-align: middle;
+                background-color: #000;
+        }
+        td.RFCbug span.RFC {
+                font-family: monaco, charcoal, geneva, "MS Sans Serif", helvetica, verdana, sans-serif;
+                font-weight: bold; color: #666;
+        }
+        td.RFCbug span.hotText {
+                font-family: charcoal, monaco, geneva, "MS Sans Serif", helvetica, verdana, sans-serif;
+                font-weight: normal; text-align: center; color: #FFF;
+        }
+
+        table.TOCbug { width: 30px; height: 15px; }
+        td.TOCbug {
+                text-align: center; width: 30px; height: 15px;
+                color: #FFF; background-color: #900;
+        }
+        td.TOCbug a {
+                font-family: monaco, charcoal, geneva, "MS Sans Serif", helvetica, sans-serif;
+                font-weight: bold; font-size: x-small; text-decoration: none;
+                color: #FFF; background-color: transparent;
+        }
+
+        td.header {
+                font-family: arial, helvetica, sans-serif; font-size: x-small;
+                vertical-align: top; width: 33%;
+                color: #FFF; background-color: #666;
+        }
+        td.author { font-weight: bold; font-size: x-small; margin-left: 4em; }
+        td.author-text { font-size: x-small; }
+
+        /* info code from SantaKlauss at http://www.madaboutstyle.com/tooltip2.html */
+        a.info {
+                /* This is the key. */
+                position: relative;
+                z-index: 24;
+                text-decoration: none;
+        }
+        a.info:hover {
+                z-index: 25;
+                color: #FFF; background-color: #900;
+        }
+        a.info span { display: none; }
+        a.info:hover span.info {
+                /* The span will display just on :hover state. */
+                display: block;
+                position: absolute;
+                font-size: smaller;
+                top: 2em; left: -5em; width: 15em;
+                padding: 2px; border: 1px solid #333;
+                color: #900; background-color: #EEE;
+                text-align: left;
+        }
+
+        a { font-weight: bold; }
+        a:link    { color: #900; background-color: transparent; }
+        a:visited { color: #633; background-color: transparent; }
+        a:active  { color: #633; background-color: transparent; }
+
+        p { margin-left: 2em; margin-right: 2em; }
+        p.copyright { font-size: x-small; }
+        p.toc { font-size: small; font-weight: bold; margin-left: 3em; }
+        table.toc { margin: 0 0 0 3em; padding: 0; border: 0; vertical-align: text-top; }
+        td.toc { font-size: small; font-weight: bold; vertical-align: text-top; }
+
+        ol.text { margin-left: 2em; margin-right: 2em; }
+        ul.text { margin-left: 2em; margin-right: 2em; }
+        li      { margin-left: 3em; }
+
+        /* RFC-2629 <spanx>s and <artwork>s. */
+        em     { font-style: italic; }
+        strong { font-weight: bold; }
+        dfn    { font-weight: bold; font-style: normal; }
+        cite   { font-weight: normal; font-style: normal; }
+        tt     { color: #036; }
+        tt, pre, pre dfn, pre em, pre cite, pre span {
+                font-family: "Courier New", Courier, monospace; font-size: small;
+        }
+        pre {
+                text-align: left; padding: 4px;
+                color: #000; background-color: #CCC;
+        }
+        pre dfn  { color: #900; }
+        pre em   { color: #66F; background-color: #FFC; font-weight: normal; }
+        pre .key { color: #33C; font-weight: bold; }
+        pre .id  { color: #900; }
+        pre .str { color: #000; background-color: #CFF; }
+        pre .val { color: #066; }
+        pre .rep { color: #909; }
+        pre .oth { color: #000; background-color: #FCF; }
+        pre .err { background-color: #FCC; }
+
+        /* RFC-2629 <texttable>s. */
+        table.all, table.full, table.headers, table.none {
+                font-size: small; text-align: center; border-width: 2px;
+                vertical-align: top; border-collapse: collapse;
+        }
+        table.all, table.full { border-style: solid; border-color: black; }
+        table.headers, table.none { border-style: none; }
+        th {
+                font-weight: bold; border-color: black;
+                border-width: 2px 2px 3px 2px;
+        }
+        table.all th, table.full th { border-style: solid; }
+        table.headers th { border-style: none none solid none; }
+        table.none th { border-style: none; }
+        table.all td {
+                border-style: solid; border-color: #333;
+                border-width: 1px 2px;
+        }
+        table.full td, table.headers td, table.none td { border-style: none; }
+
+        hr { height: 1px; }
+        hr.insert {
+                width: 80%; border-style: none; border-width: 0;
+                color: #CCC; background-color: #CCC;
+        }
+--></style>
+</head>
+<body>
+
+<table border="0" cellpadding="0" cellspacing="2" width="30" align="right">
+    <tr>
+        <td class="RFCbug">
+                <span class="RFC">&nbsp;RFC&nbsp;</span><br /><span class="hotText">&nbsp;3923&nbsp;</span>
+        </td>
+    </tr>
+    <tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a><br /></td></tr>
+</table>
+<table summary="layout" width="66%" border="0" cellpadding="0" cellspacing="0"><tr><td><table summary="layout" width="100%" border="0" cellpadding="2" cellspacing="1">
+<tr><td class="header">Network Working Group</td><td class="header">P. Saint-Andre</td></tr>
+<tr><td class="header">Request for Comments: 3923</td><td class="header">Jabber Software Foundation</td></tr>
+<tr><td class="header">Category: Standards Track</td><td class="header">October 2004</td></tr>
+</table></td></tr></table>
+<h1><br />End-to-End Signing and Object Encryption for the Extensible Messaging and Presence Protocol (XMPP)</h1>
+
+<h3>Status of this Memo</h3>
+<p>
+This document specifies an Internet standards track protocol for the Internet
+community, and requests discussion and suggestions for improvements.
+Please refer to the current edition of the &ldquo;Internet Official Protocol
+Standards&rdquo; (STD&nbsp;1) for the standardization state and status of this
+protocol.
+Distribution of this memo is unlimited.</p>
+
+<h3>Copyright Notice</h3>
+<p>
+Copyright &copy; The Internet Society (2004).</p>
+
+<h3>Abstract</h3>
+
+<p>This memo defines methods of end-to-end signing and object encryption for the Extensible Messaging and Presence Protocol (XMPP).
+</p><a name="toc"></a><hr />
+
+<table border="0" cellpadding="0" cellspacing="2" width="30" align="right">
+    <tr>
+        <td class="RFCbug">
+                <span class="RFC">&nbsp;RFC&nbsp;</span><br /><span class="hotText">&nbsp;3923&nbsp;</span>
+        </td>
+    </tr>
+    <tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a><br /></td></tr>
+</table>
+<h3>Table of Contents</h3>
+<p class="toc">
+<a href="#intro">1.</a>&nbsp;
+Introduction<br />
+<a href="#req">2.</a>&nbsp;
+Requirements<br />
+<a href="#message">3.</a>&nbsp;
+Securing Messages<br />
+<a href="#presence">4.</a>&nbsp;
+Securing Presence<br />
+<a href="#arbitrary">5.</a>&nbsp;
+Securing Arbitrary XMPP Data<br />
+<a href="#rules">6.</a>&nbsp;
+Rules for S/MIME Generation and Handling<br />
+<a href="#errors">7.</a>&nbsp;
+Recipient Error Handling<br />
+<a href="#gateway">8.</a>&nbsp;
+Secure Communications Through a Gateway<br />
+<a href="#namespace">9.</a>&nbsp;
+urn:ietf:params:xml:xmpp-e2e Namespace<br />
+<a href="#mediatype">10.</a>&nbsp;
+application/xmpp+xml Media Type<br />
+<a href="#security">11.</a>&nbsp;
+Security Considerations<br />
+<a href="#iana">12.</a>&nbsp;
+IANA Considerations<br />
+<a href="#rfc.references1">13.</a>&nbsp;
+References<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#rfc.references1">13.1.</a>&nbsp;
+Normative References<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#rfc.references2">13.2.</a>&nbsp;
+Informative References<br />
+<a href="#schemas-e2e">Appendix&nbsp;A.</a>&nbsp;
+Schema for urn:ietf:params:xml:ns:xmpp-e2e<br />
+<a href="#rfc.authors">&#167;</a>&nbsp;
+Author's Address<br />
+<a href="#rfc.copyright">&#167;</a>&nbsp;
+Intellectual Property and Copyright Statements<br />
+</p>
+<br clear="all" />
+
+<a name="intro"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.1"></a><h3>1.&nbsp;
+Introduction</h3>
+
+<p>This memo defines methods of end-to-end signing and object encryption for the Extensible Messaging and Presence Protocol (XMPP).  (For information about XMPP, see <a class='info' href='#XMPP-CORE'>[XMPP&#8209;CORE]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Extensible Messaging and Presence Protocol (XMPP): Core,&rdquo; October&nbsp;2004.</span><span>)</span></a> and <a class='info' href='#XMPP-IM'>[XMPP&#8209;IM]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Extensible Messaging and Presence Protocol (XMPP): Instant Messaging and Presence,&rdquo; October&nbsp;2004.</span><span>)</span></a>.)  The method specified herein enables a sender to sign and/or encrypt an instant message sent to a specific recipient, sign and/or encrypt presence information that is directed to a specific user, and sign and/or encrypt any arbitrary XMPP stanza directed to a specific user.  This memo thereby helps the XMPP specifications meet the requirements specified in <a class='info' href='#IMP-REQS'>[IMP&#8209;REQS]<span> (</span><span class='info'>Day, M., Aggarwal, S., and J. Vincent, &ldquo;Instant Messaging / Presence Protocol Requirements,&rdquo; February&nbsp;2000.</span><span>)</span></a>.
+</p>
+<a name="intro-terms"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.1.1"></a><h3>1.1.&nbsp;
+Terminology</h3>
+
+<p>This document inherits terminology defined in <a class='info' href='#CMS'>[CMS]<span> (</span><span class='info'>Housley, R., &ldquo;Cryptographic Message Syntax (CMS),&rdquo; July&nbsp;2004.</span><span>)</span></a>, <a class='info' href='#IMP-MODEL'>[IMP&#8209;MODEL]<span> (</span><span class='info'>Day, M., Rosenberg, J., and H. Sugano, &ldquo;A Model for Presence and Instant Messaging,&rdquo; February&nbsp;2000.</span><span>)</span></a>, <a class='info' href='#SMIME'>[SMIME]<span> (</span><span class='info'>Ramsdell, B., &ldquo;Secure/Multipurpose Internet Mail Extensions (S/MIME) Version 3.1 Message Specification,&rdquo; July&nbsp;2004.</span><span>)</span></a>, and <a class='info' href='#XMPP-CORE'>[XMPP&#8209;CORE]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Extensible Messaging and Presence Protocol (XMPP): Core,&rdquo; October&nbsp;2004.</span><span>)</span></a>.
+</p>
+<p>The capitalized key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <a class='info' href='#TERMS'>BCP 14, RFC 2119<span> (</span><span class='info'>Bradner, S., &ldquo;Key words for use in RFCs to Indicate Requirement Levels,&rdquo; March&nbsp;1997.</span><span>)</span></a> [TERMS].
+</p>
+<a name="req"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.2"></a><h3>2.&nbsp;
+Requirements</h3>
+
+<p>For the purposes of this memo, we stipulate the following requirements:
+</p>
+<p></p>
+<ol class="text">
+<li>The method defined MUST address signing and encryption requirements for minimal instant messaging and presence, as those are defined in <a class='info' href='#IMP-REQS'>[IMP&#8209;REQS]<span> (</span><span class='info'>Day, M., Aggarwal, S., and J. Vincent, &ldquo;Instant Messaging / Presence Protocol Requirements,&rdquo; February&nbsp;2000.</span><span>)</span></a>.  In particular, the method MUST address the following requirements, which are copied here verbatim from <a class='info' href='#IMP-REQS'>[IMP&#8209;REQS]<span> (</span><span class='info'>Day, M., Aggarwal, S., and J. Vincent, &ldquo;Instant Messaging / Presence Protocol Requirements,&rdquo; February&nbsp;2000.</span><span>)</span></a>:
+        
+<ul class="text">
+<li>The protocol MUST provide means to ensure confidence that a received message (NOTIFICATION or INSTANT MESSAGE) has not been corrupted or tampered with.  (Section 2.5.1)
+</li>
+<li>The protocol MUST provide means to ensure confidence that a received message (NOTIFICATION or INSTANT MESSAGE) has not been recorded and played back by an adversary.  (Section 2.5.2)
+</li>
+<li>The protocol MUST provide means to ensure that a sent message (NOTIFICATION or INSTANT MESSAGE) is only readable by ENTITIES that the sender allows.  (Section 2.5.3)
+</li>
+<li>The protocol MUST allow any client to use the means to ensure non-corruption, non-playback, and privacy, but the protocol MUST NOT require that all clients use these means at all times.  (Section 2.5.4)
+</li>
+<li>When A establishes a SUBSCRIPTION to B's PRESENCE INFORMATION, the protocol MUST provide A means of verifying the accurate receipt of the content B chooses to disclose to A.  (Section 5.1.4)
+</li>
+<li>The protocol MUST provide A means of verifying that the presence information is accurate, as sent by B.  (Section 5.3.1)
+</li>
+<li>The protocol MUST provide A means of ensuring that no other PRINCIPAL C can see the content of M.  (Section 5.4.6)
+</li>
+<li>The protocol MUST provide A means of ensuring that no other PRINCIPAL C can tamper with M, and B means to verify that no tampering has occurred.  (Section 5.4.7)
+</li>
+</ul>
+</li>
+<li>The method defined MUST enable interoperability with non-XMPP messaging systems that support the Common Presence and Instant Messaging (CPIM) specifications published by the Instant Messaging and Presence (IMPP) Working Group.  Two corollaries of this requirement are: 
+<ul class="text">
+<li>Prior to signing and/or encrypting, the format of an instant message MUST conform to the CPIM Message Format defined in <a class='info' href='#MSGFMT'>[MSGFMT]<span> (</span><span class='info'>Klyne, G. and D. Atkins, &ldquo;Common Presence and Instant Messaging (CPIM): Message Format,&rdquo; August&nbsp;2004.</span><span>)</span></a>.
+</li>
+<li>Prior to signing and/or encrypting, the format of presence information MUST conform to the CPP Presence Information Data Format defined in <a class='info' href='#PIDF'>[PIDF]<span> (</span><span class='info'>Sugano, H., Fujimoto, S., Klyne, G., Bateman, A., Carr, W., and J. Peterson, &ldquo;Presence Information Data Format (PIDF),&rdquo; August&nbsp;2004.</span><span>)</span></a>.
+</li>
+</ul>
+</li>
+<li>The method MUST follow the required procedures (including the specific algorithms) defined in <a class='info' href='#CPIM'>[CPIM]<span> (</span><span class='info'>Peterson, J., &ldquo;Common Profile for Instant Messaging (CPIM),&rdquo; August&nbsp;2004.</span><span>)</span></a> and <a class='info' href='#CPP'>[CPP]<span> (</span><span class='info'>Peterson, J., &ldquo;Common Profile for Presence (CPP),&rdquo; August&nbsp;2004.</span><span>)</span></a>.  In particular, these documents specify: 
+<ul class="text">
+<li>Signing MUST use <a class='info' href='#SMIME'>[SMIME]<span> (</span><span class='info'>Ramsdell, B., &ldquo;Secure/Multipurpose Internet Mail Extensions (S/MIME) Version 3.1 Message Specification,&rdquo; July&nbsp;2004.</span><span>)</span></a> signatures with <a class='info' href='#CMS'>[CMS]<span> (</span><span class='info'>Housley, R., &ldquo;Cryptographic Message Syntax (CMS),&rdquo; July&nbsp;2004.</span><span>)</span></a> SignedData.
+</li>
+<li>Encryption MUST use <a class='info' href='#SMIME'>[SMIME]<span> (</span><span class='info'>Ramsdell, B., &ldquo;Secure/Multipurpose Internet Mail Extensions (S/MIME) Version 3.1 Message Specification,&rdquo; July&nbsp;2004.</span><span>)</span></a> encryption with <a class='info' href='#CMS'>[CMS]<span> (</span><span class='info'>Housley, R., &ldquo;Cryptographic Message Syntax (CMS),&rdquo; July&nbsp;2004.</span><span>)</span></a> EnvelopeData.
+</li>
+</ul>
+</li>
+<li>In order to enable interoperable implementations, sending and receiving applications MUST implement the algorithms specified under <a class='info' href='#rules-mandatory'>Mandatory-to-Implement Cryptographic Algorithms<span> (</span><span class='info'>Mandatory-to-Implement Cryptographic Algorithms</span><span>)</span></a>.
+</li>
+</ol>
+
+<p>We further stipulate that the following functionality is out of scope for this memo:
+</p>
+<p></p>
+<ul class="text">
+<li>Discovery of support for this protocol. An entity could discover whether another entity supports this protocol by (1) attempting to send signed or encrypted stanzas and receiving an error stanza ("technical" discovery) or a textual message in reply ("social" discovery) if the protocol is not supported, or (2) using a dedicated service discovery protocol, such as <a class='info' href='#DISCO'>[DISCO]<span> (</span><span class='info'>Hildebrand, J., Millard, P., Eatmon, R., and P. Saint-Andre, &ldquo;Service Discovery,&rdquo; July&nbsp;2004.</span><span>)</span></a> or <a class='info' href='#CAPS'>[CAPS]<span> (</span><span class='info'>Hildebrand, J. and P. Saint-Andre, &ldquo;Entity Capabilities,&rdquo; August&nbsp;2004.</span><span>)</span></a>.  However, the definition of a service discovery protocol is out of scope for this memo.
+</li>
+<li>Signing or encryption of XMPP groupchat messages, which are mentioned in <a class='info' href='#XMPP-IM'>[XMPP&#8209;IM]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Extensible Messaging and Presence Protocol (XMPP): Instant Messaging and Presence,&rdquo; October&nbsp;2004.</span><span>)</span></a> but not defined therein since they are not required by <a class='info' href='#IMP-REQS'>[IMP&#8209;REQS]<span> (</span><span class='info'>Day, M., Aggarwal, S., and J. Vincent, &ldquo;Instant Messaging / Presence Protocol Requirements,&rdquo; February&nbsp;2000.</span><span>)</span></a>; such messages are best specified in <a class='info' href='#MUC'>[MUC]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Multi-User Chat,&rdquo; June&nbsp;2004.</span><span>)</span></a>.
+</li>
+<li>Signing or encryption of broadcasted presence as described in <a class='info' href='#XMPP-IM'>[XMPP&#8209;IM]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Extensible Messaging and Presence Protocol (XMPP): Instant Messaging and Presence,&rdquo; October&nbsp;2004.</span><span>)</span></a> (the methods defined herein apply to directed presence only).
+</li>
+<li>Signing or encryption of communications that occur within the context of applications other than instant messaging and presence as those are described in <a class='info' href='#IMP-MODEL'>[IMP&#8209;MODEL]<span> (</span><span class='info'>Day, M., Rosenberg, J., and H. Sugano, &ldquo;A Model for Presence and Instant Messaging,&rdquo; February&nbsp;2000.</span><span>)</span></a> and <a class='info' href='#IMP-REQS'>[IMP&#8209;REQS]<span> (</span><span class='info'>Day, M., Aggarwal, S., and J. Vincent, &ldquo;Instant Messaging / Presence Protocol Requirements,&rdquo; February&nbsp;2000.</span><span>)</span></a>.
+</li>
+</ul>
+
+<a name="message"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3"></a><h3>3.&nbsp;
+Securing Messages</h3>
+
+<a name="message-process"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3.1"></a><h3>3.1.&nbsp;
+Process for Securing Messages</h3>
+
+<p>In order to sign and/or encrypt a message, a sending agent MUST use the following procedure:
+</p>
+<p></p>
+<ol class="text">
+<li>Generate a "Message/CPIM" object as defined in <a class='info' href='#MSGFMT'>[MSGFMT]<span> (</span><span class='info'>Klyne, G. and D. Atkins, &ldquo;Common Presence and Instant Messaging (CPIM): Message Format,&rdquo; August&nbsp;2004.</span><span>)</span></a>.
+</li>
+<li>Sign and/or encrypt both the headers and content of the "Message/CPIM" object as specified in Requirement 3 of <a class='info' href='#req'>Section&nbsp;2<span> (</span><span class='info'>Requirements</span><span>)</span></a> above.
+</li>
+<li>Provide the resulting signed and/or encrypted object within an XML CDATA section (see Section 2.7 of <a class='info' href='#XML'>[XML]<span> (</span><span class='info'>Bray, T., Paoli, J., Sperberg-McQueen, C., and E. Maler, &ldquo;Extensible Markup Language (XML) 1.0 (3rd ed),&rdquo; February&nbsp;2004.</span><span>)</span></a>) contained in an &lt;e2e/&gt; child of a &lt;message/&gt; stanza, where the &lt;e2e/&gt; element is qualified by the 'urn:ietf:params:xml:ns:xmpp-e2e' namespace as specified more fully in <a class='info' href='#namespace'>Section&nbsp;9<span> (</span><span class='info'>urn:ietf:params:xml:xmpp-e2e Namespace</span><span>)</span></a> below.
+</li>
+</ol>
+
+<a name="message-sign"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3.2"></a><h3>3.2.&nbsp;
+Example of a Signed Message</h3>
+
+<p>The following example illustrates the defined steps for signing a message.
+</p>
+<p>First, the sending agent generates a "Message/CPIM" object in accordance with the rules and formats specified in <a class='info' href='#MSGFMT'>[MSGFMT]<span> (</span><span class='info'>Klyne, G. and D. Atkins, &ldquo;Common Presence and Instant Messaging (CPIM): Message Format,&rdquo; August&nbsp;2004.</span><span>)</span></a>.
+</p>
+<p>Example 1: Sender generates "Message/CPIM" object:
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+|   Content-type: Message/CPIM
+|
+|   From: Juliet Capulet &lt;im:juliet@example.com&gt;
+|   To: Romeo Montague &lt;im:romeo@example.net&gt;
+|   DateTime: 2003-12-09T11:45:36.66Z
+|   Subject: Imploring
+|
+|   Content-type: text/plain; charset=utf-8
+|   Content-ID: &lt;1234567890@example.com&gt;
+|
+|   Wherefore art thou, Romeo?
+</pre></div>
+<p>Once the sending agent has generated the "Message/CPIM" object, the sending agent may sign it.  The result is a multipart <a class='info' href='#SMIME'>[SMIME]<span> (</span><span class='info'>Ramsdell, B., &ldquo;Secure/Multipurpose Internet Mail Extensions (S/MIME) Version 3.1 Message Specification,&rdquo; July&nbsp;2004.</span><span>)</span></a> object (see <a class='info' href='#MULTI'>[MULTI]<span> (</span><span class='info'>Galvin, J., Murphy, S., Crocker, S., and N. Freed, &ldquo;Security Multiparts for MIME: Multipart/Signed and Multipart/Encrypted,&rdquo; October&nbsp;1995.</span><span>)</span></a>) that has a Content-Type of "multipart/signed" and includes two parts: one whose Content-Type is "Message/CPIM" and another whose Content-Type is "application/pkcs7-signature".
+</p>
+<p>Example 2: Sender generates multipart/signed object:
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+|   Content-Type: multipart/signed; boundary=next;
+|                 micalg=sha1;
+|                 protocol=application/pkcs7-signature
+|
+|   --next
+|   Content-type: Message/CPIM
+|
+|   From: Juliet Capulet &lt;im:juliet@example.com&gt;
+|   To: Romeo Montague &lt;im:romeo@example.net&gt;
+|   DateTime: 2003-12-09T23:45:36.66Z
+|   Subject: Imploring
+|
+|   Content-type: text/plain; charset=utf-8
+|   Content-ID: &lt;1234567890@example.com&gt;
+|
+|   Wherefore art thou, Romeo?
+|   --next
+|   Content-Type: application/pkcs7-signature
+|   Content-Disposition: attachment;handling=required;\
+|                                   filename=smime.p7s
+|
+|   [signed body part]
+|
+|   --next--
+</pre></div>
+<p>The sending agent now wraps the "multipart/signed" object in an XML CDATA section, which is contained in an &lt;e2e/&gt; element that is included as a child element of the XMPP message stanza and that is qualified by the 'urn:ietf:params:xml:ns:xmpp-e2e' namespace.
+</p>
+<p>Example 3: Sender generates XMPP message stanza:
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+|   &lt;message to='romeo@example.net/orchard' type='chat'&gt;
+|     &lt;e2e xmlns='urn:ietf:params:xml:ns:xmpp-e2e'&gt;
+|   &lt;![CDATA[
+|   Content-Type: multipart/signed; boundary=next;
+|                 micalg=sha1;
+|                 protocol=application/pkcs7-signature
+|
+|   --next
+|   Content-type: Message/CPIM
+|
+|   From: Juliet Capulet &lt;im:juliet@example.com&gt;
+|   To: Romeo Montague &lt;im:romeo@example.net&gt;
+|   DateTime: 2003-12-09T23:45:36.66Z
+|   Subject: Imploring
+|
+|   Content-type: text/plain; charset=utf-8
+|   Content-ID: &lt;1234567890@example.com&gt;
+|
+|   Wherefore art thou, Romeo?
+|   --next
+|   Content-Type: application/pkcs7-signature
+|   Content-Disposition: attachment;handling=required;\
+|                                   filename=smime.p7s
+|
+|   [signed body part]
+|
+|   --next--
+|   ]]&gt;
+|     &lt;/e2e&gt;
+|   &lt;/message&gt;
+</pre></div>
+<a name="message-encrypt"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3.3"></a><h3>3.3.&nbsp;
+Example of an Encrypted Message</h3>
+
+<p>The following example illustrates the defined steps for encrypting a message.
+</p>
+<p>First, the sending agent generates a "Message/CPIM" object in accordance with the rules and formats specified in <a class='info' href='#MSGFMT'>[MSGFMT]<span> (</span><span class='info'>Klyne, G. and D. Atkins, &ldquo;Common Presence and Instant Messaging (CPIM): Message Format,&rdquo; August&nbsp;2004.</span><span>)</span></a>.
+</p>
+<p>Example 4: Sender generates "Message/CPIM" object:
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+|   Content-type: Message/CPIM
+|
+|   From: Juliet Capulet &lt;im:juliet@example.com&gt;
+|   To: Romeo Montague &lt;im:romeo@example.net&gt;
+|   DateTime: 2003-12-09T11:45:36.66Z
+|   Subject: Imploring
+|
+|   Content-type: text/plain; charset=utf-8
+|   Content-ID: &lt;1234567890@example.com&gt;
+|
+|   Wherefore art thou, Romeo?
+</pre></div>
+<p>Once the sending agent has generated the "Message/CPIM" object, the sending agent may encrypt it.
+</p>
+<p>Example 5: Sender generates encrypted object:
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+|   U2FsdGVkX19okeKTlLxa/1n1FE/upwn1D20GhPWqhDWlexKMUKYJInTWzERP+vcQ
+|   /OxFs40uc9Fx81a5/62p/yPb/UWnuG6SR6o3Ed2zwcusDImyyz125HFERdDUMBC9
+|   Pt6Z4cTGKBmJzZBGyuc3Y+TMBTxqFFUAxeWaoxnZrrl+LP72vwbriYc3KCMxDbQL
+|   Igc1Vzs5/5JecegMieNY24SlNyX9HMFRNFpbI64vLxYEk55A+3IYbZsluCFT31+a
+|   +GeAvJkvH64LRV4mPbUhENTQ2wbAwnOTvbLIaQEQrii78xNEh+MK8Bx7TBTvi4yH
+|   Ddzf9Sim6mtWsXaCAvWSyp0X91d7xRJ4JIgKfPzkxNsWJFCLthQS1p734eDxXVd3
+|   i08lEHzyll6htuEr59ZDAw==
+</pre></div>
+<p>The sending agent now wraps the encrypted object in an XML CDATA section, which is contained in an &lt;e2e/&gt; element that is included as a child element of the XMPP message stanza and that is qualified by the 'urn:ietf:params:xml:ns:xmpp-e2e' namespace.
+</p>
+<p>Example 6: Sender generates XMPP message stanza:
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+|   &lt;message to='romeo@example.net/orchard' type='chat'&gt;
+|     &lt;e2e xmlns='urn:ietf:params:xml:ns:xmpp-e2e'&gt;
+|   &lt;![CDATA[
+|   U2FsdGVkX19okeKTlLxa/1n1FE/upwn1D20GhPWqhDWlexKMUKYJInTWzERP+vcQ
+|   /OxFs40uc9Fx81a5/62p/yPb/UWnuG6SR6o3Ed2zwcusDImyyz125HFERdDUMBC9
+|   Pt6Z4cTGKBmJzZBGyuc3Y+TMBTxqFFUAxeWaoxnZrrl+LP72vwbriYc3KCMxDbQL
+|   Igc1Vzs5/5JecegMieNY24SlNyX9HMFRNFpbI64vLxYEk55A+3IYbZsluCFT31+a
+|   +GeAvJkvH64LRV4mPbUhENTQ2wbAwnOTvbLIaQEQrii78xNEh+MK8Bx7TBTvi4yH
+|   Ddzf9Sim6mtWsXaCAvWSyp0X91d7xRJ4JIgKfPzkxNsWJFCLthQS1p734eDxXVd3
+|   i08lEHzyll6htuEr59ZDAw==
+|   ]]&gt;
+|     &lt;/e2e&gt;
+|   &lt;/message&gt;
+</pre></div>
+<a name="presence"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4"></a><h3>4.&nbsp;
+Securing Presence</h3>
+
+<a name="presence-process"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.1"></a><h3>4.1.&nbsp;
+Process for Securing Presence Information</h3>
+
+<p>In order to sign and/or encrypt presence information, a sending agent MUST use the following procedure:
+</p>
+<p></p>
+<ol class="text">
+<li>Generate an "application/pidf+xml" object as defined in <a class='info' href='#PIDF'>[PIDF]<span> (</span><span class='info'>Sugano, H., Fujimoto, S., Klyne, G., Bateman, A., Carr, W., and J. Peterson, &ldquo;Presence Information Data Format (PIDF),&rdquo; August&nbsp;2004.</span><span>)</span></a>.
+</li>
+<li>Sign and/or encrypt the "application/pidf+xml" object as specified in Requirement 3 of <a class='info' href='#req'>Section&nbsp;2<span> (</span><span class='info'>Requirements</span><span>)</span></a> above.
+</li>
+<li>Provide the resulting signed and/or encrypted object within an XML CDATA section (see Section 2.7 of <a class='info' href='#XML'>[XML]<span> (</span><span class='info'>Bray, T., Paoli, J., Sperberg-McQueen, C., and E. Maler, &ldquo;Extensible Markup Language (XML) 1.0 (3rd ed),&rdquo; February&nbsp;2004.</span><span>)</span></a>) contained in an &lt;e2e/&gt; child of a &lt;presence/&gt; stanza, where the &lt;e2e/&gt; element is qualified by the 'urn:ietf:params:xml:ns:xmpp-e2e' namespace.  The &lt;presence/&gt; stanza MUST include a 'to' attribute, i.e., it must be an instance of directed presence as defined in <a class='info' href='#XMPP-IM'>[XMPP&#8209;IM]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Extensible Messaging and Presence Protocol (XMPP): Instant Messaging and Presence,&rdquo; October&nbsp;2004.</span><span>)</span></a>.
+</li>
+</ol>
+
+<a name="presence-sign"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.2"></a><h3>4.2.&nbsp;
+Example of Signed Presence Information</h3>
+
+<p>The following example illustrates the defined steps for signing presence information.
+</p>
+<p>First, the sending agent generates an "application/pidf+xml" object in accordance with the rules and formats specified in <a class='info' href='#PIDF'>[PIDF]<span> (</span><span class='info'>Sugano, H., Fujimoto, S., Klyne, G., Bateman, A., Carr, W., and J. Peterson, &ldquo;Presence Information Data Format (PIDF),&rdquo; August&nbsp;2004.</span><span>)</span></a>.
+</p>
+<p>Example 7: Sender generates "application/pidf+xml" object:
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+|   &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+|   &lt;presence xmlns="urn:ietf:params:xml:ns:pidf"
+|             xmlns:im="urn:ietf:params:xml:ns:pidf:im"
+|             entity="pres:juliet@example.com"&gt;
+|     &lt;tuple id="hr0zny"
+|       &lt;status&gt;
+|         &lt;basic&gt;open&lt;/basic&gt;
+|         &lt;im:im&gt;away&lt;/im:im&gt;
+|       &lt;/status&gt;
+|       &lt;note xml:lang="en"&gt;retired to the chamber&lt;/note&gt;
+|       &lt;timestamp&gt;2003-12-09T23:53:11.31&lt;/timestamp&gt;
+|     &lt;/tuple&gt;
+|   &lt;/presence&gt;
+</pre></div>
+<p>Once the sending agent has generated the "application/pidf+xml" object, the sending agent may sign it.  The result is a multipart <a class='info' href='#SMIME'>[SMIME]<span> (</span><span class='info'>Ramsdell, B., &ldquo;Secure/Multipurpose Internet Mail Extensions (S/MIME) Version 3.1 Message Specification,&rdquo; July&nbsp;2004.</span><span>)</span></a> object (see <a class='info' href='#MULTI'>[MULTI]<span> (</span><span class='info'>Galvin, J., Murphy, S., Crocker, S., and N. Freed, &ldquo;Security Multiparts for MIME: Multipart/Signed and Multipart/Encrypted,&rdquo; October&nbsp;1995.</span><span>)</span></a>) that has a Content-Type of "multipart/signed" and includes two parts: one whose Content-Type is "application/pidf+xml" and another whose Content-Type is "application/pkcs7-signature".
+</p>
+<p>Example 8: Sender generates multipart/signed object:
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+|   Content-Type: multipart/signed; boundary=next;
+|                 micalg=sha1;
+|                 protocol=application/pkcs7-signature
+|
+|   --next
+|   Content-type: application/pidf+xml
+|   Content-ID: &lt;2345678901@example.com&gt;
+|
+|   &lt;xml version="1.0" encoding="UTF-8"?&gt;
+|   &lt;presence xmlns="urn:ietf:params:xml:ns:pidf"
+|             xmlns:im="urn:ietf:params:xml:ns:pidf:im"
+|             entity="pres:juliet@example.com"&gt;
+|     &lt;tuple id="hr0zny"&gt;
+|       &lt;status&amp;gt;
+|         &lt;basic&gt;open&lt;/basic&gt;
+|         &lt;im:im&gt;away&lt;/im:im&gt;
+|       &lt;/status&gt;
+|       &lt;note xml:lang="en"&gt;retired to the chamber&lt;/note&gt;
+|       &lt;timestamp&gt;2003-12-09T23:53:11.31Z&lt;/timestamp&gt;
+|     &lt;/tuple&gt;
+|   &lt;/presence&gt;
+|   --next
+|   Content-Type: application/pkcs7-signature
+|   Content-Disposition: attachment;handling=required;\
+|                                   filename=smime.p7s
+|
+|   [signed body part]
+|
+|   --next--
+</pre></div>
+<p>The sending agent now wraps the "multipart/signed" object in an XML CDATA section, which is contained in an &lt;e2e/&gt; element that is included as a child element of the XMPP message stanza and that is qualified by the 'urn:ietf:params:xml:ns:xmpp-e2e' namespace.
+</p>
+<p>Example 9: Sender generates XMPP presence stanza:
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+|   &lt;presence to='romeo@example.net/orchard'&gt;
+|     &lt;e2e xmlns='urn:ietf:params:xml:ns:xmpp-e2e'&gt;
+|   &lt;![CDATA[
+|   Content-Type: multipart/signed; boundary=next;
+|                 micalg=sha1;
+|                 protocol=application/pkcs7-signature
+|
+|   --next
+|   Content-type: application/pidf+xml
+|   Content-ID: &lt;2345678901@example.com&gt;
+|
+|   &lt;xml version="1.0" encoding="UTF-8"?&gt;
+|   &lt;presence xmlns="urn:ietf:params:xml:ns:pidf"
+|             xmlns:im="urn:ietf:params:xml:ns:pidf:im"
+|             entity="pres:juliet@example.com"&gt;
+|     &lt;tuple id="hr0zny"&gt;
+|       &lt;status&gt;
+|         &lt;basic&gt;open&lt;/basic&gt;
+|         &lt;im:im&gt;away&lt;/im:im&gt;
+|       &lt;/status&gt;
+|       &lt;note xml:lang="en"&gt;retired to the chamber&lt;/note&gt;
+|       &lt;timestamp&gt;2003-12-09T23:53:11.31Z&lt;/timestamp&gt;
+|     &lt;/tuple&gt;
+|   &lt;/presence&gt;
+|   --next
+|   Content-Type: application/pkcs7-signature
+|   Content-Disposition: attachment;handling=required;\
+|                                   filename=smime.p7s
+|
+|   [signed body part]
+|
+|   --next--
+|   ]]&gt;
+|     &lt;/e2e&gt;
+|   &lt;/presence&gt;
+</pre></div>
+<a name="presence-encrypt"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.3"></a><h3>4.3.&nbsp;
+Example of Encrypted Presence Information</h3>
+
+<p>The following example illustrates the defined steps for encrypting presence information.
+</p>
+<p>First, the sending agent generates an "application/pidf+xml" object in accordance with the rules and formats specified in <a class='info' href='#PIDF'>[PIDF]<span> (</span><span class='info'>Sugano, H., Fujimoto, S., Klyne, G., Bateman, A., Carr, W., and J. Peterson, &ldquo;Presence Information Data Format (PIDF),&rdquo; August&nbsp;2004.</span><span>)</span></a>.
+</p>
+<p>Example 10: Sender generates "application/pidf+xml" object:
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+|   &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+|   &lt;presence xmlns="urn:ietf:params:xml:ns:pidf"
+|             xmlns:im="urn:ietf:params:xml:ns:pidf:im"
+|             entity="pres:juliet@example.com"&gt;
+|     &lt;tuple id="hr0zny"
+|       &lt;status&gt;
+|         &lt;basic&gt;open&lt;/basic&gt;
+|         &lt;im:im&gt;away&lt;/im:im&gt;
+|       &lt;/status&gt;
+|       &lt;note xml:lang="en"&gt;retired to the chamber&lt;/note&gt;
+|       &lt;timestamp&gt;2003-12-09T23:53:11.31&lt;/timestamp&gt;
+|     &lt;/tuple&gt;
+|   &lt;/presence&gt;
+</pre></div>
+<p>Once the sending agent has generated the "application/pidf+xml" object, the sending agent may encrypt it.
+</p>
+<p>Example 11: Sender generates encrypted object:
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+|   U2FsdGVkX18VJPbx5GMdFPTPZrHLC9QGiVP+ziczu6zWZLFQxae6O5PP6iqpr2No
+|   zOvBVMWvYeRAT0zd18hr6qsqKiGl/GZpAAbTvPtaBxeIykxsd1+CX+U+iw0nEGCr
+|   bjiQrk0qUKJ79bNxwRnqdidjhyTpKSbOJC0XZ8CTe7AE9KDM3Q+uk+O3jrqX4byL
+|   GBlKThbzKidxz32ObojPEEwfFiM/yUeqYUP1OcJpUmeQ8lcXhD6tcx+m2MAyYYLP
+|   boKQxpLknxRnbM8T/voedlnFLbbDu69mOlxDPbr1mHZd3hDsyFudb1fb4rI3Kw0K
+|   Nq+3udr2IkysviJDgQo+xGIQUG/5sED/mAaPRlj4f/JtTzvT4EaQTawv69ntXfKV
+|   MCr9KdIMMdjdJzOJkYLoAhNVrcZn5tw8WsJGwuKuhYb/SShy7InzOapPaPAl7/Mm
+|   PHj7zj3NZ6EEIweDOuAwWlIG/dT506tci27+EW7JnXwMPnFMkF+6a7tr/0Y+iiej
+|   woJxUIBqCOgX+U7srHpK2NYtNTZ7UQp2V0yEx1JV8+Y=
+</pre></div>
+<p>The sending agent now wraps the encrypted object in an XML CDATA section, which is contained in an &lt;e2e/&gt; element that is included as a child element of the XMPP message stanza and that is qualified by the 'urn:ietf:params:xml:ns:xmpp-e2e' namespace.
+</p>
+<p>Example 12: Sender generates XMPP presence stanza:
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+|   &lt;presence to='romeo@example.net/orchard'&gt;
+|     &lt;e2e xmlns='urn:ietf:params:xml:ns:xmpp-e2e'&gt;
+|   &lt;![CDATA[
+|   U2FsdGVkX18VJPbx5GMdFPTPZrHLC9QGiVP+ziczu6zWZLFQxae6O5PP6iqpr2No
+|   zOvBVMWvYeRAT0zd18hr6qsqKiGl/GZpAAbTvPtaBxeIykxsd1+CX+U+iw0nEGCr
+|   bjiQrk0qUKJ79bNxwRnqdidjhyTpKSbOJC0XZ8CTe7AE9KDM3Q+uk+O3jrqX4byL
+|   GBlKThbzKidxz32ObojPEEwfFiM/yUeqYUP1OcJpUmeQ8lcXhD6tcx+m2MAyYYLP
+|   boKQxpLknxRnbM8T/voedlnFLbbDu69mOlxDPbr1mHZd3hDsyFudb1fb4rI3Kw0K
+|   Nq+3udr2IkysviJDgQo+xGIQUG/5sED/mAaPRlj4f/JtTzvT4EaQTawv69ntXfKV
+|   MCr9KdIMMdjdJzOJkYLoAhNVrcZn5tw8WsJGwuKuhYb/SShy7InzOapPaPAl7/Mm
+|   PHj7zj3NZ6EEIweDOuAwWlIG/dT506tci27+EW7JnXwMPnFMkF+6a7tr/0Y+iiej
+|   woJxUIBqCOgX+U7srHpK2NYtNTZ7UQp2V0yEx1JV8+Y=
+|   ]]&gt;
+|     &lt;/e2e&gt;
+|   &lt;/presence&gt;
+</pre></div>
+<a name="arbitrary"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5"></a><h3>5.&nbsp;
+Securing Arbitrary XMPP Data</h3>
+
+<p>The foregoing sections of this memo describe how to secure "least common denominator" messaging and presence data of the kind that can be directly translated into the MSGFMT or PIDF formats.  However, XMPP possesses a third base-level stanza type (&lt;iq/&gt;) in addition to &lt;message/&gt; and &lt;presence/&gt;, as well as the ability to include extended XML data within arbitrary child elements of the three core stanza types.  Therefore, it would be desirable to secure such data if possible.
+</p>
+<p>Because <a class='info' href='#MSGFMT'>[MSGFMT]<span> (</span><span class='info'>Klyne, G. and D. Atkins, &ldquo;Common Presence and Instant Messaging (CPIM): Message Format,&rdquo; August&nbsp;2004.</span><span>)</span></a> specifies the ability to encapsulate any MIME type, the approach taken in this memo is to include arbitrary XMPP data in an XML media type named "application/xmpp+xml" as specified more fully in <a class='info' href='#mediatype'>Section&nbsp;10<span> (</span><span class='info'>application/xmpp+xml Media Type</span><span>)</span></a> below.
+</p>
+<p>The following examples illustrate the structure of the "application/xmpp+xml" MIME type.  (Note: The 'http://jabber.org/protocol/evil' namespace used in these examples is associated with an April Fool's protocol written to be the instant messaging equivalent of RFC 3514; it is included only as an instance of extended information included in an XML stanza and should not be taken seriously as a functional XMPP extension.)
+</p>
+<p>Example 13: Message stanza with extended data contained in "application/xmpp+xml" MIME type:
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+|   &lt;?xml version='1.0' encoding='UTF-8'?&gt;
+|   &lt;xmpp xmlns='jabber:client'&gt;
+|     &lt;message
+|         from='iago@example.com/pda'
+|         to='emilia@example.com/cell'&gt;
+|       &lt;body&gt;
+|         I told him what I thought, and told no more
+|         Than what he found himself was apt and true.
+|       &lt;/body&gt;
+|       &lt;evil xmlns='http://jabber.org/protocol/evil'/&gt;
+|     &lt;/message&gt;
+|   &lt;/xmpp&gt;
+</pre></div>
+<p>Example 14: Presence stanza with extended data contained in "application/xmpp+xml" MIME type:
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+|   &lt;?xml version='1.0' encoding='UTF-8'?&gt;
+|   &lt;xmpp xmlns='jabber:client'&gt;
+|     &lt;presence from='iago@example.com/pda'&gt;
+|       &lt;show&gt;dnd&lt;/show&gt;
+|       &lt;status&gt;Fomenting dissension&lt;/status&gt;
+|       &lt;evil xmlns='http://jabber.org/protocol/evil'/&gt;
+|     &lt;/presence&gt;
+|   &lt;/xmpp&gt;
+</pre></div>
+<p>Example 15: IQ stanza with extended data contained in "application/xmpp+xml" MIME type:
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+|   &lt;?xml version='1.0' encoding='UTF-8'?&gt;
+|   &lt;xmpp xmlns='jabber:client'&gt;
+|     &lt;iq type='result'
+|         from='iago@example.com/pda'
+|         to='emilia@example.com/cell'
+|         id='evil1'&gt;
+|       &lt;query xmlns='jabber:iq:version'&gt;
+|         &lt;name&gt;Stabber&lt;/name&gt;
+|         &lt;version&gt;666&lt;/version&gt;
+|         &lt;os&gt;FiendOS&lt;/os&gt;
+|       &lt;/query&gt;
+|       &lt;evil xmlns='http://jabber.org/protocol/evil'/&gt;
+|     &lt;/iq&gt;
+|   &lt;/xmpp&gt;
+</pre></div>
+<p>Just as with the "Message/CPIM" and "application/pidf+xml" objects, the "application/xmpp+xml" object would be signed and/or encrypted, then encapsulated within an XML CDATA section (see Section 2.7 of <a class='info' href='#XML'>[XML]<span> (</span><span class='info'>Bray, T., Paoli, J., Sperberg-McQueen, C., and E. Maler, &ldquo;Extensible Markup Language (XML) 1.0 (3rd ed),&rdquo; February&nbsp;2004.</span><span>)</span></a>) contained in an &lt;e2e/&gt; child of a &lt;presence/&gt; stanza, where the &lt;e2e/&gt; element is qualified by the 'urn:ietf:params:xml:ns:xmpp-e2e' namespace.
+</p>
+<a name="rules"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.6"></a><h3>6.&nbsp;
+Rules for S/MIME Generation and Handling</h3>
+
+<a name="rules-enroll"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.6.1"></a><h3>6.1.&nbsp;
+Certificate Enrollment</h3>
+
+<p><a class='info' href='#SMIME'>[SMIME]<span> (</span><span class='info'>Ramsdell, B., &ldquo;Secure/Multipurpose Internet Mail Extensions (S/MIME) Version 3.1 Message Specification,&rdquo; July&nbsp;2004.</span><span>)</span></a> does not specify how to obtain a certificate from a certificate authority, but instead mandates that every sending agent must already have a certificate.  The PKIX Working Group has, at the time of this writing, produced two separate standards for certificate enrollment: <a class='info' href='#CMP'>[CMP]<span> (</span><span class='info'>Adams, C. and S. Farrell, &ldquo;Internet X.509 Public Key Infrastructure Certificate Management Protocols,&rdquo; March&nbsp;1999.</span><span>)</span></a> and <a class='info' href='#CMC'>[CMC]<span> (</span><span class='info'>Myers, M., Liu, X., Schaad, J., and J. Weinstein, &ldquo;Certificate Management Messages over CMS,&rdquo; April&nbsp;2000.</span><span>)</span></a>.  Which method to use for certificate enrollment is outside the scope of this memo.
+</p>
+<a name="rules-retrieve"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.6.2"></a><h3>6.2.&nbsp;
+Certificate Retrieval</h3>
+
+<p>A receiving agent MUST provide some certificate retrieval mechanism in order to gain access to certificates for recipients of digital envelopes.  This memo does not address how S/MIME agents handle certificates, only what they do after a certificate has been validated or rejected.  S/MIME certification issues are covered in <a class='info' href='#CERT'>[CERT]<span> (</span><span class='info'>Ramsdell, B., &ldquo;Secure/Multipurpose Internet Mail Extensions (S/MIME) Version 3.1 Certificate Handling,&rdquo; July&nbsp;2004.</span><span>)</span></a>.
+</p>
+<p>However, at a minimum, for initial S/MIME deployment, a user agent SHOULD automatically generate a message to an intended recipient requesting that recipient's certificate in a signed return message.  Receiving and sending agents SHOULD also provide a mechanism to allow a user to "store and protect" certificates for correspondents in such a way so as to guarantee their later retrieval.
+</p>
+<a name="rules-names"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.6.3"></a><h3>6.3.&nbsp;
+Certificate Names</h3>
+
+<p>End-entity certificates used by XMPP entities in the context of this memo SHOULD contain a valid instant messaging and presence address.  The address SHOULD be specified as both an 'im:' URI (for instant messaging, as defined in <a class='info' href='#CPIM'>[CPIM]<span> (</span><span class='info'>Peterson, J., &ldquo;Common Profile for Instant Messaging (CPIM),&rdquo; August&nbsp;2004.</span><span>)</span></a>) and a 'pres:' URI (for presence, as defined in <a class='info' href='#CPP'>[CPP]<span> (</span><span class='info'>Peterson, J., &ldquo;Common Profile for Presence (CPP),&rdquo; August&nbsp;2004.</span><span>)</span></a>); each of these URIs SHOULD be specified in a separate GeneralName entry of type uniformResourceIdentifier inside the subjectAltName (i.e., two separate entries).  Information in the subject distinguished name SHOULD be ignored.
+</p>
+<p>Each URI MUST be of the form &lt;im:address&gt; or &lt;pres:address&gt;, where the "address" portion is an XMPP address (also referred to as a Jabber Identifier or JID) as defined in <a class='info' href='#XMPP-CORE'>[XMPP&#8209;CORE]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Extensible Messaging and Presence Protocol (XMPP): Core,&rdquo; October&nbsp;2004.</span><span>)</span></a>, prepended with the 'im:' or 'pres:' URI scheme.  The address SHOULD be of the form &lt;node@domain&gt; (i.e., a "bare JID"), although any valid JID form MAY be used.
+</p>
+<p>The value of the JID contained in the XMPP 'from' attribute MUST match a JID provided in the signer's certificate, with the exception that the resource identifier portion of the JID contained in the 'from' attribute SHOULD be ignored for matching purposes.
+</p>
+<p>Receiving agents MUST check that the sending JID matches a JID provided in the signer's certificate, with the exception that the resource identifier portion of the JID contained in the 'from' attribute SHOULD be ignored for matching purposes.  A receiving agent SHOULD provide some explicit alternate processing of the stanza if this comparison fails, which may be to display a message informing the recipient of the addresses in the certificate or other certificate details.
+</p>
+<p>The subject alternative name extension is used in S/MIME as the preferred means to convey the instant messaging and presence address that corresponds to the entity for this certificate.  Any XMPP address present in the certificate MUST be encoded using the ASN.1 Object Identifier "id-on-xmppAddr" as specified in Section 5.1.1 of <a class='info' href='#XMPP-CORE'>[XMPP&#8209;CORE]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Extensible Messaging and Presence Protocol (XMPP): Core,&rdquo; October&nbsp;2004.</span><span>)</span></a>.
+</p>
+<a name="rules-transfer"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.6.4"></a><h3>6.4.&nbsp;
+Transfer Encoding</h3>
+
+<p>Because it is expected that XMPP applications will not interface with older 7-bit systems, the transfer encoding (as defined in Section 3.1.2 of <a class='info' href='#SMIME'>[SMIME]<span> (</span><span class='info'>Ramsdell, B., &ldquo;Secure/Multipurpose Internet Mail Extensions (S/MIME) Version 3.1 Message Specification,&rdquo; July&nbsp;2004.</span><span>)</span></a>) MUST be "binary".
+</p>
+<a name="rules-order"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.6.5"></a><h3>6.5.&nbsp;
+Order of Signing and Encrypting</h3>
+
+<p>If a stanza is both signed and encrypted, it SHOULD be signed first, then encrypted.
+</p>
+<a name="rules-certs"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.6.6"></a><h3>6.6.&nbsp;
+Inclusion of Certificates</h3>
+
+<p>If the sender and recipient are involved in an active messaging session over a period of time, the sending agent SHOULD include the sender's certificate along with at least one encrypted message stanza every five minutes. Outside the context of an active messaging session, the sending agent SHOULD include the sender's certificate along with each encrypted message stanza.  A sending agent MAY include the sender's certificate along with each encrypted presence stanza.  However, a sending agent SHOULD NOT include a certificate more than once every five minutes.
+</p>
+<a name="rules-sigs"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.6.7"></a><h3>6.7.&nbsp;
+Attachment and Checking of Signatures</h3>
+
+<p>Sending agents SHOULD attach a signature to each encrypted XML stanza. If a signature is attached, a Content-Disposition header field (as defined in <a class='info' href='#DISP'>[DISP]<span> (</span><span class='info'>Troost, R., Dorner, S., and K. Moore, &ldquo;Communicating Presentation Information in Internet Messages: The Content-Disposition Header Field,&rdquo; August&nbsp;1997.</span><span>)</span></a>) SHOULD be included to specify how the signature is to be handled by the receiving application.
+</p>
+<p>If the receiving agent determines that the signature attached to an encrypted XML stanza is invalid, it SHOULD NOT present the stanza to the intended recipient (human or application), SHOULD provide some explicit alternate processing of the stanza (which may be to display a message informing the recipient that the attached signature is invalid), and MAY return a stanza error to the sender as described under <a class='info' href='#errors'>Recipient Error Handling<span> (</span><span class='info'>Recipient Error Handling</span><span>)</span></a>.
+</p>
+<a name="rules-decrypt"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.6.8"></a><h3>6.8.&nbsp;
+Decryption</h3>
+
+<p>If the receiving agent is unable to decrypt the encrypted XML stanza, it SHOULD NOT present the stanza to the intended recipient (human or application), SHOULD provide some explicit alternate processing of the stanza (which may be to display a message informing the recipient that it has received a stanza that cannot be decrypted), and MAY return a stanza error to the sender as described under <a class='info' href='#errors'>Recipient Error Handling<span> (</span><span class='info'>Recipient Error Handling</span><span>)</span></a>.
+</p>
+<a name="rules-timestamps"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.6.9"></a><h3>6.9.&nbsp;
+Inclusion and Checking of Timestamps</h3>
+
+<p>Timestamps are included in "Message/CPIM" and "application/pidf+xml" objects to help prevent replay attacks.  All timestamps MUST conform to <a class='info' href='#DATETIME'>[DATETIME]<span> (</span><span class='info'>Klyne, G. and C. Newman, &ldquo;Date and Time on the Internet: Timestamps,&rdquo; July&nbsp;2002.</span><span>)</span></a> and be presented as UTC with no offset, including fractions of a second as appropriate.  Absent a local adjustment to the sending agent's perceived time or the underlying clock time, the sending agent MUST ensure that the timestamps it sends to the receiver increase monotonically (if necessary by incrementing the seconds fraction in the timestamp if the clock returns the same time for multiple requests).  The following rules apply to the receiving application:
+</p>
+<p></p>
+<ul class="text">
+<li>It MUST verify that the timestamp received is within five minutes of the current time.
+</li>
+<li>It SHOULD verify that the timestamp received is greater than any timestamp received in the last 10 minutes which passed the previous check.
+</li>
+<li>If any of the foregoing checks fails, the timestamp SHOULD be presented to the receiving entity (human or application) marked as "old timestamp", "future timestamp", or "decreasing timestamp", and the receiving entity MAY return a stanza error to the sender as described under <a class='info' href='#errors'>Recipient Error Handling<span> (</span><span class='info'>Recipient Error Handling</span><span>)</span></a>.
+</li>
+</ul>
+
+<a name="rules-mandatory"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.6.10"></a><h3>6.10.&nbsp;
+Mandatory-to-Implement Cryptographic Algorithms</h3>
+
+<p>All implementations MUST support the following algorithms.  Implementations MAY support other algorithms as well.
+</p>
+<p>For CMS SignedData:
+</p>
+<p></p>
+<ul class="text">
+<li>The SHA-1 message digest as specified in <a class='info' href='#CMS-ALG'>[CMS&#8209;ALG]<span> (</span><span class='info'>Housley, R., &ldquo;Cryptographic Message Syntax (CMS) Algorithms,&rdquo; August&nbsp;2002.</span><span>)</span></a> section 2.1.
+</li>
+<li>The RSA (PKCS #1 v1.5) with SHA-1 signature algorithm, as specified in <a class='info' href='#CMS-ALG'>[CMS&#8209;ALG]<span> (</span><span class='info'>Housley, R., &ldquo;Cryptographic Message Syntax (CMS) Algorithms,&rdquo; August&nbsp;2002.</span><span>)</span></a> section 3.2.
+</li>
+</ul>
+
+<p>For CMS EnvelopedData:
+</p>
+<p></p>
+<ul class="text">
+<li>The RSA (PKCS #1 v1.5) key transport, as specified in <a class='info' href='#CMS-ALG'>[CMS&#8209;ALG]<span> (</span><span class='info'>Housley, R., &ldquo;Cryptographic Message Syntax (CMS) Algorithms,&rdquo; August&nbsp;2002.</span><span>)</span></a> section 4.2.1.
+</li>
+<li>The AES-128 encryption algorithm in CBC mode, as specified in <a class='info' href='#CMS-AES'>[CMS&#8209;AES]<span> (</span><span class='info'>Schaad, J., &ldquo;Use of the Advanced Encryption Standard (AES) Encryption Algorithm in Cryptographic Message Syntax (CMS),&rdquo; July&nbsp;2003.</span><span>)</span></a>.
+</li>
+</ul>
+
+<a name="errors"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.7"></a><h3>7.&nbsp;
+Recipient Error Handling</h3>
+
+<p>When an XMPP entity receives an XML stanza containing data that is signed and/or encrypted using the protocol described herein, several scenarios are possible:
+</p>
+<p></p>
+<blockquote class="text"><dl>
+<dt>Case #1:</dt>
+<dd>The receiving application does not understand the protocol.
+</dd>
+<dt>Case #2:</dt>
+<dd>The receiving application understands the protocol and is able to decrypt the payload and verify the sender's signature.
+</dd>
+<dt>Case #3:</dt>
+<dd>The receiving application understands the protocol and is able to decrypt the payload and verify the sender's signature, but the timestamps fail the checks specified above under <a class='info' href='#rules-timestamps'>Checking of Timestamps<span> (</span><span class='info'>Inclusion and Checking of Timestamps</span><span>)</span></a>.
+</dd>
+<dt>Case #4:</dt>
+<dd>The receiving application understands the protocol and is able to decrypt the payload but is unable to verify the sender's signature.
+</dd>
+<dt>Case #5:</dt>
+<dd>The receiving application understands the protocol but is unable to decrypt the payload.
+</dd>
+</dl></blockquote>
+
+<p>In Case #1, the receiving application MUST do one and only one of the following: (1) ignore the &lt;e2e/&gt; extension, (2) ignore the entire stanza, or (3) return a &lt;service-unavailable/&gt; error to the sender, as described in <a class='info' href='#XMPP-CORE'>[XMPP&#8209;CORE]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Extensible Messaging and Presence Protocol (XMPP): Core,&rdquo; October&nbsp;2004.</span><span>)</span></a>.
+</p>
+<p>In Case #2, the receiving application MUST NOT return a stanza error to the sender, since this is the success case.
+</p>
+<p>In Case #3, the receiving application MAY return a &lt;not-acceptable/&gt; error to the sender (as described in <a class='info' href='#XMPP-CORE'>[XMPP&#8209;CORE]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Extensible Messaging and Presence Protocol (XMPP): Core,&rdquo; October&nbsp;2004.</span><span>)</span></a>), optionally supplemented by an application-specific error condition element &lt;bad-timestamp/&gt; as shown below:
+</p>
+<p>Example 16: Recipient returns &lt;not-acceptable/&gt; error:
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+&lt;message from='romeo@example.net/orchard' type='chat'&gt;
+  &lt;e2e xmlns='urn:ietf:params:xml:ns:xmpp-e2e'&gt;
+  [CDATA section here]
+  &lt;/e2e&gt;
+  &lt;error type='modify'&gt;
+    &lt;not-acceptable xmlns='urn:ietf:params:xml:ns:xmpp-stanzas'/&gt;
+    &lt;bad-timestamp xmlns='urn:ietf:params:xml:xmpp-e2e'/&gt;
+  &lt;/error&gt;
+&lt;/message&gt;
+</pre></div>
+<p>In Case #4, the receiving application SHOULD return a &lt;not-acceptable/&gt; error to the sender (as described in <a class='info' href='#XMPP-CORE'>[XMPP&#8209;CORE]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Extensible Messaging and Presence Protocol (XMPP): Core,&rdquo; October&nbsp;2004.</span><span>)</span></a>), optionally supplemented by an application-specific error condition element &lt;unverified-signature/&gt; as shown below:
+</p>
+<p>Example 17: Recipient returns &lt;not-acceptable/&gt; error:
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+&lt;message from='romeo@example.net/orchard' type='chat'&gt;
+  &lt;e2e xmlns='urn:ietf:params:xml:ns:xmpp-e2e'&gt;
+  [CDATA section here]
+  &lt;/e2e&gt;
+  &lt;error type='modify'&gt;
+    &lt;not-acceptable xmlns='urn:ietf:params:xml:ns:xmpp-stanzas'/&gt;
+    &lt;unverified-signature xmlns='urn:ietf:params:xml:xmpp-e2e'/&gt;
+  &lt;/error&gt;
+&lt;/message&gt;
+</pre></div>
+<p>In Case #5, the receiving application SHOULD return a &lt;bad-request/&gt; error to the sender (as described in <a class='info' href='#XMPP-CORE'>[XMPP&#8209;CORE]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Extensible Messaging and Presence Protocol (XMPP): Core,&rdquo; October&nbsp;2004.</span><span>)</span></a>), optionally supplemented by an application-specific error condition element &lt;decryption-failed/&gt; as shown below:
+</p>
+<p>Example 18: Recipient returns &lt;bad-request/&gt; error:
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+&lt;message from='romeo@example.net/orchard' type='chat'&gt;
+  &lt;e2e xmlns='urn:ietf:params:xml:ns:xmpp-e2e'&gt;
+  [CDATA section here]
+  &lt;/e2e&gt;
+  &lt;error type='modify'&gt;
+    &lt;bad-request xmlns='urn:ietf:params:xml:ns:xmpp-stanzas'/&gt;
+    &lt;decryption-failed xmlns='urn:ietf:params:xml:xmpp-e2e'/&gt;
+  &lt;/error&gt;
+&lt;/message&gt;
+</pre></div>
+<a name="gateway"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.8"></a><h3>8.&nbsp;
+Secure Communications Through a Gateway</h3>
+
+<p>A common method for achieving interoperability between two disparate services is through the use of a "gateway" that interprets the protocols of each service and translates them into the protocols of the other.  The CPIM specifications (specifically <a class='info' href='#MSGFMT'>[MSGFMT]<span> (</span><span class='info'>Klyne, G. and D. Atkins, &ldquo;Common Presence and Instant Messaging (CPIM): Message Format,&rdquo; August&nbsp;2004.</span><span>)</span></a> and <a class='info' href='#PIDF'>[PIDF]<span> (</span><span class='info'>Sugano, H., Fujimoto, S., Klyne, G., Bateman, A., Carr, W., and J. Peterson, &ldquo;Presence Information Data Format (PIDF),&rdquo; August&nbsp;2004.</span><span>)</span></a> define the common profiles to be used for interoperability between instant messaging and presence services that comply with <a class='info' href='#IMP-REQS'>[IMP&#8209;REQS]<span> (</span><span class='info'>Day, M., Aggarwal, S., and J. Vincent, &ldquo;Instant Messaging / Presence Protocol Requirements,&rdquo; February&nbsp;2000.</span><span>)</span></a>.  In the case of communications between an XMPP service and a non-XMPP service, we can visualize this relationship as follows:
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
++-------------+        +-------------+        +------------+
+|             |        |             |        |            |
+|    XMPP     |        |  XMPP-CPIM  |        |  Non-XMPP  |
+|   Service   | &lt;----&gt; |   Gateway   | &lt;----&gt; |  Service   |
+|             |        |             |        |            |
++-------------+        +-------------+        +------------+
+</pre></div>
+<p>The end-to-end encryption method defined herein enables the exchange of encrypted and/or signed instant messages and presence through an XMPP-CPIM gateway.  In particular:
+</p>
+<p></p>
+<ul class="text">
+<li>When a gateway receives a secured XMPP message or presence stanza from the XMPP service that is addressed to a user on the non-XMPP service, it MUST remove the XMPP "wrapper" (everything down to and including the &lt;e2e&gt; and &lt;/e2e&gt; tags) in order to reveal the multipart S/MIME object, then route the object to the non-XMPP service (first wrapping it in the protocol used by the non-XMPP service if necessary).
+</li>
+<li>When a gateway receives a secured non-XMPP instant message or presence document from the non-XMPP service that is addressed to a user on the XMPP service, it MUST remove the non-XMPP "wrapper" (if any) in order to reveal the multipart S/MIME object, wrap the object in an XMPP message or presence "wrapper" (including the &lt;e2e&gt; and &lt;/e2e&gt; tags), and then route the XMPP stanza to the XMPP service.
+</li>
+</ul>
+
+<p>The wrapped S/MIME object MUST be immutable and MUST NOT be modified by an XMPP-CPIM gateway.
+</p>
+<a name="namespace"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.9"></a><h3>9.&nbsp;
+urn:ietf:params:xml:xmpp-e2e Namespace</h3>
+
+<p>The &lt;e2e xmlns='urn:ietf:params:xml:ns:xmpp-e2e'/&gt; element is a wrapper for an XML CDATA section (see Section 2.7 of <a class='info' href='#XML'>[XML]<span> (</span><span class='info'>Bray, T., Paoli, J., Sperberg-McQueen, C., and E. Maler, &ldquo;Extensible Markup Language (XML) 1.0 (3rd ed),&rdquo; February&nbsp;2004.</span><span>)</span></a>) that contains a "Message/CPIM", "application/pidf+xml", or "application/xmpp+xml" object. Thus the 'urn:ietf:params:xml:xmpp-e2e' namespace has no inherent semantics, and the semantics of the encapsulated object are defined by one of the following specifications:
+</p>
+<p></p>
+<ul class="text">
+<li><a class='info' href='#MSGFMT'>[MSGFMT]<span> (</span><span class='info'>Klyne, G. and D. Atkins, &ldquo;Common Presence and Instant Messaging (CPIM): Message Format,&rdquo; August&nbsp;2004.</span><span>)</span></a> for "Message/CPIM"
+</li>
+<li><a class='info' href='#PIDF'>[PIDF]<span> (</span><span class='info'>Sugano, H., Fujimoto, S., Klyne, G., Bateman, A., Carr, W., and J. Peterson, &ldquo;Presence Information Data Format (PIDF),&rdquo; August&nbsp;2004.</span><span>)</span></a> for "application/pidf+xml"
+</li>
+<li><a class='info' href='#XMPP-CORE'>[XMPP&#8209;CORE]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Extensible Messaging and Presence Protocol (XMPP): Core,&rdquo; October&nbsp;2004.</span><span>)</span></a> for "application/xmpp+xml"
+</li>
+</ul>
+
+<p>Although the "application/xmpp+xml" media type is specified in this document, the &lt;xmpp/&gt; element is simply a wrapper for a &lt;message/&gt;, &lt;presence/&gt;, or &lt;iq/&gt; stanza, where the semantics of those stanza types are specified in <a class='info' href='#XMPP-CORE'>[XMPP&#8209;CORE]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Extensible Messaging and Presence Protocol (XMPP): Core,&rdquo; October&nbsp;2004.</span><span>)</span></a>.
+</p>
+<p>Given that the 'urn:ietf:params:xml:ns:xmpp-e2e' namespace has no inherent semantics and specifies a using protocol only, versioning is the responsibility of the protocols that define the encapsulated objects (<a class='info' href='#MSGFMT'>[MSGFMT]<span> (</span><span class='info'>Klyne, G. and D. Atkins, &ldquo;Common Presence and Instant Messaging (CPIM): Message Format,&rdquo; August&nbsp;2004.</span><span>)</span></a>, <a class='info' href='#PIDF'>[PIDF]<span> (</span><span class='info'>Sugano, H., Fujimoto, S., Klyne, G., Bateman, A., Carr, W., and J. Peterson, &ldquo;Presence Information Data Format (PIDF),&rdquo; August&nbsp;2004.</span><span>)</span></a>, and <a class='info' href='#XMPP-CORE'>[XMPP&#8209;CORE]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Extensible Messaging and Presence Protocol (XMPP): Core,&rdquo; October&nbsp;2004.</span><span>)</span></a>).
+</p>
+<a name="mediatype"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.10"></a><h3>10.&nbsp;
+application/xmpp+xml Media Type</h3>
+
+<p>The "application/xmpp+xml" media type adheres to the guidelines specified in <a class='info' href='#XML-MEDIA'>[XML&#8209;MEDIA]<span> (</span><span class='info'>Murata, M., St. Laurent, S., and D. Kohn, &ldquo;XML Media Types,&rdquo; January&nbsp;2001.</span><span>)</span></a>.  The root element for this MIME type is &lt;xmpp/&gt;, and the root element MUST contain one and only one child element, corresponding to one of the XMPP stanza types (i.e., message, presence, or iq) if the default namespace is 'jabber:client' or 'jabber:server' as defined in <a class='info' href='#XMPP-CORE'>[XMPP&#8209;CORE]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Extensible Messaging and Presence Protocol (XMPP): Core,&rdquo; October&nbsp;2004.</span><span>)</span></a>.  The character encoding for this XML media type MUST be UTF-8, in accordance with Section 11.5 of <a class='info' href='#XMPP-CORE'>[XMPP&#8209;CORE]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Extensible Messaging and Presence Protocol (XMPP): Core,&rdquo; October&nbsp;2004.</span><span>)</span></a>.
+</p>
+<a name="security"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.11"></a><h3>11.&nbsp;
+Security Considerations</h3>
+
+<p>This entire memo discusses security.  Detailed security considerations for instant messaging and presence protocols are given in <a class='info' href='#IMP-REQS'>[IMP&#8209;REQS]<span> (</span><span class='info'>Day, M., Aggarwal, S., and J. Vincent, &ldquo;Instant Messaging / Presence Protocol Requirements,&rdquo; February&nbsp;2000.</span><span>)</span></a> (Sections 5.1 through 5.4), and for XMPP in particular are given in <a class='info' href='#XMPP-CORE'>[XMPP&#8209;CORE]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Extensible Messaging and Presence Protocol (XMPP): Core,&rdquo; October&nbsp;2004.</span><span>)</span></a> (Sections 12.1 through 12.6).  In addition, all of the security considerations specified in <a class='info' href='#XML-MEDIA'>[XML&#8209;MEDIA]<span> (</span><span class='info'>Murata, M., St. Laurent, S., and D. Kohn, &ldquo;XML Media Types,&rdquo; January&nbsp;2001.</span><span>)</span></a> apply to the "application/xmpp+xml" media type.
+</p>
+<p>The end-to-end security method defined here MAY result in exchanging secured instant messages and presence information through a gateway that implements the CPIM specifications.  Such a gateway MUST be compliant with the minimum security requirements of the instant messaging and presence protocols with which it interfaces.
+</p>
+<a name="iana"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.12"></a><h3>12.&nbsp;
+IANA Considerations</h3>
+
+<a name="iana-ns-e2e"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.12.1"></a><h3>12.1.&nbsp;
+XML Namespace Name for e2e Data in XMPP</h3>
+
+<p>A URN sub-namespace of signed and encrypted content for the Extensible Messaging and Presence Protocol (XMPP) is defined as follows. (This namespace name adheres to the format defined in <a class='info' href='#XML-REG'>[XML&#8209;REG]<span> (</span><span class='info'>Mealling, M., &ldquo;The IETF XML Registry,&rdquo; January&nbsp;2004.</span><span>)</span></a>.)
+</p>
+<p></p>
+<blockquote class="text"><dl>
+<dt>URI:</dt>
+<dd>urn:ietf:params:xml:ns:xmpp-e2e
+</dd>
+<dt>Specification:</dt>
+<dd>RFC 3923
+</dd>
+<dt>Description:</dt>
+<dd>This is an XML namespace name of signed and encrypted content for the Extensible Messaging and Presence Protocol as defined by RFC 3923.
+</dd>
+<dt>Registrant Contact:</dt>
+<dd>IESG, &lt;iesg@ietf.org&gt;
+</dd>
+</dl></blockquote>
+
+<a name="iana-ns-xmpp"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.12.2"></a><h3>12.2.&nbsp;
+Content-type Registration for "application/xmpp+xml"</h3>
+
+<p>To: ietf-types@iana.org
+</p>
+<p>Subject: Registration of MIME media type application/xmpp+xml
+</p>
+<p></p>
+<blockquote class="text"><dl>
+<dt>MIME media type name: application</dt>
+<dd>
+</dd>
+<dt>MIME subtype name: xmpp+xml</dt>
+<dd>
+</dd>
+<dt>Required parameters: (none)</dt>
+<dd>
+</dd>
+<dt>Optional parameters: (charset)</dt>
+<dd>Same as charset parameter of application/xml as specified in RFC 3023; per Section 11.5 of <a class='info' href='#XMPP-CORE'>[XMPP&#8209;CORE]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Extensible Messaging and Presence Protocol (XMPP): Core,&rdquo; October&nbsp;2004.</span><span>)</span></a>, the charset must be UTF-8.
+</dd>
+<dt>Encoding considerations:</dt>
+<dd>Same as encoding considerations of application/xml as specified in RFC 3023; per Section 11.5 of <a class='info' href='#XMPP-CORE'>[XMPP&#8209;CORE]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Extensible Messaging and Presence Protocol (XMPP): Core,&rdquo; October&nbsp;2004.</span><span>)</span></a>, the encoding must be UTF-8.
+</dd>
+<dt>Security considerations:</dt>
+<dd>All of the security considerations specified in RFC 3023 and <a class='info' href='#XMPP-CORE'>[XMPP&#8209;CORE]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Extensible Messaging and Presence Protocol (XMPP): Core,&rdquo; October&nbsp;2004.</span><span>)</span></a> apply to this XML media type.  Refer to <a class='info' href='#security'>Section&nbsp;11<span> (</span><span class='info'>Security Considerations</span><span>)</span></a> of RFC 3923.
+</dd>
+<dt>Interoperability considerations: (none)</dt>
+<dd>
+</dd>
+<dt>Specification:</dt>
+<dd>RFC 3923
+</dd>
+<dt>Applications which use this media type:</dt>
+<dd>XMPP-compliant instant messaging and presence systems.
+</dd>
+<dt>Additional information: (none)</dt>
+<dd>
+</dd>
+<dt>Person and email address to contact for further information:</dt>
+<dd>IESG, &lt;iesg@ietf.org&gt;
+</dd>
+<dt>Intended usage:</dt>
+<dd>COMMON
+</dd>
+<dt>Author/Change controller:</dt>
+<dd>IETF, XMPP Working Group
+</dd>
+</dl></blockquote>
+
+<a name="rfc.references"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.13"></a><h3>13.&nbsp;
+References</h3>
+
+<a name="rfc.references1"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<h3>13.1.&nbsp;Normative References</h3>
+<table width="99%" border="0">
+<tr><td class="author-text" valign="top"><a name="CERT">[CERT]</a></td>
+<td class="author-text">Ramsdell, B., &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc3850.txt">Secure/Multipurpose Internet Mail Extensions (S/MIME) Version 3.1 Certificate Handling</a>,&rdquo; RFC&nbsp;3850, July&nbsp;2004.</td></tr>
+<tr><td class="author-text" valign="top"><a name="CMS">[CMS]</a></td>
+<td class="author-text">Housley, R., &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc3852.txt">Cryptographic Message Syntax (CMS)</a>,&rdquo; RFC&nbsp;3852, July&nbsp;2004.</td></tr>
+<tr><td class="author-text" valign="top"><a name="CMS-AES">[CMS-AES]</a></td>
+<td class="author-text">Schaad, J., &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc3565.txt">Use of the Advanced Encryption Standard (AES) Encryption Algorithm in Cryptographic Message Syntax (CMS)</a>,&rdquo; RFC&nbsp;3565, July&nbsp;2003.</td></tr>
+<tr><td class="author-text" valign="top"><a name="CMS-ALG">[CMS-ALG]</a></td>
+<td class="author-text">Housley, R., &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc3370.txt">Cryptographic Message Syntax (CMS) Algorithms</a>,&rdquo; RFC&nbsp;3370, August&nbsp;2002.</td></tr>
+<tr><td class="author-text" valign="top"><a name="CPIM">[CPIM]</a></td>
+<td class="author-text">Peterson, J., &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc3860.txt">Common Profile for Instant Messaging (CPIM)</a>,&rdquo; RFC&nbsp;3860, August&nbsp;2004.</td></tr>
+<tr><td class="author-text" valign="top"><a name="CPP">[CPP]</a></td>
+<td class="author-text">Peterson, J., &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc3859.txt">Common Profile for Presence (CPP)</a>,&rdquo; RFC&nbsp;3859, August&nbsp;2004.</td></tr>
+<tr><td class="author-text" valign="top"><a name="DATETIME">[DATETIME]</a></td>
+<td class="author-text">Klyne, G. and C. Newman, &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc3339.txt">Date and Time on the Internet: Timestamps</a>,&rdquo; RFC&nbsp;3339, July&nbsp;2002.</td></tr>
+<tr><td class="author-text" valign="top"><a name="DISP">[DISP]</a></td>
+<td class="author-text"><a href="mailto:rens@century.com">Troost, R.</a>, <a href="mailto:sdorner@qualcomm.com">Dorner, S.</a>, and <a href="mailto:moore@cs.utk.edu">K. Moore</a>, &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc2183.txt">Communicating Presentation Information in Internet Messages: The Content-Disposition Header Field</a>,&rdquo; RFC&nbsp;2183, August&nbsp;1997 (<a href="ftp://ftp.isi.edu/in-notes/rfc2183.txt">TXT</a>, <a href="http://xml.resource.org/public/rfc/html/rfc2183.html">HTML</a>, <a href="http://xml.resource.org/public/rfc/xml/rfc2183.xml">XML</a>).</td></tr>
+<tr><td class="author-text" valign="top"><a name="IMP-MODEL">[IMP-MODEL]</a></td>
+<td class="author-text"><a href="mailto:mday@alum.mit.edu">Day, M.</a>, <a href="mailto:jdrosen@dynamicsoft.com">Rosenberg, J.</a>, and <a href="mailto:suga@flab.fujitsu.co.jp">H. Sugano</a>, &ldquo;<a href="http://www.ietf.org/rfc/rfc2778.txt">A Model for Presence and Instant Messaging</a>,&rdquo; RFC&nbsp;2778, February&nbsp;2000.</td></tr>
+<tr><td class="author-text" valign="top"><a name="IMP-REQS">[IMP-REQS]</a></td>
+<td class="author-text"><a href="mailto:mday@alum.mit.edu">Day, M.</a>, <a href="mailto:sonuag@microsoft.com">Aggarwal, S.</a>, and <a href="mailto:jesse@intonet.com">J. Vincent</a>, &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc2779.txt">Instant Messaging / Presence Protocol Requirements</a>,&rdquo; RFC&nbsp;2779, February&nbsp;2000.</td></tr>
+<tr><td class="author-text" valign="top"><a name="MSGFMT">[MSGFMT]</a></td>
+<td class="author-text">Klyne, G. and D. Atkins, &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc3862.txt">Common Presence and Instant Messaging (CPIM): Message Format</a>,&rdquo; RFC&nbsp;3862, August&nbsp;2004.</td></tr>
+<tr><td class="author-text" valign="top"><a name="MULTI">[MULTI]</a></td>
+<td class="author-text"><a href="mailto:galvin@tis.com">Galvin, J.</a>, <a href="mailto:sandy@tis.com">Murphy, S.</a>, <a href="mailto:crocker@cybercash.com">Crocker, S.</a>, and <a href="mailto:ned@innosoft.com">N. Freed</a>, &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc1847.txt">Security Multiparts for MIME: Multipart/Signed and Multipart/Encrypted</a>,&rdquo; RFC&nbsp;1847, October&nbsp;1995.</td></tr>
+<tr><td class="author-text" valign="top"><a name="PIDF">[PIDF]</a></td>
+<td class="author-text">Sugano, H., Fujimoto, S., Klyne, G., Bateman, A., Carr, W., and J. Peterson, &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc3863.txt">Presence Information Data Format (PIDF)</a>,&rdquo; RFC&nbsp;3863, August&nbsp;2004.</td></tr>
+<tr><td class="author-text" valign="top"><a name="SMIME">[SMIME]</a></td>
+<td class="author-text">Ramsdell, B., &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc3851.txt">Secure/Multipurpose Internet Mail Extensions (S/MIME) Version 3.1 Message Specification</a>,&rdquo; RFC&nbsp;3851, July&nbsp;2004.</td></tr>
+<tr><td class="author-text" valign="top"><a name="TERMS">[TERMS]</a></td>
+<td class="author-text"><a href="mailto:-">Bradner, S.</a>, &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc2119.txt">Key words for use in RFCs to Indicate Requirement Levels</a>,&rdquo; BCP&nbsp;14, RFC&nbsp;2119, March&nbsp;1997.</td></tr>
+<tr><td class="author-text" valign="top"><a name="XML-MEDIA">[XML-MEDIA]</a></td>
+<td class="author-text">Murata, M., St. Laurent, S., and D. Kohn, &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc3023.txt">XML Media Types</a>,&rdquo; RFC&nbsp;3023, January&nbsp;2001.</td></tr>
+<tr><td class="author-text" valign="top"><a name="XMPP-CORE">[XMPP-CORE]</a></td>
+<td class="author-text">Saint-Andre, P., &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc3920.txt">Extensible Messaging and Presence Protocol (XMPP): Core</a>,&rdquo; RFC&nbsp;3920, October&nbsp;2004.</td></tr>
+<tr><td class="author-text" valign="top"><a name="XMPP-IM">[XMPP-IM]</a></td>
+<td class="author-text">Saint-Andre, P., &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc3921.txt">Extensible Messaging and Presence Protocol (XMPP): Instant Messaging and Presence</a>,&rdquo; RFC&nbsp;3921, October&nbsp;2004.</td></tr>
+</table>
+
+<a name="rfc.references2"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<h3>13.2.&nbsp;Informative References</h3>
+<table width="99%" border="0">
+<tr><td class="author-text" valign="top"><a name="CAPS">[CAPS]</a></td>
+<td class="author-text"><a href="mailto:jhildebrand@jabber.com">Hildebrand, J.</a> and <a href="mailto:stpeter@jabber.org">P. Saint-Andre</a>, &ldquo;<a href="http://www.jabber.org/jeps/jep-0115.html">Entity Capabilities</a>,&rdquo; JSF JEP&nbsp;0115, August&nbsp;2004.</td></tr>
+<tr><td class="author-text" valign="top"><a name="CMC">[CMC]</a></td>
+<td class="author-text"><a href="mailto:mmyers@verisign.com">Myers, M.</a>, <a href="mailto:xliu@cisco.com">Liu, X.</a>, <a href="mailto:jimsch@nwlink.com">Schaad, J.</a>, and <a href="mailto:jsw@meer.net">J. Weinstein</a>, &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc2797.txt">Certificate Management Messages over CMS</a>,&rdquo; RFC&nbsp;2797, April&nbsp;2000.</td></tr>
+<tr><td class="author-text" valign="top"><a name="CMP">[CMP]</a></td>
+<td class="author-text"><a href="mailto:cadams@entrust.com">Adams, C.</a> and <a href="mailto:stephen.farrell@sse.ie">S. Farrell</a>, &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc2510.txt">Internet X.509 Public Key Infrastructure Certificate Management Protocols</a>,&rdquo; RFC&nbsp;2510, March&nbsp;1999.</td></tr>
+<tr><td class="author-text" valign="top"><a name="DISCO">[DISCO]</a></td>
+<td class="author-text"><a href="mailto:jhildebrand@jabber.com">Hildebrand, J.</a>, <a href="mailto:pgmillard@jabber.org">Millard, P.</a>, <a href="mailto:reatmon@jabber.org">Eatmon, R.</a>, and <a href="mailto:stpeter@jabber.org">P. Saint-Andre</a>, &ldquo;<a href="http://www.jabber.org/jeps/jep-0030.html">Service Discovery</a>,&rdquo; JSF JEP&nbsp;0030, July&nbsp;2004.</td></tr>
+<tr><td class="author-text" valign="top"><a name="MUC">[MUC]</a></td>
+<td class="author-text"><a href="mailto:stpeter@jabber.org">Saint-Andre, P.</a>, &ldquo;<a href="http://www.jabber.org/jeps/jep-0045.html">Multi-User Chat</a>,&rdquo; JSF JEP&nbsp;0045, June&nbsp;2004.</td></tr>
+<tr><td class="author-text" valign="top"><a name="XML">[XML]</a></td>
+<td class="author-text"><a href="mailto:tbray@textuality.com">Bray, T.</a>, <a href="mailto:jeanpa@microsoft.com">Paoli, J.</a>, <a href="mailto:cmsmcq@uic.edu">Sperberg-McQueen, C.</a>, and <a href="mailto:eve.maler@east.sun.com">E. Maler</a>, &ldquo;<a href="http://www.w3.org/TR/REC-xml">Extensible Markup Language (XML) 1.0 (3rd ed)</a>,&rdquo; W3C&nbsp;REC-xml, February&nbsp;2004.</td></tr>
+<tr><td class="author-text" valign="top"><a name="XML-REG">[XML-REG]</a></td>
+<td class="author-text">Mealling, M., &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc3688.txt">The IETF XML Registry</a>,&rdquo; BCP&nbsp;81, RFC&nbsp;3688, January&nbsp;2004.</td></tr>
+</table>
+
+<a name="schemas-e2e"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.A"></a><h3>Appendix A.&nbsp;
+Schema for urn:ietf:params:xml:ns:xmpp-e2e</h3>
+
+<p>The following XML schema is descriptive, not normative.
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+&lt;?xml version='1.0' encoding='UTF-8'?&gt;
+
+&lt;xs:schema
+    xmlns:xs='http://www.w3.org/2001/XMLSchema'
+    targetNamespace='urn:ietf:params:xml:ns:xmpp-e2e'
+    xmlns='urn:ietf:params:xml:ns:xmpp-e2e'
+    elementFormDefault='qualified'&gt;
+
+  &lt;xs:element name='e2e' type='xs:string'/&gt;
+
+  &lt;xs:element name='decryption-failed' type='empty'/&gt;
+  &lt;xs:element name='signature-unverified' type='empty'/&gt;
+  &lt;xs:element name='bad-timestamp' type='empty'/&gt;
+
+  &lt;xs:simpleType name='empty'&gt;
+    &lt;xs:restriction base='xs:string'&gt;
+      &lt;xs:enumeration value=''/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+
+&lt;/xs:schema&gt;
+</pre></div>
+<a name="rfc.authors"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<h3>Author's Address</h3>
+<table width="99%" border="0" cellpadding="0" cellspacing="0">
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Peter Saint-Andre</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Jabber Software Foundation</td></tr>
+<tr><td class="author" align="right">Email:&nbsp;</td>
+<td class="author-text"><a href="mailto:stpeter@jabber.org">stpeter@jabber.org</a></td></tr>
+</table>
+<a name="rfc.copyright"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<h3>Full Copyright Statement</h3>
+<p class='copyright'>
+Copyright &copy; The Internet Society (2004).</p>
+<p class='copyright'>
+This document is subject to the rights,
+licenses and restrictions contained in BCP&nbsp;78,
+and except as set forth therein,
+the authors retain all their rights.</p>
+<p class='copyright'>
+This document and the information contained herein are provided
+on an &ldquo;AS IS&rdquo; basis and THE CONTRIBUTOR,
+THE ORGANIZATION HE/SHE REPRESENTS OR IS SPONSORED BY (IF ANY),
+THE INTERNET SOCIETY AND THE INTERNET ENGINEERING TASK FORCE DISCLAIM
+ALL WARRANTIES,
+EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE
+INFORMATION HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED
+WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.</p>
+<h3>Intellectual Property</h3>
+<p class='copyright'>
+The IETF takes no position regarding the validity or scope of any
+Intellectual Property Rights or other rights that might be claimed
+to pertain to the implementation or use of the technology
+described in this document or the extent to which any license
+under such rights might or might not be available; nor does it
+represent that it has made any independent effort to identify any
+such rights.
+Information on the procedures with respect to
+rights in RFC documents can be found in BCP&nbsp;78 and BCP&nbsp;79.</p>
+<p class='copyright'>
+Copies of IPR disclosures made to the IETF Secretariat and any
+assurances of licenses to be made available,
+or the result of an attempt made to obtain a general license or
+permission for the use of such proprietary rights by implementers or
+users of this specification can be obtained from the IETF on-line IPR
+repository at <a href='http://www.ietf.org/ipr'>http://www.ietf.org/ipr</a>.</p>
+<p class='copyright'>
+The IETF invites any interested party to bring to its attention
+any copyrights,
+patents or patent applications,
+or other
+proprietary rights that may cover technology that may be required
+to implement this standard.
+Please address the information to the IETF at <a href='mailto:ietf-ipr@ietf.org'>ietf-ipr@ietf.org</a>.</p>
+<h3>Acknowledgment</h3>
+<p class='copyright'>
+Funding for the RFC Editor function is provided by
+the IETF Administrative Support Activity (IASA).</p>
+</body></html>

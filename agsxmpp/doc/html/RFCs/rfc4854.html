@@ -1,0 +1,502 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en"><head><title>A Uniform
+Resource Name (URN) Namespace for Extensions&nbsp;to&nbsp;the&nbsp;Extensible&nbsp;Messaging&nbsp;and&nbsp;Presence&nbsp;Protocol&nbsp;(XMPP)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="description" content="A Uniform
+Resource Name (URN) Namespace for Extensions&nbsp;to&nbsp;the&nbsp;Extensible&nbsp;Messaging&nbsp;and&nbsp;Presence&nbsp;Protocol&nbsp;(XMPP)">
+<meta name="keywords" content="Extensible Messaging and Presence Protocol, XMPP, Jabber, Instant Messaging, Presence, Uniform Resource Name, URN">
+<meta name="generator" content="xml2rfc v1.32 (http://xml.resource.org/)">
+<style type='text/css'><!--
+        body {
+                font-family: verdana, charcoal, helvetica, arial, sans-serif;
+                font-size: small; color: #000; background-color: #FFF;
+                margin: 2em;
+        }
+        h1, h2, h3, h4, h5, h6 {
+                font-family: helvetica, monaco, "MS Sans Serif", arial, sans-serif;
+                font-weight: bold; font-style: normal;
+        }
+        h1 { color: #900; background-color: transparent; text-align: right; }
+        h3 { color: #333; background-color: transparent; }
+
+        td.RFCbug {
+                font-size: x-small; text-decoration: none;
+                width: 30px; height: 30px; padding-top: 2px;
+                text-align: justify; vertical-align: middle;
+                background-color: #000;
+        }
+        td.RFCbug span.RFC {
+                font-family: monaco, charcoal, geneva, "MS Sans Serif", helvetica, verdana, sans-serif;
+                font-weight: bold; color: #666;
+        }
+        td.RFCbug span.hotText {
+                font-family: charcoal, monaco, geneva, "MS Sans Serif", helvetica, verdana, sans-serif;
+                font-weight: normal; text-align: center; color: #FFF;
+        }
+
+        table.TOCbug { width: 30px; height: 15px; }
+        td.TOCbug {
+                text-align: center; width: 30px; height: 15px;
+                color: #FFF; background-color: #900;
+        }
+        td.TOCbug a {
+                font-family: monaco, charcoal, geneva, "MS Sans Serif", helvetica, sans-serif;
+                font-weight: bold; font-size: x-small; text-decoration: none;
+                color: #FFF; background-color: transparent;
+        }
+
+        td.header {
+                font-family: arial, helvetica, sans-serif; font-size: x-small;
+                vertical-align: top; width: 33%;
+                color: #FFF; background-color: #666;
+        }
+        td.author { font-weight: bold; font-size: x-small; margin-left: 4em; }
+        td.author-text { font-size: x-small; }
+
+        /* info code from SantaKlauss at http://www.madaboutstyle.com/tooltip2.html */
+        a.info {
+                /* This is the key. */
+                position: relative;
+                z-index: 24;
+                text-decoration: none;
+        }
+        a.info:hover {
+                z-index: 25;
+                color: #FFF; background-color: #900;
+        }
+        a.info span { display: none; }
+        a.info:hover span.info {
+                /* The span will display just on :hover state. */
+                display: block;
+                position: absolute;
+                font-size: smaller;
+                top: 2em; left: -5em; width: 15em;
+                padding: 2px; border: 1px solid #333;
+                color: #900; background-color: #EEE;
+                text-align: left;
+        }
+
+        a { font-weight: bold; }
+        a:link    { color: #900; background-color: transparent; }
+        a:visited { color: #633; background-color: transparent; }
+        a:active  { color: #633; background-color: transparent; }
+
+        p { margin-left: 2em; margin-right: 2em; }
+        p.copyright { font-size: x-small; }
+        p.toc { font-size: small; font-weight: bold; margin-left: 3em; }
+        table.toc { margin: 0 0 0 3em; padding: 0; border: 0; vertical-align: text-top; }
+        td.toc { font-size: small; font-weight: bold; vertical-align: text-top; }
+
+        ol.text { margin-left: 2em; margin-right: 2em; }
+        ul.text { margin-left: 2em; margin-right: 2em; }
+        li      { margin-left: 3em; }
+
+        /* RFC-2629 <spanx>s and <artwork>s. */
+        em     { font-style: italic; }
+        strong { font-weight: bold; }
+        dfn    { font-weight: bold; font-style: normal; }
+        cite   { font-weight: normal; font-style: normal; }
+        tt     { color: #036; }
+        tt, pre, pre dfn, pre em, pre cite, pre span {
+                font-family: "Courier New", Courier, monospace; font-size: small;
+        }
+        pre {
+                text-align: left; padding: 4px;
+                color: #000; background-color: #CCC;
+        }
+        pre dfn  { color: #900; }
+        pre em   { color: #66F; background-color: #FFC; font-weight: normal; }
+        pre .key { color: #33C; font-weight: bold; }
+        pre .id  { color: #900; }
+        pre .str { color: #000; background-color: #CFF; }
+        pre .val { color: #066; }
+        pre .rep { color: #909; }
+        pre .oth { color: #000; background-color: #FCF; }
+        pre .err { background-color: #FCC; }
+
+        /* RFC-2629 <texttable>s. */
+        table.all, table.full, table.headers, table.none {
+                font-size: small; text-align: center; border-width: 2px;
+                vertical-align: top; border-collapse: collapse;
+        }
+        table.all, table.full { border-style: solid; border-color: black; }
+        table.headers, table.none { border-style: none; }
+        th {
+                font-weight: bold; border-color: black;
+                border-width: 2px 2px 3px 2px;
+        }
+        table.all th, table.full th { border-style: solid; }
+        table.headers th { border-style: none none solid none; }
+        table.none th { border-style: none; }
+        table.all td {
+                border-style: solid; border-color: #333;
+                border-width: 1px 2px;
+        }
+        table.full td, table.headers td, table.none td { border-style: none; }
+
+        hr { height: 1px; }
+        hr.insert {
+                width: 80%; border-style: none; border-width: 0;
+                color: #CCC; background-color: #CCC;
+        }
+--></style>
+</head>
+<body>
+
+<table border="0" cellpadding="0" cellspacing="2" width="30" align="right">
+    <tr>
+        <td class="RFCbug">
+                <span class="RFC">&nbsp;RFC&nbsp;</span><br /><span class="hotText">&nbsp;4854&nbsp;</span>
+        </td>
+    </tr>
+    <tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a><br /></td></tr>
+</table>
+<table summary="layout" width="66%" border="0" cellpadding="0" cellspacing="0"><tr><td><table summary="layout" width="100%" border="0" cellpadding="2" cellspacing="1">
+<tr><td class="header">Network Working Group</td><td class="header">P. Saint-Andre</td></tr>
+<tr><td class="header">Request for Comments: 4854</td><td class="header">XSF</td></tr>
+<tr><td class="header">Category: Informational</td><td class="header">April 2007</td></tr>
+</table></td></tr></table>
+<h1><br />A Uniform
+Resource Name (URN) Namespace for Extensions&nbsp;to&nbsp;the&nbsp;Extensible&nbsp;Messaging&nbsp;and&nbsp;Presence&nbsp;Protocol&nbsp;(XMPP)</h1>
+
+<h3>Status of This Memo</h3>
+<p>
+This memo provides information for the Internet community.
+It does not specify an Internet standard of any kind.
+Distribution of this memo is unlimited.</p>
+
+<h3>Copyright Notice</h3>
+<p>
+Copyright &copy; The IETF Trust (2007).</p>
+
+<h3>Abstract</h3>
+
+<p>This document describes a Uniform Resource Name (URN) namespace for uniquely identifying Extensible Markup Language (XML) formats and protocols that provide extensions to the Extensible Messaging and Presence Protocol (XMPP) and are defined in specifications published by the XMPP Standards Foundation (XSF).
+</p><a name="toc"></a><hr />
+
+<table border="0" cellpadding="0" cellspacing="2" width="30" align="right">
+    <tr>
+        <td class="RFCbug">
+                <span class="RFC">&nbsp;RFC&nbsp;</span><br /><span class="hotText">&nbsp;4854&nbsp;</span>
+        </td>
+    </tr>
+    <tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a><br /></td></tr>
+</table>
+<h3>Table of Contents</h3>
+<p class="toc">
+<a href="#intro">1.</a>&nbsp;
+Introduction<br />
+<a href="#template">2.</a>&nbsp;
+Specification Template<br />
+<a href="#namespace">3.</a>&nbsp;
+Namespace Considerations<br />
+<a href="#community">4.</a>&nbsp;
+Community Considerations<br />
+<a href="#security">5.</a>&nbsp;
+Security Considerations<br />
+<a href="#iana">6.</a>&nbsp;
+IANA Considerations<br />
+<a href="#rfc.references1">7.</a>&nbsp;
+References<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#rfc.references1">7.1.</a>&nbsp;
+Normative References<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#rfc.references2">7.2.</a>&nbsp;
+Informative References<br />
+</p>
+<br clear="all" />
+
+<a name="intro"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.1"></a><h3>1.&nbsp;
+Introduction</h3>
+
+<p>While the Extensible Messaging and Presence Protocol (XMPP), as specified in <a class='info' href='#XMPP-CORE'>[XMPP&#8209;CORE]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Extensible Messaging and Presence Protocol (XMPP): Core,&rdquo; October&nbsp;2004.</span><span>)</span></a> and <a class='info' href='#XMPP-IM'>[XMPP&#8209;IM]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;Extensible Messaging and Presence Protocol (XMPP): Instant Messaging and Presence,&rdquo; October&nbsp;2004.</span><span>)</span></a>, provides basic messaging and presence functionality, the fact that XMPP is at root a technology for streaming Extensible Markup Language <a class='info' href='#XML'>[XML]<span> (</span><span class='info'>Bray, T., Paoli, J., Sperberg-McQueen, C., and E. Maler, &ldquo;Extensible Markup Language (XML) 1.0 (2nd ed),&rdquo; October&nbsp;2000.</span><span>)</span></a> data makes it possible to include virtually any structured information within XMPP, as long as such information is qualified by appropriate XML namespaces <a class='info' href='#XML-NAMES'>[XML&#8209;NAMES]<span> (</span><span class='info'>Bray, T., Hollander, D., and A. Layman, &ldquo;Namespaces in XML,&rdquo; January&nbsp;1999.</span><span>)</span></a>.  When sent over XMPP, such structured data formats and protocols are generally referred to as "XMPP extensions".
+</p>
+<p>A large number of such XMPP extensions exist.  The main
+standards development organization in which such extensions are
+defined is the XMPP Standards Foundation (XSF) (formerly the Jabber
+Software Foundation), which contributed XMPP to the Internet Standards
+process.  Typically, such extensions are defined within the XSF's XMPP
+Extension Protocol (XEP) specification series.  To date, the XML
+namespaces defined within the Jabber/XMPP community have used names of
+the form "jabber:*" (deprecated since early 2002) and
+"http://jabber.org/protocol/*" (not including names of the form
+"urn:ietf:params:xml:ns:xmpp-*" specified in the XMPP RFCs).  However,
+it is desirable that names associated with future XMPP extensions be
+both unique and persistent, which is not necessarily the case with
+names that are also HTTP URLs.  Therefore, in accordance with the
+process defined in <a class='info' href='#MECHANISMS'>[MECHANISMS]<span> (</span><span class='info'>Daigle, L., van Gulik, D., Iannella, R., and P. Faltstrom, &ldquo;Uniform Resource Names (URN) Namespace Definition Mechanisms,&rdquo; October&nbsp;2002.</span><span>)</span></a>, this document
+registers a formal namespace identifier (NID) for Uniform Resource
+Names <a class='info' href='#URN'>[URN]<span> (</span><span class='info'>Moats, R., &ldquo;URN Syntax,&rdquo; May&nbsp;1997.</span><span>)</span></a> associated with XMPP extensions published
+in the XSF's XEP series and for XML namespaces registered with the XSF's XMPP Registrar function <a class='info' href='#REGISTRAR'>[REGISTRAR]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;XMPP Registrar Function,&rdquo; December&nbsp;2006.</span><span>)</span></a>.
+</p>
+<a name="template"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.2"></a><h3>2.&nbsp;
+Specification Template</h3>
+<div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+Namespace ID:
+
+   The Namespace ID "xmpp" is requested.
+
+Registration Information:
+
+   Version 1
+   Date: 2007-02-27
+
+</pre></div><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+
+Declared Registrant of the Namespace:
+
+   Registering organization
+      Organization: XMPP Standards Foundation
+      Address: P.O. Box 1641, Denver, CO 80201 USA
+
+
+
+   Designated contact
+      Role: XMPP Registrar
+      Email: registrar@xmpp.org
+
+Declaration of Syntactic Structure:
+
+   The Namespace Specific String (NSS) of all URNs that use the
+   "xmpp" NID shall have the following structure:
+
+      urn:xmpp:{ShortName}:{SubName}
+
+   The keywords have the following meaning:
+
+      (1) the "ShortName" is a required US-ASCII string that
+      conforms to the URN syntax requirements (see RFC 2141)
+      and defines a particular protocol or format that is used
+      as an XMPP extension.
+
+      (2) the "SubName" is an optional US-ASCII string that
+      conforms to the URN syntax requirements (see RFC 2141)
+      and defines a particular subset of the relevant protocol
+      or format.
+
+   The XSF's XMPP Registrar function shall be responsible for
+   managing the assignment of both "ShortName" and "SubName"
+   strings and maintaining a registry of resulting namespaces
+   at &lt;http://www.xmpp.org/registrar/namespaces.html&gt;.  The
+   XMPP Registrar may also assign URNs in sub-trees below the
+   level of the ShortName or SubName as needed for use in various
+   XMPP extensions.
+
+Relevant Ancillary Documentation:
+
+   Information about the XSF's XMPP Registrar function can be
+   found at &lt;http://www.xmpp.org/extensions/xep-0053.html&gt;
+   and &lt;http://www.xmpp.org/registrar/&gt;.
+
+Identifier Uniqueness Considerations:
+
+   The XMPP Registrar is already responsible for managing
+   the assignment of XML namespace names of the form
+   "http://jabber.org/protocol/{ShortName}" and
+   "http://jabber.org/protocol/{ShortName}#{SubName}"
+   (e.g., "http://jabber.org/protocol/pubsub" and
+   "http://jabber.org/protocol/disco#info").  In order to
+   assign namespace names in the context of the "xmpp"
+   NID, the XMPP Registrar shall simply modify the syntax
+   of the namespace names it assigns from
+   "http://jabber.org/protocol/{ShortName}" and
+   "http://jabber.org/protocol/{ShortName}#{SubName}" to
+   "urn:xmpp:{ShortName}" and "urn:xmpp:{ShortName}:{SubName}".
+
+   The XMPP Registrar shall ensure the uniqueness of all
+   XMPP URNs by checking such names against the list of
+   existing namespace names, as documented in XEP-0053
+   (the controlling specification for the XMPP Registrar
+   function).  The XMPP Registrar shall, in all cases, directly
+   ensure the uniqueness of the assigned strings and shall
+   not assign secondary responsibility for management of any
+   sub-trees.  However, the XMPP Registrar may assign URNs
+   in sub-trees below the level of the ShortName or SubName
+   as needed for use in various XMPP extensions.  The
+   resulting URNs shall not be re-assigned.
+
+Identifier Persistence Considerations:
+
+   The XMPP Registrar shall provide clear documentation of
+   the registered uses of the "xmpp" NID in the form of
+   XMPP Extension Protocol (XEP) specifications published
+   at &lt;http://www.xmpp.org/extensions/&gt;, as well as a
+   registry of the namespace names themselves at
+   &lt;http://www.xmpp.org/registrar/namespaces.html&gt;.
+
+Process of Identifier Assignment:
+
+   The XMPP Registrar's processes and procedures for
+   identifier assignment are documented in XEP-0053,
+   which is the controlling specification for the XMPP
+   Registrar function.  In particular, identifiers shall
+   be issued only upon advancement of the relevant protocol
+   specification to a status of Draft within the standards
+   process, followed by the XMPP Standards Foundation (as
+   specified in XEP-0001).  The XMPP Registrar shall check
+   all identifiers against the list of existing namespace
+   names to ensure uniqueness and to encourage relevance
+   and memorability.  Assignment of URNs within the "xmpp"
+   tree is reserved to the XMPP Standards Foundation,
+   specifically to its XMPP Registrar function.
+
+Process for Identifier Resolution:
+
+   The namespace is not currently listed with a Resolution
+   Discovery System (RDS), but nothing about the namespace
+   prohibits the future definition of appropriate resolution
+   methods or listing with an RDS.
+
+Rules for Lexical Equivalence:
+
+   No special considerations; the rules for lexical
+   equivalence specified in RFC 2141 apply.
+
+Conformance with URN Syntax:
+
+   No special considerations.
+
+Validation Mechanism:
+
+   None specified.
+
+Scope:
+
+   Global.
+</pre></div>
+<a name="namespace"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3"></a><h3>3.&nbsp;
+Namespace Considerations</h3>
+
+<p>The XMPP Standards Foundation has been developing Internet protocols since August 2001 and that work is expected to continue for the foreseeable future.  The old-style "jabber:*" namespace names originally used in the Jabber open-source community were not proper URNs or URIs and thus were deprecated in early 2002.  Since then, the namespace names assigned by the XMPP Registrar function of the XMPP Standards Foundation have been (equivalent to) specialized HTTP URLs whose authority component is "jabber.org".  While that domain is currently under the control of the XMPP Standards Foundation, there is no guarantee that it will always remain so, thus potentially threatening the reliability and permanence of the assigned namespace names.  The use of Uniform Resource Names with an appropriate Namespace ID will enable the XMPP Standards Foundation to assign cleaner, more general, more permanent, more reliable, and more controllable namespace names related to the XMPP extensions it defines, while keeping the tree of XMPP extensions produced by the XMPP Standards Foundation properly separate from the IETF tree used to define some of the core XMPP namespaces as well as namespaces related to XMPP extensions that may be produced in the future by the IETF.
+</p>
+<a name="community"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4"></a><h3>4.&nbsp;
+Community Considerations</h3>
+
+<p>The XMPP standards development community will benefit from publication of this namespace by having more permanent and reliable names for the XML namespaces defined in XMPP Extension Protocol specifications produced by the XMPP Standards Foundation.
+</p>
+<p>The standards process followed by the XSF is open to contributions from any interested individual; such a contribution takes the form of a proposal submitted to the XMPP Extensions Editor &lt;mailto:editor@xmpp.org&gt;, accepted by the XMPP Council &lt;http://www.xmpp.org/council/&gt;, and published in the XSF's XMPP Extension Protocol (XEP) series at &lt;http://www.xmpp.org/extensions/&gt;.  Use of the proposed space for a particular XML format or protocol extension will be contingent upon advancement of the appropriate specification within the XSF's standards process (as documented in <a class='info' href='#XEP'>[XEP]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;XMPP Extension Protocols,&rdquo; December&nbsp;2006.</span><span>)</span></a>) and issuance of a namespace name within the "xmpp" tree by the XMPP Registrar (as documented in <a class='info' href='#REGISTRAR'>[REGISTRAR]<span> (</span><span class='info'>Saint-Andre, P., &ldquo;XMPP Registrar Function,&rdquo; December&nbsp;2006.</span><span>)</span></a>).
+</p>
+<a name="security"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5"></a><h3>5.&nbsp;
+Security Considerations</h3>
+
+<p>This document introduces no additional security considerations beyond those associated with the use and resolution of URNs in general.
+</p>
+<a name="iana"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.6"></a><h3>6.&nbsp;
+IANA Considerations</h3>
+
+<p>This document defines a URN NID registration of "xmpp", which has been entered into the IANA registry located at &lt;http://www.iana.org/assignments/urn-namespaces&gt;.
+</p>
+<a name="rfc.references"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.7"></a><h3>7.&nbsp;
+References</h3>
+
+<a name="rfc.references1"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<h3>7.1.&nbsp;Normative References</h3>
+<table width="99%" border="0">
+<tr><td class="author-text" valign="top"><a name="MECHANISMS">[MECHANISMS]</a></td>
+<td class="author-text">Daigle, L., van Gulik, D., Iannella, R., and P. Faltstrom, &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc3406.txt">Uniform Resource Names (URN) Namespace Definition Mechanisms</a>,&rdquo; BCP&nbsp;66, RFC&nbsp;3406, October&nbsp;2002.</td></tr>
+<tr><td class="author-text" valign="top"><a name="URN">[URN]</a></td>
+<td class="author-text"><a href="mailto:jayhawk@ds.internic.net">Moats, R.</a>, &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc2141.txt">URN Syntax</a>,&rdquo; RFC&nbsp;2141, May&nbsp;1997 (<a href="ftp://ftp.isi.edu/in-notes/rfc2141.txt">TXT</a>, <a href="http://xml.resource.org/public/rfc/html/rfc2141.html">HTML</a>, <a href="http://xml.resource.org/public/rfc/xml/rfc2141.xml">XML</a>).</td></tr>
+</table>
+
+<a name="rfc.references2"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<h3>7.2.&nbsp;Informative References</h3>
+<table width="99%" border="0">
+<tr><td class="author-text" valign="top"><a name="REGISTRAR">[REGISTRAR]</a></td>
+<td class="author-text"><a href="mailto:stpeter@jabber.org">Saint-Andre, P.</a>, &ldquo;<a href="http://www.xmpp.org/extensions/xep-0053.html">XMPP Registrar Function</a>,&rdquo; XSF XEP&nbsp;0053, December&nbsp;2006.</td></tr>
+<tr><td class="author-text" valign="top"><a name="XEP">[XEP]</a></td>
+<td class="author-text"><a href="mailto:stpeter@jabber.org">Saint-Andre, P.</a>, &ldquo;<a href="http://www.xmpp.org/extensions/xep-0001.html">XMPP Extension Protocols</a>,&rdquo; XSF XEP&nbsp;0001, December&nbsp;2006.</td></tr>
+<tr><td class="author-text" valign="top"><a name="XML">[XML]</a></td>
+<td class="author-text"><a href="mailto:tbray@textuality.com">Bray, T.</a>, <a href="mailto:jeanpa@microsoft.com">Paoli, J.</a>, <a href="mailto:cmsmcq@uic.edu">Sperberg-McQueen, C.</a>, and <a href="mailto:eve.maler@east.sun.com">E. Maler</a>, &ldquo;<a href="http://www.w3.org/TR/REC-xml">Extensible Markup Language (XML) 1.0 (2nd ed)</a>,&rdquo; W3C&nbsp;REC-xml, October&nbsp;2000.</td></tr>
+<tr><td class="author-text" valign="top"><a name="XML-NAMES">[XML-NAMES]</a></td>
+<td class="author-text"><a href="mailto:tbray@textuality.com">Bray, T.</a>, <a href="mailto:dmh@corp.hp.com">Hollander, D.</a>, and <a href="mailto:andrewl@microsoft.com">A. Layman</a>, &ldquo;<a href="http://www.w3.org/TR/REC-xml-names">Namespaces in XML</a>,&rdquo; W3C&nbsp;REC-xml-names, January&nbsp;1999.</td></tr>
+<tr><td class="author-text" valign="top"><a name="XMPP-CORE">[XMPP-CORE]</a></td>
+<td class="author-text">Saint-Andre, P., &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc3920.txt">Extensible Messaging and Presence Protocol (XMPP): Core</a>,&rdquo; RFC&nbsp;3920, October&nbsp;2004.</td></tr>
+<tr><td class="author-text" valign="top"><a name="XMPP-IM">[XMPP-IM]</a></td>
+<td class="author-text">Saint-Andre, P., &ldquo;<a href="ftp://ftp.isi.edu/in-notes/rfc3921.txt">Extensible Messaging and Presence Protocol (XMPP): Instant Messaging and Presence</a>,&rdquo; RFC&nbsp;3921, October&nbsp;2004.</td></tr>
+</table>
+
+<a name="rfc.authors"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<h3>Author's Address</h3>
+<table width="99%" border="0" cellpadding="0" cellspacing="0">
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Peter Saint-Andre</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">XMPP Standards Foundation</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">P.O. Box 1641</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Denver, CO  80201</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">USA</td></tr>
+<tr><td class="author" align="right">EMail:&nbsp;</td>
+<td class="author-text"><a href="mailto:stpeter@jabber.org">stpeter@jabber.org</a></td></tr>
+<tr><td class="author" align="right">URI:&nbsp;</td>
+<td class="author-text"><a href="xmpp:stpeter@jabber.org">xmpp:stpeter@jabber.org</a></td></tr>
+</table>
+<a name="rfc.copyright"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<h3>Full Copyright Statement</h3>
+<p class='copyright'>
+Copyright &copy; The IETF Trust (2007).</p>
+<p class='copyright'>
+This document is subject to the rights,
+licenses and restrictions contained in BCP&nbsp;78,
+and except as set forth therein,
+the authors retain all their rights.</p>
+<p class='copyright'>
+This document and the information contained herein are provided
+on an &ldquo;AS IS&rdquo; basis and THE CONTRIBUTOR,
+THE ORGANIZATION HE/SHE REPRESENTS
+OR IS SPONSORED BY (IF ANY), THE INTERNET SOCIETY, THE IETF TRUST
+AND THE INTERNET ENGINEERING TASK FORCE DISCLAIM ALL WARRANTIES,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTY THAT
+THE USE OF THE INFORMATION HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY
+IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR
+PURPOSE.</p>
+<h3>Intellectual Property</h3>
+<p class='copyright'>
+The IETF takes no position regarding the validity or scope of any
+Intellectual Property Rights or other rights that might be claimed
+to pertain to the implementation or use of the technology
+described in this document or the extent to which any license
+under such rights might or might not be available; nor does it
+represent that it has made any independent effort to identify any
+such rights.
+Information on the procedures with respect to
+rights in RFC documents can be found in BCP&nbsp;78 and BCP&nbsp;79.</p>
+<p class='copyright'>
+Copies of IPR disclosures made to the IETF Secretariat and any
+assurances of licenses to be made available,
+or the result of an attempt made to obtain a general license or
+permission for the use of such proprietary rights by implementers or
+users of this specification can be obtained from the IETF on-line IPR
+repository at <a href='http://www.ietf.org/ipr'>http://www.ietf.org/ipr</a>.</p>
+<p class='copyright'>
+The IETF invites any interested party to bring to its attention
+any copyrights,
+patents or patent applications,
+or other
+proprietary rights that may cover technology that may be required
+to implement this standard.
+Please address the information to the IETF at <a href='mailto:ietf-ipr@ietf.org'>ietf-ipr@ietf.org</a>.</p>
+<h3>Acknowledgement</h3>
+<p class='copyright'>
+Funding for the RFC Editor function is provided by
+the IETF Administrative Support Activity (IASA).</p>
+</body></html>

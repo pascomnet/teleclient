@@ -1,0 +1,388 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>XEP-0141: Data Forms Layout</title><link rel="stylesheet" type="text/css" href="/xmpp.css" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" /><meta name="DC.Title" content="Data Forms Layout" /><meta name="DC.Creator" content="Matthew Miller" /><meta name="DC.Description" content="This specification defines a backwards-compatible extension to the XMPP Data Forms protocol that enables an application to specify form layouts, including the layout of form fields, sections within pages, and subsections within sections." /><meta name="DC.Publisher" content="XMPP Standards Foundation" /><meta name="DC.Contributor" content="XMPP Extensions Editor" /><meta name="DC.Date" content="2005-05-12" /><meta name="DC.Type" content="XMPP Extension Protocol" /><meta name="DC.Format" content="XHTML" /><meta name="DC.Identifier" content="XEP-0141" /><meta name="DC.Language" content="en" /><meta name="DC.Rights" content="This XMPP Extension Protocol is copyright (c) 1999 - 2008 by the XMPP Standards Foundation (XSF)." /></head><body><h1>XEP-0141: Data Forms Layout</h1><p>This specification defines a backwards-compatible extension to the XMPP Data Forms protocol that enables an application to specify form layouts, including the layout of form fields, sections within pages, and subsections within sections.</p><hr /><p style="color:green">NOTICE: The protocol defined herein is a Draft Standard of the XMPP Standards Foundation. Implementations are encouraged and the protocol is appropriate for deployment in production systems, but some changes to the protocol are possible before it becomes a Final Standard.</p><hr /><h2>Document Information</h2><p class="indent">
+            Series: <a href="http://www.xmpp.org/extensions/">XEP</a><br />
+            Number: 0141<br />
+            Publisher: <a href="/xsf/">XMPP Standards Foundation</a><br />
+            Status: 
+            <a href="http://www.xmpp.org/extensions/xep-0001.html#states-Draft">Draft</a><br />
+            Type:
+            <a href="http://www.xmpp.org/extensions/xep-0001.html#types-Standards Track">Standards Track</a><br />
+            Version: 1.0<br />
+            Last Updated: 2005-05-12<br />
+                Approving Body: <a href="http://www.xmpp.org/council/">XMPP Council</a><br />Dependencies: XMPP Core, XEP-0004<br />
+                Supersedes: None<br />
+                Superseded By: None<br />
+            Short Name: xdata-layout<br />
+        Schema: &lt;<a href="http://www.xmpp.org/schemas/xdata-layout.xsd">http://www.xmpp.org/schemas/xdata-layout.xsd</a>&gt;<br />
+              Wiki Page: &lt;<a href="http://wiki.jabber.org/index.php/Data Forms Layout (XEP-0141)">http://wiki.jabber.org/index.php/Data Forms Layout (XEP-0141)</a>&gt;
+            </p><hr /><h2>Author Information</h2><div class="indent"><h3>Matthew Miller</h3><p class="indent">
+        Email:
+        <a href="mailto:linuxwolf@outer-planes.net">linuxwolf@outer-planes.net</a><br />
+        JabberID: 
+        <a href="xmpp:linuxwolf@outer-planes.net">linuxwolf@outer-planes.net</a><br /></p></div><hr /><h2>Legal Notices</h2><div class="indent"><h3>Copyright</h3>This XMPP Extension Protocol is copyright (c) 1999 - 2008 by the XMPP Standards Foundation (XSF).<h3>Permissions</h3>Permission is hereby granted, free of charge, to any person obtaining a copy of this specification (the "Specification"), to make use of the Specification without restriction, including without limitation the rights to implement the Specification in a software program, deploy the Specification in a network service, and copy, modify, merge, publish, translate, distribute, sublicense, or sell copies of the Specification, and to permit persons to whom the Specification is furnished to do so, subject to the condition that the foregoing copyright notice and this permission notice shall be included in all copies or substantial portions of the Specification. Unless separate permission is granted, modified works that are redistributed shall not contain misleading information regarding the authors, title, number, or publisher of the Specification, and shall not claim endorsement of the modified works by the authors, any organization or project to which the authors belong, or the XMPP Standards Foundation.<h3>Disclaimer of Warranty</h3><span style="font-weight: bold">## NOTE WELL: This Specification is provided on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, express or implied, including, without limitation, any warranties or conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE. In no event shall the XMPP Standards Foundation or the authors of this Specification be liable for any claim, damages, or other liability, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the Specification or the implementation, deployment, or other use of the Specification. ##</span><h3>Limitation of Liability</h3>In no event and under no legal theory, whether in tort (including negligence), contract, or otherwise, unless required by applicable law (such as deliberate and grossly negligent acts) or agreed to in writing, shall the XMPP Standards Foundation or any author of this Specification be liable for damages, including any direct, indirect, special, incidental, or consequential damages of any character arising out of the use or inability to use the Specification (including but not limited to damages for loss of goodwill, work stoppage, computer failure or malfunction, or any and all other commercial damages or losses), even if the XMPP Standards Foundation or such author has been advised of the possibility of such damages.<h3>IPR Conformance</h3>This XMPP Extension Protocol has been contributed in full conformance with the XSF's Intellectual Property Rights Policy (a copy of which may be found at &lt;<a href="http://www.xmpp.org/extensions/ipr-policy.shtml">http://www.xmpp.org/extensions/ipr-policy.shtml</a>&gt; or obtained by writing to XSF, P.O. Box 1641, Denver, CO 80201 USA).</div><hr /><h2>Discussion Venue</h2><p class="indent">The preferred venue for discussion of this document is the Standards discussion list: &lt;<a href="http://mail.jabber.org/mailman/listinfo/standards">http://mail.jabber.org/mailman/listinfo/standards</a>&gt;.</p><p class="indent">Errata may be sent to &lt;<a href="mailto:editor@xmpp.org">editor@xmpp.org</a>&gt;.</p><h2>Relation to XMPP</h2><p class="indent">The Extensible Messaging and Presence Protocol (XMPP) is defined in the XMPP Core (RFC 3920) and XMPP IM (RFC 3921) specifications contributed by the XMPP Standards Foundation to the Internet Standards Process, which is managed by the Internet Engineering Task Force in accordance with RFC 2026. Any protocol defined in this document has been developed outside the Internet Standards Process and is to be understood as an extension to XMPP rather than as an evolution, development, or modification of XMPP itself.</p><h2>Conformance Terms</h2><p class="indent">The following keywords as used in this document are to be interpreted as described in <a href="http://www.ietf.org/rfc/rfc2119.txt">RFC 2119</a>: "MUST", "SHALL", "REQUIRED"; "MUST NOT", "SHALL NOT"; "SHOULD", "RECOMMENDED"; "SHOULD NOT", "NOT RECOMMENDED"; "MAY", "OPTIONAL".</p><hr /><h2>Table of Contents</h2><div class="indent"><p><br />1.  <a href="#intro">Introduction</a><br />2.  <a href="#reqs">Requirements</a><br />3.  <a href="#usecases">Use Cases</a><br />   
+      3.1.  <a href="#paging">Paging Fields</a><br />   
+      3.2.  <a href="#sectioning">Sectioning Fields</a><br />   
+      3.3.  <a href="#tables">Including Tables</a><br />4.  <a href="#bizrules">Business Rules</a><br />   
+      4.1.  <a href="#bizrules-disco">Discovery</a><br />   
+      4.2.  <a href="#bizrules-distribution">Field Distribution</a><br />   
+      4.3.  <a href="#bizrules-pages">Page Labels and Descriptions</a><br />   
+      4.4.  <a href="#bizrules-sections">Section Labels and Descriptions</a><br />   
+      4.5.  <a href="#bizrules-i18n">Internationalization/Localization</a><br />5.  <a href="#security">Security Considerations</a><br />6.  <a href="#iana">IANA Considerations</a><br />7.  <a href="#registrar">XMPP Registrar Considerations</a><br />   
+      7.1.  <a href="#registrar-ns">Protocol Namespaces</a><br />8.  <a href="#def">Formal Definition</a><br />   
+      8.1.  <a href="#def-page">&lt;page/&gt; Root Element</a><br />   
+      8.2.  <a href="#def-section">&lt;section/&gt; Element</a><br />   
+      8.3.  <a href="#def-fieldref">&lt;fieldref/&gt; Element</a><br />   
+      8.4.  <a href="#def-reportedref">&lt;reportedref/&gt; Element</a><br />   
+      8.5.  <a href="#def-text">&lt;text/&gt; Element</a><br />   
+      8.6.  <a href="#schema">XML Schema</a><br /><a href="#notes">Notes</a><br /><a href="#revs">Revision History</a></p></div><hr /><h2>1.
+       <a name="intro" id="intro">Introduction</a></h2>
+  <p class="" style=""><span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0004.html">Data Forms</a></span>  [<a href="#nt-id2252627">1</a>] ("x:data") provides a simple and interoperable way to request and present information for both applications and humans. However, the simple nature of "x:data" requires the form renderer to use a generic "key/value" format. This document builds upon "x:data" to enable applications to specify additional layout information.</p>
+<h2>2.
+       <a name="reqs" id="reqs">Requirements</a></h2>
+  <p class="" style="">The requirements for this document are:</p>
+  <ul class="" style="">
+    <li class="" style="">Provide hints for the layout of form fields.</li>
+    <li class="" style="">Provide hints for the layout of sections within pages.</li>
+    <li class="" style="">Provide hints for the layout of subsections within sections.</li>
+    <li class="" style="">Ensure backwards-compatibility with the existing "x:data" protocol.</li>
+  </ul>
+<h2>3.
+       <a name="usecases" id="usecases">Use Cases</a></h2>
+  <p class="" style="">This document defines a new namespace, "http://jabber.org/protocol/xdata-layout". All layout is defined by "pages" and "sections".</p>
+  <p class="" style="">All of the use cases refer to the following form:</p>
+  <p class="caption"><a name="example-1" id="example-1"></a>Example 1. Sample form</p><div class="indent"><pre>
+&lt;x xmlns='jabber:x:data' type='form'&gt;
+  &lt;title&gt;XSF Application&lt;/title&gt;
+  &lt;instructions&gt;Please fill out this form&lt;/instructions&gt;
+  
+  &lt;field var='name.first' type='text-single' label='First Name'&gt;
+    &lt;required/&gt;
+  &lt;/field&gt;
+  &lt;field var='name.last' type='text-single' label='Last Name'&gt;
+    &lt;required/&gt;
+  &lt;/field&gt;
+  &lt;field var='email' type='text-single' label='E-mail Address'&gt;
+    &lt;required/&gt;
+  &lt;/field&gt;
+  &lt;field var='jid' type='jid-single' label='Jabber JID'&gt;
+    &lt;required/&gt;
+  &lt;/field&gt;
+  
+  &lt;field var='background' type='text-multi' label='Background Information'&gt;
+  &lt;/field&gt;
+  &lt;field var='future' type='text-multi' label='Jabber Plans for the Next Six Months'&gt;
+  &lt;/field&gt;
+  &lt;field var='reasoning' type='text-multi' label='Reasons for Joining'&gt;
+  &lt;/field&gt;
+  
+  &lt;field var='activity.mailing-lists' type='text-multi' label='Recent Mailing List Activity'&gt;
+  &lt;/field&gt;
+  &lt;field var='activity.xeps' type='text-multi' label='XEPs Authored or Co-Authored'&gt;
+  &lt;/field&gt;
+&lt;/x&gt;
+  </pre></div>
+  <p class="" style="">Note: Any newlines in the following examples are provided for the purpose of legibility only.</p>
+  <div class="indent"><h3>3.1 <a name="paging" id="paging">Paging Fields</a></h3>
+    <p class="" style="">One of the simplest layout usages is to partition fields into pages. This is done by including one or more &lt;page/&gt; elements within the x:data form. Each &lt;page/&gt; element SHOULD possess a "label" attribute to label the page, MAY contain a &lt;text/&gt; child element for additional information, and SHOULD contain a &lt;fieldref/&gt; element for each field to be included in the page. To reference an x:data field, the &lt;fieldref/&gt; element's "var" attribute MUST be the same as the intended &lt;field/&gt; element's "var" attribute.</p>
+    <p class="caption"><a name="example-2" id="example-2"></a>Example 2. Pages of fields</p><div class="indent"><pre>
+&lt;x xmlns='jabber:x:data' type='form'&gt;
+  &lt;title&gt;XSF Application&lt;/title&gt;
+  &lt;instructions&gt;Please fill out this form&lt;/instructions&gt;
+  &lt;page xmlns='http://jabber.org/protocol/xdata-layout' label='Personal Information'&gt;
+    &lt;text&gt;This is page one of three.&lt;/text&gt;
+    &lt;text&gt;
+      Note: In accordance with the XSF privacy policy, your personal information will 
+      never be shared outside the organization in any way for any purpose; however, 
+      your name and JID may be published in the XSF membership directory.
+    &lt;/text&gt;
+    &lt;fieldref var='name.first'/&gt;
+    &lt;fieldref var='name.last'/&gt;
+    &lt;fieldref var='email'/&gt;
+    &lt;fieldref var='jid'/&gt;
+    &lt;fieldref var='background'/&gt;
+  &lt;/page&gt;
+  &lt;page xmlns='http://jabber.org/protocol/xdata-layout' label='Community Activity'&gt;
+    &lt;text&gt;This is page two of three.&lt;/text&gt;
+    &lt;text&gt;
+      We use this page to gather information about any XEPs you&amp;apos;ve worked on, 
+      as well as your mailing list activity.
+    &lt;/text&gt;
+    &lt;text&gt;You do post to the mailing lists, don't you?&lt;/text&gt;
+    &lt;fieldref var='activity.mailing-lists'/&gt;
+    &lt;fieldref var='activity.xeps'/&gt;
+  &lt;/page&gt;
+  &lt;page xmlns='http://jabber.org/protocol/xdata-layout' label='Plans and Reasonings'&gt;
+    &lt;text&gt;This is page three of three.&lt;/text&gt;
+    &lt;text&gt;You're almost done!&lt;/text&gt;
+    &lt;text&gt;
+      This is where you describe your future plans and why you think you 
+      deserve to be a member of the XMPP Standards Foundation.
+    &lt;/text&gt;
+    &lt;fieldref var='future'/&gt;
+    &lt;fieldref var='reasoning'/&gt;
+  &lt;/page&gt;
+  &lt;field var='name.first' type='text-single' label='First Name'&gt;
+    &lt;required/&gt;
+  &lt;/field&gt;
+  &lt;field var='name.last' type='text-single' label='Last Name'&gt;
+    &lt;required/&gt;
+  &lt;/field&gt;
+  &lt;field var='email' type='text-single' label='E-mail Address'&gt;
+    &lt;required/&gt;
+  &lt;/field&gt;
+  &lt;field var='jid' type='jid-single' label='Jabber JID'&gt;
+    &lt;required/&gt;
+  &lt;/field&gt;
+  &lt;field var='background' type='text-multi' label='Background Information'&gt;
+  &lt;/field&gt;
+  &lt;field var='future' type='text-multi' label='Jabber Plans for the Next Six Months'&gt;
+  &lt;/field&gt;
+  &lt;field var='reasoning' type='text-multi' label='Reasons for Joining'&gt;
+  &lt;/field&gt;
+  &lt;field var='activity.mailing-lists' type='text-multi' label='Recent Mailing List Activity'&gt;
+  &lt;/field&gt;
+  &lt;field var='activity.xeps' type='text-multi' label='XEPs Authored or Co-Authored'&gt;
+  &lt;/field&gt;
+&lt;/x&gt;
+    </pre></div>
+    <p class="" style="">Note: The preceding example partitions the fields into three pages, labeled "Personal Information", "Community Activity", and "Plans and Reasonings".</p>
+  </div>
+  <div class="indent"><h3>3.2 <a name="sectioning" id="sectioning">Sectioning Fields</a></h3>
+    <p class="" style="">The next usage of layout is to partition pages into sections. This is done by including one or more &lt;section/&gt; elements within each &lt;page/&gt; element. Each &lt;section/&gt; element SHOULD possess a "label" attribute to identify the section, MAY contain a &lt;text/&gt; child element for additional information, and SHOULD contain a &lt;fieldref/&gt; element for each field to be included in the section. A &lt;section/&gt; element MUST contain at least one &lt;fieldref/&gt; element or &lt;reportedref/&gt; element. To reference an x:data field, the &lt;fieldref/&gt; element's "var" attribute MUST be the same as the intended &lt;field/&gt; element's "var" attribute.</p>
+    <p class="caption"><a name="example-3" id="example-3"></a>Example 3. Sections of fields</p><div class="indent"><pre>
+&lt;x xmlns='jabber:x:data' type='form'&gt;
+  &lt;title&gt;XSF Application&lt;/title&gt;
+  &lt;instructions&gt;Please fill out this form&lt;/instructions&gt;
+  &lt;page xmlns='http://jabber.org/protocol/xdata-layout'&gt;
+    &lt;section label='Personal Information'&gt;
+      &lt;text&gt;
+        Note: In accordance with the XSF privacy policy, your personal information will 
+        never be shared outside the organization in any way for any purpose; however, 
+        your name and JID may be published in the XSF membership directory.
+      &lt;/text&gt;
+      &lt;fieldref var='name.first'/&gt;
+      &lt;fieldref var='name.last'/&gt;
+      &lt;fieldref var='email'/&gt;
+      &lt;fieldref var='jid'/&gt;
+      &lt;fieldref var='background'/&gt;
+    &lt;/section&gt;
+    &lt;section label='Community Activity'&gt;
+      &lt;text&gt;
+        We use this page to gather information about any XEPs you&amp;apos;ve worked on, 
+        as well as your mailing list activity.
+      &lt;/text&gt;
+      &lt;text&gt;You do post to the mailing lists, don't you?&lt;/text&gt;
+      &lt;fieldref var='activity.mailing-lists'/&gt;
+      &lt;fieldref var='activity.xeps'/&gt;
+    &lt;/section&gt;
+    &lt;section label='Plans and Reasoning'&gt;
+      &lt;text&gt;You're almost done!&lt;/text&gt;
+      &lt;text&gt;
+        This is where you describe your future plans and why you think you 
+        deserve to be a member of the XMPP Standards Foundation.
+      &lt;/text&gt;
+      &lt;fieldref var='future'/&gt;
+      &lt;fieldref var='reasoning'/&gt;
+    &lt;/section&gt;
+  &lt;/page&gt;
+  &lt;field var='name.first' type='text-single' label='First Name'&gt;
+    &lt;required/&gt;
+  &lt;/field&gt;
+  &lt;field var='name.last' type='text-single' label='Last Name'&gt;
+    &lt;required/&gt;
+  &lt;/field&gt;
+  &lt;field var='email' type='text-single' label='E-mail Address'&gt;
+    &lt;required/&gt;
+  &lt;/field&gt;
+  &lt;field var='jid' type='jid-single' label='Jabber JID'&gt;
+    &lt;required/&gt;
+  &lt;/field&gt;
+  &lt;field var='background' type='text-multi' label='Background Information'&gt;
+  &lt;/field&gt;
+  &lt;field var='future' type='text-multi' label='Jabber Plans for the Next Six Months'&gt;
+  &lt;/field&gt;
+  &lt;field var='reasoning' type='text-multi' label='Reasons for Joining'&gt;
+  &lt;/field&gt;
+  &lt;field var='activity.mailing-lists' type='text-multi' label='Recent Mailing List Activity'&gt;
+  &lt;/field&gt;
+  &lt;field var='activity.xeps' type='text-multi' label='XEPs Authored or Co-Authored'&gt;
+  &lt;/field&gt;
+&lt;/x&gt;
+    </pre></div>
+    <p class="" style="">Note: The preceding example demonstrates a layout similar to the previous example, but using three sections within one page instead of three pages.</p>
+    <p class="" style="">As shown in the following example, sections may be nested to produce a more granular partitioning of fields.</p>
+    <p class="caption"><a name="example-4" id="example-4"></a>Example 4. Sections of fields (nested)</p><div class="indent"><pre>
+&lt;x xmlns='jabber:x:data' type='form'&gt;
+  ...
+  
+  &lt;page xmlns='http://jabber.org/protocol/xdata-layout'&gt;
+    &lt;section label='Personal Information'&gt;
+      &lt;text&gt;
+        Note: In accordance with the XSF privacy policy, your personal information will 
+        never be shared outside the organization in any way for any purpose; however, 
+        your name and JID may be published in the XSF membership directory.
+      &lt;/text&gt;
+      &lt;section label='Name'&gt;
+        &lt;text&gt;Who are you?&lt;/text&gt;
+        &lt;fieldref var='name.first'/&gt;
+        &lt;fieldref var='name.last'/&gt;
+      &lt;/section&gt;
+      &lt;section label='Contact Information'&gt;
+        &lt;text&gt;How can we contact you?&lt;/text&gt;
+        &lt;fieldref var='email'/&gt;
+        &lt;fieldref var='jid'/&gt;
+      &lt;/section&gt;
+      &lt;fieldref var='background'/&gt;
+    &lt;/section&gt;
+    &lt;section label='Community Activity'&gt;
+      &lt;text&gt;
+        We use this page to gather information about any XEPs you&amp;apos;ve worked on, 
+        as well as your mailing list activity.
+      &lt;/text&gt;
+      &lt;text&gt;You do post to the mailing lists, don't you?&lt;/text&gt;
+      &lt;fieldref var='activity.mailing-lists'/&gt;
+      &lt;fieldref var='activity.xeps'/&gt;
+    &lt;/section&gt;
+    &lt;section label='Plans and Reasoning'&gt;
+      &lt;text&gt;
+        This is where you describe your future plans and why you think you 
+        deserve to be a member of the XMPP Standards Foundation.
+      &lt;/text&gt;
+      &lt;fieldref var='future'/&gt;
+      &lt;fieldref var='reasoning'/&gt;
+    &lt;/section&gt;
+  &lt;/page&gt;
+  
+  ...
+&lt;/x&gt;
+    </pre></div>
+    <p class="" style="">Note: The preceding example partitions the fields into one page and three sections, with the first section being further partitioned into two sub-sections and one free-standing field reference.</p> 
+  </div>
+  <div class="indent"><h3>3.3 <a name="tables" id="tables">Including Tables</a></h3>
+    <p class="" style="">Data forms tables (the &lt;reported/&gt; and &lt;item/&gt; elements) can also be included in the layout, using the &lt;reportedref/&gt; element. This element MAY be included anywhere that the &lt;fieldref/&gt; element is allowed, but MUST NOT appear more than once.</p>
+    <p class="" style="">If a &lt;reportedref/&gt; element is specified when no &lt;reported/&gt; element is included, then the reference MUST be ignored.</p>
+  </div>
+<h2>4.
+       <a name="bizrules" id="bizrules">Business Rules</a></h2>
+  <div class="indent"><h3>4.1 <a name="bizrules-disco" id="bizrules-disco">Discovery</a></h3>
+    <p class="" style="">Form providers MAY attempt to discover if the recipient of a form supports the data forms layout protocol extension, although implementations are not required to do so. If implemented, Discovery MUST be implemened as defined in <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0030.html">Service Discovery</a></span>  [<a href="#nt-id2251574">2</a>], using the namespace "http://jabber.org/protocol/xdata-layout" as a feature.</p>
+  </div>
+  <div class="indent"><h3>4.2 <a name="bizrules-distribution" id="bizrules-distribution">Field Distribution</a></h3>
+    <p class="" style="">In order to prevent the processing from becoming too complex, there are some restrictions in how fields are distributed within the layout.</p>
+    <p class="" style="">First, all displayable, modifiable fields (e.g. all except fields of type "FIXED" or "HIDDEN") SHOULD be referenced by a page or section. Any that are not referenced MAY NOT be rendered, although implementations MAY provide some support for this. To include a "FIXED" field in the layout, it MUST possess a "var" attribute.</p>
+    <p class="" style="">Second, the same field SHOULD NOT be referenced by more than one page or section. Additionally, a field SHOULD NOT be referenced by the same page or section more than once.</p>
+    <p class="" style="">Finally, the order of layout elements SHOULD be maintained.  Pages SHOULD be rendered in the order they are defined within the x:data form, and sections and fields SHOULD be rendered in the order they are defined or referenced within a page or section.</p>
+  </div>
+  <div class="indent"><h3>4.3 <a name="bizrules-pages" id="bizrules-pages">Page Labels and Descriptions</a></h3>
+    <p class="" style="">The "label" attribute of the &lt;page/&gt; element is RECOMMENDED (although not required). If it is missing, the renderer MAY display whatever it deems appropriate (including nothing or character data of the containing form's &lt;title/&gt; element).</p>
+    <p class="" style="">The &lt;text/&gt; child element of the &lt;page/&gt; element is OPTIONAL. If it is missing, the renderer MAY display whatever it deems appropriate (including nothing or character data of the containing form's &lt;instructions/&gt; element).</p>
+  </div>
+  <div class="indent"><h3>4.4 <a name="bizrules-sections" id="bizrules-sections">Section Labels and Descriptions</a></h3>
+    <p class="" style="">The "label" attribute of the &lt;section/&gt; element RECOMMENDED (but not required). If it is missing, the renderer MAY use whatever it deems appropriate (including nothing).</p>
+    <p class="" style="">The &lt;text/&gt; child element of the &lt;section/&gt; element is OPTIONAL. If it is missing, the renderer MAY use whatever it deems appropriate (including nothing).</p>
+  </div>
+  <div class="indent"><h3>4.5 <a name="bizrules-i18n" id="bizrules-i18n">Internationalization/Localization</a></h3>
+    <p class="" style="">This document relies on the internationalization/localization mechanisms provided by <span class="ref" style=""><a href="http://tools.ietf.org/html/rfc3920">XMPP Core</a></span>  [<a href="#nt-id2261341">3</a>]. Specifically, labels and descriptions MUST be appropriate for the locale indicated by the containing stanza or &lt;form/&gt; element.</p>
+  </div>
+<h2>5.
+       <a name="security" id="security">Security Considerations</a></h2>
+  <p class="" style="">There are no security considerations introduced by this document.</p>
+<h2>6.
+       <a name="iana" id="iana">IANA Considerations</a></h2>
+  <p class="" style="">This document requires no interaction with the <span class="ref" style=""><a href="http://www.iana.org/">Internet Assigned Numbers Authority (IANA)</a></span>  [<a href="#nt-id2261396">4</a>].</p>
+<h2>7.
+       <a name="registrar" id="registrar">XMPP Registrar Considerations</a></h2>
+  <div class="indent"><h3>7.1 <a name="registrar-ns" id="registrar-ns">Protocol Namespaces</a></h3>
+    <p class="" style="">The <span class="ref" style=""><a href="http://www.xmpp.org/registrar/">XMPP Registrar</a></span>  [<a href="#nt-id2261444">5</a>] includes 'http://jabber.org/protocol/xdata-layout' in its registry of protocol namespaces.</p>
+  </div>
+<h2>8.
+       <a name="def" id="def">Formal Definition</a></h2>
+  <div class="indent"><h3>8.1 <a name="def-page" id="def-page">&lt;page/&gt; Root Element</a></h3>
+    <p class="" style="">The &lt;page/&gt; element is the root layout element for "http://jabber.org/protocol/xdata-layout" namespace. One &lt;page/&gt; elements is contained within the &lt;x xmlns='jabber:x:data'/&gt; element for each page to be rendered. The &lt;page/&gt; element MAY possess an attribute that specifies a natural-language label for the page, and MAY contain child elements specifying a description, sections of the page, and field and table references.</p>
+    <p class="" style="">The 'label' attribute specifies the label for this page. This attribute is OPTIONAL. Its value is any string.</p>
+  </div>
+  <div class="indent"><h3>8.2 <a name="def-section" id="def-section">&lt;section/&gt; Element</a></h3>
+    <p class="" style="">The &lt;section/&gt; element is used to further partition the layout within a page. The &lt;section/&gt; element MAY possess an attribute that specifies a natural-language label for the section, and MAY contain child elements specifying a description, subsections, and field and table references.</p>
+    <p class="" style="">The 'label' attribute specifies the label for this section. This attribute is OPTIONAL. Its value is any string.</p>
+  </div>
+  <div class="indent"><h3>8.3 <a name="def-fieldref" id="def-fieldref">&lt;fieldref/&gt; Element</a></h3>
+    <p class="" style="">The &lt;fieldref/&gt; element is used to situate a form field within the layout. The &lt;fieldref/&gt; element MUST possess a single attribute to identify the field it references, and is otherwise empty.</p>
+    <p class="" style="">If a &lt;fieldref/&gt; element within a &lt;page/&gt; or &lt;section/&gt; references a non-existent field, then that reference MUST be ignored.</p>
+    <p class="" style="">The 'var' attribute specifies the form field being referenced. This attribute is REQUIRED, and its value SHOULD be the same as the "var" attribute of one of the &lt;field/&gt; elements in the containing form.</p>
+  </div>
+  <div class="indent"><h3>8.4 <a name="def-reportedref" id="def-reportedref">&lt;reportedref/&gt; Element</a></h3>
+    <p class="" style="">The &lt;reportedref/&gt; element is used to situate a form "table" (as described by the &lt;reported/&lt; and &lt;item/&gt; elements) within the layout. The &lt;reportedref/&gt; element has no attributes or children.</p>
+  </div>
+  <div class="indent"><h3>8.5 <a name="def-text" id="def-text">&lt;text/&gt; Element</a></h3>
+    <p class="" style="">The &lt;text/&gt; element is used to provide natural-language text that describes a page or section, provides instructions or notes about the page or section, and the like. A &lt;page/&gt; or &lt;section/&gt; element MAY contain an unbounded number of &lt;text/&gt; child elements. The XML character data of this element SHOULD NOT contain newlines (the \n and \r characters), and any handling of newlines (e.g., presentation in a user interface) is unspecified herein.</p>
+  </div>
+  <div class="indent"><h3>8.6 <a name="schema" id="schema">XML Schema</a></h3>
+    <p class="caption"></p><div class="indent"><pre>
+&lt;?xml version='1.0' encoding='UTF-8'?&gt;
+
+&lt;xs:schema
+    xmlns:xs='http://www.w3.org/2001/XMLSchema'
+    targetNamespace='http://jabber.org/protocol/xdata-layout'
+    xmlns='http://jabber.org/protocol/xdata-layout'
+    elementFormDefault='qualified'&gt;
+
+  &lt;xs:annotation&gt;
+    &lt;xs:documentation&gt;
+      The protocol documented by this schema is defined in
+      XEP-0141: http://www.xmpp.org/extensions/xep-0141.html
+    &lt;/xs:documentation&gt;
+  &lt;/xs:annotation&gt;
+
+  &lt;xs:element name='page'&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:choice minOccurs='0' maxOccurs='unbounded'&gt;
+        &lt;xs:element ref='text' minOccurs='0' maxOccurs='unbounded'/&gt;
+        &lt;xs:element ref='section' minOccurs='0' maxOccurs='unbounded'/&gt;
+        &lt;xs:element ref='fieldref' minOccurs='0' maxOccurs='unbounded'/&gt;
+        &lt;xs:element ref='reportedref' minOccurs='0' maxOccurs='unbounded'/&gt;
+      &lt;/xs:choice&gt;
+      &lt;xs:attribute name='label' type='xs:string' use='optional'/&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  
+  &lt;xs:element name='section'&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:choice minOccurs='0' maxOccurs='unbounded'&gt;
+        &lt;xs:element ref='text' minOccurs='0' maxOccurs='unbounded'/&gt;
+        &lt;xs:element ref='section' minOccurs='0' maxOccurs='unbounded'/&gt;
+        &lt;xs:element ref='fieldref' minOccurs='0' maxOccurs='unbounded'/&gt;
+        &lt;xs:element ref='reportedref' minOccurs='0' maxOccurs='unbounded'/&gt;
+      &lt;/xs:choice&gt;
+      &lt;xs:attribute name='label' type='xs:string' use='optional'/&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+
+  &lt;xs:element name='fieldref'&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:simpleContent&gt;
+        &lt;xs:extension base='empty'&gt;
+          &lt;xs:attribute name='var' type='xs:string' use='required'/&gt;
+        &lt;/xs:extension&gt;
+      &lt;/xs:simpleContent&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  
+  &lt;xs:element name='reportedref' type='empty'/&gt;
+
+  &lt;xs:element name='text' type='xs:string'/&gt;
+  
+  &lt;xs:simpleType name='empty'&gt;
+    &lt;xs:restriction base='xs:string'&gt;
+      &lt;xs:enumeration value=''/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+
+&lt;/xs:schema&gt;
+    </pre></div>
+  </div>
+<hr /><h2><a name="notes" id="notes"></a>Notes</h2><div class="indent"><p><a name="nt-id2252627" id="nt-id2252627">1</a>. XEP-0004: Data Forms &lt;<a href="http://www.xmpp.org/extensions/xep-0004.html">http://www.xmpp.org/extensions/xep-0004.html</a>&gt;.</p><p><a name="nt-id2251574" id="nt-id2251574">2</a>. XEP-0030: Service Discovery &lt;<a href="http://www.xmpp.org/extensions/xep-0030.html">http://www.xmpp.org/extensions/xep-0030.html</a>&gt;.</p><p><a name="nt-id2261341" id="nt-id2261341">3</a>. RFC 3920: Extensible Messaging and Presence Protocol (XMPP): Core &lt;<a href="http://tools.ietf.org/html/rfc3920">http://tools.ietf.org/html/rfc3920</a>&gt;.</p><p><a name="nt-id2261396" id="nt-id2261396">4</a>. The Internet Assigned Numbers Authority (IANA) is the central coordinator for the assignment of unique parameter values for Internet protocols, such as port numbers and URI schemes. For further information, see &lt;<a href="http://www.iana.org/">http://www.iana.org/</a>&gt;.</p><p><a name="nt-id2261444" id="nt-id2261444">5</a>. The XMPP Registrar maintains a list of reserved protocol namespaces as well as registries of parameters used in the context of XMPP extension protocols approved by the XMPP Standards Foundation. For further information, see &lt;<a href="http://www.xmpp.org/registrar/">http://www.xmpp.org/registrar/</a>&gt;.</p></div><hr /><h2><a name="revs" id="revs"></a>Revision History</h2><div class="indent"><h4>Version 1.0 (2005-05-12)</h4><div class="indent">Per a vote of the Jabber Council, advanced status to Draft. (psa)
+    </div><h4>Version 0.3 (2005-05-03)</h4><div class="indent">Renamed &lt;desc/&gt; element to &lt;text/&gt; to avoid confusion with XEP-0004 element names; clarified formal definition of &lt;text/&gt; element; added &lt;text/&gt; elements to examples. (psa)
+    </div><h4>Version 0.2 (2005-03-28)</h4><div class="indent">Editorial review: cleanup of text, examples, and schema. (psa)
+    </div><h4>Version 0.1 (2004-08-10)</h4><div class="indent">Initial version. (lw)
+    </div></div><hr /><p>END</p></body></html>

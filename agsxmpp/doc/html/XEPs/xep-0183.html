@@ -1,0 +1,216 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>XEP-0183: Jingle Telepathy Transport</title><link rel="stylesheet" type="text/css" href="/xmpp.css" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" /><meta name="DC.Title" content="Jingle Telepathy Transport" /><meta name="DC.Creator" content="Peter Saint-Andre" /><meta name="DC.Description" content="This document defines a telepathic transport method for establishing Extra-Sensory Perception (ESP) streams." /><meta name="DC.Publisher" content="XMPP Standards Foundation" /><meta name="DC.Contributor" content="XMPP Extensions Editor" /><meta name="DC.Date" content="2006-04-01" /><meta name="DC.Type" content="XMPP Extension Protocol" /><meta name="DC.Format" content="XHTML" /><meta name="DC.Identifier" content="XEP-0183" /><meta name="DC.Language" content="en" /><meta name="DC.Rights" content="This XMPP Extension Protocol is copyright (c) 1999 - 2008 by the XMPP Standards Foundation (XSF)." /></head><body><h1>XEP-0183: Jingle Telepathy Transport</h1><p>This document defines a telepathic transport method for establishing Extra-Sensory Perception (ESP) streams.</p><hr /><p style="color:green">NOTICE: This document is Humorous. It MAY provide amusement but SHOULD NOT be taken seriously.</p><hr /><h2>Document Information</h2><p class="indent">
+            Series: <a href="http://www.xmpp.org/extensions/">XEP</a><br />
+            Number: 0183<br />
+            Publisher: <a href="/xsf/">XMPP Standards Foundation</a><br />
+            Status: 
+            <a href="http://www.xmpp.org/extensions/xep-0001.html#states-Active">Active</a><br />
+            Type:
+            <a href="http://www.xmpp.org/extensions/xep-0001.html#types-Humorous">Humorous</a><br />
+            Version: 1.0<br />
+            Last Updated: 2006-04-01<br />
+                Approving Body: <a href="http://www.xmpp.org/council/">XMPP Council</a><br />Dependencies: XMPP Core, XEP-0166<br />
+                Supersedes: None<br />
+                Superseded By: None<br />
+            Short Name: telepathy<br />
+              Wiki Page: &lt;<a href="http://wiki.jabber.org/index.php/Jingle Telepathy Transport (XEP-0183)">http://wiki.jabber.org/index.php/Jingle Telepathy Transport (XEP-0183)</a>&gt;
+            </p><hr /><h2>Author Information</h2><div class="indent"><h3>Peter Saint-Andre</h3><p class="indent">
+        JabberID: 
+        <a href="xmpp:stpeter@jabber.org">stpeter@jabber.org</a><br />
+        URI: 
+        <a href="https://stpeter.im/">https://stpeter.im/</a><br /></p></div><hr /><h2>Legal Notices</h2><div class="indent"><h3>Copyright</h3>This XMPP Extension Protocol is copyright (c) 1999 - 2008 by the XMPP Standards Foundation (XSF).<h3>Permissions</h3>Permission is hereby granted, free of charge, to any person obtaining a copy of this specification (the "Specification"), to make use of the Specification without restriction, including without limitation the rights to implement the Specification in a software program, deploy the Specification in a network service, and copy, modify, merge, publish, translate, distribute, sublicense, or sell copies of the Specification, and to permit persons to whom the Specification is furnished to do so, subject to the condition that the foregoing copyright notice and this permission notice shall be included in all copies or substantial portions of the Specification. Unless separate permission is granted, modified works that are redistributed shall not contain misleading information regarding the authors, title, number, or publisher of the Specification, and shall not claim endorsement of the modified works by the authors, any organization or project to which the authors belong, or the XMPP Standards Foundation.<h3>Disclaimer of Warranty</h3><span style="font-weight: bold">## NOTE WELL: This Specification is provided on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, express or implied, including, without limitation, any warranties or conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE. In no event shall the XMPP Standards Foundation or the authors of this Specification be liable for any claim, damages, or other liability, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the Specification or the implementation, deployment, or other use of the Specification. ##</span><h3>Limitation of Liability</h3>In no event and under no legal theory, whether in tort (including negligence), contract, or otherwise, unless required by applicable law (such as deliberate and grossly negligent acts) or agreed to in writing, shall the XMPP Standards Foundation or any author of this Specification be liable for damages, including any direct, indirect, special, incidental, or consequential damages of any character arising out of the use or inability to use the Specification (including but not limited to damages for loss of goodwill, work stoppage, computer failure or malfunction, or any and all other commercial damages or losses), even if the XMPP Standards Foundation or such author has been advised of the possibility of such damages.<h3>IPR Conformance</h3>This XMPP Extension Protocol has been contributed in full conformance with the XSF's Intellectual Property Rights Policy (a copy of which may be found at &lt;<a href="http://www.xmpp.org/extensions/ipr-policy.shtml">http://www.xmpp.org/extensions/ipr-policy.shtml</a>&gt; or obtained by writing to XSF, P.O. Box 1641, Denver, CO 80201 USA).</div><hr /><h2>Discussion Venue</h2><p class="indent">The preferred venue for discussion of this document is the Standards discussion list: &lt;<a href="http://mail.jabber.org/mailman/listinfo/standards">http://mail.jabber.org/mailman/listinfo/standards</a>&gt;.</p><p class="indent">Errata may be sent to &lt;<a href="mailto:editor@xmpp.org">editor@xmpp.org</a>&gt;.</p><hr /><h2>Table of Contents</h2><div class="indent"><p><br />1.  <a href="#intro">Introduction</a><br />2.  <a href="#reqs">Requirements</a><br />3.  <a href="#protocol">Protocol Description</a><br />   
+      3.1.  <a href="#protocol-initiate">Transport Initiation</a><br />   
+      3.2.  <a href="#protocol-response">Receiver Response</a><br />   
+      3.3.  <a href="#protocol-info">Informational Messages</a><br />4.  <a href="#deploy">Deployment Notes</a><br />5.  <a href="#security">Security Considerations</a><br />6.  <a href="#iana">IANA Considerations</a><br />7.  <a href="#registrar">XMPP Registrar Considerations</a><br />   
+      7.1.  <a href="#registrar-ns">Protocol Namespaces</a><br />   
+      7.2.  <a href="#registrar-transports">Jingle Transport Methods</a><br />8.  <a href="#schema">XML Schemas</a><br />   
+      8.1.  <a href="#schema-transport">Transport Method</a><br />   
+      8.2.  <a href="#schema-info">Informational Messages</a><br /><a href="#notes">Notes</a><br /><a href="#revs">Revision History</a></p></div><hr /><h2>1.
+       <a name="intro" id="intro">Introduction</a></h2>
+  <p class="" style=""><span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0166.html">Jingle</a></span>  [<a href="#nt-id2252865">1</a>] defines a framework for negotiating and managing out-of-band multimedia sessions over XMPP. In order to provide a flexible framework, the base Jingle specification defines neither data transport methods nor media (session) types, leaving that up to separate specifications.</p>
+  <p class="" style="">Typical peer-to-peer session types include voice chat (see <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0167.html">Jingle Audio via RTP</a></span>  [<a href="#nt-id2252825">2</a>]) and video chat (see <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0180.html">Jingle Video via RTP </a></span>  [<a href="#nt-id2252606">3</a>]). But Jingle can go farther. Indeed, why not support not only physical multimedia sessions (limited to the five physical senses) but also psychical multimedia sessions (which go beyond the basic physical senses to include advanced, extra-sensory perception)? The media (or medium) may be different, but the underlying principles are the same: fostering freedom of conversation by connecting people (e.g., through mind-reading and séances) and even applications such as accessing information from the future (e.g., in clairvoyance and precognition). Indeed, the ability to communicate with the spirit world will push Jabber/XMPP technologies into a new age of real-time communications (light years ahead of traditional IM and VoIP systems). Beyond Internet telephony, our innovations in Internet telepathy will give new meaning to the term "voice chat" as users are able to hear voices from the past, present, or future.</p>
+  <p class="" style="">Unfortunately, these advanced session types cannot be supported using existing transport mechanisms such as <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0176.html">Jingle ICE-UDP Transport Method</a></span>  [<a href="#nt-id2252686">4</a>], <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0177.html">Jingle Raw UDP Transport Method </a></span>  [<a href="#nt-id2252712">5</a>], and <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0179.html">Jingle IAX Transport Method </a></span>  [<a href="#nt-id2252736">6</a>]. Therefore, this document defines a new Jingle transport method for establishing and managing Extra-Sensory Perception (ESP) streams: the "telepathy" method.</p>
+<h2>2.
+       <a name="reqs" id="reqs">Requirements</a></h2>
+  <p class="" style="">The Jingle telepathy transport method is designed to meet the following requirements:</p>
+  <ol start="" class="" style="">
+    <li class="" style="">Make it possible to establish and manage extra-sensory perception (ESP) streams between two XMPP entities.</li>
+    <li class="" style="">Make it relatively easy to implement support in standard Jabber/XMPP clients.</li>
+    <li class="" style="">Where communication with non-XMPP (indeed, non-material) entities is needed, push as much complexity as possible onto gateways between this world and the spirit world.</li>
+  </ol>
+  <p class="" style="">Note: Whether or not an ESP stream can be established depends on the user's native telepathic abilities as well as acquired telepathic skills such as grounding, centering, pinging, pulse-sending, broadcasting, scanning, probing, suggestion, and projection.  [<a href="#nt-id2251354">7</a>] Your mileage may vary.</p>
+<h2>3.
+       <a name="protocol" id="protocol">Protocol Description</a></h2>
+  <div class="indent"><h3>3.1 <a name="protocol-initiate" id="protocol-initiate">Transport Initiation</a></h3>
+    <p class="" style="">In order for the initiating entity in a Jingle exchange to start the negotiation, it MUST send a Jingle "session-initiate" stanza as described in <span class="ref">XEP-0166</span>. This stanza MUST include at least one transport method. If the initiating entity wishes to negotiate the telepathy transport, it MUST include a &lt;transport/&gt; child element qualified by the 'http://jabber.org/protocol/jingle/transport/telepathy' namespace.</p>
+    <p class="" style="">This &lt;transport/&gt; element MUST include one and only one &lt;candidate/&gt; element per channel specifying the parameters that the initiator believes will be most likely to succeed for that channel. (Note: You have to believe.) This is not necessarily the initiator's preferred address for spiritual communication, but instead is the "address most likely to succeed", i.e., the address that is assumed to be reachable by the vast majority of target entities. (Establishing direct spiritual communication is hard enough as it is.) Here is an example:</p>
+    <p class="caption"><a name="example-1" id="example-1"></a>Example 1. Initiation Example</p><div class="indent"><pre>
+&lt;iq from='medium@example.com/seance' to='psychic@example.net/spiritworld' id='jingle1' type='set'&gt;
+  &lt;jingle xmlns='http://jabber.org/protocol/jingle' 
+          action='session-initiate' 
+          initiator='medium@example.com/seance
+          sid='a73sjjvkla37jfea'&gt;
+    &lt;description ...&gt;
+    &lt;transport xmlns='http://jabber.org/protocol/jingle/transport/telepathy'&gt;
+      &lt;candidate name='ihearvoices' generation='0' plane='9' pulse='80'
+                 psi-sig='yellow happy bright open no-shields' 
+                 sign='Pisces' time='present'/&gt;
+    &lt;/transport&gt;
+  &lt;/jingle&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="" style="">The attributes of the &lt;candidate/&gt; element are as follows:</p>
+    <ul class="" style="">
+      <li class="" style="">The 'generation' attribute is an index, starting at 0, that enables the parties to keep track of updates to the candidate throughout the life of the session.</li>
+      <li class="" style="">The 'name' attribute specifies a unique name for the channel.</li>
+      <li class="" style="">The 'plane' attribute is used for diagnostics; it is an index, starting at 1, referencing which astral plane this candidate is on for a given peer.</li>
+      <li class="" style="">The 'pulse' attribute specifies the initiator's heart rate at the moment; this helps establish communications through pulse-sending of informational messages in time with the beat of your heart.</li>
+      <li class="" style="">The 'psi-sig' attribute is the initiator's Psi Signature or "energy fingerprint"; because scanning people for their psi-sig can take time and is often a challenge, advertising one's psi-sig ahead of time makes it easier to establish a spiritual connection. The format of the 'psi-sig' attribute is a space-delimited set of descriptive words, often including colors, feelings, and emotions characterizing the person's energy state at the moment. Note: A person's psi-sig can change from moment to moment; therefore, it is advisable to also advertise it using <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0163.html">Personal Eventing via Pubsub</a></span>  [<a href="#nt-id2251518">8</a>].</li>
+      <li class="" style="">The 'sign' attribute represents the initiator's Zodiac sign; including this value obviates the need for asking "what's your sign?"</li>
+      <li class="" style="">The 'time' attribute is used for diagnostics; the allowable values are "past", "present", and "future".</li>
+    </ul>
+  </div>
+  <div class="indent"><h3>3.2 <a name="protocol-response" id="protocol-response">Receiver Response</a></h3>
+    <p class="" style="">As described in <span class="ref">XEP-0166</span>, to provisionally accept the session initiation request, the receiver returns an IQ-result:</p>
+    <p class="caption"><a name="example-2" id="example-2"></a>Example 2. Receiver Provisionally Accepts the Session Request</p><div class="indent"><pre>
+&lt;iq type='result' from='psychic@example.net/spiritworld' to='medium@example.com/seance' id='jingle1'/&gt;
+    </pre></div>
+    <p class="" style="">To definitively accept the telepathy transport method, the receiver MUST send a &lt;jingle/&gt; element with an action of 'transport-accept', specifying the transport method desired.</p>
+    <p class="caption"><a name="example-3" id="example-3"></a>Example 3. Receiver Accepts the Telepathy Transport Method</p><div class="indent"><pre>
+&lt;iq type='set' from='psychic@example.net/spiritworld' to='medium@example.com/seance' id='jingle2'/&gt;
+  &lt;jingle xmlns='http://jabber.org/protocol/jingle' 
+          action='transport-accept' 
+          initiator='medium@example.com/seance'
+          sid='a73sjjvkla37jfea'&gt;
+    &lt;transport xmlns='http://jabber.org/protocol/jingle/transport/telepathy'&gt;
+      &lt;candidate name='ihearvoices'/&gt;
+    &lt;/transport&gt;
+  &lt;/jingle&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="" style="">The initiating entity then acknowledges the receiver's acceptance:</p>
+    <p class="caption"><a name="example-4" id="example-4"></a>Example 4. Initiating Entity Acknowledges Definitive Acceptance</p><div class="indent"><pre>
+&lt;iq from='medium@example.com/seance' to='psychic@example.net/spiritworld' id='jingle2' type='result'&gt;
+    </pre></div>
+    <p class="" style="">Now the initiating entity and receiver can begin sending appropriate psychical media over the negotiated ESP stream.</p>
+    <p class="" style="">In the event that the receiver cannot establish a channel, it SHOULD terminate the session (see <span class="ref">XEP-0176</span> or <span class="ref">XEP-0177</span> for examples).</p>
+  </div>
+  <div class="indent"><h3>3.3 <a name="protocol-info" id="protocol-info">Informational Messages</a></h3>
+    <p class="" style="">Because the informational message payloads specific to the telepathy transport method cannot be tied down to the arbitrary conventions of XML syntax, a &lt;message/&gt; element qualified by the 'http://jabber.org/protocol/info/telepathy' namespace may include any character data that either party feels like communicating.</p>
+  </div>
+<h2>4.
+       <a name="deploy" id="deploy">Deployment Notes</a></h2>
+  <p class="" style="">This specification applies exclusively to Jabber/XMPP clients and places no additional requirements on Jabber/XMPP servers. However, service administrators may wish to deploy a gateway to the spirit world in order to ease the channel negotiation process. How to develop such gateways is an inexact science (but it <span class="em">is</span> a science!) and therefore is outside the scope of this document.</p>
+<h2>5.
+       <a name="security" id="security">Security Considerations</a></h2>
+  <p class="" style="">To the author's knowledge, no channel encryption technologies exist for direct spiritual connections. Although this vulnerability can be mitigated through speaking in tongues and the use of various alternative languages such as Runic and Mumbo-Jumbo, the result is only security through obscurity, not channel encryption as those familiar with the merely material world understand it. If only benighted materialist scientists and technologists would recognize the validity of psychical experience and extra-sensory perception, progress in applying encryption principles to psychical channeling and the exchange of pure spiritual energy would rapidly ensue.</p>
+<h2>6.
+       <a name="iana" id="iana">IANA Considerations</a></h2>
+  <p class="" style="">This document requires no interaction with the <span class="ref" style=""><a href="http://www.iana.org/">Internet Assigned Numbers Authority (IANA)</a></span>  [<a href="#nt-id2261226">9</a>].</p>
+<h2>7.
+       <a name="registrar" id="registrar">XMPP Registrar Considerations</a></h2>
+  <div class="indent"><h3>7.1 <a name="registrar-ns" id="registrar-ns">Protocol Namespaces</a></h3>
+    <p class="" style="">The <span class="ref" style=""><a href="http://www.xmpp.org/registrar/">XMPP Registrar</a></span>  [<a href="#nt-id2261275">10</a>] shall include 'http://jabber.org/protocol/jingle/transport/telepathy' and 'http://jabber.org/protocol/jingle/info/telepathy' in its registry of protocol namespaces.</p>
+  </div>
+  <div class="indent"><h3>7.2 <a name="registrar-transports" id="registrar-transports">Jingle Transport Methods</a></h3>
+    <p class="" style="">The XMPP Registrar shall include "http://jabber.org/protocol/jingle/transport/telepathy" in its registry of Jingle transport methods. The registry submission is as follows:</p>
+    <p class="caption"></p><div class="indent"><pre>
+&lt;transport&gt;
+  &lt;name&gt;telepathy&lt;/name&gt;
+  &lt;desc&gt;
+    A method for the negotiation of Extra-Sensory Perception (ESP) streams. 
+  &lt;/desc&gt;
+  &lt;doc&gt;XEP-0183&lt;/doc&gt;
+&lt;/transport&gt;
+    </pre></div>
+  </div>
+<h2>8.
+       <a name="schema" id="schema">XML Schemas</a></h2>
+  <div class="indent"><h3>8.1 <a name="schema-transport" id="schema-transport">Transport Method</a></h3>
+    <p class="caption"></p><div class="indent"><pre>
+&lt;?xml version='1.0' encoding='UTF-8'?&gt;
+
+&lt;xs:schema
+    xmlns:xs='http://www.w3.org/2001/XMLSchema'
+    targetNamespace='http://jabber.org/protocol/jingle/transport/telepathy'
+    xmlns='http://jabber.org/protocol/jingle/transport/telepathy'
+    elementFormDefault='qualified'&gt;
+
+  &lt;xs:element name='transport'&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:choice&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element ref='candidate' minOccurs='0' maxOccurs='1'/&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:choice&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+
+  &lt;xs:element name='candidate'&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:simpleContent&gt;
+        &lt;xs:extension base='empty'&gt;
+          &lt;xs:attribute name='generation' type='xs:unsignedByte' use='required'/&gt;
+          &lt;xs:attribute name='name' type='xs:string' use='required'/&gt;
+          &lt;xs:attribute name='plane' type='xs:positiveInteger' use='optional'/&gt;
+          &lt;xs:attribute name='pulse' type='xs:positiveInteger' use='optional'/&gt;
+          &lt;xs:attribute name='psi-sig' type='xs:string' use='optional'/&gt;
+          &lt;xs:attribute name='sign' use='optional'&gt;
+            &lt;xs:simpleType&gt;
+              &lt;xs:restriction base='xs:NCName'&gt;
+                &lt;xs:enumeration value='Aquarius'/&gt;
+                &lt;xs:enumeration value='Aries'/&gt;
+                &lt;xs:enumeration value='Cancer'/&gt;
+                &lt;xs:enumeration value='Capricorn'/&gt;
+                &lt;xs:enumeration value='Gemini'/&gt;
+                &lt;xs:enumeration value='Leo'/&gt;
+                &lt;xs:enumeration value='Libra'/&gt;
+                &lt;xs:enumeration value='Pisces'/&gt;
+                &lt;xs:enumeration value='Sagittarius'/&gt;
+                &lt;xs:enumeration value='Scorpio'/&gt;
+                &lt;xs:enumeration value='Taurus'/&gt;
+                &lt;xs:enumeration value='Virgo'/&gt;
+              &lt;/xs:restriction&gt;
+            &lt;/xs:simpleType&gt;
+          &lt;/xs:attribute&gt;
+          &lt;xs:attribute name='time' use='optional'&gt;
+            &lt;xs:simpleType&gt;
+              &lt;xs:restriction base='xs:NCName'&gt;
+                &lt;xs:enumeration value='future'/&gt;
+                &lt;xs:enumeration value='past'/&gt;
+                &lt;xs:enumeration value='present'/&gt;
+              &lt;/xs:restriction&gt;
+            &lt;/xs:simpleType&gt;
+          &lt;/xs:attribute&gt;
+        &lt;/xs:extension&gt;
+      &lt;/xs:simpleContent&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+
+  &lt;xs:simpleType name='empty'&gt;
+    &lt;xs:restriction base='xs:string'&gt;
+      &lt;xs:enumeration value=''/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+
+&lt;/xs:schema&gt;
+    </pre></div>
+  </div>
+  <div class="indent"><h3>8.2 <a name="schema-info" id="schema-info">Informational Messages</a></h3>
+    <p class="caption"></p><div class="indent"><pre>
+&lt;?xml version='1.0' encoding='UTF-8'?&gt;
+
+&lt;xs:schema
+    xmlns:xs='http://www.w3.org/2001/XMLSchema'
+    targetNamespace='http://jabber.org/protocol/jingle/info/telepathy'
+    xmlns='http://jabber.org/protocol/jingle/info/telepathy'
+    elementFormDefault='qualified'&gt;
+
+  &lt;xs:element name='message' type='xs:string'/&gt;
+
+&lt;/xs:schema&gt;
+    </pre></div>
+  </div>
+<hr /><h2><a name="notes" id="notes"></a>Notes</h2><div class="indent"><p><a name="nt-id2252865" id="nt-id2252865">1</a>. XEP-0166: Jingle &lt;<a href="http://www.xmpp.org/extensions/xep-0166.html">http://www.xmpp.org/extensions/xep-0166.html</a>&gt;.</p><p><a name="nt-id2252825" id="nt-id2252825">2</a>. XEP-0167: Jingle Audio via RTP &lt;<a href="http://www.xmpp.org/extensions/xep-0167.html">http://www.xmpp.org/extensions/xep-0167.html</a>&gt;.</p><p><a name="nt-id2252606" id="nt-id2252606">3</a>. XEP-0180: Jingle Video via RTP &lt;<a href="http://www.xmpp.org/extensions/xep-0180.html">http://www.xmpp.org/extensions/xep-0180.html</a>&gt;.</p><p><a name="nt-id2252686" id="nt-id2252686">4</a>. XEP-0176: Jingle ICE-UDP Transport Method &lt;<a href="http://www.xmpp.org/extensions/xep-0176.html">http://www.xmpp.org/extensions/xep-0176.html</a>&gt;.</p><p><a name="nt-id2252712" id="nt-id2252712">5</a>. XEP-0177: Jingle Raw UDP Transport Method &lt;<a href="http://www.xmpp.org/extensions/xep-0177.html">http://www.xmpp.org/extensions/xep-0177.html</a>&gt;.</p><p><a name="nt-id2252736" id="nt-id2252736">6</a>. XEP-0179: Jingle IAX Transport Method &lt;<a href="http://www.xmpp.org/extensions/xep-0179.html">http://www.xmpp.org/extensions/xep-0179.html</a>&gt;.</p><p><a name="nt-id2251354" id="nt-id2251354">7</a>. For a good introduction to telepathic skills, see <span class="ref">The Telepathy Manual</span> at &lt;<a href="http://www.psipog.net/articles.php?cat=10131">http://www.psipog.net/articles.php?cat=10131</a>&gt;.</p><p><a name="nt-id2251518" id="nt-id2251518">8</a>. XEP-0163: Personal Eventing via Pubsub &lt;<a href="http://www.xmpp.org/extensions/xep-0163.html">http://www.xmpp.org/extensions/xep-0163.html</a>&gt;.</p><p><a name="nt-id2261226" id="nt-id2261226">9</a>. The Internet Assigned Numbers Authority (IANA) is the central coordinator for the assignment of unique parameter values for Internet protocols, such as port numbers and URI schemes. For further information, see &lt;<a href="http://www.iana.org/">http://www.iana.org/</a>&gt;.</p><p><a name="nt-id2261275" id="nt-id2261275">10</a>. The XMPP Registrar maintains a list of reserved protocol namespaces as well as registries of parameters used in the context of XMPP extension protocols approved by the XMPP Standards Foundation. For further information, see &lt;<a href="http://www.xmpp.org/registrar/">http://www.xmpp.org/registrar/</a>&gt;.</p></div><hr /><h2><a name="revs" id="revs"></a>Revision History</h2><div class="indent"><h4>Version 1.0 (2006-04-01)</h4><div class="indent"><p class="" style="">April Fools!</p> (psa)
+    </div></div><hr /><p>END</p></body></html>

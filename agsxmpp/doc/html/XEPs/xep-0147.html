@@ -1,0 +1,324 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>XEP-0147: XMPP URI Scheme Query Components</title><link rel="stylesheet" type="text/css" href="/xmpp.css" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" /><meta name="DC.Title" content="XMPP URI Scheme Query Components" /><meta name="DC.Creator" content="Peter Saint-Andre" /><meta name="DC.Description" content="This document defines a registry of query components to be used in the context of XMPP IRIs/URIs and also specifies an initial submission of values to that registry." /><meta name="DC.Publisher" content="XMPP Standards Foundation" /><meta name="DC.Contributor" content="XMPP Extensions Editor" /><meta name="DC.Date" content="2006-09-13" /><meta name="DC.Type" content="XMPP Extension Protocol" /><meta name="DC.Format" content="XHTML" /><meta name="DC.Identifier" content="XEP-0147" /><meta name="DC.Language" content="en" /><meta name="DC.Rights" content="This XMPP Extension Protocol is copyright (c) 1999 - 2008 by the XMPP Standards Foundation (XSF)." /></head><body><h1>XEP-0147: XMPP URI Scheme Query Components</h1><p>This document defines a registry of query components to be used in the context of XMPP IRIs/URIs and also specifies an initial submission of values to that registry.</p><hr /><p style="color:green">NOTICE: This Informational specification defines a best practice or protocol profile that has been approved by the XMPP Council and/or the XSF Board of Directors. Implementations are encouraged and the best practice or protocol profile is appropriate for deployment in production systems.</p><hr /><h2>Document Information</h2><p class="indent">
+            Series: <a href="http://www.xmpp.org/extensions/">XEP</a><br />
+            Number: 0147<br />
+            Publisher: <a href="/xsf/">XMPP Standards Foundation</a><br />
+            Status: 
+            <a href="http://www.xmpp.org/extensions/xep-0001.html#states-Active">Active</a><br />
+            Type:
+            <a href="http://www.xmpp.org/extensions/xep-0001.html#types-Informational">Informational</a><br />
+            Version: 1.2<br />
+            Last Updated: 2006-09-13<br />
+                Approving Body: <a href="http://www.xmpp.org/council/">XMPP Council</a><br />Dependencies: XMPP Core, RFC 4622, XEP-0053<br />
+                Supersedes: None<br />
+                Superseded By: None<br />
+            Short Name: querytypes<br />
+              Registry: 
+              
+              &lt;<a href="http://www.xmpp.org/registrar/querytypes.html">http://www.xmpp.org/registrar/querytypes.html</a>&gt;
+              <br />
+              Wiki Page: &lt;<a href="http://wiki.jabber.org/index.php/XMPP URI Scheme Query Components (XEP-0147)">http://wiki.jabber.org/index.php/XMPP URI Scheme Query Components (XEP-0147)</a>&gt;
+            </p><hr /><h2>Author Information</h2><div class="indent"><h3>Peter Saint-Andre</h3><p class="indent">
+        JabberID: 
+        <a href="xmpp:stpeter@jabber.org">stpeter@jabber.org</a><br />
+        URI: 
+        <a href="https://stpeter.im/">https://stpeter.im/</a><br /></p></div><hr /><h2>Legal Notices</h2><div class="indent"><h3>Copyright</h3>This XMPP Extension Protocol is copyright (c) 1999 - 2008 by the XMPP Standards Foundation (XSF).<h3>Permissions</h3>Permission is hereby granted, free of charge, to any person obtaining a copy of this specification (the "Specification"), to make use of the Specification without restriction, including without limitation the rights to implement the Specification in a software program, deploy the Specification in a network service, and copy, modify, merge, publish, translate, distribute, sublicense, or sell copies of the Specification, and to permit persons to whom the Specification is furnished to do so, subject to the condition that the foregoing copyright notice and this permission notice shall be included in all copies or substantial portions of the Specification. Unless separate permission is granted, modified works that are redistributed shall not contain misleading information regarding the authors, title, number, or publisher of the Specification, and shall not claim endorsement of the modified works by the authors, any organization or project to which the authors belong, or the XMPP Standards Foundation.<h3>Disclaimer of Warranty</h3><span style="font-weight: bold">## NOTE WELL: This Specification is provided on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, express or implied, including, without limitation, any warranties or conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE. In no event shall the XMPP Standards Foundation or the authors of this Specification be liable for any claim, damages, or other liability, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the Specification or the implementation, deployment, or other use of the Specification. ##</span><h3>Limitation of Liability</h3>In no event and under no legal theory, whether in tort (including negligence), contract, or otherwise, unless required by applicable law (such as deliberate and grossly negligent acts) or agreed to in writing, shall the XMPP Standards Foundation or any author of this Specification be liable for damages, including any direct, indirect, special, incidental, or consequential damages of any character arising out of the use or inability to use the Specification (including but not limited to damages for loss of goodwill, work stoppage, computer failure or malfunction, or any and all other commercial damages or losses), even if the XMPP Standards Foundation or such author has been advised of the possibility of such damages.<h3>IPR Conformance</h3>This XMPP Extension Protocol has been contributed in full conformance with the XSF's Intellectual Property Rights Policy (a copy of which may be found at &lt;<a href="http://www.xmpp.org/extensions/ipr-policy.shtml">http://www.xmpp.org/extensions/ipr-policy.shtml</a>&gt; or obtained by writing to XSF, P.O. Box 1641, Denver, CO 80201 USA).</div><hr /><h2>Discussion Venue</h2><p class="indent">The preferred venue for discussion of this document is the Standards discussion list: &lt;<a href="http://mail.jabber.org/mailman/listinfo/standards">http://mail.jabber.org/mailman/listinfo/standards</a>&gt;.</p><p class="indent">Given that this XMPP Extension Protocol normatively references IETF technologies, discussion on the XSF-IETF list may also be appropriate (see &lt;<a href="http://mail.jabber.org/mailman/listinfo/jsf-ietf">http://mail.jabber.org/mailman/listinfo/jsf-ietf</a>&gt; for details).</p><p class="indent">Errata may be sent to &lt;<a href="mailto:editor@xmpp.org">editor@xmpp.org</a>&gt;.</p><h2>Relation to XMPP</h2><p class="indent">The Extensible Messaging and Presence Protocol (XMPP) is defined in the XMPP Core (RFC 3920) and XMPP IM (RFC 3921) specifications contributed by the XMPP Standards Foundation to the Internet Standards Process, which is managed by the Internet Engineering Task Force in accordance with RFC 2026. Any protocol defined in this document has been developed outside the Internet Standards Process and is to be understood as an extension to XMPP rather than as an evolution, development, or modification of XMPP itself.</p><h2>Conformance Terms</h2><p class="indent">The following keywords as used in this document are to be interpreted as described in <a href="http://www.ietf.org/rfc/rfc2119.txt">RFC 2119</a>: "MUST", "SHALL", "REQUIRED"; "MUST NOT", "SHALL NOT"; "SHOULD", "RECOMMENDED"; "SHOULD NOT", "NOT RECOMMENDED"; "MAY", "OPTIONAL".</p><hr /><h2>Table of Contents</h2><div class="indent"><p><br />1.  <a href="#intro">Introduction</a><br />2.  <a href="#terms">Terminology</a><br />3.  <a href="#actions">Query Actions</a><br />   
+      3.1.  <a href="#actions-message">Message Action</a><br />   
+      3.2.  <a href="#actions-roster">Roster Management Actions</a><br />      
+      3.2.1.  <a href="#actions-roster-add">Add Roster Item</a><br />      
+      3.2.2.  <a href="#actions-roster-remove">Remove Roster Item</a><br />   
+      3.3.  <a href="#actions-sub">Subscription Management Actions</a><br />      
+      3.3.1.  <a href="#actions-sub-subscribe">Subscribe</a><br />      
+      3.3.2.  <a href="#actions-sub-unsubscribe">Unsubscribe</a><br />4.  <a href="#i18n">Internationalization Considerations</a><br />5.  <a href="#security">Security Considerations</a><br />6.  <a href="#iana">IANA Considerations</a><br />7.  <a href="#registrar">XMPP Registrar Considerations</a><br />   
+      7.1.  <a href="#registrar-querytype">XMPP IRI/URI Querytype Registry</a><br />      
+      7.1.1.  <a href="#registrar-querytype-process">Registration Process</a><br />      
+      7.1.2.  <a href="#registrar-querytype-reg">Registration</a><br /><a href="#notes">Notes</a><br /><a href="#revs">Revision History</a></p></div><hr /><h2>1.
+       <a name="intro" id="intro">Introduction</a></h2>
+  <p class="" style=""><span class="ref" style=""><a href="http://tools.ietf.org/html/rfc4622">RFC 4622</a></span>  [<a href="#nt-id2251315">1</a>] defines a Uniform Resource Identifier (URI) scheme for use in forming URIs and Internationalized Resource Identifiers (IRIs)  [<a href="#nt-id2252756">2</a>] from the addresses of entities that can communicate using the Extensible Messaging and Presence Protocol (see <span class="ref" style=""><a href="http://tools.ietf.org/html/rfc3920">XMPP Core</a></span>  [<a href="#nt-id2251362">3</a>]). Such identifiers enable identification of and interaction with XMPP entities by non-native applications such as databases and web browsers.</p>
+  <p class="" style="">However, <span class="ref">RFC 4622</span> intentionally leaves the potential values of the query component open-ended, does not provide a list of common "actions" for queries (e.g., send message or join chatroom), and does not specify recommended "key-value" pairs to be used in the context of such actions. Therefore, this document defines a registry of such actions and key-value pairs (to be maintained by the <span class="ref" style=""><a href="http://www.xmpp.org/registrar/">XMPP Registrar</a></span>  [<a href="#nt-id2251402">4</a>]) and specifies a set of initial values for that registry.</p>
+  <p class="" style="">This document is organized as follows:</p>
+  <ul class="" style="">
+    <li class="" style="">The registry is defined in the <a href="#registrar-querytype">XMPP IRI/URI Querytype Registry</a> section.</li>
+    <li class="" style="">An initial set of actions and key-value pairs is described in the <a href="#actions">Query Actions</a> section.</li>
+    <li class="" style="">A corresponding initial submission to the registry is specified in the <a href="#registrar-querytype-init">Initial Registration</a> section.</li>
+    <li class="" style="">The process for submitting additional values to the registry is specified in the <a href="#registrar-querytype-process">Registration Process</a> section.</li>
+  </ul>
+  <p class="" style="">Note: The format of the XMPP URI scheme, including the format of the query component, is fully specified  and formally defined in <span class="ref">RFC 4622</span>; this document does not modify the xmpp URI scheme in any way and assumes that the reader is familiar with all aspects of <span class="ref">RFC 4622</span>.</p>
+<h2>2.
+       <a name="terms" id="terms">Terminology</a></h2>
+  <p class="" style="">This document inherits terminology from <span class="ref" style=""><a href="http://tools.ietf.org/html/rfc3986">RFC 3986</a></span>  [<a href="#nt-id2251530">5</a>], <span class="ref" style=""><a href="http://tools.ietf.org/html/rfc3987">RFC 3987</a></span>  [<a href="#nt-id2251516">6</a>], and <span class="ref">RFC 4622</span>.</p>
+<h2>3.
+       <a name="actions" id="actions">Query Actions</a></h2>
+  <p class="" style="">The range of actions that might be triggered by interaction with an XMPP entity by means of an XMPP IRI/URI is potentially as wide as the range of extensions to XMPP. This document does not seek to exhaustively define all such potential actions. However, the following actions might be of general interest:</p>
+  <ol start="" class="" style=""> 
+    <li class="" style="">Sending a message.</li>
+    <li class="" style="">Adding or removing a roster item.</li>
+    <li class="" style="">Subscribing to or unsubscribing from an entity's presence information.</li>
+    <li class="" style="">Determining <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0030.html">Service Discovery</a></span>  [<a href="#nt-id2261097">7</a>] information about an entity.</li>
+    <li class="" style="">Joining a groupchat room (see <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0045.html">Multi-User Chat</a></span>  [<a href="#nt-id2261131">8</a>]).</li>
+    <li class="" style="">Requesting initiation of <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0050.html">Ad-Hoc Commands</a></span>  [<a href="#nt-id2261165">9</a>] associated with an entity.</li>
+    <li class="" style="">Retrieving the <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0054.html">vcard-temp</a></span>  [<a href="#nt-id2261191">10</a>] data associated with an entity.</li>
+    <li class="" style="">Subscribing to or unsubscribing from a <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0060.html">Publish-Subscribe</a></span>  [<a href="#nt-id2261208">11</a>] node.</li>
+    <li class="" style="">Registering with another entity via <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0077.html">In-Band Registration</a></span>  [<a href="#nt-id2261257">12</a>].</li>
+    <li class="" style="">Initiating a file transfer with another entity (see <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0096.html">File Transfer</a></span>  [<a href="#nt-id2261290">13</a>]).</li>
+  </ol> 
+  <p class="" style="">For each such action, the XMPP Registrar maintains a RECOMMENDED "querytype" (this can be thought of as an action name or "verb"; see <span class="ref">RFC 4622</span> for syntax and semantics) as well as an OPTIONAL list of keys to be used in key-value pairs if appropriate.</p>
+  <p class="" style="">The querytypes and key-value pairs related to <span class="ref">RFC 3920</span> and <span class="ref">RFC 3921</span> are defined herein; the querytypes and key-value pairs related to protocols defined in the XMPP Standards Foundation's XEP series are defined in the relevant XMPP Extension Protocol specifications.</p>
+  <div class="indent"><h3>3.1 <a name="actions-message" id="actions-message">Message Action</a></h3>
+    <p class="" style="">It may desirable for an XMPP IRI/URI to trigger a specialized interface for sending an XMPP message stanza. The RECOMMENDED querytype for this action is "message". If no key-value pair is provided, interacting with an XMPP IRI/URI that contains a querytype of "message" SHOULD trigger an interface that enables the user to input the text of an XMPP message and other relevant parameters (e.g., a message subject or <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0071.html">XHTML-IM</a></span>  [<a href="#nt-id2261362">14</a>] markup).</p>
+    <p class="caption"><a name="example-1" id="example-1"></a>Example 1. Basic Message Action</p><div class="indent"><pre>
+xmpp:romeo@montague.net?message
+    </pre></div>
+    <p class="" style="">A query component whose querytype is "message" MAY specify various key-value pairs. The following three keys are associated with the child elements of the &lt;message/&gt; stanza specified in the XML schema for the 'jabber:client' namespace as defined in <span class="ref" style=""><a href="http://tools.ietf.org/html/rfc3921">XMPP IM</a></span>  [<a href="#nt-id2261410">15</a>]:</p>
+    <ol start="" class="" style="">
+      <li class="" style="">subject</li>
+      <li class="" style="">body</li>
+      <li class="" style="">thread</li>
+    </ol>
+    <p class="" style="">In addition, the following three keys are associated with the attributes of the &lt;message/&gt; stanza specified in the XML schema for the 'jabber:client' namespace (the 'to' attribute is unnecessary, since it is provided by the XMPP address included in the IRI/URI):</p>
+    <ol start="" class="" style="">
+      <li class="" style="">from</li>
+      <li class="" style="">id</li>
+      <li class="" style="">type</li>
+    </ol>
+    <p class="" style="">Other keys MAY be registered with the XMPP Registrar but are not specified herein.</p>
+    <p class="caption"><a name="example-2" id="example-2"></a>Example 2. Message Action with Keys: IRI/URI</p><div class="indent"><pre>
+xmpp:romeo@montague.net?message;subject=Test%20Message;body=Here%27s%20a%20test%20message
+    </pre></div>
+    <p class="caption"><a name="example-3" id="example-3"></a>Example 3. Message Action with Keys: Resulting Stanza</p><div class="indent"><pre>
+&lt;message to='romeo@montague.net'&gt;
+  &lt;subject&gt;Test Message&lt;/subject&gt;
+  &lt;body&gt;Here&amp;apos;s a test message.&lt;/body&gt;
+&lt;/message&gt;
+    </pre></div>
+  </div>
+  <div class="indent"><h3>3.2 <a name="actions-roster" id="actions-roster">Roster Management Actions</a></h3>
+    <p class="" style="">The 'jabber:iq:roster' namespace provides a mechanism for managing an XMPP roster (also called a "contact list"). This namespace is defined in <span class="ref">RFC 3921</span>. The following actions are defined.</p>
+    <div class="indent"><h3>3.2.1 <a name="actions-roster-add" id="actions-roster-add">Add Roster Item</a></h3>
+      <p class="" style="">The registered querytype for adding items to the roster or editing items in the roster is "roster" (effectively there is no difference between adding and editing). An XMPP IRI/URI containing a "roster" querytype MAY also include at most one "name" key whose value maps to the 'name' attribute of the &lt;item/&gt; element within the 'jabber:iq:roster' namespace, and MAY contain one "group" key whose value maps to the character data of the &lt;group/&gt; child element of &lt;item/&gt;.</p>
+      <p class="caption"><a name="example-4" id="example-4"></a>Example 4. Roster Action: IRI/URI</p><div class="indent"><pre>
+xmpp:romeo@montague.net?roster
+      </pre></div>
+      <p class="caption"><a name="example-5" id="example-5"></a>Example 5. Roster Action: Resulting Stanza</p><div class="indent"><pre>
+&lt;iq type='set'&gt;
+  &lt;query xmlns='jabber:iq:roster'&gt;
+    &lt;item jid='romeo@montague.net'/&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+      </pre></div>
+      <p class="caption"><a name="example-6" id="example-6"></a>Example 6. Roster Action With Name: IRI/URI</p><div class="indent"><pre>
+xmpp:romeo@montague.net?roster;name=Romeo%20Montague
+      </pre></div>
+      <p class="caption"><a name="example-7" id="example-7"></a>Example 7. Roster Action With Name: Resulting Stanza</p><div class="indent"><pre>
+&lt;iq type='set'&gt;
+  &lt;query xmlns='jabber:iq:roster'&gt;
+    &lt;item jid='romeo@montague.net' name='Romeo Montague'/&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+      </pre></div>
+      <p class="caption"><a name="example-8" id="example-8"></a>Example 8. Roster Action With Name and Group: IRI/URI</p><div class="indent"><pre>
+xmpp:romeo@montague.net?roster;name=Romeo%20Montague;group=Friends
+      </pre></div>
+      <p class="caption"><a name="example-9" id="example-9"></a>Example 9. Roster Action With Name and Group: Resulting Stanza</p><div class="indent"><pre>
+&lt;iq type='set'&gt;
+  &lt;query xmlns='jabber:iq:roster'&gt;
+    &lt;item jid='romeo@montague.net' name='Romeo Montague'&gt;
+      &lt;group&gt;Friends&lt;/group&gt;
+    &lt;/item&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+      </pre></div>
+      <p class="" style="">Note: Methods (if any) for including more than one group are yet to be determined.</p>
+    </div>
+    <div class="indent"><h3>3.2.2 <a name="actions-roster-remove" id="actions-roster-remove">Remove Roster Item</a></h3>
+      <p class="" style="">The 'jabber:iq:roster' namespace includes a mechanism for removing an XMPP roster item. The registered querytype for removing an item from the roster is "remove".</p>
+      <p class="caption"><a name="example-10" id="example-10"></a>Example 10. Roster Removal Action: IRI/URI</p><div class="indent"><pre>
+xmpp:romeo@montague.net?remove
+      </pre></div>
+      <p class="caption"><a name="example-11" id="example-11"></a>Example 11. Roster Removal Action: Resulting Stanza</p><div class="indent"><pre>
+&lt;iq type='set'&gt;
+  &lt;query xmlns='jabber:iq:roster'&gt;
+    &lt;item jid='romeo@montague.net' subscription='remove'/&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+      </pre></div>
+    </div>
+  </div>
+  <div class="indent"><h3>3.3 <a name="actions-sub" id="actions-sub">Subscription Management Actions</a></h3>
+    <p class="" style="">Closely coupled with roster management is presence subscription management. In XMPP, subscription management is handled via special values of the &lt;presence/&gt; stanza, as described in <span class="ref">RFC 3921</span>. The following actions are defined</p>
+    <div class="indent"><h3>3.3.1 <a name="actions-sub-subscribe" id="actions-sub-subscribe">Subscribe</a></h3>
+      <p class="" style="">When an entity subscribes to another entity's presence by means of an XMPP IRI/URI, the invoked XMPP application SHOULD first send a roster add stanza as shown below (this is consistent with the recommendations in <span class="ref">RFC 3921</span>).</p>
+      <p class="caption"><a name="example-12" id="example-12"></a>Example 12. Subscribe Action: IRI/URI</p><div class="indent"><pre>
+xmpp:romeo@montague.net?subscribe
+      </pre></div>
+      <p class="caption"><a name="example-13" id="example-13"></a>Example 13. Subscribe Action: Resulting Stanzas</p><div class="indent"><pre>
+&lt;iq type='set'&gt;
+  &lt;query xmlns='jabber:iq:roster'&gt;
+    &lt;item jid='romeo@montague.net'/&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+
+&lt;presence to='romeo@montague.net' type='subscribe'/&gt;
+      </pre></div>
+    </div>
+    <div class="indent"><h3>3.3.2 <a name="actions-sub-unsubscribe" id="actions-sub-unsubscribe">Unsubscribe</a></h3>
+      <p class="" style="">XMPP includes a mechanism for unsubscribing from an entity. The registered querytype for doing so is "unsubscribe".</p>
+      <p class="caption"><a name="example-14" id="example-14"></a>Example 14. Unsubscribe Action: IRI/URI</p><div class="indent"><pre>
+xmpp:romeo@montague.net?unsubscribe
+      </pre></div>
+      <p class="caption"><a name="example-15" id="example-15"></a>Example 15. Unsubscribe Action: Resulting Stanza</p><div class="indent"><pre>
+&lt;presence to='romeo@montague.net' type='unsubscribe'/&gt;
+      </pre></div>
+    </div>
+  </div>
+<h2>4.
+       <a name="i18n" id="i18n">Internationalization Considerations</a></h2>
+  <p class="" style="">Internationalization considerations for XMPP IRIs/URIs are specified in <span class="ref">RFC 4622</span>; the reader is referred to that document for a complete discussion of the relevant issues.</p>
+  <p class="" style="">Localization of application-specific data presented to a human user (e.g., as encapsulated in key-value pairs) is the responsibility of the "using protocol".</p>
+<h2>5.
+       <a name="security" id="security">Security Considerations</a></h2>
+  <p class="" style="">Security considerations for XMPP IRIs/URIs are specified in <span class="ref">RFC 4622</span>.</p>
+  <p class="" style="">Completion of some of the actions defined herein will cause changes to an entity's account, subscriptions to information, registration with services, communication with other entities, completion of ad-hoc commands, and the like. Naturally, such changes, information, services, and communications are potentially undesirable (e.g., joining a chatroom whose discussion topic is not of interest to, or even patently offensive to, the joining user). The invoked application SHOULD appropriately warn a human user regarding the potential consequences of the action about to be completed.</p>
+<h2>6.
+       <a name="iana" id="iana">IANA Considerations</a></h2>
+  <p class="" style="">This document requires no interaction with the <span class="ref" style=""><a href="http://www.iana.org/">Internet Assigned Numbers Authority (IANA)</a></span>  [<a href="#nt-id2261844">16</a>]. If in the future the IANA should wish to maintain a registry of XMPP URI/IRI query components, the XMPP Registrar will cooperate with efforts to migrate the registry from the XMPP Registrar to the IANA.</p>
+<h2>7.
+       <a name="registrar" id="registrar">XMPP Registrar Considerations</a></h2>
+  <div class="indent"><h3>7.1 <a name="registrar-querytype" id="registrar-querytype">XMPP IRI/URI Querytype Registry</a></h3>
+    <p class="" style="">The XMPP Registrar maintains a registry of querytype values (see &lt;<a href="http://www.xmpp.org/registrar/querytypes.html">http://www.xmpp.org/registrar/querytypes.html</a>&gt;).</p>
+    <div class="indent"><h3>7.1.1 <a name="registrar-querytype-process" id="registrar-querytype-process">Registration Process</a></h3>
+      <p class="" style="">In order to submit new values to this registry, the registrant must define an XML fragment of the following form and either include it in the relevant XMPP Extension Protocol or send it to the email address &lt;registrar@xmpp.org&gt;:</p>
+      <p class="caption"></p><div class="indent"><pre>
+&lt;querytype&gt;
+  &lt;name&gt;the name of the querytype (e.g., "pubsub")&lt;/name&gt;
+  &lt;proto&gt;
+    the namespace of associated protocol output 
+    (e.g., "http://jabber.org/protocol/pubsub")
+  &lt;/proto&gt;
+  &lt;desc&gt;a natural-language description of the querytype&lt;/desc&gt;
+  &lt;doc&gt;the document in which the querytype is specified&lt;/doc&gt;
+  &lt;keys&gt;
+    &lt;key&gt;
+      &lt;name&gt;the name of the key (e.g., "action")&lt;/name&gt;
+      &lt;desc&gt;a natural-language description of the key&lt;/desc&gt;
+      &lt;values&gt;
+        &lt;value&gt;
+	  &lt;name&gt;the name of a value (e.g., "subscribe")&lt;/name&gt;
+          &lt;desc&gt;a natural-language description of the value&lt;/desc&gt;
+        &lt;/value&gt;
+      &lt;/values&gt;
+    &lt;/key&gt;
+  &lt;/keys&gt;
+&lt;/querytype&gt;
+      </pre></div>
+      <p class="" style="">Note: Within the &lt;querytype/&gt; element, the &lt;keys/&gt; child element is OPTIONAL; within any given &lt;key/&gt; element, the &lt;values/&gt; child element is also OPTIONAL.</p>
+      <p class="" style="">The registrant may register more than one querytype at a time, each contained in a separate &lt;querytype/&gt; element.</p>
+    </div>
+    <div class="indent"><h3>7.1.2 <a name="registrar-querytype-reg" id="registrar-querytype-reg">Registration</a></h3>
+      <p class="" style="">The following submission registers parameters related to the XMPP RFCs. For submissions related to XMPP extensions, refer to the relevant XMPP Extension Protocol specifications.</p>
+      <p class="caption"></p><div class="indent"><pre>
+
+&lt;querytype&gt;
+  &lt;name&gt;message&lt;/name&gt;
+  &lt;proto&gt;jabber:client&lt;/proto&gt;
+  &lt;desc&gt;enables sending of an XMPP message stanza&lt;/desc&gt;
+  &lt;doc&gt;XEP-0147&lt;/doc&gt;
+  &lt;keys&gt;
+    &lt;key&gt;
+      &lt;name&gt;subject&lt;/name&gt;
+      &lt;desc&gt;a subject for the message per the "jabber:client" schema&lt;/desc&gt;
+    &lt;/key&gt;
+    &lt;key&gt;
+      &lt;name&gt;body&lt;/name&gt;
+      &lt;desc&gt;a body for the message per the "jabber:client" schema&lt;/desc&gt;
+    &lt;/key&gt;
+    &lt;key&gt;
+      &lt;name&gt;thread&lt;/name&gt;
+      &lt;desc&gt;a Thread ID for the message per the "jabber:client" schema&lt;/desc&gt;
+    &lt;/key&gt;
+    &lt;key&gt;
+      &lt;name&gt;from&lt;/name&gt;
+      &lt;desc&gt;a from address for the message per the "jabber:client" schema&lt;/desc&gt;
+    &lt;/key&gt;
+    &lt;key&gt;
+      &lt;name&gt;id&lt;/name&gt;
+      &lt;desc&gt;an ID for the message per the "jabber:client" schema&lt;/desc&gt;
+    &lt;/key&gt;
+    &lt;key&gt;
+      &lt;name&gt;type&lt;/name&gt;
+      &lt;desc&gt;the message type per the "jabber:client" schema&lt;/desc&gt;
+      &lt;values&gt;
+        &lt;value&gt;
+	  &lt;name&gt;chat&lt;/name&gt;
+          &lt;desc&gt;a message of type "chat"&lt;/desc&gt;
+        &lt;/value&gt;
+        &lt;value&gt;
+	  &lt;name&gt;groupchat&lt;/name&gt;
+          &lt;desc&gt;a message of type "groupchat"&lt;/desc&gt;
+        &lt;/value&gt;
+        &lt;value&gt;
+	  &lt;name&gt;headline&lt;/name&gt;
+          &lt;desc&gt;a message of type "headline"&lt;/desc&gt;
+        &lt;/value&gt;
+        &lt;value&gt;
+	  &lt;name&gt;normal&lt;/name&gt;
+          &lt;desc&gt;a message of type "normal"&lt;/desc&gt;
+        &lt;/value&gt;
+      &lt;/values&gt;
+    &lt;/key&gt;
+  &lt;/keys&gt;
+&lt;/querytype&gt;
+
+&lt;querytype&gt;
+  &lt;name&gt;remove&lt;/name&gt;
+  &lt;proto&gt;jabber:iq:roster&lt;/proto&gt;
+  &lt;desc&gt;enables removing a roster item&lt;/desc&gt;
+  &lt;doc&gt;XEP-0147&lt;/doc&gt;
+&lt;/querytype&gt;
+
+&lt;querytype&gt;
+  &lt;name&gt;roster&lt;/name&gt;
+  &lt;proto&gt;jabber:iq:roster&lt;/proto&gt;
+  &lt;desc&gt;enables adding or editing a roster item&lt;/desc&gt;
+  &lt;doc&gt;XEP-0147&lt;/doc&gt;
+  &lt;keys&gt;
+    &lt;key&gt;
+      &lt;name&gt;group&lt;/name&gt;
+      &lt;desc&gt;the user-assigned group for the roster item&lt;/desc&gt;
+    &lt;/key&gt;
+    &lt;key&gt;
+      &lt;name&gt;name&lt;/name&gt;
+      &lt;desc&gt;the user-assigned name for the roster item&lt;/desc&gt;
+    &lt;/key&gt;
+  &lt;/keys&gt;
+&lt;/querytype&gt;
+
+&lt;querytype&gt;
+  &lt;name&gt;subscribe&lt;/name&gt;
+  &lt;proto&gt;jabber:client&lt;/proto&gt;
+  &lt;desc&gt;enables sending a presence subscription request&lt;/desc&gt;
+  &lt;doc&gt;XEP-0147&lt;/doc&gt;
+&lt;/querytype&gt;
+
+&lt;querytype&gt;
+  &lt;name&gt;unsubscribe&lt;/name&gt;
+  &lt;proto&gt;jabber:client&lt;/proto&gt;
+  &lt;desc&gt;enables unsubscribing from an entity's presence&lt;/desc&gt;
+  &lt;doc&gt;XEP-0147&lt;/doc&gt;
+&lt;/querytype&gt;
+
+      </pre></div>
+    </div>
+  </div>
+<hr /><h2><a name="notes" id="notes"></a>Notes</h2><div class="indent"><p><a name="nt-id2251315" id="nt-id2251315">1</a>. RFC 4622: Internationalized Resource Identifiers (IRIs) and Uniform Resource Identifiers (URIs) for the Extensible Messaging and Presence Protocol (XMPP) &lt;<a href="http://tools.ietf.org/html/rfc4622">http://tools.ietf.org/html/rfc4622</a>&gt;.</p><p><a name="nt-id2252756" id="nt-id2252756">2</a>. On the difference between IRIs and URIs, see <span class="ref">RFC 3987</span>.</p><p><a name="nt-id2251362" id="nt-id2251362">3</a>. RFC 3920: Extensible Messaging and Presence Protocol (XMPP): Core &lt;<a href="http://tools.ietf.org/html/rfc3920">http://tools.ietf.org/html/rfc3920</a>&gt;.</p><p><a name="nt-id2251402" id="nt-id2251402">4</a>. The XMPP Registrar maintains a list of reserved protocol namespaces as well as registries of parameters used in the context of XMPP extension protocols approved by the XMPP Standards Foundation. For further information, see &lt;<a href="http://www.xmpp.org/registrar/">http://www.xmpp.org/registrar/</a>&gt;.</p><p><a name="nt-id2251530" id="nt-id2251530">5</a>. RFC 3986: Uniform Resource Identifiers (URI): Generic Syntax &lt;<a href="http://tools.ietf.org/html/rfc3986">http://tools.ietf.org/html/rfc3986</a>&gt;.</p><p><a name="nt-id2251516" id="nt-id2251516">6</a>. RFC 3987: Internationalized Resource Identifiers (IRIs) &lt;<a href="http://tools.ietf.org/html/rfc3987">http://tools.ietf.org/html/rfc3987</a>&gt;.</p><p><a name="nt-id2261097" id="nt-id2261097">7</a>. XEP-0030: Service Discovery &lt;<a href="http://www.xmpp.org/extensions/xep-0030.html">http://www.xmpp.org/extensions/xep-0030.html</a>&gt;.</p><p><a name="nt-id2261131" id="nt-id2261131">8</a>. XEP-0045: Multi-User Chat &lt;<a href="http://www.xmpp.org/extensions/xep-0045.html">http://www.xmpp.org/extensions/xep-0045.html</a>&gt;.</p><p><a name="nt-id2261165" id="nt-id2261165">9</a>. XEP-0050: Ad-Hoc Commands &lt;<a href="http://www.xmpp.org/extensions/xep-0050.html">http://www.xmpp.org/extensions/xep-0050.html</a>&gt;.</p><p><a name="nt-id2261191" id="nt-id2261191">10</a>. XEP-0054: vcard-temp &lt;<a href="http://www.xmpp.org/extensions/xep-0054.html">http://www.xmpp.org/extensions/xep-0054.html</a>&gt;.</p><p><a name="nt-id2261208" id="nt-id2261208">11</a>. XEP-0060: Publish-Subscribe &lt;<a href="http://www.xmpp.org/extensions/xep-0060.html">http://www.xmpp.org/extensions/xep-0060.html</a>&gt;.</p><p><a name="nt-id2261257" id="nt-id2261257">12</a>. XEP-0077: In-Band Registration &lt;<a href="http://www.xmpp.org/extensions/xep-0077.html">http://www.xmpp.org/extensions/xep-0077.html</a>&gt;.</p><p><a name="nt-id2261290" id="nt-id2261290">13</a>. XEP-0096: File Transfer &lt;<a href="http://www.xmpp.org/extensions/xep-0096.html">http://www.xmpp.org/extensions/xep-0096.html</a>&gt;.</p><p><a name="nt-id2261362" id="nt-id2261362">14</a>. XEP-0071: XHTML-IM &lt;<a href="http://www.xmpp.org/extensions/xep-0071.html">http://www.xmpp.org/extensions/xep-0071.html</a>&gt;.</p><p><a name="nt-id2261410" id="nt-id2261410">15</a>. RFC 3921: Extensible Messaging and Presence Protocol (XMPP): Instant Messaging and Presence &lt;<a href="http://tools.ietf.org/html/rfc3921">http://tools.ietf.org/html/rfc3921</a>&gt;.</p><p><a name="nt-id2261844" id="nt-id2261844">16</a>. The Internet Assigned Numbers Authority (IANA) is the central coordinator for the assignment of unique parameter values for Internet protocols, such as port numbers and URI schemes. For further information, see &lt;<a href="http://www.iana.org/">http://www.iana.org/</a>&gt;.</p></div><hr /><h2><a name="revs" id="revs"></a>Revision History</h2><div class="indent"><h4>Version 1.2 (2006-09-13)</h4><div class="indent"><p class="" style="">Removed probe action.</p> (psa)
+    </div><h4>Version 1.1 (2006-06-19)</h4><div class="indent"><p class="" style="">Added actions for roster removal, presence unsubscription, and cancellation of registration; moved querytypes related to XMPP extensions from this document to the relevant XMPP Extension Protocol specifications.</p> (psa)
+    </div><h4>Version 1.0 (2006-03-23)</h4><div class="indent"><p class="" style="">Per a vote of the Jabber Council, advanced to Active.</p> (psa)
+    </div><h4>Version 0.7 (2006-03-16)</h4><div class="indent"><p class="" style="">Added actions for ad-hoc commands and vCard retrieval; clarified some explanatory text.</p> (psa)
+    </div><h4>Version 0.6 (2005-12-01)</h4><div class="indent"><p class="" style="">Updated to reflect RFC 4622-03; modified file transfer query operations to handle both send and receive use cases.</p> (psa)
+    </div><h4>Version 0.5 (2005-09-05)</h4><div class="indent"><p class="" style="">Updated to reflect RFC 4622-01; added file querytype for file transfer.</p> (psa)
+    </div><h4>Version 0.4 (2005-06-06)</h4><div class="indent"><p class="" style="">Updated to reflect RFC 4622-00.</p> (psa)
+    </div><h4>Version 0.3 (2005-02-28)</h4><div class="indent"><p class="" style="">Updated to reflect draft-saintandre-xmpp-uri-08 and subsequent XMPP WG discussion; removed use cases for editing roster items, removing roster items, leaving chatrooms, unsubscribing, and unregistering (these make more sense from within a dedicated client); added use case for simultaneously joining a room and inviting other participants; further specified security considerations.</p> (psa)
+    </div><h4>Version 0.2 (2004-11-17)</h4><div class="indent"><p class="" style="">Updated to reflect draft-saintandre-xmpp-uri-07; specified Service Discovery usage.</p> (psa)
+    </div><h4>Version 0.1 (2004-11-12)</h4><div class="indent"><p class="" style="">Initial version.</p> (psa)
+    </div></div><hr /><p>END</p></body></html>

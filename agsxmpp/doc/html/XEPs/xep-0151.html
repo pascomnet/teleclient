@@ -1,0 +1,775 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>XEP-0151: Virtual Presence</title><link rel="stylesheet" type="text/css" href="/xmpp.css" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" /><meta name="DC.Title" content="Virtual Presence" /><meta name="DC.Creator" content="Heiner Wolf" /><meta name="DC.Description" content="This document proposes extensions to the Jabber groupchat protocol for virtual presence on Web pages." /><meta name="DC.Publisher" content="XMPP Standards Foundation" /><meta name="DC.Contributor" content="XMPP Extensions Editor" /><meta name="DC.Date" content="2005-07-05" /><meta name="DC.Type" content="XMPP Extension Protocol" /><meta name="DC.Format" content="XHTML" /><meta name="DC.Identifier" content="XEP-0151" /><meta name="DC.Language" content="en" /><meta name="DC.Rights" content="This XMPP Extension Protocol is copyright (c) 1999 - 2008 by the XMPP Standards Foundation (XSF)." /></head><body><h1>XEP-0151: Virtual Presence</h1><p>This document proposes extensions to the Jabber groupchat protocol for virtual presence on Web pages.</p><hr /><p style="color:red">WARNING: Consideration of this document has been Deferred by the XMPP Standards Foundation. Implementation of the protocol described herein is not recommended.</p><hr /><h2>Document Information</h2><p class="indent">
+            Series: <a href="http://www.xmpp.org/extensions/">XEP</a><br />
+            Number: 0151<br />
+            Publisher: <a href="/xsf/">XMPP Standards Foundation</a><br />
+            Status: 
+            <a href="http://www.xmpp.org/extensions/xep-0001.html#states-Deferred">Deferred</a><br />
+            Type:
+            <a href="http://www.xmpp.org/extensions/xep-0001.html#types-Standards Track">Standards Track</a><br />
+            Version: 0.2<br />
+            Last Updated: 2005-07-05<br />
+                Approving Body: <a href="http://www.xmpp.org/council/">XMPP Council</a><br />Dependencies: XMPP Core, XEP-0045<br />
+                Supersedes: None<br />
+                Superseded By: None<br />
+            Short Name: Not yet assigned<br />
+              Wiki Page: &lt;<a href="http://wiki.jabber.org/index.php/Virtual Presence (XEP-0151)">http://wiki.jabber.org/index.php/Virtual Presence (XEP-0151)</a>&gt;
+            </p><hr /><h2>Author Information</h2><div class="indent"><h3>Heiner Wolf</h3><p class="indent">
+        Email:
+        <a href="mailto:wolf@bluehands.de">wolf@bluehands.de</a><br />
+        JabberID: 
+        <a href="xmpp:wolfspelz@jabber.bluehands.de">wolfspelz@jabber.bluehands.de</a><br /></p></div><hr /><h2>Legal Notices</h2><div class="indent"><h3>Copyright</h3>This XMPP Extension Protocol is copyright (c) 1999 - 2008 by the XMPP Standards Foundation (XSF).<h3>Permissions</h3>Permission is hereby granted, free of charge, to any person obtaining a copy of this specification (the "Specification"), to make use of the Specification without restriction, including without limitation the rights to implement the Specification in a software program, deploy the Specification in a network service, and copy, modify, merge, publish, translate, distribute, sublicense, or sell copies of the Specification, and to permit persons to whom the Specification is furnished to do so, subject to the condition that the foregoing copyright notice and this permission notice shall be included in all copies or substantial portions of the Specification. Unless separate permission is granted, modified works that are redistributed shall not contain misleading information regarding the authors, title, number, or publisher of the Specification, and shall not claim endorsement of the modified works by the authors, any organization or project to which the authors belong, or the XMPP Standards Foundation.<h3>Disclaimer of Warranty</h3><span style="font-weight: bold">## NOTE WELL: This Specification is provided on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, express or implied, including, without limitation, any warranties or conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE. In no event shall the XMPP Standards Foundation or the authors of this Specification be liable for any claim, damages, or other liability, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the Specification or the implementation, deployment, or other use of the Specification. ##</span><h3>Limitation of Liability</h3>In no event and under no legal theory, whether in tort (including negligence), contract, or otherwise, unless required by applicable law (such as deliberate and grossly negligent acts) or agreed to in writing, shall the XMPP Standards Foundation or any author of this Specification be liable for damages, including any direct, indirect, special, incidental, or consequential damages of any character arising out of the use or inability to use the Specification (including but not limited to damages for loss of goodwill, work stoppage, computer failure or malfunction, or any and all other commercial damages or losses), even if the XMPP Standards Foundation or such author has been advised of the possibility of such damages.<h3>IPR Conformance</h3>This XMPP Extension Protocol has been contributed in full conformance with the XSF's Intellectual Property Rights Policy (a copy of which may be found at &lt;<a href="http://www.xmpp.org/extensions/ipr-policy.shtml">http://www.xmpp.org/extensions/ipr-policy.shtml</a>&gt; or obtained by writing to XSF, P.O. Box 1641, Denver, CO 80201 USA).</div><hr /><h2>Discussion Venue</h2><p class="indent">The preferred venue for discussion of this document is the Standards discussion list: &lt;<a href="http://mail.jabber.org/mailman/listinfo/standards">http://mail.jabber.org/mailman/listinfo/standards</a>&gt;.</p><p class="indent">Errata may be sent to &lt;<a href="mailto:editor@xmpp.org">editor@xmpp.org</a>&gt;.</p><h2>Relation to XMPP</h2><p class="indent">The Extensible Messaging and Presence Protocol (XMPP) is defined in the XMPP Core (RFC 3920) and XMPP IM (RFC 3921) specifications contributed by the XMPP Standards Foundation to the Internet Standards Process, which is managed by the Internet Engineering Task Force in accordance with RFC 2026. Any protocol defined in this document has been developed outside the Internet Standards Process and is to be understood as an extension to XMPP rather than as an evolution, development, or modification of XMPP itself.</p><h2>Conformance Terms</h2><p class="indent">The following keywords as used in this document are to be interpreted as described in <a href="http://www.ietf.org/rfc/rfc2119.txt">RFC 2119</a>: "MUST", "SHALL", "REQUIRED"; "MUST NOT", "SHALL NOT"; "SHOULD", "RECOMMENDED"; "SHOULD NOT", "NOT RECOMMENDED"; "MAY", "OPTIONAL".</p><hr /><h2>Table of Contents</h2><div class="indent"><p><br />1.  <a href="#sect-id2252730">Introduction</a><br />2.  <a href="#sect-id2251323">Requirements</a><br />   
+      2.1.  <a href="#sect-id2251329">Interaction on Virtual Locations</a><br />   
+      2.2.  <a href="#sect-id2251468">Discovering Virtual Locations</a><br />3.  <a href="#sect-id2261312">Example of a Virtual Meeting</a><br />   
+      3.1.  <a href="#sect-id2261341">Meeting on Virtual Locations</a><br />   
+      3.2.  <a href="#sect-id2261493">Getting more information</a><br />   
+      3.3.  <a href="#sect-id2261619">Avatars</a><br />   
+      3.4.  <a href="#sect-id2251166">Other Ways to get the Avatar</a><br />   
+      3.5.  <a href="#sect-id2262186">Avatar Movement</a><br />   
+      3.6.  <a href="#sect-id2262362">Bubble Chat</a><br />   
+      3.7.  <a href="#sect-id2262473">Video Icon</a><br />4.  <a href="#sect-id2262598">Finding Virtual Locations</a><br />   
+      4.1.  <a href="#sect-id2262631">Mapping Rules</a><br />   
+      4.2.  <a href="#sect-id2262759">Config Files</a><br />   
+      4.3.  <a href="#sect-id2262806">Extensions to Mapping Rules</a><br />   
+      4.4.  <a href="#sect-id2262954">Web Server based Configuration</a><br />   
+      4.5.  <a href="#sect-id2263171">The Mapping Process</a><br />      
+      4.5.1.  <a href="#sect-id2263228">Find the Rule</a><br />      
+      4.5.2.  <a href="#sect-id2263426">Apply the Rule</a><br />5.  <a href="#sect-id2263536">Error Codes</a><br />6.  <a href="#sect-id2263551">Security Considerations</a><br />7.  <a href="#sect-id2263582">XMPP Registrar Considerations</a><br />8.  <a href="#sect-id2263695">Formal Definition</a><br />   
+      8.1.  <a href="#sect-id2263702">Schema</a><br />9.  <a href="#sect-id2263721">Conclusion</a><br /><a href="#notes">Notes</a><br /><a href="#revs">Revision History</a></p></div><hr /><h2>1.
+       <a name="sect-id2252730" id="sect-id2252730">Introduction</a></h2>
+  <p class="" style="">Virtual presence on Web pages (also sometimes known as co-browsing, while co-browsing can also mean something different) makes people aware of each other, who are at the same Web location at the same time. The basic purpose of a virtual presence system is to show names, icons, and/or avatars of people who are on a page or a set of pages and to let them communicate. This document proposes extensions to the Jabber protocol, which enable neat virtual presence on Web pages. The extensions are implemented as namespaces for the protocol elements &lt;iq/&gt;, &lt;presence/&gt;, &lt;message/&gt;, and for server storage. </p>
+  
+  <p class="" style="">This document also covers the mapping of URLs to Jabber chat rooms. It describes step by step how clients derive virtual locations from URLs of web pages. The process includes queries to the web server, queries to default configuration sources, delegation between configuration sets, ways for administrators of websites to opt out, and methods to shape the virtual space actively by clustering together or splitting off URL groups.</p>  
+  
+  <p class="" style="">This document describes an implementation that proved to be useful over one year. We propose the extensions, but we are open to comments and other proposals, if readers think that different approaches would better fit into the Jabber architecture. This also applies to namespaces, especially since the extensions where designed while the Jabber community was moving to URL-style namespaces. So did this implementation.</p>
+<h2>2.
+       <a name="sect-id2251323" id="sect-id2251323">Requirements</a></h2>
+
+  <div class="indent"><h3>2.1 <a name="sect-id2251329" id="sect-id2251329">Interaction on Virtual Locations</a></h3>
+
+  <p class="" style="">Meeting on virtual locations is very similar to meeting peers in a public chat room. But web pages can be regarded as 2 dimensional. They very often cover the entire screen. They use graphics elements for their content. Plainly speaking: representing users as figures or other images fits well to web pages. Once they are shown as individual figures, a line based chat and a chat window are not required any more (though a chat window can still be used). The figures can move around and talk in chat bubble style. Chat bubbles in turn enable incremental chat.</p>
+
+  <p class="" style="">This document describes protocol elements for 
+    <ul class="" style="">
+      <li class="" style="">the visualization of users on web pages (animated avatars) and</li>
+      <li class="" style="">communication beyond line based group chat (incremental or instant bubble chat)</li>
+    </ul>
+  </p>
+
+  <p class="" style="">While users are browsing the web, they enter and leave many rooms. They meet many people and some of them multiple times. Minimum overall traffic and minimum traffic on the user connection are primary design goals. The user connection is limited by typical karma settings of jabber servers. Logging in to virtual locations (rooms) must be quick in terms of round trips and cheap in terms of traffic. Once logged in to a room, the traffic on the user connection should be independent of the number of peers already present. </p>
+
+  <p class="" style="">The extensions have been designed to be:
+    <ul class="" style="">
+      <li class="" style="">compatible to the existing Jabber infrastructure and protocols,</li>
+      <li class="" style="">lightweight with respect to the number of new elements,</li>
+      <li class="" style="">lightweight with respect to the traffic generated.</li>
+    </ul>
+  </p>
+
+  <p class="" style="">The traffic goals can be met by using only the initial &lt;presence/&gt; stanza, which carries all required information, so that no peer-to-peer messages are required on entering. VP clients which gather additional information about peers (e.g. avatar images) should cache the data so that it can be re-used. This is especially important since users browsing virtually connected locations (i.e. linked pages) may meet very often in a short time.</p>
+
+  <p class="" style="">The virtual presence extensions make use of Jabber group chat. Virtual locations are implemented as public Jabber chat channels. The proposed protocol works with <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0045.html">Multi-User Chat</a></span>  [<a href="#nt-id2251487">1</a>] rooms and GroupChat 1.0 compatible services. Its core functionality described here uses only groupchat features.</p> 
+
+  <p class="" style="">The virtual presence extensions are supposed to be implemented by Jabber IM clients in addition to the IM functions or by pure virtual presence (Jabber VP) clients.</p>
+
+  </div>
+
+  <div class="indent"><h3>2.2 <a name="sect-id2251468" id="sect-id2251468">Discovering Virtual Locations</a></h3>
+
+  <p class="" style="">The virtual presence network is a distributed network of Jabber conference components. Each component is hosting a part of the Web. Conference components may be specifically set up for virtual locations, or they may run chat rooms for virtual locations in addition to other rooms. A website may choose to run a conference component to host the presence on its web pages or it may use a publicly available service. Websites, which do not care, are covered by default servers, while others may opt out entirely in order to avoid virtual presence on their pages. </p>
+
+  <p class="" style="">Usually VP clients gather URLs from active web browsers. They convert these URLs to Jabber chat rooms IDs (JIDs) using web server specific and general rules for the mapping process. Then they enter the room as described in the section 'Example of a Virtual Meeting'. There are many different types of URLs. Many are based on file system paths, others are query style, or a mix of path and query. Sometimes users regard individual pages as locations, sometimes a 'location' consists of multiple pages. Large websites may even consist of multiple DNS names, so that users expect to be at the same location regardless of the actual server name.</p>
+
+  <p class="" style="">Usually website operators will not care about virtual presence on their pages. But once there is a significant amount of chat on their pages, they want to control what happens there. In other words: they need to be able to enforce domestic authority on their pages and even expel visitors from 'their' chat. They will install moderators (persons or software). Moderators authorized by the website might operate on public chat servers, but control is only guaranteed, if a website controls the assignment of moderators by running the chat server. Hence, website operators must be able to control the mapping process so that they can assign chat server addresses (and chat room names) to URLs. Many websites are hierarchical, with sub-folders being managed by different independent owners. The mapping process should allow for detailed mapping rules for sub-folders and general rules closer to the root of websites, so that the 'inner' config prevails. </p>
+
+  <p class="" style="">The mapping process is controlled by configuration files. The files will be downloaded from websites and/or from a default location. Most websites do not know about virtual presence and if they know, then they do not care. Therefore, the mapping process should be designed to allow for virtual presence without cooperation of the website. A default configuration with a simple standard mapping will be used if a website does not provide mapping rules. </p>
+
+  <p class="" style="">Configuration files for the mapping process will often be downloaded over the network. Since the data for multiple virtual locations might add up to large files, the configuration can be split up into individual documents. The splitting is managed by delegation to other config files for subsets of URLs. This is especially important for the default configuration, which may cover special rules for prominent websites.</p>
+
+  <p class="" style="">Global fallback servers are not able to carry all the enter/leave and chat traffic. The virtual presence of many users on many websites demands commercial services for virtual presence hosting. Much like web hosters provide disk space, traffic and processing power, there are commercial (or free) presence hosting services, which provide traffic and processing power. Website operators will either run their own presence servers or rely on commercial services. Commercial operators are limiting the ad-hoc creation of chat rooms for virtual presence or they allow static rooms only. Website operators encode the 'rented' room JID into their mapping configuration. They might even delegate the handling of configuration files entirely to the presence server operator by means of config file delegation.</p>
+
+  <p class="" style="">The mapping process should try to protect the privacy of the user. After all, virtual presence is a violation of privacy in general, because people know where other people are (virtually). This is critical, if compared to the totally un-observed Web without virtual presence. In the real world people are used to being seen in physical locations, but only by others who are physically present in the same location. The mapping process should emulate this restriction. The general idea is to include a one way function (message digest) during the mapping process to prohibit the discovery of 'interesting' chat room names. In other words: observers must do the forward mapping and enter a room to see who is there or discover random room names without being able to re-create the source URL. So, they may be able to find people in random rooms, but do not know the virtual location.</p>
+
+  <p class="" style="">This mapping process is designed to 
+    <ul class="" style="">
+      <li class="" style="">make the virtual presence service a distributed network of jabber servers, i.e. conference components,</li>
+      <li class="" style="">allow for flexible mapping from URLs to JIDs, taking into account that
+        <ul class="" style="">
+          <li class="" style="">most URLs are path based,</li>
+          <li class="" style="">URLs contain queries,</li>
+          <li class="" style="">sometimes only the query part defines the virtual location,</li>
+          <li class="" style="">groups of URLs map to a single JID,</li>
+          <li class="" style="">a single virtual location may comprise multiple web servers,</li>
+          <li class="" style="">groups of URLs may only cover a sub-folder of path based URLs,</li>
+          <li class="" style="">not all URLs are known at config time,</li>
+        </ul>
+      </li>
+      <li class="" style="">allow operators of websites to control the mapping for the URL-space they control,</li>
+      <li class="" style="">let websites opt out of virtual presence,</li>
+      <li class="" style="">allow for hierarchical configuration for file system path based URLs,</li>
+      <li class="" style="">support delegation,</li>
+      <li class="" style="">allow for virtual presence without the cooperation of the website,</li>
+      <li class="" style="">allow for distribution of the load of the default configuration server,</li>
+      <li class="" style="">support commercial virtual presence servers and rented rooms,</li>
+      <li class="" style="">be extensible to other protocols as virtual presence transport,</li>
+      <li class="" style="">be easily implemented by website operators,</li>
+      <li class="" style="">at least limit the privacy issues associated with virtual presence.</li>
+    </ul>
+  </p>
+
+  </div>
+
+<h2>3.
+       <a name="sect-id2261312" id="sect-id2261312">Example of a Virtual Meeting</a></h2>
+
+  <p class="" style="">Since it has been suggested that the use of Shakespeare characters might please the reader we will try to employ them without really knowing the works of Shakespeare. Two characters called Romeo and Juliet will appear. Both will be equipped with a Web browser and a virtual presence Jabber client which implements the protocol extensions described in this document (called VP client in the following). The communication is shown as seen by the conference component including 'from' attributes.</p> 
+
+  <div class="indent"><h3>3.1 <a name="sect-id2261341" id="sect-id2261341">Meeting on Virtual Locations</a></h3>
+    <p class="" style="">This shows how the first meeting of Romeo and Juliet would have happened if they had known Cyberspace, i.e. the Web. Romeo browses the Web with his favorite web client. He reads the page http://www.shakespeare.com/market/ModernLibrary/page1.html. He is also running a VP client. There is no mention of a buddy list jabber client at this point. The VP client is properly logged in to the Jabber server using the JID romeo@montague.net. Through some magic, the VP client acquires the URL of the current web page. The VP client converts the URL into the JID of a public chat room (see section 'Virtual Locations'). The JID will usually be a SHA1 digest of the URL prefixed to a conference component (like f4eb29410ec339144633773dda1dc4a643513933@shakespeare.com). For the sake of readability we will refer to the chat room as room1@shakespeare.com. The VP client then enters the room using 'YoungHero' as the nickname.</p>
+    <p class="caption"><a name="example-1" id="example-1"></a>Example 1. Entering a virtual location</p><div class="indent"><pre>
+&lt;presence from='romeo@montague.net/garden' to='room1@shakespeare.com/YoungHero' /&gt;
+    </pre></div>
+
+    <p class="" style="">The room responds:</p>
+    <p class="caption"><a name="example-2" id="example-2"></a>Example 2. Acknowledgement of the entry</p><div class="indent"><pre>
+&lt;presence from='room1@shakespeare.com/YoungHero' to='romeo@montague.net/garden' /&gt;
+    </pre></div>
+
+  <p class="" style="">Upon reception the VP client visualizes the presence of Romeo at the location to Romeo, e.g. by displaying Romeo's icon and/or nickname on, at, or close to the web page. In other words: the VP client shows an avatar of Romeo on the page.</p> 
+
+  <p class="" style="">Dramatic increases when Juliet browses to the same web page. Her VP client also gathers the URL, performs the same mapping and enters the room. It sends a &lt;presence/&gt; stanza to the room using nickname 'WebGirl'. The room as expected returns the acknowledgement. In addition the room forwards both &lt;presence/&gt; stanzas to the VP clients in order to announce the mutual presence. </p> 
+
+    <p class="" style="">Romeo gets:</p>
+    <p class="caption"><a name="example-3" id="example-3"></a>Example 3. Announcement of peer presence</p><div class="indent"><pre>
+&lt;presence from='room1@shakespeare.com/WebGirl' to='romeo@montague.net/garden' /&gt;
+    </pre></div>
+
+  <p class="" style="">Juliet gets the equivalent. Romeo's VP client shows Juliet's presence by adding a second avatar to the page. They now engage in a vivid conversation. In deviation to the original text Juliet would not ask "Who art thou, Romeo?", because she only knows the nickname and on the other hand she actually knows where Romeo is: he is on the same web page. There is nothing new until now. Everything happened according to GroupChat 1.0 (XEP-0045) without MUC features. Of course, users can join the same room with any client that supports GroupChat, if they know the room's JID.</p> 
+
+  <p class="" style="">Extensions come into the play in order to make the virtual presence more attractive and more vivid.</p>
+  </div>
+
+  <div class="indent"><h3>3.2 <a name="sect-id2261493" id="sect-id2261493">Getting more information</a></h3>
+  
+    <p class="" style="">For more information about 'YoungHero' beyond the nickname Juliet needs a JID (see below for anonymous variants of the avatar image). Non-anonymous rooms will supply the JIDs automatically. But we suggest that rooms, which make up the virtual presence network are configured to be anonymous so that users can choose if they want to disclose the JID. We propose an extension to the &lt;presence/&gt; stanza for users to supply their JID automatically to peers in anonymous rooms with minimum traffic even for many participants. </p>
+    
+    <p class="" style="">Note: even though Romeo sends a JID, the systems is still anonymous. Romeo could send any JID. He may send a (fake) JID that is just the base address of his storage, but not his communication address. In anonymous rooms Juliet will use any JID Romeo provides. If the room is not anonymous, then Romeo's client may use Juliet's actual JID. </p>
+    
+    <p class="" style="">Entering the room Juliet would add a JID-element to the initial &lt;presence/&gt; stanza.</p>
+
+    <p class="caption"><a name="example-4" id="example-4"></a>Example 4. Disclosing the JID</p><div class="indent"><pre>
+&lt;presence from='juliet@capulet.com/balcony' to='room1@shakespeare.com/WebGirl' 
+  &lt;x xmlns='firebat:user:jid'&gt;juliet@capulet.com/balcony&lt;/x&gt;
+&lt;/presence&gt;
+    </pre></div>
+
+    <p class="" style="">(Note: 'firebat' was the developer name of the VP client. Jabber.org URIs could be used here)</p>
+
+    <p class="" style="">This tells the conference component to send the JID to all participants automatically. Romeo will receive the &lt;presence/&gt; stanza including the JID element. Romeo may now fetch Juliet's avatar or add Juliet to a buddy list. </p>
+
+    <p class="" style="">Note: disclosing the JID is usually not advisable in public rooms. We decided to offer the functionality as an option, for 2 reasons:
+      <ol start="" class="" style="">
+        <li class="" style="">to provide access to extended information from peers without cluttering the &lt;presence/&gt; stanza more than necessary,</li>
+        <li class="" style="">to allow for caching of extended information.</li>
+      </ol>
+    Caching requires a persistent and unique id per user. While a message digest of the JID would be sufficient for caching extended information, it is not sufficient for retrieving extended information. 
+    </p>
+
+  </div>
+
+  <div class="indent"><h3>3.3 <a name="sect-id2261619" id="sect-id2261619">Avatars</a></h3>
+
+    <p class="" style="">Romeo will be much more interested in Juliet if Juliet is depicted by a nice image rather than only a name. Users may choose avatars, publish those avatars, and change them on the fly. Changes to the avatar are tracked by comparing a stored digest of the avatar data to the received digest. The avatar digest will be received as part of the &lt;presence/&gt; stanza. Juliet also includes an avatar-digest element with a hex-coded SHA1-digest of the avatar data (i.e. the digest of the image file): </p>
+
+    <p class="caption"><a name="example-5" id="example-5"></a>Example 5. Avatar Digest</p><div class="indent"><pre>
+&lt;presence from='juliet@capulet.com/balcony' to='room1@shakespeare.com/WebGirl' 
+  &lt;x xmlns='firebat:user:jid'&gt;juliet@capulet.com/balcony&lt;/x&gt;
+  &lt;x xmlns='firebat:avatar:digest'&gt;9b3635eb1440a1ee1c9f67767651194f34ecf130&lt;/x&gt;
+&lt;/presence&gt;
+    </pre></div>
+
+    <p class="" style="">Romeo receives the digest with the initial &lt;presence/&gt; stanza from Juliet. Since this is their first meeting Romeo does not have Juliet's avatar yet. He will fetch the avatar from Juliet's public XML server storage (for a public XML storage free variant see below):</p>
+
+    <p class="caption"><a name="example-6" id="example-6"></a>Example 6. Avatar Request</p><div class="indent"><pre>
+&lt;iq type='get' to='juliet@capulet.com'&gt;
+  &lt;query xmlns='storage:client:avatar' /&gt;
+&lt;/iq&gt;
+    </pre></div>
+
+    <p class="" style="">The server returns Juliet's avatar.  </p>
+
+    <p class="caption"><a name="example-7" id="example-7"></a>Example 7. Avatar Response with Avatar URL</p><div class="indent"><pre>
+&lt;iq type='result' to='romeo@montague.net/garden'&gt;
+  &lt;query xmlns='storage:client:avatar'&gt;
+    &lt;data src='http://www.capulet.com/juliet.png'/&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+    </pre></div>
+
+    <p class="" style="">The 'src' attribute points to the real data, which is to be fetched out of band via HTTP. Juliet supplied a reference to the data because she is a smart WebGirl concerned about bandwidth on the Jabber connection. But if the Capulets would not own a domain she could also choose to store the avatar data directly on the server using base-64 encoding. The avatar response would then be like:</p>
+
+    <p class="caption"><a name="example-8" id="example-8"></a>Example 8. Avatar Response with Immediate Data</p><div class="indent"><pre>
+&lt;iq type='result' to='romeo@montague.net/garden'&gt;
+  &lt;query xmlns='storage:client:avatar'&gt;
+    &lt;data mimetype='image/png' encoding='base64'
+      &gt;E00fcB79F822u192e7A2067E5229ec136892A296... &lt;/data&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+    </pre></div>
+
+  <p class="" style="">Juliet can omit the 'mimetype' attribute if she supplies the avatar URL, because the HTTP server will return the MIME type. The 'mimetype' attribute must be included for immediate data. Avatars may be of any type and size. The maximum visible dimensions of avatars should be 64x96 pixels. Larger images will be scaled down to fit into this rectangle. They will not be scaled up. Images align at the bottom so that they can 'stand' on a page on the same base line. </p>
+
+  <p class="" style="">Implementation note: The client should check the image size (byte count) and advice the user if the size exceeds 20 kb. It should also check the image dimensions and warn the user if the image will be scaled down. Checking the size is especially important for immediate data, which will be uploaded over a Jabber connection which is subject to flow control. Typical karma settings only allow for few kb without stalling the connection.</p>
+
+  <p class="" style="">Implementation note: Avatars and associated digests should be stored permanently. They will always be up to date as soon as people meet and exchange digests. There is no cache timeout. The implementation should keep an eye on the avatar storage and delete old and rarely used ones.</p>
+
+  <p class="" style="">Avatars images can also be created of other data types. The following shows an avatar description in XML format, which is to be processed by an advanced avatar engine. The avatar engine will be chosen by the MIME type. For simple image based avatars, the MIME type selects the type of image decoder. Other MIME types may select from a dynamic list of installable avatar rendering plug-ins.</p>
+
+    <p class="caption"><a name="example-9" id="example-9"></a>Example 9. Avatar Response for an Advanced Avatar</p><div class="indent"><pre>
+&lt;iq type='result' to='romeo@montague.net/garden'&gt;
+  &lt;query xmlns='storage:client:avatar'&gt;
+    &lt;data mimetype='avatar/comic' encoding='plain'&gt;
+      &lt;config xmlns='http://schema.bluehands.de/character-config' version='1.0'&gt;
+        &lt;character name='lluna' version='1.0'
+         src='http://avatar.vp.bluehands.de/comic/lluna.xml'/&gt;
+        &lt;color rgb='#00FF00' name='head'/&gt;
+        &lt;color rgb='#999900' name='shadow'/&gt;
+        &lt;color rgb='#000000' name='border'/&gt;
+        &lt;color rgb='#FFFFFF' name='tooth'/&gt;
+        &lt;color rgb='#FFFFFF' name='eye'/&gt;
+        &lt;color rgb='#000000' name='pupil'/&gt;
+        &lt;color rgb='#000000' name='mouth'/&gt;
+        &lt;color rgb='#FF0000' name='tail1'/&gt;
+        &lt;color rgb='#FF0000' name='tail2'/&gt;
+        &lt;color rgb='#FF0000' name='tail3'/&gt;
+        &lt;scale ratio='0.8'/&gt;
+      &lt;/config&gt;
+    &lt;/data&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+    </pre></div>
+
+  <p class="" style="">The example avatar data above will be interpreted by the avatar engine, which registered for the MIME type 'avatar/comic'. This is a sample implementation of an animated avatar. The data states that an animation file shall be loaded from <a href="http://avatar.vp.bluehands.de/comic/lluna.xml">http://avatar.vp.bluehands.de/comic/lluna.xml</a> and then the character config shall be applied modifying the colors of the character definition.</p>
+
+  <p class="" style="">The design is particular targeted at existing online games as avatar providers. It would be very easy to adapt the avatar rendering of an online role playing game (MMORPG) or any other community so that it provides avatar images for the VP client. In this case the avatar data would probably only consist of the online accout ID. This is up to the implementation. We imagine such avatar data to be like:</p>
+
+    <p class="caption"><a name="example-10" id="example-10"></a>Example 10. Potential Role Play-Plugin Avatar Data</p><div class="indent"><pre>
+&lt;iq type='result' to='romeo@montague.net/garden'&gt;
+  &lt;query xmlns='storage:client:avatar'&gt;
+    &lt;data mimetype='rpg/my-favorite-mmorpg' encoding='plain'&gt;ACCOUNTID=6575438998&lt;/data&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+    </pre></div>
+
+  <p class="" style="">... and the plug-in (which is part or the game distribution) connects to the game server, fetches the configuration, and renders Juliet as an nightelve mage level 30 with all insignia on the web page of Romeo. Romeo is very impressed, falls in love instantly and they both die in the course of a tragic story. Provided that Romeo happens to have the same gaming engine installed. Having not might save him in this time.</p>
+
+  <p class="" style="">Note: As a matter of fact, we propose a call level plug-in interface described at  [<a href="#nt-id2251137">2</a>] for advanced avatars.</p>
+
+  <p class="" style="">Note: To make things simple for the implementation users may have 2 avatars. The first avatar ('storage:client:avatar') is restricted to GIF and PNG images. The second avatar is fully featured, but optional. It is accessed through the namespace 'storage:client:avatar2' and tracked through digest 'firebat:avatar2:digest'. VP clients must implement 'storage:client:avatar' and 'firebat:avatar:digest' with at least PNG support. They may implement 'storage:client:avatar2' and 'firebat:avatar2:digest'. The scheme can be extended with higher numbers. </p>
+
+  </div>
+
+  <div class="indent"><h3>3.4 <a name="sect-id2251166" id="sect-id2251166">Other Ways to get the Avatar</a></h3>
+
+  <p class="" style="">If Juliet wants to protect her real JID, then she can not use public XML server storage. She can still provide an avatar by including the avatar data into the &lt;presence/&gt; stanza. </p>
+    <p class="caption"><a name="example-11" id="example-11"></a>Example 11. Explicit Avatar Presence Data</p><div class="indent"><pre>
+&lt;x xmlns='firebat:avatar:data'&gt;&lt;data src='http://www.capulet.com/juliet.png'/&gt;&lt;/x&gt;
+
+as part of:
+&lt;presence from='juliet@capulet.com/balcony' to='room1@shakespeare.com/WebGirl' 
+  &lt;x xmlns='firebat:avatar:digest'&gt;9b3635eb1440a1ee1c9f67767651194f34ecf130&lt;/x&gt;
+  &lt;x xmlns='firebat:avatar:data'&gt;&lt;data src='http://www.capulet.com/juliet.png'/&gt;&lt;/x&gt;
+&lt;/presence&gt;
+    </pre></div>
+
+  <p class="" style="">Juliet must not send bulky immediate data, but a reference to the image. Immediate data is only allowed, if it is smaller than a simple &lt;presence/&gt; stanza (see above). </p>
+    <p class="caption"><a name="example-12" id="example-12"></a>Example 12. Explicit and Immediate Avatar Presence Data</p><div class="indent"><pre>
+&lt;x xmlns='firebat:avatar:data'&gt;
+  &lt;data mimetype='rpg/my-favorite-mmorpg' encoding='plain'&gt;ACCOUNTID=6575438998&lt;/data&gt;
+&lt;/x&gt;
+    </pre></div>
+
+  <p class="" style="">Note: There are other features which won't work without the real JID. Therefore, it is recommended that clients include the JID in the &lt;presence/&gt; stanza. If Juliet wants to use all JID-based features then she would rather use a public Jabber server with an anonymous account, like she is used to do in case of email. This feature is supported because there are still Juliets who refrain from disclosing the JID and because the avatar is very important.</p>
+
+  <p class="" style="">If Juliet provides the JID, but public XML server storage is not supported on Juliet's server, then Romeo may try to discover the avatar using disco features. He will query Juliet's server avatar disco node</p>
+    <p class="caption"><a name="example-13" id="example-13"></a>Example 13. Avatar Discovery Request</p><div class="indent"><pre>
+&lt;iq to='juliet@capulet.com' type='get'&gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#info' node='http://jabber.org/protocol/avatar'/&gt;
+&lt;/iq&gt;
+    </pre></div>
+
+  <p class="" style="">The result contains an item with the JID of the pubsub component where Juliet's avatar information is published and the specific node for that information:</p>
+    <p class="caption"><a name="example-14" id="example-14"></a>Example 14. Avatar Discovery Response</p><div class="indent"><pre>
+&lt;iq type='result' from='juliet@capulet.com' to='romeo@montague.net/orchard' &gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#items'
+    node='http://jabber.org/protocol/avatar'&gt;
+    &lt;item jid='pubsub.shakespeare.lit' node='avatar/info/juliet@capulet.com'/&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+    </pre></div>
+
+  </div>
+
+  <div class="indent"><h3>3.5 <a name="sect-id2262186" id="sect-id2262186">Avatar Movement</a></h3>
+    <p class="" style="">A web page can be regarded as a two dimensional space. Avatars can move around on the page. Users are not just at a page, they are at a certain coordinate of the page. Entering the room Juliet tells Romeo (and all other participants) her initial position by including a position element into the initial &lt;presence/&gt; stanza:</p>
+
+    <p class="caption"><a name="example-15" id="example-15"></a>Example 15. Avatar Position</p><div class="indent"><pre>
+&lt;presence from='juliet@capulet.com/balcony' to='room1@shakespeare.com/WebGirl' 
+  &lt;x xmlns='firebat:user:jid'&gt;juliet@capulet.com/balcony&lt;/x&gt;
+  &lt;x xmlns='firebat:avatar:digest'&gt;9b3635eb1440a1ee1c9f67767651194f34ecf130&lt;/x&gt;
+  &lt;x xmlns='firebat:avatar:position'&gt;&lt;position x='180' w='853'/&gt;&lt;/x&gt;
+&lt;/presence&gt;
+    </pre></div>
+
+    <p class="" style="">The coordinates are in pixels from the bottom left corner of the browser window. In this case she only tells the horizontal position. She could add a 'y' attribute. She also voluntarily discloses the width of her browser window. The width ('w') and height ('h') attributes are optional. They enable relative positioning at the other end.</p>
+
+    <p class="" style="">As soon as Juliet enters and her avatar appears, Romeo moves his avatar up to Juliet's. Romeo's VP client sends a new &lt;presence/&gt; stanza with an altered position. The message is automatically broadcast by the room to all participants and stored for new participants. Romeo approaches Juliet:</p>
+
+    <p class="caption"><a name="example-16" id="example-16"></a>Example 16. Move Avatar</p><div class="indent"><pre>
+&lt;presence from='romeo@montague.net/garden' to='room1@shakespeare.com/YoungHero' 
+  &lt;x xmlns='firebat:user:jid'&gt;romeo@montague.net&lt;/x&gt;
+  &lt;x xmlns='firebat:avatar:digest'&gt;e5229ec136892e00fcb79f822c192e7a2067a296&lt;/x&gt;
+  &lt;x xmlns='firebat:avatar:position'&gt;&lt;position x='150'/&gt;&lt;/x&gt;
+&lt;/presence&gt;
+    </pre></div>
+
+    <p class="" style="">Note that this &lt;presence/&gt; stanza, which is sent in order to move the avatar is not different from the initial &lt;presence/&gt; stanza to the room. This is just a repetition with a different coordinate.</p>
+
+    <p class="" style="">Juliet's VP client forwards the movement to the avatar rendering engine. In case of an image based avatar the image is just moved to take up the new position. In case on an animated avatar, the avatar engine will generate a sequence of images which lets the figure 'walk' to the new position or whatever movement method is appropriate for the avatar.</p>
+
+    <p class="" style="">Now Romeo occupies exactly the part of the web page that Juliet is reading so she moves Romeo (locally) out of the way. This happens only on Juliet's screen. Once Juliet finished reading, she wants to restore Romeo's position. She sends a control message to Romeo to request the current position:</p>
+
+    <p class="caption"><a name="example-17" id="example-17"></a>Example 17. Request Avatar Position</p><div class="indent"><pre>
+&lt;iq from='room1@shakespeare.com/WebGirl' to='room1@shakespeare.com/YoungHero' type='get'&gt;
+  &lt;query xmlns='http://schema.bluehands.de/avatar#position'/&gt;
+&lt;/iq&gt;
+    </pre></div>
+
+    <p class="" style="">Romeo responds with a control message which indicates the avatar position:</p>
+
+    <p class="caption"><a name="example-18" id="example-18"></a>Example 18. Send Avatar Position</p><div class="indent"><pre>
+&lt;iq from='room1@shakespeare.com/YoungHero' to='room1@shakespeare.com/WebGirl' type='result'&gt;
+  &lt;query xmlns='http://schema.bluehands.de/avatar#position'&gt;
+    &lt;position x='123' w='800'/&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+    </pre></div>
+
+    <p class="" style="">Juliet' VP client restores Romeo's avatar position:</p>
+
+  </div>
+
+  <div class="indent"><h3>3.6 <a name="sect-id2262362" id="sect-id2262362">Bubble Chat</a></h3>
+    
+    <p class="" style="">We remember: after seeing Juliet's avatar, Romeo has already falling in love. But Juliet is a more realistic type. She insists on talking before falling in love. The avatar-on-web-pages paradigm frees us from chat line based chat. Each avatar may show a separate chat bubble with the latest text or even a chat history. </p>
+
+    <p class="" style="">While Juliet is writing an opening, her VP client may send the current contents of the chat line to the room giving other participants snapshots of the text. We propose instant chat updates as an extension to groupchat. For backward compatibility these snapshots are transmitted as control messages without body text, so that other clients ignore them. Once Juliet hits the send button (or the enter-key) the VP client sends the chat message as body text of a &lt;message/&gt;. With a timely distance of fractions of seconds to few seconds Juliet sends the following messages:</p>
+
+    <p class="caption"><a name="example-19" id="example-19"></a>Example 19. Instant Chat</p><div class="indent"><pre>
+&lt;message from='room1@shakespeare.com/WebGirl' to='room1@shakespeare.com'&gt;
+  &lt;x xmlns='firebat:chat:state'&gt;Who&lt;/x&gt;
+&lt;/message&gt;
+
+&lt;message from='room1@shakespeare.com/WebGirl' to='room1@shakespeare.com'&gt;
+  &lt;x xmlns='firebat:chat:state'&gt;Who art thou,&lt;/x&gt;
+&lt;/message&gt;
+
+&lt;message from='room1@shakespeare.com/WebGirl' to='room1@shakespeare.com'&gt;
+  &lt;x xmlns='firebat:chat:state'&gt;Who art thou, YoungHer&lt;/x&gt;
+&lt;/message&gt;
+
+&lt;message from='room1@shakespeare.com/WebGirl' to='room1@shakespeare.com'&gt;
+  &lt;body&gt;Who art thou, YoungHero?&lt;/body&gt;
+&lt;/message&gt;
+    </pre></div>
+
+    <p class="" style="">Note: we propose to send the full text with every message. Differential updates seem to be the proper way. But the addressing information sent with each message produces more traffic than the enclosed text. This is especially true for randomly chosen (read: long) room names. On the other hand differential text requires synchronization points for new participants, who lack the history. Such synchronization points would carry the full text every other second rendering differential updates almost useless.</p>
+
+    <p class="" style="">Implementation note: The traffic must stay below the karma-limitations of typical jabber servers. The minimum delay between instant chat messages should be 1 sec. The delay should be increased with the size of the text. We get a good balance between interactivity and traffic with the following algorithm (in msec): delay = max(5000, min(NumberOfChars x 25, 1000)). In words: from 1 second at 40 characters up to 5 seconds at 200 characters.</p>
+
+    <p class="" style="">Implementation note: There is no limitation on the size of the instant chat specified. But some users, especially the ones not used to chat channels write without ever pressing the enter-key. Implementations should limit the size to reasonable length (200-1000 characters) by telling the user, refusing to send more, or just stripping the beginning of a long text.</p>
+
+  </div>
+
+  <div class="indent"><h3>3.7 <a name="sect-id2262473" id="sect-id2262473">Video Icon</a></h3>    
+    <p class="" style="">After some chatting, Juliet is still not convinced. She demands to see Romeo live (although not in person). Romeo switches on his webcam and sends the webcam URL as part of the &lt;presence/&gt; stanza.</p>
+
+    <p class="caption"><a name="example-20" id="example-20"></a>Example 20. Iconic Video</p><div class="indent"><pre>
+&lt;presence from='romeo@montague.net/garden' to='room1@shakespeare.com/YoungHero' 
+  &lt;x xmlns='firebat:user:jid'&gt;romeo@montague.net&lt;/x&gt;
+  &lt;x xmlns='firebat:avatar:digest'&gt;e5229ec136892e00fcb79f822c192e7a2067a296&lt;/x&gt;
+  &lt;x xmlns='firebat:avatar:position'&gt;&lt;position x='150'/&gt;&lt;/x&gt;
+  &lt;x xmlns='firebat:icon:video'&gt;http://romeo.montague.net/video/icon&lt;/x&gt;
+&lt;/presence&gt;
+    </pre></div>
+
+    <p class="" style="">Juliet's VP client HTTP-requests the video stream. The video is shown close to Romeo's avatar. Juliet falls in love.</p>
+
+    <p class="" style="">The video format is the common, widely used webcam format introduced by Netscape (JPEG server-pushed).</p>
+
+    <p class="" style="">In the real world there are many Romeos and Juliets even on the same page at the same time. Some of them with a webcam. Depending on the default settings of VP clients all users (say 8) will automatically request the videos of the subset of users equipped with a webcam (say 3). This automatically creates many video streams, 3 streams on the dialup line of all users and 7 streams on the line of webcam users. We therefore suggest the following optimizations and limitations:
+      <ul class="" style="">
+        <li class="" style="">video dimensions should be limited to 64x64 pixels, thus fitting into the 64x96 avatar rectangle,</li>
+        <li class="" style="">the frame rate should not exceed 3 frames per second for simple web browsing (special applications, especially assymmetric ones, like virtual class rooms, presentations may differ),</li>
+        <li class="" style="">for small sizes, quantization tables and Huffman tables make much more data than the encoded image. Therefore, the DQT and DHT markers should be stripped from JPEG frames except for the first frame of a stream. Only the JPEG baseline algorithm is supported with static Huffman tables,</li>
+        <li class="" style="">VP clients which support such a optimized JPEG server-push format should add a 'Accept: image/djpeg' header to the HTTP request. (djpeg for differential JPEG)</li>
+      </ul>
+
+    The purpose of these limitations is to allow for webcams which send optimized streams of small images (reducing the data volume by a factor of 3) while supporting usual webcams.
+    </p>
+
+  </div>
+
+<h2>4.
+       <a name="sect-id2262598" id="sect-id2262598">Finding Virtual Locations</a></h2>
+
+  <p class="" style="">Finding a virtual location for a websites means mapping a URL to a JID. The VP client gets the URL from the browser by some platform dependent way of interprocess communication. The URL may have been entered by the user, or it may be the result of a URI resolver. Then the VP client searches for an applicable mapping rule. This may include fetching multiple configuration files over the network. Finally the rule is applied and the VP client can enter the room.</p>
+
+   <p class="" style="">The mapping process is explained in great detail here. Server admins only need the sections 'Mapping Rules' and 'Config Files'</p>
+
+ <div class="indent"><h3>4.1 <a name="sect-id2262631" id="sect-id2262631">Mapping Rules</a></h3>
+
+  <p class="" style="">The basic mechanism is very simple: a URL is mapped by means of a regular expression with replacement term. A hash function may follow after the regular expression and an optional prefix can be added for convenience. The mapping rule produces a room name and a chat service URL. The chat service URL points to the server which hosts the channel. It also tells which protocol to use. Protocol, server address and channel name identify the chat channel.</p>
+
+  <p class="" style="">Romeo is on http://www.shakespeare.com/market/ModernLibrary/index.html. A single mapping rule might cover the entire URL space of http://www.shakespeare.com/. It might look like:</p>
+
+  <p class="caption"><a name="example-21" id="example-21"></a>Example 21. Basic Mapping Rule</p><div class="indent"><pre>
+  &lt;location match='^http://www\.shakespeare\.com/([^/]+)/.*$'&gt;
+    &lt;name&gt;\1-room&lt;/name&gt;
+    &lt;digest&gt;&lt;prefix&gt;vp-&lt;/prefix&gt;&lt;/digest&gt;
+    &lt;service&gt;xmpp:conference.shakespeare.com&lt;/service&gt;
+  &lt;/location&gt;
+  </pre></div>
+
+  <p class="caption"><a name="example-22" id="example-22"></a>Example 22. Basic Mapping Rule Result: a Room JID</p><div class="indent"><pre>
+  vp-85b0df53e7ce7d2e0406d2bbf8a9d699aaa9db53@conference.shakespeare.com
+  </pre></div>
+
+  <p class="" style="">This &lt;name/&gt;-tag produces the room name. The text of the &lt;name/&gt;-tag in combination with the match expression of the &lt;location/&gt; extracts the first level folder of the path section from the URL. It creates a room for each first level folder. The resulting room name is 'market-room'. It is hashed by a message digest, if the &lt;digest/&gt; tag is present. A SHA1 digest is used by default. VP clients must support SHA1. The hashed result will be prefixed by 'vp-'. Prefixing is provided for convenience, so that rooms generated for virtual presence can be sorted easily in room lists of conference components. Both &lt;digest/&gt; and &lt;prefix/&gt; are optional.</p>
+
+  <p class="" style="">The \1 variable of the match-expression is used to generate a room per sub-folder of the URL. Match-expression variables can be used inside all elements to modify the inner text of the element. You might use the \1 inside the &lt;service/&gt;-tag to point to a different chat server per sub-folder of the URL.</p>
+  
+  <p class="" style="">The rule generates a virtual location ID. This mechanism is extensible to other protocols as virtual presence transport, e.g. IRC. The &lt;service/&gt;-tag contains a service URL, which consists of a scheme and server address. In this case the 'xmpp'-scheme means that the Jabber protocol will be used and that the VP client joins a Jabber chat room with a JID created according to the Jabber ID building rules, i.e. room-name@server-address, where the room-name has been derived from the 'name'-tag and mangled by the 'digest'-tag before it has been prepended to '@server-address'.</p>
+
+  <p class="" style="">A &lt;location/&gt; without match-attribute matches all URLs. In other words: the default match-attribute is '.*'.</p>
+
+  </div>
+
+  <div class="indent"><h3>4.2 <a name="sect-id2262759" id="sect-id2262759">Config Files</a></h3>
+
+  <p class="" style="">Rules can be stored in various ways. If they are stored in files, then the rules are wrapped by a toplevel element. The VPI toplevel element can contain multiple &lt;location/&gt;-elements (rules):</p>
+
+      <p class="caption"><a name="example-23" id="example-23"></a>Example 23. VPI file format</p><div class="indent"><pre>
+&lt;?xml version='1.0' ?&gt;
+&lt;vpi xmlns='http://schema.bluehands.de/virtual-presence-info'&gt;
+  &lt;location match='...'&gt;...&lt;/location&gt;
+  &lt;location match='...'&gt;...&lt;/location&gt;
+  ...                        &lt;!--   more locations  --&gt;
+  &lt;location&gt;...&lt;/location&gt;   &lt;!--  default location --&gt;
+&lt;/vpi&gt;</pre></div>
+  
+  <p class="" style="">Examples are available at  [<a href="#nt-id2262797">3</a>]</p>
+
+  </div>
+
+  <div class="indent"><h3>4.3 <a name="sect-id2262806" id="sect-id2262806">Extensions to Mapping Rules</a></h3>
+
+  <p class="" style="">Independent services may publish lists of virtual locations. An example is a 'topsites'-service, which publishes a list of most active locations as a list of URLs. These services usually require the cooperation of VP clients. VP clients publish their locations (and URLs), if configured to do so. In some cases website operators allow for virtual presence on their pages, but they do not want that the real URLs are published, or they do not want the URLs published at all. Therefore, the location configuration offers optional tags to control how URLs are disclosed by VP clients. A &lt;hidden/&gt;-tag prohibits the publication of the URL. A &lt;destination/&gt;-tag modifies the URL. A &lt;hidden/&gt; location may look like:</p>
+
+  <p class="caption"><a name="example-24" id="example-24"></a>Example 24. Hidden Location</p><div class="indent"><pre>
+  &lt;location match='^http://www\.shakespeare\.com'&gt;
+    &lt;name&gt;shakespeare&lt;/name&gt;
+    &lt;digest/&gt;
+    &lt;service&gt;xmpp:conference.shakespeare.com&lt;/service&gt;
+    &lt;hidden/&gt;
+  &lt;/location&gt;
+  </pre></div>
+
+  <p class="" style="">In this example all URLs of the website will be mapped to a single room. Users will be present there, but the room will not appear in public lists (if clients and publication services comply).</p>
+
+  <p class="" style="">A simplification of the above is the &lt;mapped/&gt;-tag, which does not employ regular expressions. All URLs of the website can be mapped to a single location (omitting the &lt;hidden/&gt; feature again):</p>
+
+  <p class="" style="">The &lt;destination/&gt;-tag modifies the URL so that website operators control which URLs are published. They might delete a web-session ID from URLs or alter the URL so that users who discover the location on a publication service are directed to a different URL. The biggest concern is that the exposed URL may contain security relevant session data. The &lt;destination/&gt;- (per &lt;rule/&gt;) allows to remove this data from URLs while preserving browseable URLs. The following example deletes any path and query from URLs.</p>
+
+  <p class="caption"><a name="example-25" id="example-25"></a>Example 25. Destination: Modifying Published URLs</p><div class="indent"><pre>
+  &lt;location match='^http://www\.shakespeare\.com'&gt;
+    &lt;name&gt;shakespeare&lt;/name&gt;
+    &lt;digest/&gt;
+    &lt;service&gt;xmpp:conference.shakespeare.com&lt;/service&gt;
+    &lt;destination&gt;http://www.shakespeare.com/&lt;/destination&gt;
+  &lt;/location&gt;
+  </pre></div>
+
+  <p class="" style="">Note: VP clients should not rely on a &lt;destination/&gt; only, when publishing URLs. A client should consult the user if, how, and where URLs are to be published. It is recommended to strip the query part by default until configured otherwise. </p>
+
+  <p class="" style="">The &lt;ignore/&gt;-tag prevents virtual presence clients from dealing with matching URLs. There will be no virtual presence associated with the URL.</p>
+
+  <p class="caption"><a name="example-26" id="example-26"></a>Example 26. Ignore: Opt out</p><div class="indent"><pre>
+&lt;location match="^http://www\.shakespeare\.com($|/.*$)"&gt;
+  &lt;ignore/&gt;
+&lt;/location&gt;
+  </pre></div>
+  
+  </div>
+
+  <div class="indent"><h3>4.4 <a name="sect-id2262954" id="sect-id2262954">Web Server based Configuration</a></h3>
+
+  <p class="" style="">Location configuration data, such as the above is stored in configuration files called Virtual Presence Information (VPI) files. The files are fetched via HTTP or FTP, according to the scheme of the URL which is to be mapped. Websites can offer VPI files at each level in the path hierarchy. If they do not offer VPI files then the VP client reverts to default VPI. The VP client tries to find a VPI file in the same folder as the file of the URL. It strips the file and query parts of the URL and appends the file name _vpi.xml:</p>
+
+  <p class="caption"><a name="example-27" id="example-27"></a>Example 27. Nearest VPI File</p><div class="indent"><pre>
+http://www.shakespeare.com/market/ModernLibrary/_vpi.xml
+  </pre></div>
+
+  <p class="" style="">HTTP-servers have many different ways to respond if the file is not available, which is the most common case. They should respond with a 404 status code and an optional HTML message. But some web servers are configured to return a default document, some return a status code 200 and a 'Content-type: text/html' message with an error text, some even return  status code 200 and 'Content-type: text/xml' with an HTML message. It is therefore recommended that VP clients check the HTTP status code, the Content-type and the validity of the XML document. If there is no such file or if it is not a valid XML file or, in case of HTTP, if the Content-type is not text/xml, then the request fails. If the request fails then the client ascends the path until it hits the top level of the website trying to fetch:</p>
+
+  <p class="caption"><a name="example-28" id="example-28"></a>Example 28. Web Site Toplevel VPI File</p><div class="indent"><pre>
+http://www.shakespeare.com/_vpi.xml
+  </pre></div>
+
+  <p class="" style="">If the request fails, then the client reverts to a default VPI file if there is any. The current implementation uses http://vpi.vp.bluehands.de/lluna-2.5.2/root-vpi.xml. It will finally use http://www.virtual-presence.org/LMS/root-vpi.xml (LMS = Location Mapping System) or another global configuration file. http://vp.jabber.org/root.xml would be an option.</p>
+
+  <p class="" style="">If there is no default VPI file then the VP client uses the following configuration data:</p>
+
+  <p class="caption">Default VPI</p><div class="indent"><pre>
+&lt;location&gt;
+  &lt;name&gt;\1&lt;/name&gt; 
+  &lt;digest/&gt;
+  &lt;service&gt;xmpp:location.virtual-presence.org&lt;/service&gt; 
+&lt;/location&gt;
+  </pre></div>
+
+  <p class="" style="">This configuration creates a virtual location for each web server address. The server name is obfuscated by a hash function (SHA1). The location configuration applies to all URLs, since the match-attribute of the &lt;location/&gt; defaults to '.*'.</p>
+
+  <p class="" style="">VP clients must cache the result of VPI downloads including failed requests and invalid responses. They must keep a local copy for at least a few minutes to avoid traffic from multiple (ascending) VPI file downloads. </p>
+
+  <p class="" style="">Note: There are many websites, which consist of multiple web server addresses. This is especially true for large sites, which use DNS round-robin for load balancing. These websites need a special mapping to meet the expectation of the user, because users usually do not care if they are on www01.website.com or on www02.website.com. If users expect to see each other, then the virtual presence service should meet the expectations. There might also be website operators, who do not like virtual presence on their pages. These operators may even take legal action against the provider of the VP client software. So, these websites may require special configuration as well. And there may be other reasons for individual configuration of selected websites. Therefore, it is recommended, that VP clients update their default configuration, i.e. by using an automatic update feature or by downloading the default VPI.</p>
+
+  <p class="" style="">A VPI file may delegate the handling of URL spaces to another VPI file. The &lt;delegate/&gt;-node replaces the &lt;mapping/&gt; and &lt;service/&gt; nodes of the &lt;location/&gt;. If the VP client discovers a &lt;delegate/&gt; tag inside a &lt;location/&gt;, which matches the URL to be mapped, then it stops processing the file and loads the VPI file denoted by the &lt;delegate/&gt;-tag. A request to http://www.shakespeare.com/market/ModernLibrary/_vpi.xml could return VPI like:</p>
+
+  <p class="caption"><a name="example-29" id="example-29"></a>Example 29. Delegation</p><div class="indent"><pre>
+&lt;location&gt;
+  &lt;delegate&gt;http://www.shakespeare.com/_vpi.xml&lt;/delegate&gt; 
+&lt;/location&gt;
+  </pre></div>
+
+  <p class="" style="">This means that the VP client skips http://www.shakespeare.com/market/_vpi.xml and continues with http://www.shakespeare.com/_vpi.xml. Delegation can be used to direct the VP client to the VPI file of a commercial virtual presence service. The commercial service would then be responsible to create rooms for customers and to provide the appropriate VPI. Delegation is also useful to split up the default VPI file. The default VPI file contains special configuration for some large websites. It has been split into individual files for different (DNS) top level domains. The global VPI file currently in use (http://vpi.vp.bluehands.de/lluna-2.5.2/root-vpi.xml) contains the following statement for the .com space:</p>
+
+  <p class="caption"><a name="example-30" id="example-30"></a>Example 30. Delegation for Subspaces</p><div class="indent"><pre>
+...
+&lt;location match="^http://.*\.com($|/.*)"&gt;
+  &lt;delegate&gt;http://vpi.vp.bluehands.de/lluna-2.5.2/dotcom-vpi.xml&lt;/delegate&gt; 
+&lt;/location&gt;
+...
+  </pre></div>
+
+  </div>
+
+  <div class="indent"><h3>4.5 <a name="sect-id2263171" id="sect-id2263171">The Mapping Process</a></h3>
+
+  <p class="" style="">This section is intended as a guideline for the implementation of the mapping process.</p>
+
+  <p class="" style="">The mapping has 2 phases: 
+    <ol start="" class="" style="">
+    <li class="" style="">finding the rule</li>
+    <li class="" style="">applying the rule</li>
+    </ol>
+  </p>
+
+  <div class="indent"><h3>4.5.1 <a name="sect-id2263228" id="sect-id2263228">Find the Rule</a></h3>
+
+  <p class="" style="">
+      We get a URL from the web browser, say
+        <p class="caption"></p><div class="indent"><pre>http://www.shakespeare.com/market/ModernLibrary/index.html</pre></div>
+      We try to fetch the configuration file from 
+        <p class="caption"></p><div class="indent"><pre>http://www.shakespeare.com/market/ModernLibrary/_vpi.xml</pre></div>
+      The request fails (the failure is noted in the cache), and we try
+        <p class="caption"></p><div class="indent"><pre>http://www.shakespeare.com/market/_vpi.xml</pre></div>
+      The request fails again (the failure is noted in the cache). We try
+        <p class="caption"></p><div class="indent"><pre>http://www.shakespeare.com/_vpi.xml</pre></div>
+      We do not find it (the failure is noted in the cache), and we revert to the 
+      global file (which one depends on the client configuration)
+        <p class="caption"></p><div class="indent"><pre>http://vpi.vp.bluehands.de/lluna-2.5.2/root-vpi.xml</pre></div>
+      The request returns (and the data is stored in the cache): 
+      <p class="caption"></p><div class="indent"><pre>
+&lt;?xml version='1.0' ?&gt;
+&lt;vpi xmlns='http://schema.bluehands.de/virtual-presence-info'&gt;
+
+  &lt;!-- handle .com(s) by another file --&gt; 
+  &lt;location match='^http://.*\.com/.*'&gt;
+    &lt;delegate&gt;http://vpi.vp.bluehands.de/lluna-2.5.2/dotcom-vpi.xml&lt;/delegate&gt;
+  &lt;/location&gt;
+
+  &lt;!-- handle .de(s) by another file --&gt; 
+  &lt;location match='^http://.*\.de/.*'&gt;
+    &lt;delegate&gt;http://vpi.vp.bluehands.de/lluna-2.5.2/dotde-vpi.xml&lt;/delegate&gt;
+  &lt;/location&gt;
+
+  &lt;!-- all others go here --&gt;
+  &lt;location match='^http://([^/]+)($|/.*$)'&gt;
+    &lt;service&gt;xmpp:location.virtual-presence.org&lt;/service&gt;
+      &lt;!-- one location per website  --&gt;
+      &lt;name&gt;\1&lt;/name&gt;
+      &lt;digest/&gt;
+  &lt;/location&gt;
+&lt;/vpi&gt;</pre></div>
+
+      We try to find a &lt;location/&gt; that matches our URL. We find:
+      <p class="caption"></p><div class="indent"><pre>
+&lt;location match='^http://.*\.com/.*'&gt;
+  &lt;delegate&gt;http://vpi.vp.bluehands.de/lluna-2.5.2/dotcom-vpi.xml&lt;/delegate&gt;
+&lt;/location&gt;</pre></div>
+
+      This means that all .com domains are forwarded to a separate VPI file. 
+      We fetch:
+      <p class="caption"></p><div class="indent"><pre>http://vpi.vp.bluehands.de/lluna-2.5.2/dotcom-vpi.xml</pre></div>
+
+      We store the result in the cache and search for a matching &lt;location/&gt;
+      again. We find the default section (rest of the file omitted, the match-attribute is more general than the one of the previous &lt;delegate/&gt;, because here we are already in the .com domain):
+      <p class="caption"></p><div class="indent"><pre>
+...
+&lt;location match='^http://([^/]+)($|/.*$)'&gt;
+  &lt;service&gt;xmpp:location.virtual-presence.org&lt;/service&gt;
+  &lt;mapping&gt;
+  &lt;name&gt;\1&lt;/name&gt;
+  &lt;digest/&gt;
+&lt;/location&gt;
+...</pre></div>
+
+      The &lt;location/&gt; matches, so we get a virtual presence 
+      service address and a set of rules. 
+      The virtual presence server is 
+        <p class="caption"></p><div class="indent"><pre>location.virtual-presence.org</pre></div>
+
+      The protocol to use is 
+        <p class="caption"></p><div class="indent"><pre>xmpp</pre></div>
+
+      There mapping rule is:
+      <p class="caption"></p><div class="indent"><pre>
+  match='^http://([^/]+)($|/.*$)'
+  &lt;name&gt;\1&lt;/name&gt;
+  &lt;digest/&gt;</pre></div>
+
+      The result of the first phase is a mapping rule, which will be 
+      applied to all URLs <span class="em">in the same folder</span> as the original URL. In regex-speech:
+      <p class="caption"></p><div class="indent"><pre>http://www.shakespeare.com/market/ModernLibrary/.*</pre></div>
+
+      To apply the mask only to URLs in the same URL-path folder is a security 
+      requirement, so that 'inner' VPI files 
+      from websites can not configure the mapping of 'outer' folders or 'siblings'.
+  </p>
+  <p class="" style="">
+      The original URL was:
+      <p class="caption"></p><div class="indent"><pre>http://www.shakespeare.com/market/ModernLibrary/index.html</pre></div>
+
+      So, the security mask is (the rule applies only to URLs in the same folder as the original URL):
+      <p class="caption"></p><div class="indent"><pre>^http://www\.shakespeare\.com/market/ModernLibrary/.*</pre></div> 
+      If the security mask applies to a URL can be verified by a simple string-compare without using a regular expression.
+  </p>
+  <p class="" style="">
+      The &lt;location/&gt; has a match attribute. This is the user supplied mask 
+      of the rule:
+      <p class="caption"></p><div class="indent"><pre>^http://([^/]+)($|/.*$)</pre></div>
+  </p>
+
+  </div>
+
+  <div class="indent"><h3>4.5.2 <a name="sect-id2263426" id="sect-id2263426">Apply the Rule</a></h3>
+
+  <p class="" style="">
+  
+    The URL where we want to meet people is:
+        <p class="caption"></p><div class="indent"><pre>http://www.shakespeare.com/market/ModernLibrary/index.html</pre></div>
+
+    We got many rules with a security mask (from the folder of the original URL) and a regular expression 
+    (from the match-attribute). For each new URl we check the URL against the security mask and the regular expression.
+    One of the rules applies to the URL:
+        <p class="caption"></p><div class="indent"><pre>^http://www\.shakespeare\.com/market/ModernLibrary/.*
+^http://([^/]+)($|/.*$)</pre></div>
+
+    The regular expression
+        <p class="caption"></p><div class="indent"><pre>^http://([^/]+)($|/.*$)</pre></div>
+    
+    and the room &lt;name&gt;
+    <p class="caption"></p><div class="indent"><pre>\1-room</pre></div>
+
+    will extract the first level folder from the URL. The URL
+    <p class="caption"></p><div class="indent"><pre>http://www.shakespeare.com/market/ModernLibrary/index.html</pre></div>
+
+    gives:
+    <p class="caption"></p><div class="indent"><pre>market-room</pre></div>
+
+    The &lt;digest/&gt;-tag tells us to hash the regex replacement result with 
+    the default message digest SHA1. So we get:
+    <p class="caption"></p><div class="indent"><pre>87d0c3e8d08f344375f22014c7cafe6527acbae3</pre></div>
+
+    The &lt;prefix/&gt;-tag tells us to prefix with 
+    <p class="caption"></p><div class="indent"><pre>vp-</pre></div>
+
+    and finally the ID of the virtual location (the room name) is:
+    <p class="caption"></p><div class="indent"><pre>vp-87d0c3e8d08f344375f22014c7cafe6527acbae3</pre></div>
+
+    From the &lt;service/&gt;
+    <p class="caption"></p><div class="indent"><pre>xmpp:location.virtual-presence.org</pre></div>
+
+    the client knows the transport protocol and the address. The Jabber protocol will 
+    be used as transport protocol and the Jabber conference room JID is
+    <p class="caption"></p><div class="indent"><pre>vp-87d0c3e8d08f344375f22014c7cafe6527acbae3@location.virtual-presence.org</pre></div>
+
+  </p>
+
+  </div>
+  
+  </div>
+
+<h2>5.
+       <a name="sect-id2263536" id="sect-id2263536">Error Codes</a></h2>
+  <p class="" style="">This document does not introduce new error codes.</p>
+<h2>6.
+       <a name="sect-id2263551" id="sect-id2263551">Security Considerations</a></h2>
+  <p class="" style="">The system has been designed to protect the privacy of the user as good as possible. If users decide to run the VP client, then other users may see their movement, but only if they enter the same locations. There is no way to track users, especially since the JIDs of virtual locations (Jabber chat rooms) are supposed to be SHA1 digests of URLs which are not predicable. So people trying to track Romeo have to guess the URL and enter the respective chat room to find Romeo. They cannot browse the room list of a conference component and deduce the URL from the room name.</p>
+  <p class="" style="">The fact that clients may disclose their JID in order to provide access to their avatar server storage and in order to enable caching is a weak point. A different but equally unique ID could be for caching purposes, provided that it is part of the &lt;presence/&gt; stanza. But traffic restrictions on the client connection prevent that additional data is exchanged between peers in a room. The data could be broadcast to the room, but this could end up in many people always broadcasting avatars while entering a room (web page). The chosen solution is to let peers download from public server storage. A better solution might be to let the conference component fetch from the server storage. In this case clients would need only the room-JID of the user, not the real JID.</p>
+<h2>7.
+       <a name="sect-id2263582" id="sect-id2263582">XMPP Registrar Considerations</a></h2>
+  <p class="" style="">These namespaces need to be reviewed and/or registered with the XMPP Registrar as a result of this document. 
+      <ul class="" style="">
+        <li class="" style="">firebat:user:jid</li>
+        <li class="" style="">firebat:avatar:position</li>
+        <li class="" style="">firebat:avatar:getpos</li>
+        <li class="" style="">firebat:chat:state</li>
+        <li class="" style="">firebat:icon:video</li>
+        <li class="" style="">firebat:avatar:digest</li>
+        <li class="" style="">firebat:avatar2:digest</li>
+        <li class="" style="">storage:client:avatar</li>
+        <li class="" style="">storage:client:avatar2</li>
+      </ul>
+  </p>
+<h2>8.
+       <a name="sect-id2263695" id="sect-id2263695">Formal Definition</a></h2>
+  <div class="indent"><h3>8.1 <a name="sect-id2263702" id="sect-id2263702">Schema</a></h3>
+    <p class="" style="">No schema definitions yet. They will be added in the next version of this document, if it is considered for publication. </p>
+  </div>
+<h2>9.
+       <a name="sect-id2263721" id="sect-id2263721">Conclusion</a></h2>
+  <p class="" style="">The virtual presence on Jabber has been designed to fit easily into the existing Jabber infrastructure including existing software components, clients, and protocols. It turns out that Jabber offers everything necessary for basic virtual presence. </p>
+
+  <p class="" style="">This document proposes a mapping process in order to create a space for virtual presence on top of the URL based Web infrastructure. It also proposes namespace extensions for the protocol, which make virtual presence on web pages more convenient. The core features are: 
+    <ul class="" style="">
+      <li class="" style="">URL mapping and service discovery,</li>
+      <li class="" style="">avatars standing and walking on a web page,</li>
+      <li class="" style="">bubble chat,</li>
+      <li class="" style="">iconic video.</li>
+    </ul>
+    There are definitely more features possible. Suggestions are welcome</p>
+<hr /><h2><a name="notes" id="notes"></a>Notes</h2><div class="indent"><p><a name="nt-id2251487" id="nt-id2251487">1</a>. XEP-0045: Multi-User Chat &lt;<a href="http://www.xmpp.org/extensions/xep-0045.html">http://www.xmpp.org/extensions/xep-0045.html</a>&gt;.</p><p><a name="nt-id2251137" id="nt-id2251137">2</a>. <a href="http://developer.lluna.de/docs/animated-avatars.html">http://developer.lluna.de/docs/animated-avatars.html</a></p><p><a name="nt-id2262797" id="nt-id2262797">3</a>. <a href="http://developer.lluna.de/docs/vpi-file-syntax.html">http://developer.lluna.de/docs/vpi-file-syntax.html</a></p></div><hr /><h2><a name="revs" id="revs"></a>Revision History</h2><div class="indent"><h4>Version 0.2 (2005-07-05)</h4><div class="indent"><p class="" style="">Simplified VPI file and rule syntax, basically omitting the rule/search/replace tags.</p> (hw)
+    </div><h4>Version 0.1 (2005-06-02)</h4><div class="indent"><p class="" style="">Initial version.</p> (psa)
+    </div><h4>Version 0.0.8 (2005-05-20)</h4><div class="indent"><p class="" style="">Added ignore-tag.</p> (hw)
+    </div><h4>Version 0.0.7 (2005-02-08)</h4><div class="indent"><p class="" style="">Added comments on anonymity of presence element JID. 
+            Added additional avatar retrieval methods: 1. presence stanza avatar data element 2. via disco</p> (hw)
+    </div><h4>Version 0.0.6 (2005-01-26)</h4><div class="indent"><p class="" style="">Replaced firebat:chat:key by firebat:chat:state</p> (hw)
+    </div><h4>Version 0.0.5 (2004-07-29)</h4><div class="indent"><p class="" style="">Notes about future changes in the JID/storage related sections.</p> (hw)
+    </div><h4>Version 0.0.4 (2004-07-27)</h4><div class="indent"><p class="" style="">Changed avatar position request frem message-x to iq-get, because MUC may block unknown message namespaces.</p> (hw)
+    </div><h4>Version 0.0.3 (2004-03-17)</h4><div class="indent"><p class="" style="">Textual changes. Added service tag to rule to overwrite default service of the location.</p> (hw)
+    </div><h4>Version 0.0.2 (2003-11-19)</h4><div class="indent"><p class="" style="">Refined introduction and requirements. Added location mapping.</p> (hw)
+    </div><h4>Version 0.0.1 (2003-11-11)</h4><div class="indent"><p class="" style="">Initial version.</p> (hw)
+    </div></div><hr /><p>END</p></body></html>

@@ -1,0 +1,1 @@
+H2Reg.exe -u cmdfile=h2reg.ini

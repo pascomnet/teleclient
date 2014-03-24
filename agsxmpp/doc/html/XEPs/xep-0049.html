@@ -1,0 +1,209 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>XEP-0049: Private XML Storage</title><link rel="stylesheet" type="text/css" href="/xmpp.css" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" /><meta name="DC.Title" content="Private XML Storage" /><meta name="DC.Creator" content="Peter Saint-Andre" /><meta name="DC.Creator" content="Russell Davis" /><meta name="DC.Description" content="This specification provides canonical documentation of the 'jabber:iq:private' namespace currently in common usage." /><meta name="DC.Publisher" content="XMPP Standards Foundation" /><meta name="DC.Contributor" content="XMPP Extensions Editor" /><meta name="DC.Date" content="2004-03-01" /><meta name="DC.Type" content="XMPP Extension Protocol" /><meta name="DC.Format" content="XHTML" /><meta name="DC.Identifier" content="XEP-0049" /><meta name="DC.Language" content="en" /><meta name="DC.Rights" content="This XMPP Extension Protocol is copyright (c) 1999 - 2008 by the XMPP Standards Foundation (XSF)." /></head><body><h1>XEP-0049: Private XML Storage</h1><p>This specification provides canonical documentation of the 'jabber:iq:private' namespace currently in common usage.</p><hr /><p style="color:green">NOTICE: This Historical specification provides canonical documentation of a protocol that is in use within the Jabber/XMPP community. This document is not a standards-track specification within the XMPP Standards Foundation's standards process; however, it may be converted to standards-track in the future or may be obsoleted by a more modern protocol.</p><hr /><h2>Document Information</h2><p class="indent">
+            Series: <a href="http://www.xmpp.org/extensions/">XEP</a><br />
+            Number: 0049<br />
+            Publisher: <a href="/xsf/">XMPP Standards Foundation</a><br />
+            Status: 
+            <a href="http://www.xmpp.org/extensions/xep-0001.html#states-Active">Active</a><br />
+            Type:
+            <a href="http://www.xmpp.org/extensions/xep-0001.html#types-Historical">Historical</a><br />
+            Version: 1.2<br />
+            Last Updated: 2004-03-01<br />
+                Approving Body: <a href="http://www.xmpp.org/council/">XMPP Council</a><br />Dependencies: XMPP Core<br />
+                Supersedes: None<br />
+                Superseded By: None<br />
+            Short Name: iq-private<br />
+        Schema: &lt;<a href="http://www.xmpp.org/schemas/iq-private.xsd">http://www.xmpp.org/schemas/iq-private.xsd</a>&gt;<br />
+              Wiki Page: &lt;<a href="http://wiki.jabber.org/index.php/Private XML Storage (XEP-0049)">http://wiki.jabber.org/index.php/Private XML Storage (XEP-0049)</a>&gt;
+            </p><hr /><h2>Author Information</h2><div class="indent"><h3>Peter Saint-Andre</h3><p class="indent">
+        JabberID: 
+        <a href="xmpp:stpeter@jabber.org">stpeter@jabber.org</a><br />
+        URI: 
+        <a href="https://stpeter.im/">https://stpeter.im/</a><br /></p><h3>Russell Davis</h3><p class="indent">
+        Email:
+        <a href="mailto:ukscone@burninghorse.com">ukscone@burninghorse.com</a><br />
+        JabberID: 
+        <a href="xmpp:ukscone@burninghorse.com">ukscone@burninghorse.com</a><br /></p></div><hr /><h2>Legal Notices</h2><div class="indent"><h3>Copyright</h3>This XMPP Extension Protocol is copyright (c) 1999 - 2008 by the XMPP Standards Foundation (XSF).<h3>Permissions</h3>Permission is hereby granted, free of charge, to any person obtaining a copy of this specification (the "Specification"), to make use of the Specification without restriction, including without limitation the rights to implement the Specification in a software program, deploy the Specification in a network service, and copy, modify, merge, publish, translate, distribute, sublicense, or sell copies of the Specification, and to permit persons to whom the Specification is furnished to do so, subject to the condition that the foregoing copyright notice and this permission notice shall be included in all copies or substantial portions of the Specification. Unless separate permission is granted, modified works that are redistributed shall not contain misleading information regarding the authors, title, number, or publisher of the Specification, and shall not claim endorsement of the modified works by the authors, any organization or project to which the authors belong, or the XMPP Standards Foundation.<h3>Disclaimer of Warranty</h3><span style="font-weight: bold">## NOTE WELL: This Specification is provided on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, express or implied, including, without limitation, any warranties or conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE. In no event shall the XMPP Standards Foundation or the authors of this Specification be liable for any claim, damages, or other liability, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the Specification or the implementation, deployment, or other use of the Specification. ##</span><h3>Limitation of Liability</h3>In no event and under no legal theory, whether in tort (including negligence), contract, or otherwise, unless required by applicable law (such as deliberate and grossly negligent acts) or agreed to in writing, shall the XMPP Standards Foundation or any author of this Specification be liable for damages, including any direct, indirect, special, incidental, or consequential damages of any character arising out of the use or inability to use the Specification (including but not limited to damages for loss of goodwill, work stoppage, computer failure or malfunction, or any and all other commercial damages or losses), even if the XMPP Standards Foundation or such author has been advised of the possibility of such damages.<h3>IPR Conformance</h3>This XMPP Extension Protocol has been contributed in full conformance with the XSF's Intellectual Property Rights Policy (a copy of which may be found at &lt;<a href="http://www.xmpp.org/extensions/ipr-policy.shtml">http://www.xmpp.org/extensions/ipr-policy.shtml</a>&gt; or obtained by writing to XSF, P.O. Box 1641, Denver, CO 80201 USA).</div><hr /><h2>Discussion Venue</h2><p class="indent">The preferred venue for discussion of this document is the Standards discussion list: &lt;<a href="http://mail.jabber.org/mailman/listinfo/standards">http://mail.jabber.org/mailman/listinfo/standards</a>&gt;.</p><p class="indent">Errata may be sent to &lt;<a href="mailto:editor@xmpp.org">editor@xmpp.org</a>&gt;.</p><h2>Relation to XMPP</h2><p class="indent">The Extensible Messaging and Presence Protocol (XMPP) is defined in the XMPP Core (RFC 3920) and XMPP IM (RFC 3921) specifications contributed by the XMPP Standards Foundation to the Internet Standards Process, which is managed by the Internet Engineering Task Force in accordance with RFC 2026. Any protocol defined in this document has been developed outside the Internet Standards Process and is to be understood as an extension to XMPP rather than as an evolution, development, or modification of XMPP itself.</p><h2>Conformance Terms</h2><p class="indent">The following keywords as used in this document are to be interpreted as described in <a href="http://www.ietf.org/rfc/rfc2119.txt">RFC 2119</a>: "MUST", "SHALL", "REQUIRED"; "MUST NOT", "SHALL NOT"; "SHOULD", "RECOMMENDED"; "SHOULD NOT", "NOT RECOMMENDED"; "MAY", "OPTIONAL".</p><hr /><h2>Table of Contents</h2><div class="indent"><p><br />1.  <a href="#sect-id2252662">Introduction</a><br />2.  <a href="#sect-id2252680">jabber:iq:private Namespace</a><br />   
+      2.1.  <a href="#sect-id2252686">Description</a><br />   
+      2.2.  <a href="#sect-id2252707">Methods</a><br />   
+      2.3.  <a href="#sect-id2251353">Elements</a><br />3.  <a href="#sect-id2251451">Error Conditions</a><br />4.  <a href="#sect-id2251532">Security Considerations</a><br />5.  <a href="#sect-id2251550">IANA Considerations</a><br />6.  <a href="#sect-id2261074">XMPP Registrar Considerations</a><br />7.  <a href="#sect-id2261152">XML Schema</a><br /><a href="#notes">Notes</a><br /><a href="#revs">Revision History</a></p></div><hr /><h2>1.
+       <a name="sect-id2252662" id="sect-id2252662">Introduction</a></h2>
+  <p class="" style="">The 'jabber:iq:private' namespace has previously been documented in the Jabber Programmers Guide, but not in a canonical form such as the Internet-Drafts or a XEP. This specification documents the existing usage of jabber:iq:private.</p>
+<h2>2.
+       <a name="sect-id2252680" id="sect-id2252680">jabber:iq:private Namespace</a></h2>
+  <div class="indent"><h3>2.1 <a name="sect-id2252686" id="sect-id2252686">Description</a></h3>
+    <p class="" style="">A Jabber client can store any arbitrary XML on the server side by sending an &lt;iq/&gt; stanza of type "set" to the server with a &lt;query/&gt; child scoped by the 'jabber:iq:private' namespace. The &lt;query/&gt; element MAY contain any arbitrary XML fragment as long as the root element of that fragment is scoped by its own namespace. The data can then be retrieved by sending an &lt;iq/&gt; stanza of type "get" with a &lt;query/&gt; child scoped by the 'jabber:iq:private' namespace, which in turn contains a child element scoped by the namespace used for storage of that fragment. Using this method, Jabber entities can store private data on the server and retrieve it whenever necessary. The data stored might be anything, as long as it is valid XML. One typical usage for this namespace is the server-side storage of client-specific preferences; another is <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0048.html">Bookmark Storage</a></span>  [<a href="#nt-id2252722">1</a>].</p>
+  </div>
+  <div class="indent"><h3>2.2 <a name="sect-id2252707" id="sect-id2252707">Methods</a></h3>
+    <p class="caption"><a name="table-1" id="table-1"></a>Table 1: Description of Acceptable Methods</p><table border="1" cellpadding="3" cellspacing="0">
+      <tr class="body"><td colspan="" rowspan="">get</td><td colspan="" rowspan="">Sent with a blank query to retrieve the private data from the server.</td></tr>
+      <tr class="body"><td colspan="" rowspan="">set</td><td colspan="" rowspan="">Sent with the private XML data contained inside of a query.</td></tr>
+      <tr class="body"><td colspan="" rowspan="">result</td><td colspan="" rowspan="">Returns the private data from the server.</td></tr>
+      <tr class="body"><td colspan="" rowspan="">error</td><td colspan="" rowspan="">There was an error processing the request. The exact error can be found in the child error element.</td></tr>
+    </table>
+  </div>
+  <div class="indent"><h3>2.3 <a name="sect-id2251353" id="sect-id2251353">Elements</a></h3>
+    <p class="" style="">The root element of this namespace is query. At least one child element with a proper namespace MUST be included; otherwise the server MUST respond with a "Not Acceptable" error (see <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0086.html">Error Condition Mappings</a></span>  [<a href="#nt-id2251392">2</a>] for information about error conditions). A client MUST NOT query for more than namespace in a single IQ get request. However, an IQ set or result MAY contain multiple elements qualified by the same namespace.</p>
+
+    <p class="caption"><a name="example-1" id="example-1"></a>Example 1. Client Stores Private Data</p><div class="indent"><pre>
+CLIENT:
+&lt;iq type="set" id="1001"&gt;
+  &lt;query xmlns="jabber:iq:private"&gt;
+    &lt;exodus xmlns="exodus:prefs"&gt;
+      &lt;defaultnick&gt;Hamlet&lt;/defaultnick&gt;
+    &lt;/exodus&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+
+SERVER:
+&lt;iq type="result"
+    from="hamlet@shakespeare.lit/denmark"
+    to="hamlet@shakespeare.lit/denmark"
+    id="1001"/&gt;
+    </pre></div>			
+
+    <p class="caption"><a name="example-2" id="example-2"></a>Example 2. Client Retrieves Private Data</p><div class="indent"><pre>
+CLIENT:
+&lt;iq type="get" id="1002"&gt;
+  &lt;query xmlns="jabber:iq:private"&gt;
+    &lt;exodus xmlns="exodus:prefs"/&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+
+SERVER:
+&lt;iq type="result"
+    from="hamlet@shakespeare.lit/denmark"
+    to="hamlet@shakespeare.lit/denmark"
+    id="1002"&gt;
+  &lt;query xmlns="jabber:iq:private"&gt;
+    &lt;exodus xmlns="exodus:prefs"&gt;
+      &lt;defaultnick&gt;Hamlet&lt;/defaultnick&gt;
+    &lt;/exodus&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+    </pre></div>
+
+    <p class="" style="">If a user attempts to get or set jabber:iq:private data that belongs to another user, the server MUST return a "Forbidden" or "Service Unavailable" error to the sender (the latter condition is in common use by existing implementations, although the former is preferable).</p>
+    <p class="caption"><a name="example-3" id="example-3"></a>Example 3. User Attempts to Get or Set Data for Another User</p><div class="indent"><pre>
+CLIENT:
+&lt;iq type="set" to="hamlet@shakespeare.lit" id="1003"&gt;
+  &lt;query xmlns="jabber:iq:private"&gt;
+    &lt;exodus xmlns="exodus:prefs"&gt;
+      &lt;defaultnick&gt;Macbeth&lt;/defaultnick&gt;
+    &lt;/exodus&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+
+SERVER:
+&lt;iq type="error"
+    from="hamlet@shakespeare.lit"
+    to="macbeth@shakespeare.lit"
+    iq="1003"&gt;
+  &lt;query xmlns="jabber:iq:private"&gt;
+    &lt;exodus xmlns="exodus:prefs"&gt;
+      &lt;defaultnick&gt;Macbeth&lt;/defaultnick&gt;
+    &lt;/exodus&gt;
+  &lt;/query&gt;
+  &lt;error code="403" type="cancel"&gt;
+    &lt;service-unavailable
+        xmlns='urn:ietf:params:xml:ns:xmpp-stanzas'/&gt;
+  &lt;/error&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="" style="">If a user attempts to perform an IQ get without providing a child element, the server SHOULD return a "Bad Format" error (however, some existing implementations return a "Not Acceptable" error in such circumstances):</p>
+    <p class="caption"><a name="example-4" id="example-4"></a>Example 4. User Attempts to Get Data Without Specifying Child Element/Namespace</p><div class="indent"><pre>
+CLIENT:
+&lt;iq type="set" id="1004"&gt;
+  &lt;query xmlns="jabber:iq:private"/&gt;
+&lt;/iq&gt;
+
+SERVER:
+&lt;iq type="error" iq="1004"&gt;
+  &lt;query xmlns="jabber:iq:private"/&gt;
+  &lt;error code="406" type="modify"&gt;
+    &lt;not-acceptable
+        xmlns='urn:ietf:params:xml:ns:xmpp-stanzas'/&gt;
+  &lt;/error&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="" style="">Certain namespaces are reserved in Jabber (namespaces beginning with 'jabber:' or 'http://jabber.org/', as well as 'vcard-temp'). If a user attempts to get or set jabber:iq:private data in a reserved namespace, historically some server implementations have chosen to return an error (commonly "Not Acceptable") to the sender. Such behavior is OPTIONAL, but may be encountered by clients when interacting with some existing server implementations.</p>
+    <p class="caption"><a name="example-5" id="example-5"></a>Example 5. User Attempts to Get or Set Data in a Reserved Namespace</p><div class="indent"><pre>
+CLIENT:
+&lt;iq type="set" id="1005"&gt;
+  &lt;query xmlns="jabber:iq:private"&gt;
+    &lt;vCard xmlns="vcard-temp"&gt;
+      &lt;FN&gt;Hamlet&lt;/FN&gt;
+    &lt;/vCard&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+
+SERVER (optional error):
+&lt;iq type="error" iq="1005"&gt;
+  &lt;query xmlns="jabber:iq:private"&gt;
+    &lt;vCard xmlns="vcard-temp"&gt;
+      &lt;FN&gt;Hamlet&lt;/FN&gt;
+    &lt;/vCard&gt;
+  &lt;/query&gt;
+  &lt;error code="406" type="modify"&gt;
+    &lt;not-acceptable
+        xmlns='urn:ietf:params:xml:ns:xmpp-stanzas'/&gt;
+  &lt;/error&gt;
+&lt;/iq&gt;
+    </pre></div>
+  </div>
+<h2>3.
+       <a name="sect-id2251451" id="sect-id2251451">Error Conditions</a></h2>
+    <p class="caption"><a name="table-2" id="table-2"></a>Table 2: Error Conditions used by jabber:iq:private</p><table border="1" cellpadding="3" cellspacing="0">
+      <tr class="body"><th colspan="" rowspan="">Condition</th><th colspan="" rowspan="">Description</th></tr>
+      <tr class="body"><td colspan="" rowspan="">Bad Format</td><td colspan="" rowspan="">The IQ get does not contain a child element.</td></tr>
+      <tr class="body"><td colspan="" rowspan="">Forbidden</td><td colspan="" rowspan="">The IQ get or set is sent to a JID other than that of the sender.</td></tr>
+      <tr class="body"><td colspan="" rowspan="">Not Acceptable</td><td colspan="" rowspan="">The IQ get or set is qualified by a reserved namespace.</td></tr>
+    </table>
+<h2>4.
+       <a name="sect-id2251532" id="sect-id2251532">Security Considerations</a></h2>
+  <p class="" style="">A server MUST NOT allow any entity other than an authorized resource of the user to create, update, or delete private XML stored on behalf of that user.</p>
+<h2>5.
+       <a name="sect-id2251550" id="sect-id2251550">IANA Considerations</a></h2>
+  <p class="" style="">This document requires no interaction with the <span class="ref" style=""><a href="http://www.iana.org/">Internet Assigned Numbers Authority (IANA)</a></span>  [<a href="#nt-id2261089">3</a>].</p>
+<h2>6.
+       <a name="sect-id2261074" id="sect-id2261074">XMPP Registrar Considerations</a></h2>
+  <p class="" style="">No action on the part of the <span class="ref" style=""><a href="http://www.xmpp.org/registrar/">XMPP Registrar</a></span>  [<a href="#nt-id2261133">4</a>] is necessary as a result of this document, since 'jabber:iq:private' is already a registered namespace.</p>
+<h2>7.
+       <a name="sect-id2261152" id="sect-id2261152">XML Schema</a></h2>
+    <p class="caption"></p><div class="indent"><pre>
+&lt;?xml version='1.0' encoding='UTF-8'?&gt;
+
+&lt;xs:schema
+    xmlns:xs='http://www.w3.org/2001/XMLSchema'
+    targetNamespace='jabber:iq:private'
+    xmlns='jabber:iq:private'
+    elementFormDefault='qualified'&gt;
+
+  &lt;xs:annotation&gt;
+    &lt;xs:documentation&gt;
+      The protocol documented by this schema is defined in
+      XEP-0049: http://www.xmpp.org/extensions/xep-0049.html
+    &lt;/xs:documentation&gt;
+  &lt;/xs:annotation&gt;
+
+  &lt;xs:element name='query'&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence minOccurs='0'&gt;
+        &lt;xs:any namespace='##other'/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+
+&lt;/xs:schema&gt;
+    </pre></div>
+<hr /><h2><a name="notes" id="notes"></a>Notes</h2><div class="indent"><p><a name="nt-id2252722" id="nt-id2252722">1</a>. XEP-0048: Bookmark Storage &lt;<a href="http://www.xmpp.org/extensions/xep-0048.html">http://www.xmpp.org/extensions/xep-0048.html</a>&gt;.</p><p><a name="nt-id2251392" id="nt-id2251392">2</a>. XEP-0086: Error Condition Mappings &lt;<a href="http://www.xmpp.org/extensions/xep-0086.html">http://www.xmpp.org/extensions/xep-0086.html</a>&gt;.</p><p><a name="nt-id2261089" id="nt-id2261089">3</a>. The Internet Assigned Numbers Authority (IANA) is the central coordinator for the assignment of unique parameter values for Internet protocols, such as port numbers and URI schemes. For further information, see &lt;<a href="http://www.iana.org/">http://www.iana.org/</a>&gt;.</p><p><a name="nt-id2261133" id="nt-id2261133">4</a>. The XMPP Registrar maintains a list of reserved protocol namespaces as well as registries of parameters used in the context of XMPP extension protocols approved by the XMPP Standards Foundation. For further information, see &lt;<a href="http://www.xmpp.org/registrar/">http://www.xmpp.org/registrar/</a>&gt;.</p></div><hr /><h2><a name="revs" id="revs"></a>Revision History</h2><div class="indent"><h4>Version 1.2 (2004-03-01)</h4><div class="indent">Corrected several errors in the text; specified security considerations. (psa)
+    </div><h4>Version 1.1 (2004-01-06)</h4><div class="indent">Added XML schema; specified XMPP error handling; added security, IANA, and XMPP Registrar considerations. (psa)
+    </div><h4>Version 1.0 (2003-01-09)</h4><div class="indent">Updated status to Active per vote of the Jabber Council. (psa)
+    </div><h4>Version 0.4 (2002-11-21)</h4><div class="indent">Fixed error handling with regard to reserved namespaces; specified error regarding empty IQ get request. (psa)
+    </div><h4>Version 0.3 (2002-11-21)</h4><div class="indent">Added error scenarios, removed most error codes, cleaned up the text. (psa)
+    </div><h4>Version 0.2.1 (2002-10-09)</h4><div class="indent">Added error code table. (rkd)
+    </div><h4>Version 0.2 (2002-10-08)</h4><div class="indent">Corrected author email and jid. Added sentence about the
+	inadvisability of use. (rkd)
+    </div><h4>Version 0.1 (2002-10-08)</h4><div class="indent">Initial version. (rkd)
+    </div></div><hr /><p>END</p></body></html>

@@ -1,0 +1,438 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>XEP-0207: XMPP Eventing via Pubsub</title><link rel="stylesheet" type="text/css" href="/xmpp.css" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" /><meta name="DC.Title" content="XMPP Eventing via Pubsub" /><meta name="DC.Creator" content="Peter Saint-Andre" /><meta name="DC.Description" content="This document specifies semantics for using the XMPP publish-subscribe protocol to handle generic XMPP events (including presence, one-to-one messaging, and groupchat)." /><meta name="DC.Publisher" content="XMPP Standards Foundation" /><meta name="DC.Contributor" content="XMPP Extensions Editor" /><meta name="DC.Date" content="2007-04-01" /><meta name="DC.Type" content="XMPP Extension Protocol" /><meta name="DC.Format" content="XHTML" /><meta name="DC.Identifier" content="XEP-0207" /><meta name="DC.Language" content="en" /><meta name="DC.Rights" content="This XMPP Extension Protocol is copyright (c) 1999 - 2008 by the XMPP Standards Foundation (XSF)." /></head><body><h1>XEP-0207: XMPP Eventing via Pubsub</h1><p>This document specifies semantics for using the XMPP publish-subscribe protocol to handle generic XMPP events (including presence, one-to-one messaging, and groupchat).</p><hr /><p style="color:green">NOTICE: This document is Humorous. It MAY provide amusement but SHOULD NOT be taken seriously.</p><hr /><h2>Document Information</h2><p class="indent">
+            Series: <a href="http://www.xmpp.org/extensions/">XEP</a><br />
+            Number: 0207<br />
+            Publisher: <a href="/xsf/">XMPP Standards Foundation</a><br />
+            Status: 
+            <a href="http://www.xmpp.org/extensions/xep-0001.html#states-Active">Active</a><br />
+            Type:
+            <a href="http://www.xmpp.org/extensions/xep-0001.html#types-Humorous">Humorous</a><br />
+            Version: 1.0<br />
+            Last Updated: 2007-04-01<br />
+                Approving Body: <a href="http://www.xmpp.org/council/">XMPP Council</a><br />Dependencies: XMPP Core, XEP-0060<br />
+                Supersedes: None<br />
+                Superseded By: None<br />
+            Short Name: N/A<br />
+              Wiki Page: &lt;<a href="http://wiki.jabber.org/index.php/XMPP Eventing via Pubsub (XEP-0207)">http://wiki.jabber.org/index.php/XMPP Eventing via Pubsub (XEP-0207)</a>&gt;
+            </p><hr /><h2>Author Information</h2><div class="indent"><h3>Peter Saint-Andre</h3><p class="indent">
+        JabberID: 
+        <a href="xmpp:stpeter@jabber.org">stpeter@jabber.org</a><br />
+        URI: 
+        <a href="https://stpeter.im/">https://stpeter.im/</a><br /></p></div><hr /><h2>Legal Notices</h2><div class="indent"><h3>Copyright</h3>This XMPP Extension Protocol is copyright (c) 1999 - 2008 by the XMPP Standards Foundation (XSF).<h3>Permissions</h3>Permission is hereby granted, free of charge, to any person obtaining a copy of this specification (the "Specification"), to make use of the Specification without restriction, including without limitation the rights to implement the Specification in a software program, deploy the Specification in a network service, and copy, modify, merge, publish, translate, distribute, sublicense, or sell copies of the Specification, and to permit persons to whom the Specification is furnished to do so, subject to the condition that the foregoing copyright notice and this permission notice shall be included in all copies or substantial portions of the Specification. Unless separate permission is granted, modified works that are redistributed shall not contain misleading information regarding the authors, title, number, or publisher of the Specification, and shall not claim endorsement of the modified works by the authors, any organization or project to which the authors belong, or the XMPP Standards Foundation.<h3>Disclaimer of Warranty</h3><span style="font-weight: bold">## NOTE WELL: This Specification is provided on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, express or implied, including, without limitation, any warranties or conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE. In no event shall the XMPP Standards Foundation or the authors of this Specification be liable for any claim, damages, or other liability, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the Specification or the implementation, deployment, or other use of the Specification. ##</span><h3>Limitation of Liability</h3>In no event and under no legal theory, whether in tort (including negligence), contract, or otherwise, unless required by applicable law (such as deliberate and grossly negligent acts) or agreed to in writing, shall the XMPP Standards Foundation or any author of this Specification be liable for damages, including any direct, indirect, special, incidental, or consequential damages of any character arising out of the use or inability to use the Specification (including but not limited to damages for loss of goodwill, work stoppage, computer failure or malfunction, or any and all other commercial damages or losses), even if the XMPP Standards Foundation or such author has been advised of the possibility of such damages.<h3>IPR Conformance</h3>This XMPP Extension Protocol has been contributed in full conformance with the XSF's Intellectual Property Rights Policy (a copy of which may be found at &lt;<a href="http://www.xmpp.org/extensions/ipr-policy.shtml">http://www.xmpp.org/extensions/ipr-policy.shtml</a>&gt; or obtained by writing to XSF, P.O. Box 1641, Denver, CO 80201 USA).</div><hr /><h2>Discussion Venue</h2><p class="indent">The preferred venue for discussion of this document is the Standards discussion list: &lt;<a href="http://mail.jabber.org/mailman/listinfo/standards">http://mail.jabber.org/mailman/listinfo/standards</a>&gt;.</p><p class="indent">Errata may be sent to &lt;<a href="mailto:editor@xmpp.org">editor@xmpp.org</a>&gt;.</p><hr /><h2>Table of Contents</h2><div class="indent"><p><br />1.  <a href="#intro">Introduction</a><br />2.  <a href="#approach">Concepts and Approach</a><br />3.  <a href="#presence">Presence</a><br />4.  <a href="#roster">Rosters and Presence Subscriptions</a><br />5.  <a href="#muc">Multi-User Chat</a><br />6.  <a href="#messaging">One-to-One Messaging</a><br />7.  <a href="#conclusion">Conclusion</a><br />8.  <a href="#security">Security Considerations</a><br />9.  <a href="#iana">IANA Considerations</a><br />10.  <a href="#registrar">XMPP Registrar Considerations</a><br />11.  <a href="#schema">XML Schema</a><br />12.  <a href="#ack">Acknowledgements</a><br /><a href="#notes">Notes</a><br /><a href="#revs">Revision History</a></p></div><hr /><h2>1.
+       <a name="intro" id="intro">Introduction</a></h2>
+  <p class="" style=""><span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0163.html">Personal Eventing via Pubsub</a></span>  [<a href="#nt-id2252743">1</a>] (PEP) introduced the concept of "eventing" into the Extensible Messaging and Presence Protocol (see <span class="ref" style=""><a href="http://tools.ietf.org/html/rfc3920">XMPP Core</a></span>  [<a href="#nt-id2252818">2</a>]). But PEP merely scratched the surface of eventing technologies based on the XMPP <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0060.html">Publish-Subscribe</a></span>  [<a href="#nt-id2252843">3</a>] extension. This document extends the eventing concept to its ultimate conclusion: the ability to communicate all XMPP semantics via pubsub.</p>
+<h2>2.
+       <a name="approach" id="approach">Concepts and Approach</a></h2>
+  <p class="" style="">Jabber technologies as invented by Jeremie Miller started out as a relatively lightweight XML messaging transport, but they have become unnecessarily -- even ridiculously -- bloated over the years. Formalization of the core Jabber protocols as the Extensible Messaging and Presence Protocol (XMPP) within the IETF seemed like a good idea at the time, but the extensible nature of the core protocols has tempted the developer community to extend XMPP six ways from Sunday. The result has been a plethora of different conceptual models for various extensions, such as <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0045.html">Multi-User Chat</a></span>  [<a href="#nt-id2252645">4</a>] for multi-user communication and <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0050.html">Ad-Hoc Commands</a></span>  [<a href="#nt-id2252671">5</a>] for structured entity-to-entity request/response semantics. These different models are inelegant and unnecessary. Indeed, even the inclusion of three different basic packet types (presence, message, and IQ) in the core protocol is overkill.</p>
+  <p class="" style="">We can do better. In fact, we can reduce all the communication types and styles that are currently defined within the XMPP ecosystem to one model: publish-subscribe as specified in <span class="ref">XEP-0060</span>.</p>
+  <p class="" style="">Consider:</p>
+  <ul class="" style="">
+    <li class="" style="">It has often been observed that presence (see <span class="ref" style=""><a href="http://tools.ietf.org/html/rfc3921">XMPP IM</a></span>  [<a href="#nt-id2252734">6</a>]) is a form of publish-subscribe.  [<a href="#nt-id2252720">7</a>]</li>
+    <li class="" style="">The primitive XMPP "roster" can be easily implemented using the pubsub permissions model.</li>
+    <li class="" style="">Multi-user chat too is a kind of publish-subscribe, since a single "publish" to the room results in multiple notifications to the room occupants, who are really subscribers to an information node.</li>
+    <li class="" style="">Even one-to-one messaging is just another example of publish-subscribe (in fact it is a special case of multi-user chat).</li>
+  </ul>
+  <p class="" style="">The remainder of this document will prove beyond a doubt that the older, multiple approaches are obsolete, and that there is indeed one model that serves all our needs: pubsub.</p>
+<h2>3.
+       <a name="presence" id="presence">Presence</a></h2>
+  <p class="" style="">Presence simply is pubsub, since it follows the classic "observer" pattern: multiple subscribers receive notifications whenever the publisher (typically an end user) generates an event related to network availability. Currently in XMPP this is done with the &lt;presence/&gt; stanza, which serves as a kind of pubsub primitive (though only for availability information). For example, Juliet may log into the capulet.lit server and send presence:</p>
+  <p class="caption"><a name="example-1" id="example-1"></a>Example 1. Presence Update</p><div class="indent"><pre>
+&lt;presence from='juliet@capulet.lit/balcony'&gt;
+  &lt;status&gt;Moping&lt;/status&gt;
+&lt;/presence&gt;
+  </pre></div>
+  <p class="" style="">The capulet.lit server will then send notifications to all of the users who have subscribed to Juliet's presence:</p>
+  <p class="caption"><a name="example-2" id="example-2"></a>Example 2. Presence Notifications</p><div class="indent"><pre>
+&lt;presence from='juliet@capulet.lit/balcony' to='romeo@montague.lit/mobile'&gt;
+  &lt;status&gt;Moping&lt;/status&gt;
+&lt;/presence&gt;
+
+&lt;presence from='juliet@capulet.lit/balcony' to='nurse@capulet.lit/chamber'&gt;
+  &lt;status&gt;Moping&lt;/status&gt;
+&lt;/presence&gt;
+
+&lt;presence from='juliet@capulet.lit/balcony' to='benvolio@montague.lit/pda'&gt;
+  &lt;status&gt;Moping&lt;/status&gt;
+&lt;/presence&gt;
+
+[etc.]
+  </pre></div>
+  <p class="" style="">But the same functionality can be implemented more elegantly using pubsub:</p>
+  <p class="caption"><a name="example-3" id="example-3"></a>Example 3. Presence Publish</p><div class="indent"><pre>
+&lt;iq from='juliet@capulet.lit/balcony' type='set' id='pres1'&gt;
+  &lt;pubsub xmlns='http://jabber.org/protocol/pubsub'&gt;
+    &lt;publish node='presence'&gt;
+      &lt;item&gt;
+        &lt;presence from='juliet@capulet.lit/balcony' xmlns='jabber:client'&gt;
+          &lt;status&gt;Moping&lt;/status&gt;
+        &lt;/presence&gt;
+      &lt;/item&gt;
+    &lt;/publish&gt;
+  &lt;/pubsub&gt;
+&lt;/iq&gt;
+
+&lt;iq to='juliet@capulet.lit/balcony' type='result' id='pres1'/&gt;
+  </pre></div>
+  <p class="" style="">The server (here implementing PEP) then sends notifications to the subscribers:</p>
+  <p class="caption"><a name="example-4" id="example-4"></a>Example 4. Presence Notifications via Pubsub</p><div class="indent"><pre>
+&lt;message from='juliet@capulet.lit'
+         to='romeo@montague.lit/mobile'
+         id='presfoo'&gt;
+  &lt;event xmlns='http://jabber.org/protocol/pubsub#event'&gt;
+    &lt;items node='presence'&gt;
+      &lt;item&gt;
+        &lt;presence from='juliet@capulet.lit/balcony' xmlns='jabber:client'&gt;
+          &lt;status&gt;Moping&lt;/status&gt;
+        &lt;/presence&gt;
+      &lt;/item&gt;
+    &lt;/items&gt;
+  &lt;/event&gt;
+&lt;/message&gt;
+
+&lt;message from='juliet@capulet.lit'
+         to='nurse@capulet.lit/chamber'
+         id='presfoo'&gt;
+  &lt;event xmlns='http://jabber.org/protocol/pubsub#event'&gt;
+    &lt;items node='http://jabber.org/protocol/tune'&gt;
+      &lt;item&gt;
+        &lt;presence from='juliet@capulet.lit/balcony' xmlns='jabber:client'&gt;
+          &lt;status&gt;Moping&lt;/status&gt;
+        &lt;/presence&gt;
+      &lt;/item&gt;
+    &lt;/items&gt;
+  &lt;/event&gt;
+&lt;/message&gt;
+
+&lt;message from='juliet@capulet.lit'
+         to='benvolio@montague.lit/pda'
+         id='presfoo'&gt;
+  &lt;event xmlns='http://jabber.org/protocol/pubsub#event'&gt;
+    &lt;items node='presence'&gt;
+      &lt;item&gt;
+        &lt;presence from='juliet@capulet.lit/balcony' xmlns='jabber:client'&gt;
+          &lt;status&gt;Moping&lt;/status&gt;
+        &lt;/presence&gt;
+      &lt;/item&gt;
+    &lt;/items&gt;
+  &lt;/event&gt;
+&lt;/message&gt;
+  </pre></div>
+  <p class="" style="">It is true that in this case the packets are significantly larger in the pubsub realization than in the old-fashioned presence realization. This is the price of elegance. Implementations SHOULD use native Transport Layer Security compression (see <span class="ref" style=""><a href="http://tools.ietf.org/html/rfc4346">RFC 4346</a></span>  [<a href="#nt-id2251429">8</a>]) or <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0138.html">Stream Compression</a></span>  [<a href="#nt-id2251455">9</a>] at the application layer to conserve bandwidth.</p>
+<h2>4.
+       <a name="roster" id="roster">Rosters and Presence Subscriptions</a></h2>
+  <p class="" style="">The original Jabber technologies included a kind of Buddy List ™ (called the "roster"). But the roster is simply a list of the entities that are subscribed to a user's presence. Occam's Razor would indicate that it is foolish to implement two concepts (presence subscription and roster) when one will solve the problem at hand. In XMPP Eventing via Pubsub, there is no need for a specialized "roster" since the same information is represented in the list of entities who are subscribed to the user's "presence" node in pubsub/PEP.</p>
+  <p class="" style="">Using XMPP Eventing via Pubsub also cleans up the syntax for presence subscription management, which currently uses four specialized values of the &lt;presence/&gt; element's 'type' attribute: "subscribe", "subscribed", "unsubscribe", and "unsubscribed".</p>
+  <p class="" style="">Thus for example a presence subscription request is currently made by sending the following presence stanza:</p>
+  <p class="caption"><a name="example-5" id="example-5"></a>Example 5. Presence Subscription Request</p><div class="indent"><pre>
+&lt;presence from='bard@shakespeare.lit' to='juliet@capulet.lit' type='subscribe'/&gt;
+  </pre></div>
+  <p class="" style="">And that request is then delivered to the intended recipient:</p>
+  <p class="caption"><a name="example-6" id="example-6"></a>Example 6. Presence Subscription Request</p><div class="indent"><pre>
+&lt;presence from='bard@shakespeare.lit' to='juliet@capulet.lit' type='subscribe'/&gt;
+  </pre></div>
+  <p class="" style="">In order to approve the subscription request, the user sends a presence stanza of type "subscribed":</p>
+  <p class="caption"><a name="example-7" id="example-7"></a>Example 7. Presence Subscription Approval</p><div class="indent"><pre>
+&lt;presence from='juliet@capulet.lit' to='bard@shakespeare.lit' type='subscribed'/&gt;
+  </pre></div>
+  <p class="" style="">At this point the user's server also creates an entry on the user's roster for the relevant contact and pushes that entry to the user:</p>
+  <p class="caption"><a name="example-8" id="example-8"></a>Example 8. Roster Push</p><div class="indent"><pre>
+&lt;iq to='juliet@example.com/balcony'
+    type='set'
+    id='a78b4q6ha463'&gt;
+  &lt;query xmlns='jabber:iq:roster'&gt;
+    &lt;item jid='bard@shakespeare.lit'
+          subscription='from'/&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+  </pre></div>
+  <p class="" style="">Observe how much more elegant it is to use XMPP Eventing via Pubsub:</p>
+  <p class="caption"><a name="example-9" id="example-9"></a>Example 9. Pubsub Subscription Request</p><div class="indent"><pre>
+&lt;iq type='set'
+    from='bard@shakespeare.lit/globe'
+    to='juliet@capulet.lit'
+    id='sub1'&gt;
+  &lt;pubsub xmlns='http://jabber.org/protocol/pubsub'&gt;
+    &lt;subscribe
+        node='presence'
+        jid='bard@shakespeare.lit'/&gt;
+  &lt;/pubsub&gt;
+&lt;/iq&gt;
+  </pre></div>
+  <p class="" style="">The pubsub service then sends an authorization request to the user:</p>
+  <p class="caption"><a name="example-10" id="example-10"></a>Example 10. Service sends authorization request to node owner</p><div class="indent"><pre>
+&lt;message to='juliet@capulet.lit' from='capulet.lit' id='approve1'&gt;
+  &lt;x xmlns='jabber:x:data' type='form'&gt;
+    &lt;title&gt;PubSub subscriber request&lt;/title&gt;
+    &lt;instructions&gt;
+      To approve this entity&amp;apos;s subscription request,
+      click the OK button. To deny the request, click the
+      cancel button.
+    &lt;/instructions&gt;
+    &lt;field var='FORM_TYPE' type='hidden'&gt;
+      &lt;value&gt;http://jabber.org/protocol/pubsub#subscribe_authorization&lt;/value&gt;
+    &lt;/field&gt;
+    &lt;field var='pubsub#node' type='text-single' label='Node ID'&gt;
+      &lt;value&gt;presence&lt;/value&gt;
+    &lt;/field&gt;
+    &lt;field var='pusub#subscriber_jid' type='jid-single' label='Subscriber Address'&gt;
+      &lt;value&gt;bard@shakespeare.lit&lt;/value&gt;
+    &lt;/field&gt;
+    &lt;field var='pubsub#allow' type='boolean'
+           label='Allow this JID to subscribe to this pubsub node?'&gt;
+      &lt;value&gt;false&lt;/value&gt;
+    &lt;/field&gt;
+  &lt;/x&gt;
+&lt;/message&gt;
+  </pre></div>
+  <p class="" style="">In order to approve the request, the owner shall submit the form and set the "pubsub#allow" field to a value of "1" or "true"; for tracking purposes the message MUST reflect the 'id' attribute originally provided.</p>
+  <p class="caption"><a name="example-11" id="example-11"></a>Example 11. User approves subscription request</p><div class="indent"><pre>
+&lt;message from='juliet@capulet.lit/balcony' to='montague.lit' id='approve1'&gt;
+  &lt;x xmlns='jabber:x:data' type='submit'&gt;
+    &lt;field var='FORM_TYPE' type='hidden'&gt;
+      &lt;value&gt;http://jabber.org/protocol/pubsub#subscribe_authorization&lt;/value&gt;
+    &lt;/field&gt;
+    &lt;field var='pubsub#node'&gt;
+      &lt;value&gt;presence&lt;/value&gt;
+    &lt;/field&gt;
+    &lt;field var='pubsub#subscriber_jid'&gt;
+      &lt;value&gt;bard@shakespeare.lit&lt;/value&gt;
+    &lt;/field&gt;
+    &lt;field var='pubsub#allow'&gt;
+       &lt;value&gt;true&lt;/value&gt;
+    &lt;/field&gt;
+  &lt;/x&gt;
+&lt;/message&gt;
+  </pre></div>
+  <p class="" style="">Simple. Elegant. And no need for a roster! The pubsub approach is bit more verbose, but then again clients and servers should implement and deploy stream compression if they are really worred about bandwidth usage.</p>
+<h2>5.
+       <a name="muc" id="muc">Multi-User Chat</a></h2>
+  <p class="" style="">The existing groupchat protocol for XMPP overloads the &lt;presence/&gt; stanza for temporary "subscriptions" to a virtual room and uses the &lt;message/&gt; stanza (with a special type of "groupchat") to communicate information to multiple room occupants. Sound familiar? It's just another form of pubsub!</p>
+  <p class="" style="">In groupchat, a user joins a room by sending presence to "room@service/nick":</p>
+  <p class="caption"><a name="example-12" id="example-12"></a>Example 12. Groupchat Join</p><div class="indent"><pre>
+&lt;presence from='juliet@capulet.lit/balcony' to='characters@chat.shakespeare.lit/JC'/&gt;
+  </pre></div>
+  <p class="" style="">But on the pubsub model that is merely a temporary subscription, which can be handled quite elegantly as so:</p>
+  <p class="caption"><a name="example-13" id="example-13"></a>Example 13. Groupchat Join via Pubsub</p><div class="indent"><pre>
+&lt;iq type='set'
+    from='juliet@capulet.lit/balcony'
+    to='chat.shakespeare.lit'
+    id='sub2'&gt;
+  &lt;pubsub xmlns='http://jabber.org/protocol/pubsub'&gt;
+    &lt;subscribe
+        node='characters'
+        jid='juliet@capulet.lit/balcony'/&gt;
+    &lt;options node='characters' jid='juliet@capulet.lit/balcony'&gt;
+      &lt;x xmlns='jabber:x:data' type='submit'&gt;
+        &lt;field var='FORM_TYPE' type='hidden'&gt;
+          &lt;value&gt;http://jabber.org/protocol/pubsub#subscribe_options&lt;/value&gt;
+        &lt;/field&gt;
+        &lt;field var='roomnick'&gt;&lt;value&gt;JC&lt;/value&gt;&lt;/field&gt;
+      &lt;/x&gt;
+    &lt;/options&gt;
+  &lt;/pubsub&gt;
+&lt;/iq&gt;
+  </pre></div>
+  <p class="" style="">In groupchat, room occupants can send messages to all other occupants via the &lt;message/&gt; stanza:</p>
+  <p class="caption"><a name="example-14" id="example-14"></a>Example 14. Groupchat Message</p><div class="indent"><pre>
+&lt;message from='juliet@capulet.lit/balcony' to='characters@chat.shakespeare.lit' type='groupchat'&gt;
+  &lt;body&gt;hi&lt;/body&gt;
+&lt;/message&gt;
+  </pre></div>
+  <p class="" style="">The groupchat service then "reflects" that message to all the occupants:</p>
+  <p class="caption"><a name="example-15" id="example-15"></a>Example 15. Groupchat Message Delivery</p><div class="indent"><pre>
+&lt;message from='characters@chat.shakespeare.lit/JC' to='bard@shakespeare.lit/globe' type='groupchat'&gt;
+  &lt;body&gt;hi&lt;/body&gt;
+&lt;/message&gt;
+
+&lt;message from='characters@chat.shakespeare.lit/JC' to='romeo@montague.lit/mobile' type='groupchat'&gt;
+  &lt;body&gt;hi&lt;/body&gt;
+&lt;/message&gt;
+
+&lt;message from='characters@chat.shakespeare.lit/JC' to='benvolio@montague.lit/pda' type='groupchat'&gt;
+  &lt;body&gt;hi&lt;/body&gt;
+&lt;/message&gt;
+  </pre></div>
+  <p class="" style="">But on the pubsub model that is merely a publish resulting in multiple notifications, which can be handled quite elegantly as so:</p>
+  <p class="caption"><a name="example-16" id="example-16"></a>Example 16. Groupchat Publish</p><div class="indent"><pre>
+&lt;iq from='juliet@capulet.lit/balcony' to='chat.shakespeare.lit' type='set' id='gc1'&gt;
+  &lt;pubsub xmlns='http://jabber.org/protocol/pubsub'&gt;
+    &lt;publish node='characters'&gt;
+      &lt;item&gt;
+        &lt;message xmlns='jabber:client'&gt;
+          &lt;body&gt;hi&lt;/body&gt;
+        &lt;/message&gt;
+      &lt;/item&gt;
+    &lt;/publish&gt;
+  &lt;/pubsub&gt;
+&lt;/iq&gt;
+
+&lt;iq from='chat.shakespeare.lit' to='juliet@capulet.lit/balcony' type='result' id='gc1'/&gt;
+  </pre></div>
+  <p class="" style="">The service then sends notifications to all the node subscribers:</p>
+  <p class="caption"><a name="example-17" id="example-17"></a>Example 17. Groupchat Notifications</p><div class="indent"><pre>
+&lt;message from='chat.shakespeare.lit'
+         to='bard@shakespeare.lit/globe'
+         id='mucfoo'&gt;
+  &lt;event xmlns='http://jabber.org/protocol/pubsub#event'&gt;
+    &lt;items node='characters'&gt;
+      &lt;item&gt;
+        &lt;message xmlns='jabber:client'&gt;
+          &lt;body&gt;hi&lt;/body&gt;
+        &lt;/message&gt;
+      &lt;/item&gt;
+    &lt;/items&gt;
+  &lt;/event&gt;
+  &lt;addresses xmlns='http://jabber.org/protocol/address'&gt;
+    &lt;address type='replyto' jid='juliet@capulet.lit/balcony'/&gt;
+  &lt;/addresses&gt;
+&lt;/message&gt;
+
+&lt;message from='chat.shakespeare.lit'
+         to='romeo@montague.lit/mobile'
+         id='mucfoo'&gt;
+  &lt;event xmlns='http://jabber.org/protocol/pubsub#event'&gt;
+    &lt;items node='characters'&gt;
+      &lt;item&gt;
+        &lt;message xmlns='jabber:client'&gt;
+          &lt;body&gt;hi&lt;/body&gt;
+        &lt;/message&gt;
+      &lt;/item&gt;
+    &lt;/items&gt;
+  &lt;/event&gt;
+  &lt;addresses xmlns='http://jabber.org/protocol/address'&gt;
+    &lt;address type='replyto' jid='juliet@capulet.lit/balcony'/&gt;
+  &lt;/addresses&gt;
+&lt;/message&gt;
+
+&lt;message from='chat.shakespeare.lit'
+         to='benvolio@montague.lit/pda'
+         id='mucfoo'&gt;
+  &lt;event xmlns='http://jabber.org/protocol/pubsub#event'&gt;
+    &lt;items node='characters'&gt;
+      &lt;item&gt;
+        &lt;message xmlns='jabber:client'&gt;
+          &lt;body&gt;hi&lt;/body&gt;
+        &lt;/message&gt;
+      &lt;/item&gt;
+    &lt;/items&gt;
+  &lt;/event&gt;
+  &lt;addresses xmlns='http://jabber.org/protocol/address'&gt;
+    &lt;address type='replyto' jid='juliet@capulet.lit/balcony'/&gt;
+  &lt;/addresses&gt;
+&lt;/message&gt;
+  </pre></div>
+  <p class="" style="">Here again the pubsub approach is slightly more verbose, but that's what stream compression is for.</p>
+<h2>6.
+       <a name="messaging" id="messaging">One-to-One Messaging</a></h2>
+  <p class="" style="">It's really rather silly that XMPP includes two different models for messaging, one for groupchat and the other for one-to-one messages. Pubsub solves that problem by using one model for everything. In order to exchange messages, one of the parties simply creates a pubsub node with a whitelist model and adds the other person as a publisher (it may also be necessary to add the other party to the whitelist):</p>
+  <p class="caption"><a name="example-18" id="example-18"></a>Example 18. Creating a One-to-One Messaging Node</p><div class="indent"><pre>
+&lt;iq type='set'
+    from='juliet@capulet.lit/balcony'
+    to='pubsub.shakespeare.lit'
+    id='create1'&gt;
+  &lt;pubsub xmlns='http://jabber.org/protocol/pubsub'&gt;
+    &lt;create node='me_and_romeo'/&gt;
+    &lt;configure&gt;
+      &lt;x xmlns='jabber:x:data' type='submit'&gt;
+        &lt;field var='FORM_TYPE' type='hidden'&gt;
+          &lt;value&gt;http://jabber.org/protocol/pubsub#node_config&lt;/value&gt;
+        &lt;/field&gt;
+        &lt;field var='pubsub#access_model'&gt;&lt;value&gt;whitelist&lt;/value&gt;&lt;/field&gt;
+        &lt;field var='pubsub#publisher'&gt;&lt;value&gt;romeo@montague.lit&lt;/value&gt;&lt;/field&gt;
+      &lt;/x&gt;
+    &lt;/configure&gt;
+  &lt;/pubsub&gt;
+&lt;/iq&gt;
+
+&lt;iq type='result' from='pubsub.shakespeare.lit' to='juliet@capulet.lit/balcony' id='create1'/&gt;
+
+&lt;iq type='set'
+    from='juliet@capulet.lit/balcony'
+    id='manage1'&gt;
+  &lt;pubsub xmlns='http://jabber.org/protocol/pubsub#owner'&gt;
+    &lt;subscriptions node='me_and_romeo'/&gt;
+      &lt;subscription jid='romeo@capulet.lit' subscription='subscribed'/&gt;
+    &lt;/subscriptions&gt;
+  &lt;/pubsub&gt;
+&lt;/iq&gt;
+
+&lt;iq type='result'
+    to='juliet@capulet.lit/balcony'
+    id='manage1'/&gt;
+  </pre></div>
+  <p class="" style="">Now Juliet can send a message to the node and it will be delivered to both parties (it's always nice to receive a bcc to one's sending address, the client can simply ignore it, or treat it as an ack):</p>
+  <p class="caption"><a name="example-19" id="example-19"></a>Example 19. Message Publish</p><div class="indent"><pre>
+&lt;iq from='juliet@capulet.lit/balcony' to='pubsub.shakespeare.lit' type='set' id='msg1'&gt;
+  &lt;pubsub xmlns='http://jabber.org/protocol/pubsub'&gt;
+    &lt;publish node='me_and_romeo'&gt;
+      &lt;item&gt;
+        &lt;message xmlns='jabber:client'&gt;
+          &lt;body&gt;wherefore art thou?&lt;/body&gt;
+        &lt;/message&gt;
+      &lt;/item&gt;
+    &lt;/publish&gt;
+  &lt;/pubsub&gt;
+&lt;/iq&gt;
+
+&lt;iq from='pubsub.shakespeare.lit' to='juliet@capulet.lit/balcony' type='result' id='msg1'/&gt;
+  </pre></div>
+  <p class="" style="">The service then sends notifications to both parties:</p>
+  <p class="caption"><a name="example-20" id="example-20"></a>Example 20. Groupchat Notifications</p><div class="indent"><pre>
+&lt;message from='pubsub.shakespeare.lit'
+         to='romeo@montague.lit/mobile'
+         id='msgfoo'&gt;
+  &lt;event xmlns='http://jabber.org/protocol/pubsub#event'&gt;
+    &lt;items node='me_and_romeo'&gt;
+      &lt;item&gt;
+        &lt;message xmlns='jabber:client'&gt;
+          &lt;body&gt;wherefore art thou?&lt;/body&gt;
+        &lt;/message&gt;
+      &lt;/item&gt;
+    &lt;/items&gt;
+  &lt;/event&gt;
+  &lt;addresses xmlns='http://jabber.org/protocol/address'&gt;
+    &lt;address type='replyto' jid='juliet@capulet.lit/balcony'/&gt;
+  &lt;/addresses&gt;
+&lt;/message&gt;
+
+&lt;message from='pubsub.shakespeare.lit'
+         to='juliet@capulet.lit/balcony'
+         id='msgfoo'&gt;
+  &lt;event xmlns='http://jabber.org/protocol/pubsub#event'&gt;
+    &lt;items node='me_and_romeo'&gt;
+      &lt;item&gt;
+        &lt;message xmlns='jabber:client'&gt;
+          &lt;body&gt;wherefore art thou?&lt;/body&gt;
+        &lt;/message&gt;
+      &lt;/item&gt;
+    &lt;/items&gt;
+  &lt;/event&gt;
+  &lt;addresses xmlns='http://jabber.org/protocol/address'&gt;
+    &lt;address type='replyto' jid='juliet@capulet.lit/balcony'/&gt;
+  &lt;/addresses&gt;
+&lt;/message&gt;
+  </pre></div>
+  <p class="" style="">Beautiful, no?</p>
+<h2>7.
+       <a name="conclusion" id="conclusion">Conclusion</a></h2>
+  <p class="" style="">Although this document shows how to do presence notifications, presence subscriptions, rosters, groupchat, and one-to-one messaging via pubsub, XMPP Eventing via Pubsub (XEP) is not limited to these functionality areas, which are provided only as examples. Indeed, XMPP Eventing via Pubsub (XEP) provides a generic mechanism for XMPP eventing that obviates the need for any future XMPP Extension Protocol (XEP) specifications other than payload formats for communication over the XMPP Eventing via Pubsub (XEP) transport. Truly, pubsub is the "one ring to bind them all" and the XEP XEP is the mother of all future XEPs. We have a clear path forward to a powerful, robust, payload-agnostic technology for the full range of eventing needs. Let us grasp the opportunity to rebuild XMPP the way it should have been built from the beginning: on top of a solid foundation of publish-subscribe.  [<a href="#nt-id2261434">10</a>]</p>
+<h2>8.
+       <a name="security" id="security">Security Considerations</a></h2>
+  <p class="" style="">In XMPP Eventing via Pubsub (XEP), access control is handled through a single permissions model, that of subscriptions to pubsub nodes. XEP nodes MUST have a default access model of "authorize" to prevent open data retrieval from potentially private data sources; this will result in a great deal of authorization requests and thus annoy typical end users to no end, but users will at least have the illusion of security, which is all they really want anyway.</p>
+  <p class="" style="">End-to-end encryption is made more difficult in XMPP Eventing via Pubsub (XEP) since all information passes through the pubsub service, which is typically associated with or hosted by the user's server. The solution is to run your own XMPP server in a high-security fashion. In particular, universal deployment of personal XMPP servers, domain certificates (X.509 / PKI) for channel encryption (TLS) and server-to-server trust (SASL), IPv6, DNSSEC, and IPsec will solve all security problems.</p>
+  <p class="" style="">If that is not enough, XMPP can utilize onion routing schemes such as Tor for added security. Typically this results in high latency. But the word "instant" in "instant messaging" has always made XMPP seem quite frivolous (especially back when we called it "Jabber", what a silly word that is!), whereas "secure messaging" sounds like a serious technology. Who cares if delivery takes forever? (Oh and while we're at it, we should add per-hop acknowledgements for every stanza and perhaps full transactional abilities; however, those initiatives are beyond the scope of this document.)</p>
+<h2>9.
+       <a name="iana" id="iana">IANA Considerations</a></h2>
+  <p class="" style="">This document requires no interaction with the <span class="ref" style=""><a href="http://www.iana.org/">Internet Assigned Numbers Authority (IANA)</a></span>  [<a href="#nt-id2261580">11</a>].</p>
+<h2>10.
+       <a name="registrar" id="registrar">XMPP Registrar Considerations</a></h2>
+  <p class="" style="">This document requires no interaction with the <span class="ref" style=""><a href="http://www.xmpp.org/registrar/">XMPP Registrar</a></span>  [<a href="#nt-id2261623">12</a>].</p>
+<h2>11.
+       <a name="schema" id="schema">XML Schema</a></h2>
+  <p class="" style="">Because XMPP Eventing via Pubsub simply reuses the protocol specified in <span class="ref">XEP-0060</span>, a separate schema is not needed.</p>
+<h2>12.
+       <a name="ack" id="ack">Acknowledgements</a></h2>
+  <p class="" style="">Thanks to Maciek Niedzielski for inspiration.</p>
+<hr /><h2><a name="notes" id="notes"></a>Notes</h2><div class="indent"><p><a name="nt-id2252743" id="nt-id2252743">1</a>. XEP-0163: Personal Eventing via Pubsub &lt;<a href="http://www.xmpp.org/extensions/xep-0163.html">http://www.xmpp.org/extensions/xep-0163.html</a>&gt;.</p><p><a name="nt-id2252818" id="nt-id2252818">2</a>. RFC 3920: Extensible Messaging and Presence Protocol (XMPP): Core &lt;<a href="http://tools.ietf.org/html/rfc3920">http://tools.ietf.org/html/rfc3920</a>&gt;.</p><p><a name="nt-id2252843" id="nt-id2252843">3</a>. XEP-0060: Publish-Subscribe &lt;<a href="http://www.xmpp.org/extensions/xep-0060.html">http://www.xmpp.org/extensions/xep-0060.html</a>&gt;.</p><p><a name="nt-id2252645" id="nt-id2252645">4</a>. XEP-0045: Multi-User Chat &lt;<a href="http://www.xmpp.org/extensions/xep-0045.html">http://www.xmpp.org/extensions/xep-0045.html</a>&gt;.</p><p><a name="nt-id2252671" id="nt-id2252671">5</a>. XEP-0050: Ad-Hoc Commands &lt;<a href="http://www.xmpp.org/extensions/xep-0050.html">http://www.xmpp.org/extensions/xep-0050.html</a>&gt;.</p><p><a name="nt-id2252734" id="nt-id2252734">6</a>. RFC 3921: Extensible Messaging and Presence Protocol (XMPP): Instant Messaging and Presence &lt;<a href="http://tools.ietf.org/html/rfc3921">http://tools.ietf.org/html/rfc3921</a>&gt;.</p><p><a name="nt-id2252720" id="nt-id2252720">7</a>. See, for instance, &lt;<a href="http://mail.jabber.org/pipermail/xmppwg/2003-February/000636.html">http://mail.jabber.org/pipermail/xmppwg/2003-February/000636.html</a>&gt;.</p><p><a name="nt-id2251429" id="nt-id2251429">8</a>. RFC 4346: The Transport Layer Security (TLS) Protocol Version 1.1 &lt;<a href="http://tools.ietf.org/html/rfc4346">http://tools.ietf.org/html/rfc4346</a>&gt;.</p><p><a name="nt-id2251455" id="nt-id2251455">9</a>. XEP-0138: Stream Compression &lt;<a href="http://www.xmpp.org/extensions/xep-0138.html">http://www.xmpp.org/extensions/xep-0138.html</a>&gt;.</p><p><a name="nt-id2261434" id="nt-id2261434">10</a>. But did we mention that developers really need to implement stream compression?</p><p><a name="nt-id2261580" id="nt-id2261580">11</a>. The Internet Assigned Numbers Authority (IANA) is the central coordinator for the assignment of unique parameter values for Internet protocols, such as port numbers and URI schemes. For further information, see &lt;<a href="http://www.iana.org/">http://www.iana.org/</a>&gt;.</p><p><a name="nt-id2261623" id="nt-id2261623">12</a>. The XMPP Registrar maintains a list of reserved protocol namespaces as well as registries of parameters used in the context of XMPP extension protocols approved by the XMPP Standards Foundation. For further information, see &lt;<a href="http://www.xmpp.org/registrar/">http://www.xmpp.org/registrar/</a>&gt;.</p></div><hr /><h2><a name="revs" id="revs"></a>Revision History</h2><div class="indent"><h4>Version 1.0 (2007-04-01)</h4><div class="indent"><p class="" style="">April Fools!</p> (psa)
+    </div></div><hr /><p>END</p></body></html>

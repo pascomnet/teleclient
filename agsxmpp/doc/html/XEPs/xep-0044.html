@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>XEP-0044: Full Namespace Support for XML Streams</title><link rel="stylesheet" type="text/css" href="/xmpp.css" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" /><meta name="DC.Title" content="Full Namespace Support for XML Streams" /><meta name="DC.Creator" content="Robert Norris" /><meta name="DC.Description" content="A description of the use of namespaces within Jabber." /><meta name="DC.Publisher" content="XMPP Standards Foundation" /><meta name="DC.Contributor" content="XMPP Extensions Editor" /><meta name="DC.Date" content="2002-08-26" /><meta name="DC.Type" content="XMPP Extension Protocol" /><meta name="DC.Format" content="XHTML" /><meta name="DC.Identifier" content="XEP-0044" /><meta name="DC.Language" content="en" /><meta name="DC.Rights" content="This XMPP Extension Protocol is copyright (c) 1999 - 2008 by the XMPP Standards Foundation (XSF)." /></head><body><h1>XEP-0044: Full Namespace Support for XML Streams</h1><p>A description of the use of namespaces within Jabber.</p><hr /><p style="color:red">WARNING: Consideration of this document has been Deferred by the XMPP Standards Foundation. Implementation of the protocol described herein is not recommended.</p><hr /><h2>Document Information</h2><p class="indent">
+            Series: <a href="http://www.xmpp.org/extensions/">XEP</a><br />
+            Number: 0044<br />
+            Publisher: <a href="/xsf/">XMPP Standards Foundation</a><br />
+            Status: 
+            <a href="http://www.xmpp.org/extensions/xep-0001.html#states-Deferred">Deferred</a><br />
+            Type:
+            <a href="http://www.xmpp.org/extensions/xep-0001.html#types-Standards Track">Standards Track</a><br />
+            Version: 0.1<br />
+            Last Updated: 2002-08-26<br />
+                Approving Body: <a href="http://www.xmpp.org/council/">XMPP Council</a><br />
+                Dependencies: None<br />
+                Supersedes: None<br />
+                Superseded By: None<br />
+            Short Name: <br />
+              Wiki Page: &lt;<a href="http://wiki.jabber.org/index.php/Full Namespace Support for XML Streams (XEP-0044)">http://wiki.jabber.org/index.php/Full Namespace Support for XML Streams (XEP-0044)</a>&gt;
+            </p><hr /><h2>Author Information</h2><div class="indent"><h3>Robert Norris</h3><p class="indent">
+        Email:
+        <a href="mailto:rob@cataclysm.cx">rob@cataclysm.cx</a><br />
+        JabberID: 
+        <a href="xmpp:rob@cataclysm.cx">rob@cataclysm.cx</a><br /></p></div><hr /><h2>Legal Notices</h2><div class="indent"><h3>Copyright</h3>This XMPP Extension Protocol is copyright (c) 1999 - 2008 by the XMPP Standards Foundation (XSF).<h3>Permissions</h3>Permission is hereby granted, free of charge, to any person obtaining a copy of this specification (the "Specification"), to make use of the Specification without restriction, including without limitation the rights to implement the Specification in a software program, deploy the Specification in a network service, and copy, modify, merge, publish, translate, distribute, sublicense, or sell copies of the Specification, and to permit persons to whom the Specification is furnished to do so, subject to the condition that the foregoing copyright notice and this permission notice shall be included in all copies or substantial portions of the Specification. Unless separate permission is granted, modified works that are redistributed shall not contain misleading information regarding the authors, title, number, or publisher of the Specification, and shall not claim endorsement of the modified works by the authors, any organization or project to which the authors belong, or the XMPP Standards Foundation.<h3>Disclaimer of Warranty</h3><span style="font-weight: bold">## NOTE WELL: This Specification is provided on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, express or implied, including, without limitation, any warranties or conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE. In no event shall the XMPP Standards Foundation or the authors of this Specification be liable for any claim, damages, or other liability, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the Specification or the implementation, deployment, or other use of the Specification. ##</span><h3>Limitation of Liability</h3>In no event and under no legal theory, whether in tort (including negligence), contract, or otherwise, unless required by applicable law (such as deliberate and grossly negligent acts) or agreed to in writing, shall the XMPP Standards Foundation or any author of this Specification be liable for damages, including any direct, indirect, special, incidental, or consequential damages of any character arising out of the use or inability to use the Specification (including but not limited to damages for loss of goodwill, work stoppage, computer failure or malfunction, or any and all other commercial damages or losses), even if the XMPP Standards Foundation or such author has been advised of the possibility of such damages.<h3>IPR Conformance</h3>This XMPP Extension Protocol has been contributed in full conformance with the XSF's Intellectual Property Rights Policy (a copy of which may be found at &lt;<a href="http://www.xmpp.org/extensions/ipr-policy.shtml">http://www.xmpp.org/extensions/ipr-policy.shtml</a>&gt; or obtained by writing to XSF, P.O. Box 1641, Denver, CO 80201 USA).</div><hr /><h2>Discussion Venue</h2><p class="indent">The preferred venue for discussion of this document is the Standards discussion list: &lt;<a href="http://mail.jabber.org/mailman/listinfo/standards">http://mail.jabber.org/mailman/listinfo/standards</a>&gt;.</p><p class="indent">Errata may be sent to &lt;<a href="mailto:editor@xmpp.org">editor@xmpp.org</a>&gt;.</p><h2>Relation to XMPP</h2><p class="indent">The Extensible Messaging and Presence Protocol (XMPP) is defined in the XMPP Core (RFC 3920) and XMPP IM (RFC 3921) specifications contributed by the XMPP Standards Foundation to the Internet Standards Process, which is managed by the Internet Engineering Task Force in accordance with RFC 2026. Any protocol defined in this document has been developed outside the Internet Standards Process and is to be understood as an extension to XMPP rather than as an evolution, development, or modification of XMPP itself.</p><h2>Conformance Terms</h2><p class="indent">The following keywords as used in this document are to be interpreted as described in <a href="http://www.ietf.org/rfc/rfc2119.txt">RFC 2119</a>: "MUST", "SHALL", "REQUIRED"; "MUST NOT", "SHALL NOT"; "SHOULD", "RECOMMENDED"; "SHOULD NOT", "NOT RECOMMENDED"; "MAY", "OPTIONAL".</p><hr /><h2>Table of Contents</h2><div class="indent"><p><br />1.  <a href="#sect-id2260866">Introduction</a><br />2.  <a href="#sect-id2252823">Requirements and Protocol</a><br />3.  <a href="#sect-id2252750">Implementation Notes</a><br /><a href="#notes">Notes</a><br /><a href="#revs">Revision History</a></p></div><hr /><h2>1.
+       <a name="sect-id2260866" id="sect-id2260866">Introduction</a></h2>
+  <p class="" style="">Jabber has traditionally supported a subset of the XML Namespaces specification  [<a href="#nt-id2260912">1</a>]. The protocol has been restricted to using specific namespace prefixes.</p>
+
+  <p class="" style="">This is convenient for client and server implementors, since they only need to check the element name to determine both the name and the context of the element. However, these restrictions mean that developers are unable to take advantage of some of the features that namespaces provide.</p>
+
+  <p class="" style="">Many developers have expressed an interest in having Jabber fully support namespaces - a desire which is likely to increase as time goes on. This support consists of allowing any namespace prefix to be used with any namespace, and also to allow namespace prefixes to be pre-declared on the stream root.</p>
+
+  <p class="" style="">This document outlines the semantics required for servers and clients to support namespaces fully, and also discusses implementation techniques and methods for providing compatibility with older "fixed-prefix" implementations.</p>
+<h2>2.
+       <a name="sect-id2252823" id="sect-id2252823">Requirements and Protocol</a></h2>
+
+  <p class="" style="">A typical XML stream is a pair of XML documents, one for each direction of communication between the two peers. An simple example of these might look like this:</p>
+  
+  <p class="caption"><a name="example-1" id="example-1"></a>Example 1. A typical XML stream</p><div class="indent"><pre>
+SEND: &lt;stream:stream xmlns='jabber:client'
+                     xmlns:stream='http://etherx.jabber.org/streams'
+                     to='jabber.org'&gt;
+RECV: &lt;stream:stream xmlns='jabber:client'
+                     xmlns:stream='http://etherx.jabber.org/streams'
+                     id='12345678'&gt;
+SEND: &lt;iq type='get' to='jabber.org'&gt;
+        &lt;query xmlns='jabber:iq:version'/&gt;
+      &lt;/iq&gt;
+RECV: &lt;iq type='result' from='jabber.org'&gt;
+        &lt;query xmlns='jabber:iq:version'&gt;
+          &lt;name&gt;jsm&lt;/name&gt;
+          &lt;version&gt;1.4.2&lt;/version&gt;
+          &lt;os&gt;Linux 2.4.19&lt;/os&gt;
+        &lt;/query&gt;
+      &lt;/iq&gt;
+   </pre></div>
+
+  <p class="" style="">Note that there may also be additional namespaces specified in the stream header, to select or inform of various server features:</p>
+
+  <p class="caption"><a name="example-2" id="example-2"></a>Example 2. A typical XML stream with stream options</p><div class="indent"><pre>
+SEND: &lt;stream:stream xmlns='jabber:client'
+                     xmlns:stream='http://etherx.jabber.org/streams'
+                     xmlns:sasl='http://www.iana.org/assignments/sasl-mechanisms'
+                     to='jabber.org'&gt;
+RECV: &lt;stream:stream xmlns='jabber:client'
+                     xmlns:stream='http://etherx.jabber.org/streams'
+                     xmlns:sasl='http://www.iana.org/assignments/sasl-mechanisms'
+                     id='12345678'&gt;
+      &lt;sasl:mechanisms&gt;
+        &lt;sasl:mechanism&gt;PLAIN&lt;/sasl:mechanism&gt;
+        &lt;sasl:mechanism&gt;DIGEST-MD5&lt;/sasl:mechanism&gt;
+        &lt;sasl:mechanism&gt;EXTERNAL&lt;/sasl:mechanism&gt;
+      &lt;/sasl:mechanisms&gt;
+SEND: &lt;iq type='get' to='jabber.org'&gt;
+        &lt;query xmlns='jabber:iq:version'/&gt;
+      &lt;/iq&gt;
+RECV: &lt;iq type='result' from='jabber.org'&gt;
+        &lt;query xmlns='jabber:iq:version'&gt;
+          &lt;name&gt;jsm&lt;/name&gt;
+          &lt;version&gt;1.4.2&lt;/version&gt;
+          &lt;os&gt;Linux 2.4.19&lt;/os&gt;
+        &lt;/query&gt;
+      &lt;/iq&gt;
+  </pre></div>
+
+  <p class="" style="">Currently, the prefix for each namespace is fixed; it cannot vary at all, since implementations use it for matching. The desire is to be able to use arbitrary prefixes:</p>
+ 
+  <p class="caption"><a name="example-3" id="example-3"></a>Example 3. XML stream with arbitrary namespace prefixes (1)</p><div class="indent"><pre>
+SEND: &lt;stream xmlns:app='jabber:client'
+              xmlns='http://etherx.jabber.org/streams'
+              to='jabber.org'&gt;
+RECV: &lt;stream xmlns:app='jabber:client'
+              xmlns='http://etherx.jabber.org/streams'
+              id='12345678'&gt;
+SEND: &lt;app:iq type='get' to='jabber.org'&gt;
+        &lt;query xmlns='jabber:iq:version'/&gt;
+      &lt;/app:iq&gt;
+RECV: &lt;app:iq type='result' from='jabber.org'&gt;
+        &lt;query xmlns='jabber:iq:version'&gt;
+          &lt;name&gt;jsm&lt;/name&gt;
+          &lt;version&gt;1.4.2&lt;/version&gt;
+          &lt;os&gt;Linux 2.4.19&lt;/os&gt;
+        &lt;/query&gt;
+      &lt;/app:iq&gt;
+  </pre></div>
+
+  <p class="" style="">Also, since there exist streams in both directions, it should be possible for prefixes to differ between the two streams:</p>
+
+  <p class="caption"><a name="example-4" id="example-4"></a>Example 4. XML stream with arbitrary namespace prefixes</p><div class="indent"><pre>
+SEND: &lt;stream xmlns:app='jabber:client'
+              xmlns='http://etherx.jabber.org/streams'
+              to='jabber.org'&gt;
+RECV: &lt;stream:stream xmlns='jabber:client'
+                     xmlns:stream='http://etherx.jabber.org/streams'
+                     id='12345678'&gt;
+SEND: &lt;app:iq type='get' to='jabber.org'&gt;
+        &lt;query xmlns='jabber:iq:version'/&gt;
+      &lt;/app:iq&gt;
+RECV: &lt;iq type='result' from='jabber.org'&gt;
+        &lt;ver:query xmlns:ver='jabber:iq:version'&gt;
+          &lt;ver:name&gt;jsm&lt;/ver:name&gt;
+          &lt;ver:version&gt;1.4.2&lt;/ver:version&gt;
+          &lt;ver:os&gt;Linux 2.4.19&lt;/ver:os&gt;
+        &lt;/ver:query&gt;
+      &lt;/iq&gt;
+  </pre></div>
+
+  <p class="" style="">Additionally, it should be possible to declare namespaces on the stream header so that they don't need to be declared later:</p>
+
+  <p class="caption"><a name="example-5" id="example-5"></a>Example 5. XML stream with namespaces declared in the stream header</p><div class="indent"><pre>
+SEND: &lt;stream:stream xmlns='jabber:client'
+                     xmlns:stream='http://etherx.jabber.org/streams'
+                     xmlns:ver='jabber:iq:version'
+                     to='jabber.org'&gt;
+RECV: &lt;stream:stream xmlns='jabber:client'
+                     xmlns:stream='http://etherx.jabber.org/streams'
+                     xmlns:ver='jabber:iq:version'
+                     id='12345678'&gt;
+SEND: &lt;iq type='get' to='jabber.org'&gt;
+        &lt;ver:query/&gt;
+      &lt;/iq&gt;
+RECV: &lt;iq type='result' from='jabber.org'&gt;
+        &lt;ver:query&gt;
+          &lt;ver:name&gt;jsm&lt;/ver:name&gt;
+          &lt;ver:version&gt;1.4.2&lt;/ver:version&gt;
+          &lt;ver:os&gt;Linux 2.4.19&lt;/ver:os&gt;
+        &lt;/ver:query&gt;
+      &lt;/iq&gt;
+  </pre></div>
+
+  <p class="" style="">And of course, any combinations of these should be valid, as long as they conform to the XML Namespaces specification.</p>
+
+<h2>3.
+       <a name="sect-id2252750" id="sect-id2252750">Implementation Notes</a></h2>
+
+  <p class="" style="">In order to implement namespaces correctly, implementations will need to check both the namespace of an element (or attribute), and its namespace, in order to match it. An implementation will need to maintain some sort of mapping between prefixes and namespaces, though some parsers, such as recent versions of Expat, can do this for the implementor.</p>
+
+  <p class="" style="">Implementations should, wherever possible, adhere to the IETF maxim "be liberal in what you accept, and conservative in what you send". This means accepting any valid namespace prefix, but using only the traditional prefixes (i.e. "stream" for "http://etherx.jabber.org/streams", "sasl" for "http://www.iana.org/assignments/sasl-mechanisms", and no prefix for the application namespace). For servers, this has the added benefit of getting compatibility with non-namespace-aware clients for free.</p>
+
+  <p class="" style="">In server components that may have to forward packets received from one stream to another stream, it may be necessary for the application namespace to be rewritten before the packet is forwarded. Examples of this are client-to-server and server-to-server components, which must convert "jabber:client" and "jabber:server" components, respectively, into "jabber:component:accept" packets before they are forwarded to the router.</p>
+
+<hr /><h2><a name="notes" id="notes"></a>Notes</h2><div class="indent"><p><a name="nt-id2260912" id="nt-id2260912">1</a>. <a href="http://www.w3.org/TR/REC-xml-names">http://www.w3.org/TR/REC-xml-names</a></p></div><hr /><h2><a name="revs" id="revs"></a>Revision History</h2><div class="indent"><h4>Version 0.1 (2002-08-26)</h4><div class="indent">Initial version. (rn)
+    </div></div><hr /><p>END</p></body></html>

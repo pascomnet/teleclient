@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>XEP-0123: Entity Metadata</title><link rel="stylesheet" type="text/css" href="/xmpp.css" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" /><meta name="DC.Title" content="Entity Metadata" /><meta name="DC.Creator" content="Peter Saint-Andre" /><meta name="DC.Description" content="NOTE: This proposal was retracted by the author on 2004-02-19." /><meta name="DC.Publisher" content="XMPP Standards Foundation" /><meta name="DC.Contributor" content="XMPP Extensions Editor" /><meta name="DC.Date" content="2003-12-16" /><meta name="DC.Type" content="XMPP Extension Protocol" /><meta name="DC.Format" content="XHTML" /><meta name="DC.Identifier" content="XEP-0123" /><meta name="DC.Language" content="en" /><meta name="DC.Rights" content="This XMPP Extension Protocol is copyright (c) 1999 - 2008 by the XMPP Standards Foundation (XSF)." /></head><body><h1>XEP-0123: Entity Metadata</h1><p>NOTE: This proposal was retracted by the author on 2004-02-19.</p><hr /><p style="color:red">WARNING: This document has been retracted by the author(s). Implementation of the protocol described herein is not recommended. Developers desiring similar functionality should implement the protocol that supersedes this one (if any).</p><hr /><h2>Document Information</h2><p class="indent">
+            Series: <a href="http://www.xmpp.org/extensions/">XEP</a><br />
+            Number: 0123<br />
+            Publisher: <a href="/xsf/">XMPP Standards Foundation</a><br />
+            Status: 
+            <a href="http://www.xmpp.org/extensions/xep-0001.html#states-Retracted">Retracted</a><br />
+            Type:
+            <a href="http://www.xmpp.org/extensions/xep-0001.html#types-Standards Track">Standards Track</a><br />
+            Version: 0.3<br />
+            Last Updated: 2003-12-16<br />
+                Approving Body: <a href="http://www.xmpp.org/council/">XMPP Council</a><br />
+                Dependencies: None<br />
+                Supersedes: None<br />
+                Superseded By: None<br />
+            Short Name: N/A<br />
+              Wiki Page: &lt;<a href="http://wiki.jabber.org/index.php/Entity Metadata (XEP-0123)">http://wiki.jabber.org/index.php/Entity Metadata (XEP-0123)</a>&gt;
+            </p><hr /><h2>Author Information</h2><div class="indent"><h3>Peter Saint-Andre</h3><p class="indent">
+        JabberID: 
+        <a href="xmpp:stpeter@jabber.org">stpeter@jabber.org</a><br />
+        URI: 
+        <a href="https://stpeter.im/">https://stpeter.im/</a><br /></p></div><hr /><h2>Legal Notices</h2><div class="indent"><h3>Copyright</h3>This XMPP Extension Protocol is copyright (c) 1999 - 2008 by the XMPP Standards Foundation (XSF).<h3>Permissions</h3>Permission is hereby granted, free of charge, to any person obtaining a copy of this specification (the "Specification"), to make use of the Specification without restriction, including without limitation the rights to implement the Specification in a software program, deploy the Specification in a network service, and copy, modify, merge, publish, translate, distribute, sublicense, or sell copies of the Specification, and to permit persons to whom the Specification is furnished to do so, subject to the condition that the foregoing copyright notice and this permission notice shall be included in all copies or substantial portions of the Specification. Unless separate permission is granted, modified works that are redistributed shall not contain misleading information regarding the authors, title, number, or publisher of the Specification, and shall not claim endorsement of the modified works by the authors, any organization or project to which the authors belong, or the XMPP Standards Foundation.<h3>Disclaimer of Warranty</h3><span style="font-weight: bold">## NOTE WELL: This Specification is provided on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, express or implied, including, without limitation, any warranties or conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE. In no event shall the XMPP Standards Foundation or the authors of this Specification be liable for any claim, damages, or other liability, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the Specification or the implementation, deployment, or other use of the Specification. ##</span><h3>Limitation of Liability</h3>In no event and under no legal theory, whether in tort (including negligence), contract, or otherwise, unless required by applicable law (such as deliberate and grossly negligent acts) or agreed to in writing, shall the XMPP Standards Foundation or any author of this Specification be liable for damages, including any direct, indirect, special, incidental, or consequential damages of any character arising out of the use or inability to use the Specification (including but not limited to damages for loss of goodwill, work stoppage, computer failure or malfunction, or any and all other commercial damages or losses), even if the XMPP Standards Foundation or such author has been advised of the possibility of such damages.<h3>IPR Conformance</h3>This XMPP Extension Protocol has been contributed in full conformance with the XSF's Intellectual Property Rights Policy (a copy of which may be found at &lt;<a href="http://www.xmpp.org/extensions/ipr-policy.shtml">http://www.xmpp.org/extensions/ipr-policy.shtml</a>&gt; or obtained by writing to XSF, P.O. Box 1641, Denver, CO 80201 USA).</div><hr /><h2>Discussion Venue</h2><p class="indent">The preferred venue for discussion of this document is the Standards discussion list: &lt;<a href="http://mail.jabber.org/mailman/listinfo/standards">http://mail.jabber.org/mailman/listinfo/standards</a>&gt;.</p><p class="indent">Errata may be sent to &lt;<a href="mailto:editor@xmpp.org">editor@xmpp.org</a>&gt;.</p><h2>Relation to XMPP</h2><p class="indent">The Extensible Messaging and Presence Protocol (XMPP) is defined in the XMPP Core (RFC 3920) and XMPP IM (RFC 3921) specifications contributed by the XMPP Standards Foundation to the Internet Standards Process, which is managed by the Internet Engineering Task Force in accordance with RFC 2026. Any protocol defined in this document has been developed outside the Internet Standards Process and is to be understood as an extension to XMPP rather than as an evolution, development, or modification of XMPP itself.</p><h2>Conformance Terms</h2><p class="indent">The following keywords as used in this document are to be interpreted as described in <a href="http://www.ietf.org/rfc/rfc2119.txt">RFC 2119</a>: "MUST", "SHALL", "REQUIRED"; "MUST NOT", "SHALL NOT"; "SHOULD", "RECOMMENDED"; "SHOULD NOT", "NOT RECOMMENDED"; "MAY", "OPTIONAL".</p><hr /><h2>Table of Contents</h2><div class="indent"><p><br />1.  <a href="#sect-id2252816">Background and Requirements</a><br />2.  <a href="#sect-id2251318">Protocol</a><br />3.  <a href="#sect-id2251593">Use Cases</a><br />   
+      3.1.  <a href="#sect-id2251576">Discovering Support</a><br />   
+      3.2.  <a href="#sect-id2251389">Requesting Metadata About Another Entity</a><br />4.  <a href="#sect-id2251436">Integration with Directory Services</a><br />5.  <a href="#sect-id2261082">Security Considerations</a><br />6.  <a href="#sect-id2261125">IANA Considerations</a><br />7.  <a href="#sect-id2261148">XMPP Registrar Considerations</a><br />   
+      7.1.  <a href="#sect-id2261137">Service Discovery Nodes</a><br /><a href="#notes">Notes</a><br /><a href="#revs">Revision History</a></p></div><hr /><h2>1.
+       <a name="sect-id2252816" id="sect-id2252816">Background and Requirements</a></h2>
+  <p class="" style="">Traditionally, the only mechanism for communicating detailed information about entities on the Jabber network has been an XML version of the vCard format for electronic business cards (see <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0054.html">vcard-temp</a></span>  [<a href="#nt-id2252861">1</a>]). Unfortunately, the vCard format has several major drawbacks:</p>
+  <ol start="" class="" style="">
+    <li class="" style="">It is mainly limited to data about persons (although it has been used on the Jabber network to describe things like servers).</li>
+    <li class="" style="">The format contains relatively few data fields.</li>
+    <li class="" style="">The format is not extensible.</li>
+    <li class="" style="">As implemented, the data is not searchable.</li>
+    <li class="" style="">As implemented, the data cannot be filtered depending on the identity of the requestor.</li>
+  </ol>
+  <p class="" style="">It is becoming increasingly important to define a robust, extensible format for describing entities on the Jabber network. Such a format should be:</p>
+  <ol start="" class="" style="">
+    <li class="" style="">Applicable not just to people but to any entity on the network, including but not limited to servers, components, bots, <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0045.html">Multi-User Chat</a></span>  [<a href="#nt-id2252699">2</a>] rooms, <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0060.html">Publish-Subscribe</a></span>  [<a href="#nt-id2252726">3</a>] nodes, and in general anything that can be addressed as a Jabber ID (as defined in <span class="ref" style=""><a href="http://tools.ietf.org/html/rfc3920">XMPP Core</a></span>  [<a href="#nt-id2252751">4</a>]).</li>
+    <li class="" style="">Usable in encapsulating any information about the entity itself (name, address, description, title, etc.).</li>
+    <li class="" style="">Extensible enough to handle any metadata that may be needed for current and future applications (including, at a minimum, everything that can be defined in vCard); it must be possible to use it for public protocols defined by the IETF or XMPP Standards Foundation as well as for custom or private protocols.</li>
+    <li class="" style="">Well-defined enough, through datatyping and public registries where applicable, to enable robust searching and filtering based on defined data fields and their values.</li>
+  </ol>
+<h2>2.
+       <a name="sect-id2251318" id="sect-id2251318">Protocol</a></h2>
+  <p class="" style="">Information about entities is provided using the <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0120.html">Infobits</a></span>  [<a href="#nt-id2251355">5</a>] protocol and registered infobit keynames (mainly those specified in <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0125.html">vCard Infobits Mapping</a></span>  [<a href="#nt-id2251517">6</a>] although entity metadata is by no means limited to vCard information and could include infobits such as those specified in <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0121.html">Dublin Core Infobits Mapping</a></span>  [<a href="#nt-id2251543">7</a>]). The metadata is discovered by interacting with a common <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0030.html">Service Discovery</a></span>  [<a href="#nt-id2251561">8</a>] node named "metadata". The queried entity replies with a service discovery result containing any infobits that the entity wishes to reveal about itself to the requesting entity. This information is always metadata about the entity itself, not any other entities or any relationships that the entity may have to other entities.</p>
+<h2>3.
+       <a name="sect-id2251593" id="sect-id2251593">Use Cases</a></h2>
+  <div class="indent"><h3>3.1 <a name="sect-id2251576" id="sect-id2251576">Discovering Support</a></h3>
+    <p class="" style="">Support for entity metadata is discovered by means of Service Discovery. If the queried entity provides metadata about itself, it SHOULD advertise that fact by listing an item named "metadata" in response to a disco#items query.</p>
+    <p class="caption"><a name="example-1" id="example-1"></a>Example 1. One Entity Queries Another via Disco</p><div class="indent"><pre>
+&lt;iq type='get'
+    from='juliet@capulet.com/balcony'
+    to='romeo@montague.net/orchard'
+    id='disco1'&gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#items'/&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="" style="">The entity returns its associated items:</p>
+    <p class="caption"><a name="example-2" id="example-2"></a>Example 2. Entity Returns Disco Item Results</p><div class="indent"><pre>
+&lt;iq type='result'
+    from='romeo@montague.net/orchard'
+    to='juliet@capulet.com/balcony'
+    id='disco1'&gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#items'&gt;
+    ...
+    &lt;item jid='juliet@capulet.com'
+          node='metadata'
+          name='Information about Juliet Capulet'/&gt;
+    ...
+  &lt;/query&gt;
+&lt;/iq&gt;
+    </pre></div>
+  </div>
+  <div class="indent"><h3>3.2 <a name="sect-id2251389" id="sect-id2251389">Requesting Metadata About Another Entity</a></h3>
+    <p class="" style="">In order to request the advertised metadata, the requesting entity sends a disco#info request to the 'metadata' node of the JID communicated in the previous result.</p>
+    <p class="caption"><a name="example-3" id="example-3"></a>Example 3. Requestor Requests Metadata</p><div class="indent"><pre>
+&lt;iq type='get'
+    from='juliet@capulet.com/balcony'
+    to='romeo@montague.net'
+    id='request1'&gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#info'
+         node='metadata'/&gt;
+&lt;/iq&gt;
+    </pre></div>
+    <p class="" style="">The entity returns its metadata to the requestor.</p>
+    <p class="caption"><a name="example-4" id="example-4"></a>Example 4. Entity Returns Metadata Result</p><div class="indent"><pre>
+&lt;iq type='result'
+    from='romeo@montague.net'
+    to='juliet@capulet.com/balcony'
+    id='request2'&gt;
+  &lt;query xmlns='http://jabber.org/protocol/disco#info'
+         node='metadata'&gt;
+    &lt;info 'http://jabber.org/protocol/infobits'&gt;
+      &lt;bit key='fn'&gt;Romeo Montague&lt;/bit&gt;
+      &lt;bit key='country'&gt;Italy&lt;/bit&gt;
+      &lt;bit key='city'&gt;Verona&lt;/bit&gt;
+      &lt;bit key='gender'&gt;male&lt;/bit&gt;
+      &lt;bit key='nickname'&gt;loverboy&lt;/bit&gt;
+    &lt;/info&gt;
+  &lt;/query&gt;
+&lt;/iq&gt;
+    </pre></div>
+  </div>
+<h2>4.
+       <a name="sect-id2251436" id="sect-id2251436">Integration with Directory Services</a></h2>
+  <p class="" style="">One of the primary motivations behind this proposal is to enable the construction of useful directory services on the Jabber network. Examples of such services include but are not limited to:</p>
+  <ul class="" style="">
+    <li class="" style="">robust user directories</li>
+    <li class="" style="">directories of groupchat rooms</li>
+    <li class="" style="">directories of pubsub nodes</li>
+    <li class="" style="">server directories</li>
+  </ul>
+  <p class="" style="">Although such directories will be a valuable addition to the network, it is imperative to understand that the canonical source for metadata about an entity is the entity itself. Mechanisms for keeping directories synchronized with entities are outside the scope of this document, and in any case a directory may not be privy to all information about an entity (since in general a user should publish to a directory only the information that he or she deems world-readable).</p>
+  <p class="" style="">Directories SHOULD require registration using <span class="ref" style=""><a href="http://www.xmpp.org/extensions/xep-0077.html">In-Band Registration</a></span>  [<a href="#nt-id2261096">9</a>]. Before registering with a directory, an entity SHOULD adjust its access controls or privacy rules accordingly, including appropriate definition of classes and addition of the directory server's JID to the relevant privacy rules. Upon accepting registration from an entity, a directory SHOULD immediately send a metadata request to the registering entity. Synchronization of metadata is a matter for the directory implementation to determine, and perhaps negotiate with the registering entity; all such synchronization and negotiation is out of scope for this document.</p>
+<h2>5.
+       <a name="sect-id2261082" id="sect-id2261082">Security Considerations</a></h2>
+  <p class="" style="">Metadata MAY be world-readable. Entities MUST take care to ensure that they exercise proper control over access to such information. Users of IM clients SHOULD be warned that their data may be world-readable and be given the option to not publish such information or control it via appropriate mechanisms (such as privacy rules).</p>
+<h2>6.
+       <a name="sect-id2261125" id="sect-id2261125">IANA Considerations</a></h2>
+  <p class="" style="">This document requires no interaction with the <span class="ref" style=""><a href="http://www.iana.org/">Internet Assigned Numbers Authority (IANA)</a></span>  [<a href="#nt-id2261163">10</a>].</p>
+<h2>7.
+       <a name="sect-id2261148" id="sect-id2261148">XMPP Registrar Considerations</a></h2>
+  <div class="indent"><h3>7.1 <a name="sect-id2261137" id="sect-id2261137">Service Discovery Nodes</a></h3>
+    <p class="" style="">Upon advancement of this proposal to a status of Draft, the <span class="ref" style=""><a href="http://www.xmpp.org/registrar/">XMPP Registrar</a></span>  [<a href="#nt-id2261200">11</a>] shall add the 'metadata' node to its registry of common Service Discovery nodes.</p>
+  </div>
+<hr /><h2><a name="notes" id="notes"></a>Notes</h2><div class="indent"><p><a name="nt-id2252861" id="nt-id2252861">1</a>. XEP-0054: vcard-temp &lt;<a href="http://www.xmpp.org/extensions/xep-0054.html">http://www.xmpp.org/extensions/xep-0054.html</a>&gt;.</p><p><a name="nt-id2252699" id="nt-id2252699">2</a>. XEP-0045: Multi-User Chat &lt;<a href="http://www.xmpp.org/extensions/xep-0045.html">http://www.xmpp.org/extensions/xep-0045.html</a>&gt;.</p><p><a name="nt-id2252726" id="nt-id2252726">3</a>. XEP-0060: Publish-Subscribe &lt;<a href="http://www.xmpp.org/extensions/xep-0060.html">http://www.xmpp.org/extensions/xep-0060.html</a>&gt;.</p><p><a name="nt-id2252751" id="nt-id2252751">4</a>. RFC 3920: Extensible Messaging and Presence Protocol (XMPP): Core &lt;<a href="http://tools.ietf.org/html/rfc3920">http://tools.ietf.org/html/rfc3920</a>&gt;.</p><p><a name="nt-id2251355" id="nt-id2251355">5</a>. XEP-0120: Infobits &lt;<a href="http://www.xmpp.org/extensions/xep-0120.html">http://www.xmpp.org/extensions/xep-0120.html</a>&gt;.</p><p><a name="nt-id2251517" id="nt-id2251517">6</a>. XEP-0125: vCard Infobits Mapping &lt;<a href="http://www.xmpp.org/extensions/xep-0125.html">http://www.xmpp.org/extensions/xep-0125.html</a>&gt;.</p><p><a name="nt-id2251543" id="nt-id2251543">7</a>. XEP-0121: Dublin Core Infobits Mapping &lt;<a href="http://www.xmpp.org/extensions/xep-0121.html">http://www.xmpp.org/extensions/xep-0121.html</a>&gt;.</p><p><a name="nt-id2251561" id="nt-id2251561">8</a>. XEP-0030: Service Discovery &lt;<a href="http://www.xmpp.org/extensions/xep-0030.html">http://www.xmpp.org/extensions/xep-0030.html</a>&gt;.</p><p><a name="nt-id2261096" id="nt-id2261096">9</a>. XEP-0077: In-Band Registration &lt;<a href="http://www.xmpp.org/extensions/xep-0077.html">http://www.xmpp.org/extensions/xep-0077.html</a>&gt;.</p><p><a name="nt-id2261163" id="nt-id2261163">10</a>. The Internet Assigned Numbers Authority (IANA) is the central coordinator for the assignment of unique parameter values for Internet protocols, such as port numbers and URI schemes. For further information, see &lt;<a href="http://www.iana.org/">http://www.iana.org/</a>&gt;.</p><p><a name="nt-id2261200" id="nt-id2261200">11</a>. The XMPP Registrar maintains a list of reserved protocol namespaces as well as registries of parameters used in the context of XMPP extension protocols approved by the XMPP Standards Foundation. For further information, see &lt;<a href="http://www.xmpp.org/registrar/">http://www.xmpp.org/registrar/</a>&gt;.</p></div><hr /><h2><a name="revs" id="revs"></a>Revision History</h2><div class="indent"><h4>Version 0.3 (2003-12-16)</h4><div class="indent">Incorporated infobits changes and vCard infobit mappings; metadata about relationships to be moved to forthcoming specification. (psa)
+    </div><h4>Version 0.2 (2003-10-23)</h4><div class="indent">Changed ent to entity, rel to relation. (psa)
+    </div><h4>Version 0.1 (2003-10-22)</h4><div class="indent">Initial version, split off from XEP-0120. (psa)
+    </div></div><hr /><p>END</p></body></html>
