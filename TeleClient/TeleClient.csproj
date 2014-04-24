@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TeleClient</RootNamespace>
     <AssemblyName>TeleClient</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -26,6 +26,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -46,6 +47,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -57,27 +61,35 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientDlg.cs">
+    <Compile Include="ChannelEvent.cs" />
+    <Compile Include="ClientFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ClientDlg.Designer.cs">
-      <DependentUpon>ClientDlg.cs</DependentUpon>
+    <Compile Include="ClientFrm.Designer.cs">
+      <DependentUpon>ClientFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LoginDlg.cs">
+    <Compile Include="ClientInfo.cs" />
+    <Compile Include="CommandTag.cs" />
+    <Compile Include="Connection.cs" />
+    <Compile Include="JournalEntry.cs" />
+    <Compile Include="LoginFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoginDlg.Designer.cs">
-      <DependentUpon>LoginDlg.cs</DependentUpon>
+    <Compile Include="LoginFrm.Designer.cs">
+      <DependentUpon>LoginFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ClientDlg.resx">
-      <DependentUpon>ClientDlg.cs</DependentUpon>
+    <Compile Include="Subscription.cs" />
+    <Compile Include="UserInfo.cs" />
+    <EmbeddedResource Include="ClientFrm.resx">
+      <DependentUpon>ClientFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoginDlg.resx">
-      <DependentUpon>LoginDlg.cs</DependentUpon>
+    <EmbeddedResource Include="LoginFrm.resx">
+      <DependentUpon>LoginFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -87,8 +99,10 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Client.cd" />
+    <None Include="Connection.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -124,6 +138,12 @@
       <Project>{91ea0d0b-d3ba-497f-afeb-2cad59deba0e}</Project>
       <Name>agsXMPP2008</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

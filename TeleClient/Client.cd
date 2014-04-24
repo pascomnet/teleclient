@@ -1,17 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="TeleClient.ClientDlg">
-    <Position X="0.5" Y="0.5" Width="1.5" />
+  <Class Name="TeleClient.LoginFrm">
+    <Position X="3" Y="0.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAIAAACAAAAAAAACAAAACQEIAICAAAAAAACAAAIA=</HashCode>
-      <FileName>ClientDlg.cs</FileName>
+      <HashCode>AQAAAAKAECAEAAAAAACAAAACAGAAKAAAAkBAgABAAAA=</HashCode>
+      <FileName>LoginFrm.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TeleClient.LoginDlg">
-    <Position X="2.5" Y="0.5" Width="1.5" />
+  <Class Name="TeleClient.ClientFrm">
+    <Position X="5.5" Y="0.5" Width="3" />
     <TypeIdentifier>
-      <HashCode>AAAAAACAECAEAAAAAACAAAACAGAAIAAAAkAAAABAAAA=</HashCode>
-      <FileName>LoginDlg.cs</FileName>
+      <HashCode>AAjAAIAgACAIUIAYAAaAAQECAEIAIAAAAABAADRAAIA=</HashCode>
+      <FileName>ClientFrm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeleClient.Program">
+    <Position X="0.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAIAAAABAEACAAAAAAAAAAIAAAAAAAABAAwBAA=</HashCode>
+      <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
