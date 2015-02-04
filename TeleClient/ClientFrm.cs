@@ -71,7 +71,18 @@ namespace TeleClient
         {
             Program.UIDispatcher.BeginInvoke(new Action(() =>
             {
+                lblMissedCall.Visible = false;
+                // Journaleintrag schreiben
                 this.JournalEntries.Insert(0, e.JournalEntry);
+
+                // Falls Anruf verpasst, diesen anzeigen
+                JournalEntry firstEntry = JournalEntries[0];
+                if (firstEntry.Dauer == 0)
+                {
+                    lblMissedCall.BackColor = Color.FromArgb(251, 171, 165);
+                    lblMissedCall.Text = "Verpasster Anruf von: " + firstEntry.Name;
+                    lblMissedCall.Visible = true;
+                }
             }));
         }
 
@@ -125,11 +136,11 @@ namespace TeleClient
                 {
                     //Diesen anzeigen
                     JournalEntry firstEntry = JournalEntries[0];
-                    if (firstEntry.Duration == 0)
+                    if (firstEntry.Dauer == 0)
                     {
-                        lblMissedCall.Visible = true;
                         lblMissedCall.BackColor = Color.FromArgb(251, 171, 165);
                         lblMissedCall.Text = "Verpasster Anruf von: " + firstEntry.Name;
+                        lblMissedCall.Visible = true;
                     }
                 }
             }));
@@ -339,6 +350,18 @@ namespace TeleClient
                 DialEntries.Insert(0, number);
                 cboDial.Text = "";
             }
+        }
+
+        /// <summary>
+        /// Durch Klick auf den verpassten Anruf wird dieser wieder ausgeblendet
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lblMissedCall_Click(object sender, EventArgs e)
+        {
+            // Nur wenn ein verpasster Anruf angezeigt wird
+            if (lblMissedCall.Visible == true)
+                lblMissedCall.Visible = false;
         }
     }
 }

@@ -8,10 +8,12 @@ namespace TeleClient
 {
     public class JournalEntry
     {
-        public string Direction { get; set; }
+        // Wir brauchen hier die deutsche Bezeichnung, 
+        // weil diese als Header im Journal angezeigt werden
+        public string Rufrichtung { get; set; }
         public string Name { get; set; }
-        public string Number { get; set; }
-        public int Duration { get; set; }
+        public string Nummer { get; set; }
+        public int Dauer { get; set; }
 
         /// <summary>
         /// Konstruktor für JournalEntry
@@ -22,15 +24,15 @@ namespace TeleClient
             bool Inbound = bool.Parse(journalEntry.GetTag("inbound", true).ToString());
             if (Inbound)
             {
-                Direction = "->";
+                Rufrichtung = "->";
             }
             else
             {
-                Direction = "<-";
+                Rufrichtung = "<-";
             }
             Name = journalEntry.GetTag("name", true).ToString();
-            Number = journalEntry.GetTag("number", true).ToString();
-            Duration = int.Parse(journalEntry.GetTag("duration", true).ToString());
+            Nummer = journalEntry.GetTag("number", true).ToString();
+            Dauer = int.Parse(journalEntry.GetTag("duration", true).ToString());
         }
     }
 }

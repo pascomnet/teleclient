@@ -130,6 +130,7 @@
             this.lblMissedCall.Size = new System.Drawing.Size(0, 13);
             this.lblMissedCall.TabIndex = 11;
             this.lblMissedCall.Visible = false;
+            this.lblMissedCall.Click += new System.EventHandler(this.lblMissedCall_Click);
             // 
             // cboDial
             // 
